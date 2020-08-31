@@ -1,6 +1,36 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import{Grid, Button, TextField, Paper} from '@material-ui/core';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+
+
+const styles = theme => ({ 
+  root: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justify: 'center',
+    backgroundColor: '#0d47a1',
+    minHeight:'600px'
+  },
+  paper: {
+    width: '100%',
+    padding: theme.spacing(3),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    justify: 'center',
+    margin: '0px',
+    borderRadius: '5px'
+    },
+
+    longField:{
+      width: '85%',
+    },
+    login:{
+      color:'white',
+    }
+})
+
 
 class RegisterPage extends Component {
   state = {
@@ -37,43 +67,48 @@ class RegisterPage extends Component {
   }
 
   render() {
+    const {classes} = this.props;
     return (
-      <Grid container direction = 'column' justify = 'center' alignItems = 'center'>
-        <Grid item xs = {12} md = {6} lg = {5} xl = {4}>
-          {this.props.errors.registrationMessage && (
-            <h2
-              className="alert"
-              role="alert"
-            >
-              {this.props.errors.registrationMessage}
-            </h2>
-          )}
-        <Paper >
-            <h1>Create New User Account</h1>
-            <div>
+      <div className = {classes.root}>
+        <Grid container direction = 'column' justify = 'center' alignItems = 'center'>
+          <Grid item xs = {12} md = {6} lg = {5} xl = {4}>
+            {this.props.errors.registrationMessage && (
+              <h2
+                className="alert"
+                role="alert"
+              >
+                {this.props.errors.registrationMessage}
+              </h2>
+            )}
+          <Paper className = {classes.paper}>
+              <h1>Create User Account</h1>
+              <div>
+                  <TextField
+                    name="first_name"
+                    label ='*First Name'
+                    value={this.state.first_name}
+                    onChange={this.handleInputChangeFor('first_name')}
+                  />
+                  {'\u00A0'} {'\u00A0'}
+                  <TextField
+                    label = '*Last Name'
+                    name="last_name"
+                    value={this.state.last_name}
+                    onChange={this.handleInputChangeFor('last_name')}
+                  />
+              </div>
+              <div>
+                  <TextField
+                    className = {classes.longField}
+                    label = '*Email'
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.handleInputChangeFor('email')}
+                  />
+              </div>
+              <div>
                 <TextField
-                  name="first_name"
-                  label ='*First Name'
-                  value={this.state.first_name}
-                  onChange={this.handleInputChangeFor('first_name')}
-                />
-                <TextField
-                  label = '*Last Name'
-                  name="last_name"
-                  value={this.state.last_name}
-                  onChange={this.handleInputChangeFor('last_name')}
-                />
-            </div>
-            <div>
-                <TextField
-                  label = '*Email'
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.handleInputChangeFor('email')}
-                />
-            </div>
-            <div>
-                <TextField
+                  className = {classes.longField}
                   type="password"
                   name="password"
                   label = '*Password'
@@ -83,6 +118,7 @@ class RegisterPage extends Component {
             </div>
               <div>
                   <TextField
+                    className = {classes.longField}
                     label = 'Primay Phone (optional)'
                     name='phone'
                     value={this.state.phone}
@@ -99,8 +135,7 @@ class RegisterPage extends Component {
              </Paper>
             <div>
             <Button
-              color = 'primary'
-              className="link-button"
+              className= {classes.login}
               onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
             >
               Login
@@ -108,6 +143,7 @@ class RegisterPage extends Component {
             </div>
           </Grid>
         </Grid>
+      </div>
     );
   }
 }
@@ -119,5 +155,10 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(RegisterPage);
+RegisterPage.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(connect(mapStateToProps)(RegisterPage));
+
 
