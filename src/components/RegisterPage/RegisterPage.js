@@ -1,21 +1,58 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import{Grid, Button, TextField, Paper} from '@material-ui/core';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+
+
+const styles = theme => ({ 
+  root: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justify: 'center',
+    backgroundColor: '#0d47a1',
+    minHeight:'600px'
+  },
+  paper: {
+    width: '100%',
+    padding: theme.spacing(3),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    justify: 'center',
+    margin: '0px',
+    borderRadius: '5px'
+    },
+
+    longField:{
+      width: '85%',
+    },
+    login:{
+      color:'white',
+    }
+})
+
 
 class RegisterPage extends Component {
   state = {
-    username: '',
+    email: '',
     password: '',
+    first_name: '',
+    last_name: '',
+    phone: '',
   };
 
   registerUser = (event) => {
     event.preventDefault();
 
-    if (this.state.username && this.state.password) {
+    if (this.state.email && this.state.password && this.state.first_name && this.state.last_name) {
       this.props.dispatch({
         type: 'REGISTER',
         payload: {
-          username: this.state.username,
+          email: this.state.email,
           password: this.state.password,
+          first_name: this.state.first_name,
+          last_name: this.state.last_name,
+          phone: this.state.phone,
         },
       });
     } else {
@@ -30,58 +67,82 @@ class RegisterPage extends Component {
   }
 
   render() {
+    const {classes} = this.props;
     return (
-      <div>
-        {this.props.errors.registrationMessage && (
-          <h2
-            className="alert"
-            role="alert"
-          >
-            {this.props.errors.registrationMessage}
-          </h2>
-        )}
-        <form onSubmit={this.registerUser}>
-          <h1>Register User</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
-            <input
-              className="register"
-              type="submit"
-              name="submit"
-              value="Register"
-            />
-          </div>
-        </form>
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
-          >
-            Login
-          </button>
-        </center>
+      <div className = {classes.root}>
+        <Grid container direction = 'column' justify = 'center' alignItems = 'center'>
+          <Grid item xs = {12} md = {6} lg = {5} xl = {4}>
+            {this.props.errors.registrationMessage && (
+              <h2
+                className="alert"
+                role="alert"
+              >
+                {this.props.errors.registrationMessage}
+              </h2>
+            )}
+          <Paper className = {classes.paper}>
+              <h1>Create User Account</h1>
+              <div>
+                  <TextField
+                    name="first_name"
+                    label ='*First Name'
+                    value={this.state.first_name}
+                    onChange={this.handleInputChangeFor('first_name')}
+                  />
+                  {'\u00A0'} {'\u00A0'}
+                  <TextField
+                    label = '*Last Name'
+                    name="last_name"
+                    value={this.state.last_name}
+                    onChange={this.handleInputChangeFor('last_name')}
+                  />
+              </div>
+              <div>
+                  <TextField
+                    className = {classes.longField}
+                    label = '*Email'
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.handleInputChangeFor('email')}
+                  />
+              </div>
+              <div>
+                <TextField
+                  className = {classes.longField}
+                  type="password"
+                  name="password"
+                  label = '*Password'
+                  value={this.state.password}
+                  onChange={this.handleInputChangeFor('password')}
+                />
+            </div>
+              <div>
+                  <TextField
+                    className = {classes.longField}
+                    label = 'Primay Phone (optional)'
+                    name='phone'
+                    value={this.state.phone}
+                    onChange={this.handleInputChangeFor('phone')}
+                  />
+              </div>
+              <br/>
+              <div>
+                <Button onClick = {this.registerUser}
+                  variant = 'contained' color = 'primary'>
+                  Create Account
+                </Button>
+              </div>
+             </Paper>
+            <div>
+            <Button
+              className= {classes.login}
+              onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
+            >
+              Login
+            </Button>
+            </div>
+          </Grid>
+        </Grid>
       </div>
     );
   }
@@ -94,5 +155,10 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(RegisterPage);
+RegisterPage.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(connect(mapStateToProps)(RegisterPage));
+
 
