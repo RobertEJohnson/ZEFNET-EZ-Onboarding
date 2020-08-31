@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Grid, Button} from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 class WelcomeScreen extends Component {
 
@@ -17,9 +18,11 @@ class WelcomeScreen extends Component {
                         need every step of the way. :)
                         <br/>
                         <br/>
-                        <Button variant='contained' style={{color: '#006dcc', backgroundColor: 'white'}}>
-                            Let's Get Started
-                        </Button>
+                        <Link to="/createOrganization">
+                            <Button variant='contained' style={{color: '#006dcc', backgroundColor: 'white'}}>
+                                Let's Get Started
+                            </Button>
+                        </Link>
                     </p>
             </Grid>
         </Grid>

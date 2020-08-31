@@ -18,6 +18,7 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import WelcomeScreen from '../WelcomeScreen/WelcomeScreen'
 import './App.css';
+import CreateOrganization from '../Organization/CreateOrganization';
 
 
 class App extends Component {
@@ -55,6 +56,12 @@ class App extends Component {
               exact
               path="/info"
               component={InfoPage}
+            />
+
+            <ProtectedRoute
+            exact
+            path="/createOrganization"
+            component={CreateOrganization}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
