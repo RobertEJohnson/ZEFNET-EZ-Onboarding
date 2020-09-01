@@ -25,6 +25,7 @@ import './App.css';
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
+    this.props.dispatch({type: 'FETCH_ORGANIZATION', payload: this.props.reduxState.user.id})
   }
 
   render() {
@@ -83,5 +84,8 @@ class App extends Component {
       </Router>
   )}
 }
+const mapStateToProps = reduxState => ({
+  reduxState
+});
 
-export default connect()(App);
+export default connect(mapStateToProps)(App);
