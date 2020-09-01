@@ -2,6 +2,40 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./LoginPage.css";
 
+const styles = theme => ({ 
+  root: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justify: 'center',
+    color: 'white', 
+    fontFamily: 'Crimson Text, Open Sans, sans-serif',
+    minHeight: '80vh', 
+    minWidth: '100vw', 
+    background: 'linear-gradient(360deg, #041E41, #004e92 70%)',
+  },
+  paper: {
+    width: '100%',
+    padding: theme.spacing(3),
+    textAlign: 'center',
+    backgroundColor: 'transparent',
+    justify: 'center',
+    margin: '0px',
+    borderRadius: '5px',
+    border: 'none',
+    color: 'white'
+    },
+
+    longField:{
+      width: '388px',
+    },
+    login:{
+      color:'white',
+      marginLeft: '30vw'
+    },
+})
+
+
+
 class LoginPage extends Component {
   state = {
     email: "",

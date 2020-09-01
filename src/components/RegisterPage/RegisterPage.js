@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import{Grid, Button, TextField, Paper} from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, } from '@material-ui/core/styles';
 
 
 const styles = theme => ({ 
@@ -10,25 +10,31 @@ const styles = theme => ({
     flexGrow: 1,
     alignItems: 'center',
     justify: 'center',
-    backgroundColor: '#0d47a1',
-    minHeight:'600px'
+    color: 'white', 
+    fontFamily: 'Crimson Text, Open Sans, sans-serif',
+    minHeight: '80vh', 
+    minWidth: '100vw', 
+    background: 'linear-gradient(360deg, #041E41, #004e92 70%)',
   },
   paper: {
     width: '100%',
     padding: theme.spacing(3),
     textAlign: 'center',
-    color: theme.palette.text.secondary,
+    backgroundColor: 'transparent',
     justify: 'center',
     margin: '0px',
-    borderRadius: '5px'
+    borderRadius: '5px',
+    border: 'none',
+    color: 'white'
     },
 
     longField:{
-      width: '85%',
+      width: '388px',
     },
     login:{
       color:'white',
-    }
+      marginLeft: '30vw'
+    },
 })
 
 
@@ -80,17 +86,22 @@ class RegisterPage extends Component {
                 {this.props.errors.registrationMessage}
               </h2>
             )}
-          <Paper className = {classes.paper}>
+          <Paper className = {classes.paper} elevation = {0}>
               <h1>Create User Account</h1>
               <div>
                   <TextField
+                    variant = 'outlined'
+                    className = {classes.input}
+                    color = 'secondary'
                     name="first_name"
                     label ='*First Name'
                     value={this.state.first_name}
                     onChange={this.handleInputChangeFor('first_name')}
                   />
-                  {'\u00A0'} {'\u00A0'}
+                  {/* {'\u00A0'} {'\u00A0'} */}
                   <TextField
+                    variant = 'outlined'
+                    color = 'secondary'
                     label = '*Last Name'
                     name="last_name"
                     value={this.state.last_name}
@@ -99,6 +110,8 @@ class RegisterPage extends Component {
               </div>
               <div>
                   <TextField
+                    variant = 'outlined'
+                    color = 'secondary'
                     className = {classes.longField}
                     label = '*Email'
                     name="email"
@@ -108,6 +121,8 @@ class RegisterPage extends Component {
               </div>
               <div>
                 <TextField
+                  variant = 'outlined'
+                  color='secondary'
                   className = {classes.longField}
                   type="password"
                   name="password"
@@ -118,6 +133,8 @@ class RegisterPage extends Component {
             </div>
               <div>
                   <TextField
+                    variant = 'outlined'
+                    color = 'secondary'
                     className = {classes.longField}
                     label = 'Primay Phone (optional)'
                     name='phone'
@@ -128,17 +145,17 @@ class RegisterPage extends Component {
               <br/>
               <div>
                 <Button onClick = {this.registerUser}
-                  variant = 'contained' color = 'primary'>
+                  variant = 'contained'>
                   Create Account
                 </Button>
               </div>
              </Paper>
-            <div>
+            <div className = {classes.right}>
             <Button
               className= {classes.login}
               onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
             >
-              Login
+              Have an Account?
             </Button>
             </div>
           </Grid>
