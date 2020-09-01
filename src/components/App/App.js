@@ -11,11 +11,10 @@ import {connect} from 'react-redux';
 import Nav from '../Nav/Nav';
 //import Footer from '../Footer/Footer';
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
-
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import InfoPage from '../InfoPage/InfoPage';
-import WelcomeScreen from '../WelcomeScreen/WelcomeScreen'
+import WelcomeScreen from '../WelcomeScreen/WelcomeScreen';
 import ViewOrganization from '../Organization/ViewOrganization';
 
 import './App.css';
