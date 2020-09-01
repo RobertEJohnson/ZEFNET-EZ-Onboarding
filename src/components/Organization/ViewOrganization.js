@@ -34,9 +34,9 @@ const styles = theme => ({
       borderColor: '#f5f5f5'
   },
   details: {
-    marginLeft: '8vw',
-    marginRight: '8vw',
-  }
+    marginLeft: '3vw',
+    marginRight: '3vw',
+  },
 })
 
 
@@ -65,11 +65,12 @@ componentDidMount(){
             </Grid>
             <Grid item xs = {12} sm = {10} md = {8} lg = {6} >
                 <div className = {classes.details}>
-                    <h2> {this.props.reduxState.organization.name}</h2>
-                    <h3>{this.props.reduxState.organization.email}</h3>
-                    <i>{this.props.reduxState.organization.phone}</i>
                     <br/>
-                    <p>{this.props.reduxState.organization.address}</p>
+                    <br/>
+                    <h2> {this.props.reduxState.organization.name}</h2>
+                    <p>Email: {this.props.reduxState.organization.email}</p>
+                    <p>Phone: {this.props.reduxState.organization.phone}</p>
+                    <p>Address: {this.props.reduxState.organization.address}</p>
                 </div>
             </Grid>
             <br/>
