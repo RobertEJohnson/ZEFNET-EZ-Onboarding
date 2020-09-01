@@ -32,8 +32,13 @@ passport.deserializeUser((id, done) => {
 });
 
 // Does actual work of logging in
-passport.use('local', new LocalStrategy((username, password, done) => {
-    pool.query('SELECT * FROM "user" WHERE username = $1', [username])
+passport.use('local', new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password'
+},
+function(email, password, done) {
+    console.log('email:', email, 'password:', password)
+    pool.query('SELECT * FROM "user" WHERE "email" = $1', [email])
       .then((result) => {
         const user = result && result.rows && result.rows[0];
         if (user && encryptLib.comparePassword(password, user.password)) {
