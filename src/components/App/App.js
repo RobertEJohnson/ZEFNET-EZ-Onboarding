@@ -14,13 +14,12 @@ import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import InfoPage from '../InfoPage/InfoPage';
-
 import WelcomeScreen from '../WelcomeScreen/WelcomeScreen';
+import CreateOrganization from '../Organization/CreateOrganization';
 import ViewOrganization from '../Organization/ViewOrganization';
-
+import OrganizationHomeScreen from '../Organization/HomeScreen';
 
 import './App.css';
-import CreateOrganization from '../Organization/CreateOrganization';
 
 
 class App extends Component {
@@ -49,8 +48,8 @@ class App extends Component {
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
             <ProtectedRoute
               exact
-              path="/home"
-              component={WelcomeScreen}
+              path="/organizationHome"
+              component={OrganizationHomeScreen}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
