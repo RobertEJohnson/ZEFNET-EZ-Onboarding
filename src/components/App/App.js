@@ -58,6 +58,11 @@ class App extends Component {
               path="/info"
               component={InfoPage}
             />
+            <ProtectedRoute
+              exact
+              path="/home"
+              component={WelcomeScreen}
+            />
 
             <ProtectedRoute
             exact
