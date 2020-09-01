@@ -14,8 +14,10 @@ import Nav from '../Nav/Nav';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import InfoPage from '../InfoPage/InfoPage';
+
 import WelcomeScreen from '../WelcomeScreen/WelcomeScreen';
 import ViewOrganization from '../Organization/ViewOrganization';
+
 
 import './App.css';
 import CreateOrganization from '../Organization/CreateOrganization';
@@ -63,11 +65,13 @@ class App extends Component {
             path="/createOrganization"
             component={CreateOrganization}
             />
+
             <ProtectedRoute
               exact
               path="/viewOrganization"
               component={ViewOrganization}
             />
+
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
