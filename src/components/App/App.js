@@ -16,10 +16,12 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
-import WelcomeScreen from '../WelcomeScreen/WelcomeScreen'
+import WelcomeScreen from '../WelcomeScreen/WelcomeScreen';
+import CreateOrganization from '../Organization/CreateOrganization';
 
 import './App.css';
-import CreateOrganization from '../Organization/CreateOrganization';
+
+import OrganizationHomeScreen from '../Organization/HomeScreen'
 
 
 class App extends Component {
@@ -49,7 +51,7 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/home"
-              component={WelcomeScreen}
+              component={OrganizationHomeScreen}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
