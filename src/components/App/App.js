@@ -50,7 +50,7 @@ class App extends Component {
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
             <ProtectedRoute
               exact
-              path="/home"
+              path="/organizationHome"
               component={OrganizationHomeScreen}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
