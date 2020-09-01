@@ -1,12 +1,23 @@
 const express = require('express');
 const pool = require('../modules/pool');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const router = express.Router();
 
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
-    
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+    const queryString = `SELECT * FROM "organization" WHERE "id" = $1;`;
+    const queryValue = [
+       req.params.id
+    ]
+    console.log('in/api/organization', req.params.id)
+    pool.query(queryString, queryValue)
+    .then(()=>{res.sendStatus(201)})
+    .catch((error)=>{
+     res.sendStatus(500)
+     console.log(error);
+   })  
 });
 
 /**
