@@ -13,7 +13,8 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     ]
     console.log('in/api/organization', req.params.id)
     pool.query(queryString, queryValue)
-    .then(()=>{res.sendStatus(201)})
+    .then((result) => {res.send(result.rows)
+    })  
     .catch((error)=>{
      res.sendStatus(500)
      console.log(error);
