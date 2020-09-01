@@ -10,7 +10,6 @@ const styles = theme => ({
     flexGrow: 1,
     alignItems: 'center',
     justify: 'center',
-    minHeight:'600px',
     color: 'white', 
     fontFamily: 'Crimson Text, Open Sans, sans-serif',
     minHeight: '75vh', 
@@ -19,7 +18,14 @@ const styles = theme => ({
   },
 
   headerZone: {
-      border: '1px',
+      borderStyle: 'solid',
+      textAlign: 'center',
+      fontFamily: 'Crimson Text, Open Sans, sans-serif',
+      padding: theme.spacing(2),
+  },
+  edit: {
+      color: '#f5f5f5',
+      borderColor: '#f5f5f5'
   }
 })
 
@@ -35,13 +41,36 @@ componentDidMount(){
     const {classes} = this.props;
     return (
       <div className = {classes.root}>
+          <br/>
           <Grid container direction = 'column' alignContent = 'center' justify = 'center'>
-              <div className = {classes.headerZone}>
-                <h1>Organization Information</h1>
-              </div>
-            <p>
-            {JSON.stringify(this.props.reduxState.organization)}
-            </p>
+              <Grid item xs = {12} sm = {10} md = {8} lg = {6}>
+                <div className = {classes.headerZone}>
+                    <h1>Organization Information</h1>
+                    <i>This is the primary information for your company
+                        <br/>
+                        It doesn't need to be the address that the chargers are located
+                    </i>
+                    <br/>
+                </div>
+            </Grid>
+            <Grid item xs = {12} sm = {10} md = {8} lg = {6}>
+                <h2> {this.props.reduxState.organization.name}</h2>
+                <h3>{this.props.reduxState.organization.email}</h3>
+                <i>{this.props.reduxState.organization.phone}</i>
+                <br/>
+                <p>{this.props.reduxState.organization.address}</p>
+            </Grid>
+            <br/>
+            <center>
+                <Button className = {classes.edit} variant = 'outlined' >
+                    Edit Organization
+                </Button>
+                <br/>
+                <br/>
+                <Button variant = 'contained'>
+                    Home
+                </Button>
+            </center>
         </Grid>
       </div>
     );

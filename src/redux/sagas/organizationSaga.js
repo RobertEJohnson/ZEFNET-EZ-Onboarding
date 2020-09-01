@@ -8,7 +8,7 @@ function* getOrganization(action) {
     const response = yield axios.get('/api/organization/' + action.payload);
     // store organizaiton in organization reducer
     console.log('in organizationSaga', response);
-    yield put({ type: 'SET_ORGANIZATION', payload: response.data });
+    yield put({ type: 'SET_ORGANIZATION', payload: response.data[0] });
   } catch (error) {
       console.log('Error with category get:', error);
   }

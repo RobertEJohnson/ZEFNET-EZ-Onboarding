@@ -11,7 +11,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     const queryValue = [
        req.params.id
     ]
-    console.log('in/api/organization', req.params.id)
+    //console.log('in/api/organization', req.params.id)
     pool.query(queryString, queryValue)
     .then((result) => {res.send(result.rows)
     })  
