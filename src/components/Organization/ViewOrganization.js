@@ -68,9 +68,11 @@ componentDidMount(){
                     <br/>
                     <br/>
                     <h2> {this.props.reduxState.organization.name}</h2>
-                    <p>Email: {this.props.reduxState.organization.email}</p>
-                    <p>Phone: {this.props.reduxState.organization.phone}</p>
-                    <p>Address: {this.props.reduxState.organization.address}</p>
+                    <p>Email: {this.props.reduxState.organization.email}
+                    <br/>
+                    Phone: {this.props.reduxState.organization.phone}
+                    <br/>
+                    Address: {this.props.reduxState.organization.address}</p>
                 </div>
             </Grid>
             <br/>
@@ -85,7 +87,7 @@ componentDidMount(){
                 <br/>
                 <br/>
                 <Button variant = 'contained' 
-                    component = {Link} to ="/homeScreen"
+                    component = {Link} to ="/organizationHome"
                     >
                     <HomeIcon/>
                     Home
