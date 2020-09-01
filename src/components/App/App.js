@@ -9,19 +9,17 @@ import {
 import {connect} from 'react-redux';
 
 import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+//import Footer from '../Footer/Footer';
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
-
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import WelcomeScreen from '../WelcomeScreen/WelcomeScreen';
 import CreateOrganization from '../Organization/CreateOrganization';
+import ViewOrganization from '../Organization/ViewOrganization';
+import OrganizationHomeScreen from '../Organization/HomeScreen';
 
 import './App.css';
-
-import OrganizationHomeScreen from '../Organization/HomeScreen'
 
 
 class App extends Component {
@@ -66,10 +64,16 @@ class App extends Component {
             path="/createOrganization"
             component={CreateOrganization}
             />
+
+            <ProtectedRoute
+              exact
+              path="/viewOrganization"
+              component={ViewOrganization}
+            />
+
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
-          <Footer />
         </div>
       </Router>
   )}
