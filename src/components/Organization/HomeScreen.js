@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import {Grid, Button, Card, CardHeader, CardMedia, CardContent,
-     Typography, CardActions, withStyles} from '@material-ui/core';
-
+import {Grid, Button, withStyles, GridList, GridListTile, GridListTileBar} from '@material-ui/core';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import zefNetPro from './zefnetpro.png';
 import user from './zefUser.jpeg'
 import review from './packageReview.jpeg'
 
-import PropTypes from 'prop-types';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+
 
 
 const styles = theme => ({ 
@@ -39,7 +35,6 @@ const styles = theme => ({
 
 class HomeScreen extends Component {
 
-  // this component doesn't do much to start, just renders some user info to the DOM
   render() {
     const {classes} = this.props;
     return (
@@ -74,43 +69,8 @@ class HomeScreen extends Component {
   }
 }
 
-
-
-
-
-
-
-
-
-//Made Temp structure that could work, but would rather try a GridList for built in image overlay
-
-// <Grid container direction='row' justify='center' alignContent='center' alignItems='center' spacing={3}
-// style={{minHeight: '75vh', minWidth: '100vw', background: 'linear-gradient(360deg, #041E41, #004e92 70%)'}}>
-// <Grid item xs={3} style={{ maxWidth: '350px', backgroundColor: 'red'}} align='center' spacing={3}>
-//     <Card>
-//         <CardHeader title="Add a Device"/>
-//     </Card>
-// </Grid>
-// <Grid item xs={3} style={{ maxWidth: '500px', backgroundColor: 'red'}} align='center' spacing={3}>
-//     <Card>
-//         <CardHeader title="Add a User (1)"/>
-//     </Card>
-// </Grid>
-// <Grid item xs={3} style={{ maxWidth: '500px', backgroundColor: 'red'}} align='center' spacing={3}>
-//     <Card>
-//         <CardHeader title="Submit Onboarding Package" subheader="Please Add a Device"/>
-//         <CardContent style={{padding: '0px'}}>
-//             <img src={zefNetPro} style={{maxWidth: '100%'}} />
-//         </CardContent>
-//     </Card>
-// </Grid>
-// </Grid>
-
-
-
 HomeScreen.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-// this allows us to use <App /> in index.js
 export default withStyles(styles)(HomeScreen);
