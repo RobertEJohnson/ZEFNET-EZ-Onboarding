@@ -41,24 +41,9 @@ class HostSelect extends Component {
     selectedSite: ''
   };
 
-  registerUser = (event) => {
-    event.preventDefault();
-
-    if (this.state.email && this.state.password && this.state.first_name && this.state.last_name) {
-      this.props.dispatch({
-        type: 'REGISTER',
-        payload: {
-          email: this.state.email,
-          password: this.state.password,
-          first_name: this.state.first_name,
-          last_name: this.state.last_name,
-          phone: this.state.phone,
-        },
-      });
-    } else {
-      this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
-    }
-  } // end registerUser
+  componentDidMount(){
+    
+  }
 
   handleChange =  (event) => {
     this.setState({
@@ -89,11 +74,15 @@ class HostSelect extends Component {
                     <MenuItem value="">
                         <em>None</em>
                     </MenuItem>
+                    {/* {this.props.state.site.map((site, index)=>
+                    (<MenuItem value={site} key = {index}>{site.name}</MenuItem>)
+                    )} */}
                     <MenuItem value={10}>Site 1</MenuItem>
                     <MenuItem value={20}>Site 2</MenuItem>
                     <MenuItem value={30}>Site 3</MenuItem>
                     </Select>
                 </FormControl>
+                {JSON.stringify(this.props.state.site)}
                 <br/>
                 <Divider/>
                 <h1>Or</h1>
