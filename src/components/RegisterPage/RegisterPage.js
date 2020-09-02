@@ -33,7 +33,7 @@ const styles = theme => ({
     },
     login:{
       color:'white',
-      marginLeft: '30vw'
+      marginLeft: '40vw'
     },
 })
 
@@ -77,7 +77,7 @@ class RegisterPage extends Component {
     return (
       <div className = {classes.root}>
         <Grid container direction = 'column' justify = 'center' alignItems = 'center'>
-          <Grid item xs = {12} md = {6} lg = {5} xl = {4}>
+          <Grid item xs = {12} >
             {this.props.errors.registrationMessage && (
               <h2
                 className="alert"
@@ -90,19 +90,21 @@ class RegisterPage extends Component {
               <h1>Create User Account</h1>
               <div>
                   <TextField
+                    required
                     variant = 'outlined'
                     className = {classes.input}
                     color = 'secondary'
                     name="first_name"
-                    label ='*First Name'
+                    label ='First Name'
                     value={this.state.first_name}
                     onChange={this.handleInputChangeFor('first_name')}
                   />
                   {/* {'\u00A0'} {'\u00A0'} */}
                   <TextField
+                    required
                     variant = 'outlined'
                     color = 'secondary'
-                    label = '*Last Name'
+                    label = 'Last Name'
                     name="last_name"
                     value={this.state.last_name}
                     onChange={this.handleInputChangeFor('last_name')}
@@ -110,10 +112,11 @@ class RegisterPage extends Component {
               </div>
               <div>
                   <TextField
+                    required
                     variant = 'outlined'
                     color = 'secondary'
                     className = {classes.longField}
-                    label = '*Email'
+                    label = 'Email'
                     name="email"
                     value={this.state.email}
                     onChange={this.handleInputChangeFor('email')}
@@ -121,12 +124,13 @@ class RegisterPage extends Component {
               </div>
               <div>
                 <TextField
+                  required
                   variant = 'outlined'
                   color='secondary'
                   className = {classes.longField}
                   type="password"
                   name="password"
-                  label = '*Password'
+                  label = 'Password'
                   value={this.state.password}
                   onChange={this.handleInputChangeFor('password')}
                 />
