@@ -17,16 +17,15 @@ class EditOrganization extends Component {
   };
 
   handleEditOrg = () => {
-    console.log("In handleAddOrg");
     const actionObject = {
-        organizationName: this.state.organizationName,
-        primaryNumber: this.state.primaryNumber,
-        email: this.state.email,
-        organizationAddress: this.state.organizationAddress,
-        user_id: this.props.reduxState.user.id
-    }
-    this.props.dispatch({ type: "ADD_ORGANIZATION", payload: actionObject });
-    alert("Order has been placed");
+      organizationName: this.state.organizationName,
+      primaryNumber: this.state.primaryNumber,
+      email: this.state.email,
+      organizationAddress: this.state.organizationAddress,
+      user_id: this.props.reduxState.user.id,
+    };
+    this.props.dispatch({ type: "EDIT_ORGANIZATION", payload: actionObject });
+    alert("Change has been made");
     this.setState({
       organizationName: "",
       primaryNumber: "",

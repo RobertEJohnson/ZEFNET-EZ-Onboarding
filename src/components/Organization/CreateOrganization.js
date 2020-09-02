@@ -11,14 +11,12 @@ class CreateOrganization extends Component {
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
-    console.log(event.target.value)
     this.setState({
       [propertyName]: event.target.value,
     });
   };
 
   handleAddOrg = () => {
-    console.log("In handleAddOrg");
     const actionObject = {
       organizationName: this.state.organizationName,
       primaryNumber: this.state.primaryNumber,
@@ -27,6 +25,8 @@ class CreateOrganization extends Component {
       user_id: this.props.reduxState.user.id
     }
     this.props.dispatch({ type: "ADD_ORGANIZATION", payload: actionObject });
+    alert(`Organization ${this.state.organizationName} has been created`)
+    this.props.history.push("/home")
   };
 
   render() {
@@ -60,6 +60,7 @@ class CreateOrganization extends Component {
             <TextField
               label="primaryNumber"
               variant="outlined"
+              type="number"
               value={this.state.primaryNumber}
               onChange={this.handleInputChangeFor("primaryNumber")}
             ></TextField>

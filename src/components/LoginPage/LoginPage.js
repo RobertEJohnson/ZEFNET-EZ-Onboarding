@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Button, TextField } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 import "./LoginPage.css";
 
 class LoginPage extends Component {
