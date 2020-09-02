@@ -18,6 +18,7 @@ import WelcomeScreen from '../WelcomeScreen/WelcomeScreen';
 import CreateOrganization from '../Organization/CreateOrganization';
 import ViewOrganization from '../Organization/ViewOrganization';
 import OrganizationHomeScreen from '../Organization/HomeScreen';
+import HostSelect from '../Device/HostSite/Select'
 
 import './App.css';
 
@@ -64,7 +65,11 @@ class App extends Component {
               path="/home"
               component={WelcomeScreen}
             />
-
+            <ProtectedRoute
+              exact
+              path="/hostSelect"
+              component={HostSelect}
+            />
             <ProtectedRoute
             exact
             path="/createOrganization"
