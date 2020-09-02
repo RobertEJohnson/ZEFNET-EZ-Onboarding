@@ -22,12 +22,18 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.paper,
   },
   gridListTile: {
-    width: 500,
-    height: 450,
-  },
-  GridListTile: {
     color: 'rgba(255, 255, 255, 0.54)',
+    maxWidth: '350px',
+    maxHeight: '350px',
+    margin: '20px 20px 0px 0px'
   },
+  image: {
+    maxHeight: '350px',
+    minWidth: '350px'
+  },
+  greyscale: {
+    filter: 'grayscale(100%)'
+  }
 })
 
 
@@ -41,26 +47,23 @@ class HomeScreen extends Component {
             style={{minHeight: '75vh', minWidth: '100vw', background: 'linear-gradient(360deg, #041E41, #004e92 70%)'}}>
             <GridList cellHeight={450}>
             {JSON.stringify(this.props)}
-            <GridListTile style={{maxWidth: '350px', maxHeight: '350px', margin: '20px 20px 0px 0px'}} component={Link} to='/test'>
-                <img src={zefNetPro} alt="ZEFNET Pro Charger" style={{maxHeight: '350px', maxWidth: '350px'}} />
+            <GridListTile className={classes.gridListTile} component={Link} to='/test'>
+                <img src={zefNetPro} alt="ZEFNET Pro Charger" className={classes.image} />
                 <GridListTileBar
-                    style={{maxWidth: '350px'}}
                     title="Add a Device"
                     subtitle="0 Devices"
                 />
             </GridListTile>
-            <GridListTile style={{maxWidth: '350px', maxHeight: '350px', margin: '20px 20px 0px 0px'}} component={Link} to='/test'>
-                <img src={user} alt="ZEFNET Pro Charger" style={{maxHeight: '350px', maxWidth: '350px'}} />
+            <GridListTile className={classes.gridListTile} component={Link} to='/test'>
+                <img src={user} alt="ZEFNET Pro Charger" className={classes.image} />
                 <GridListTileBar
-                    style={{maxWidth: '350px'}}
                     title="Add a User"
                     subtitle="1 User"
                  />
             </GridListTile>
-            <GridListTile style={{maxWidth: '350px', maxHeight: '350px', margin: '20px 20px 0px 0px'}} component={Link} to='/test'>
-                <img src={review} alt="ZEFNET Pro Charger" style={{maxHeight: '350px', maxWidth: '350px',  filter: 'grayscale(100%)'}} />
+            <GridListTile className={classes.gridListTile} component={Link} to='/test'>
+                <img src={review} alt="ZEFNET Pro Charger" className={classes.image, classes.greyscale}/>
                 <GridListTileBar
-                    style={{maxWidth: '350px'}}
                     title="Review and Submit Onboarding Package"
                     subtitle="(Please Add a Device)"
                 />
