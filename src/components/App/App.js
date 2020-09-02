@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import {
   HashRouter as Router,
   Route,
   Redirect,
   Switch,
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import {connect} from 'react-redux';
+import { connect } from "react-redux";
 
 import Nav from '../Nav/Nav';
 //import Footer from '../Footer/Footer';
@@ -18,15 +18,15 @@ import WelcomeScreen from '../WelcomeScreen/WelcomeScreen';
 import CreateOrganization from '../Organization/CreateOrganization';
 import ViewOrganization from '../Organization/ViewOrganization';
 import OrganizationHomeScreen from '../Organization/HomeScreen';
-import HostSelect from '../Device/HostSite/Select'
+import EditOrganization from "../Organization/EditOrganization";
+import HostSelect from '../Device/HostSite/Select';
 
 import './App.css';
 
-
 class App extends Component {
-  componentDidMount () {
-    this.props.dispatch({type: 'FETCH_USER'})
-    
+
+  componentDidMount() {
+    this.props.dispatch({ type: "FETCH_USER" });
   }
 
   render() {
@@ -39,15 +39,14 @@ class App extends Component {
             <Redirect exact from="/" to="/home" />
             {/* Visiting localhost:3000/about will show the about page.
             This is a route anyone can see, no login necessary */}
-            <Route
-              exact
-              path="/about"
-              component={AboutPage}
-            />
+            <Route exact path="/about" component={AboutPage} />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
             Even though it seems like they are different pages, the user is always on localhost:3000/home */}
+
+            <ProtectedRoute exact path="/home" component={WelcomeScreen} />
+
             <ProtectedRoute
               exact
               path="/organizationHome"
@@ -55,10 +54,12 @@ class App extends Component {
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
+            <ProtectedRoute exact path="/info" component={InfoPage} />
+
             <ProtectedRoute
               exact
-              path="/info"
-              component={InfoPage}
+              path="/createOrganization"
+              component={CreateOrganization}
             />
             <ProtectedRoute
               exact
@@ -71,9 +72,9 @@ class App extends Component {
               component={HostSelect}
             />
             <ProtectedRoute
-            exact
-            path="/createOrganization"
-            component={CreateOrganization}
+              exact
+              path="/editOrganization"
+              component={EditOrganization}
             />
 
             <ProtectedRoute
@@ -87,7 +88,8 @@ class App extends Component {
           </Switch>
         </div>
       </Router>
-  )}
+    );
+  }
 }
 const mapStateToProps = reduxState => ({
   reduxState

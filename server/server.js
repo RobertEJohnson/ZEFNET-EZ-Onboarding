@@ -1,14 +1,14 @@
-
-const express = require('express');
-require('dotenv').config();
+const express = require("express");
+require("dotenv").config();
 
 const app = express();
-const bodyParser = require('body-parser');
-const sessionMiddleware = require('./modules/session-middleware');
+const bodyParser = require("body-parser");
+const sessionMiddleware = require("./modules/session-middleware");
 
-const passport = require('./strategies/user.strategy');
+const passport = require("./strategies/user.strategy");
 
 // Route includes
+
 const userRouter = require('./routes/user.router');
 const organizationRouter = require('./routes/organization.router');
 const siteRouter = require('./routes/site.router');
@@ -25,12 +25,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /* Routes */
+
 app.use('/api/user', userRouter);
 app.use('/api/organization', organizationRouter);
 app.use('/api/site', siteRouter);
 
+
 // Serve static files
-app.use(express.static('build'));
+app.use(express.static("build"));
 
 // App Set //
 const PORT = process.env.PORT || 5000;
