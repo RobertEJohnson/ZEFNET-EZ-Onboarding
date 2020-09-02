@@ -25,7 +25,7 @@ class EditOrganization extends Component {
         organizationAddress: this.state.organizationAddress,
         user_id: this.props.reduxState.user.id
     }
-    this.props.dispatch({ type: "ADD_ORGANIZATION", action: actionObject });
+    this.props.dispatch({ type: "ADD_ORGANIZATION", payload: actionObject });
     alert("Order has been placed");
     this.setState({
       organizationName: "",

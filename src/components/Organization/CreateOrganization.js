@@ -11,6 +11,7 @@ class CreateOrganization extends Component {
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
+    console.log(event.target.value)
     this.setState({
       [propertyName]: event.target.value,
     });
@@ -18,7 +19,14 @@ class CreateOrganization extends Component {
 
   handleAddOrg = () => {
     console.log("In handleAddOrg");
-    this.props.dispatch({ type: "ADD_ORGANIZATION", action: this.state });
+    const actionObject = {
+      organizationName: this.state.organizationName,
+      primaryNumber: this.state.primaryNumber,
+      email: this.state.email,
+      organizationAddress: this.state.organizationAddress,
+      user_id: this.props.reduxState.user.id
+    }
+    this.props.dispatch({ type: "ADD_ORGANIZATION", payload: actionObject });
   };
 
   render() {
