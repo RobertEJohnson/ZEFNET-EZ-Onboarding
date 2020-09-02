@@ -4,14 +4,13 @@ import {Grid, Button, Card, CardHeader, CardMedia, CardContent,
 
 import { Link } from 'react-router-dom';
 import zefNetPro from './zefnetpro.png';
+import user from './zefUser.jpeg'
+import review from './packageReview.jpeg'
 
 import PropTypes from 'prop-types';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
 
 
 const styles = theme => ({ 
@@ -26,7 +25,7 @@ const styles = theme => ({
     width: 500,
     height: 450,
   },
-  icon: {
+  GridListTile: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
 })
@@ -48,37 +47,22 @@ class HomeScreen extends Component {
                     style={{maxWidth: '350px'}}
                     title="Add a Device"
                     subtitle="0 Devices"
-                    actionIcon={
-                        <IconButton>
-                            <InfoIcon className={classes.icon}/>
-                        </IconButton>
-                    }
-                 />
+                />
             </GridListTile>
             <GridListTile style={{maxWidth: '350px', maxHeight: '350px', margin: '20px 20px 0px 0px'}} component={Link} to='/test'>
-                <img src={zefNetPro} alt="ZEFNET Pro Charger" style={{maxHeight: '350px', maxWidth: '350px'}} />
+                <img src={user} alt="ZEFNET Pro Charger" style={{maxHeight: '350px', maxWidth: '350px'}} />
                 <GridListTileBar
                     style={{maxWidth: '350px'}}
-                    title="Add a Device"
+                    title="Add a User"
                     subtitle="1 User"
-                    actionIcon={
-                        <IconButton>
-                            <InfoIcon className={classes.icon}/>
-                        </IconButton>
-                    }
                  />
             </GridListTile>
             <GridListTile style={{maxWidth: '350px', maxHeight: '350px', margin: '20px 20px 0px 0px'}} component={Link} to='/test'>
-                <img src={zefNetPro} alt="ZEFNET Pro Charger" style={{maxHeight: '350px', maxWidth: '350px'}} />
+                <img src={review} alt="ZEFNET Pro Charger" style={{maxHeight: '350px', maxWidth: '350px',  filter: 'grayscale(100%)'}} />
                 <GridListTileBar
                     style={{maxWidth: '350px'}}
-                    title="Submit Onboarding Package"
+                    title="Review and Submit Onboarding Package"
                     subtitle="(Please Add a Device)"
-                    actionIcon={
-                        <IconButton>
-                            <InfoIcon className={classes.icon}/>
-                        </IconButton>
-                    }
                 />
             </GridListTile>
         </GridList>
