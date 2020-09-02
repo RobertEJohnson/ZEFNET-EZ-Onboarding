@@ -19,10 +19,12 @@ import CreateOrganization from '../Organization/CreateOrganization';
 import ViewOrganization from '../Organization/ViewOrganization';
 import OrganizationHomeScreen from '../Organization/HomeScreen';
 import EditOrganization from "../Organization/EditOrganization";
+import HostSelect from '../Device/HostSite/Select';
 
 import './App.css';
 
 class App extends Component {
+
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_USER" });
   }
@@ -59,7 +61,16 @@ class App extends Component {
               path="/createOrganization"
               component={CreateOrganization}
             />
-
+            <ProtectedRoute
+              exact
+              path="/home"
+              component={WelcomeScreen}
+            />
+            <ProtectedRoute
+              exact
+              path="/hostSelect"
+              component={HostSelect}
+            />
             <ProtectedRoute
               exact
               path="/editOrganization"
@@ -80,5 +91,8 @@ class App extends Component {
     );
   }
 }
+const mapStateToProps = reduxState => ({
+  reduxState
+});
 
-export default connect()(App);
+export default connect(mapStateToProps)(App);

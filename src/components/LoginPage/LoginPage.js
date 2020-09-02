@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Button } from "@material-ui/core";
+import{Grid, Button, TextField, } from '@material-ui/core';
+import PropTypes from 'prop-types';
+import { withStyles, } from '@material-ui/core/styles';
+
 import "./LoginPage.css";
 
 const styles = theme => ({ 
@@ -13,25 +16,14 @@ const styles = theme => ({
     minHeight: '80vh', 
     minWidth: '100vw', 
     background: 'linear-gradient(360deg, #041E41, #004e92 70%)',
-  },
-  paper: {
-    width: '100%',
-    padding: theme.spacing(3),
     textAlign: 'center',
-    backgroundColor: 'transparent',
-    justify: 'center',
-    margin: '0px',
-    borderRadius: '5px',
-    border: 'none',
-    color: 'white'
-    },
+  },
 
     longField:{
-      width: '388px',
+      width: '380px',
     },
-    login:{
-      color:'white',
-      marginLeft: '30vw'
+     new :{
+      color:'white'
     },
 })
 
@@ -66,63 +58,65 @@ class LoginPage extends Component {
   };
 
   render() {
+    const {classes} = this.props;
     return (
-      <Grid>
-        <div>
-          {this.props.errors.loginMessage && (
-            <h2 className="alert" role="alert">
-              {this.props.errors.loginMessage}
-            </h2>
-          )}
-          <div className="header">
-            <h3>Welcome to the ZEFNET easy onboarding site! </h3>
-            <h3>Let's set up those new chargers.</h3>
-          </div>
-          <form onSubmit={this.login}>
-            <div>
-              <label htmlFor="email">
-                Email:
-                <input
-                  type="text"
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.handleInputChangeFor("email")}
-                />
-              </label>
-            </div>
-            <div>
-              <label htmlFor="password">
-                Password:
-                <input
-                  type="password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.handleInputChangeFor("password")}
-                />
-              </label>
-            </div>
-            <div>
-              <input
-                className="log-in"
-                type="submit"
-                name="submit"
-                value="Log In"
-              />
-            </div>
-          </form>
-          <center>
-            <Button
-              type="button"
-              className="link-button"
-              onClick={() => {
-                this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
-              }}
-            >
-              New User? Click here.
-            </Button>
-          </center>
+      <div className = {classes.root}>
+        <Grid container direction = 'column' justify = 'center' alignContent = 'center' >
+        {this.props.errors.loginMessage && (
+          <h2 className="alert" role="alert">
+            {this.props.errors.loginMessage}
+          </h2>
+        )}
+        <div className="header">
+          <h2>Welcome to ZEFNET EZ Onboarding! </h2>
+          <h3>The first stop for a new ZEF Energy customer</h3>
         </div>
-      </Grid>
+        <br/>
+          <div>
+              <TextField
+                className = {classes.longField}
+                required
+                color = 'secondary'
+                variant = 'outlined'
+                label = 'Email Address'
+                name="email"
+                value={this.state.email}
+                onChange={this.handleInputChangeFor("email")}
+              />
+          </div>
+          <br/>
+          <div>
+              <TextField
+                className = {classes.longField}
+                required
+                color = 'secondary'
+                variant = 'outlined'
+                type="password"
+                label = 'Password'
+                name="password"
+                value={this.state.password}
+                onChange={this.handleInputChangeFor("password")}
+              />
+          </div>
+          <br/>
+          <div>
+            <Button onClick = {this.login}
+            variant = 'contained'
+            >
+             Sign in!
+            </Button>
+          </div>
+        <center>
+          <Button className = {classes.new}
+            onClick={() => {
+              this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
+            }}
+          >
+            New User? Click here.
+          </Button>
+        </center>
+        </Grid>
+      </div>
     );
   }
 }
@@ -134,4 +128,8 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(LoginPage);
+LoginPage.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(connect(mapStateToProps)(LoginPage));
