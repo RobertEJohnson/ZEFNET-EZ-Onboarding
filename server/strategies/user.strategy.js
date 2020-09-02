@@ -37,7 +37,6 @@ passport.use('local', new LocalStrategy({
   passwordField: 'password'
 },
 function(email, password, done) {
-    console.log('email:', email, 'password:', password)
     pool.query('SELECT * FROM "user" WHERE "email" = $1', [email])
       .then((result) => {
         const user = result && result.rows && result.rows[0];

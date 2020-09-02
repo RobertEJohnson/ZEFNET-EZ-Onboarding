@@ -22,15 +22,16 @@ class EditOrganization extends Component {
       primaryNumber: this.state.primaryNumber,
       email: this.state.email,
       organizationAddress: this.state.organizationAddress,
-      user_id: this.props.reduxState.user.id,
+      id: this.props.reduxState.organization.id,
     };
     this.props.dispatch({ type: "EDIT_ORGANIZATION", payload: actionObject });
     alert("Change has been made");
     this.setState({
-      organizationName: "",
-      primaryNumber: "",
-      email: "",
-      organizationAddress: "",
+      organizationName: this.props.reduxState.organization.organizationName,
+      primaryNumber: this.props.reduxState.organization.primaryNumber,
+      email: this.props.reduxState.organization.email,
+      organizationAddress: this.props.reduxState.organization
+        .organizationAddress,
     });
   };
 
@@ -40,6 +41,12 @@ class EditOrganization extends Component {
       color: "white",
       fontFamily: "Crimson Text, Open Sans, sans-serif",
     };
+
+    let header = {
+      border: "solid #e3e3e3 2px",
+      maxWidth: "515px",
+    };
+
     return (
       <Grid
         container
@@ -52,42 +59,61 @@ class EditOrganization extends Component {
           background: "linear-gradient(360deg, #041E41, #004e92 70%)",
         }}
       >
-        <Grid item xs={8} style={{ maxWidth: "1000px" }} justify="center">
-          <h1 style={centerText}>Edit your organization!</h1>
-          <form>
+        <Grid item xs={8} style={{ maxWidth: "1000px" }} align="center">
+          <div style={header}>
+            <h1 style={centerText}>Edit Organization Information</h1>
+            <h3 style={centerText}>
+              This will help us associate the chargers with your organization.
+            </h3>
+          </div>
+          <form style={{ minWidth: "400px", background: "transparent" }}>
+            <label>Organization Name</label>
             <TextField
               required
-              label="Organization / Company Name"
+              color="secondary"
+              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
+              placeholder={this.props.reduxState.organization.name}
+              margin="normal"
               variant="outlined"
               value={this.state.organizationName}
               onChange={this.handleInputChangeFor("organizationName")}
             ></TextField>
             <TextField
-              label="Primary Number"
+              color="secondary"
+              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
+              placeholder={this.props.reduxState.organization.phone}
+              margin="normal"
               variant="outlined"
               value={this.state.primaryNumber}
               onChange={this.handleInputChangeFor("primaryNumber")}
             ></TextField>
             <TextField
+              color="secondary"
               required
-              label="email"
+              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
+              placeholder={this.props.reduxState.organization.email}
+              margin="normal"
               variant="outlined"
               value={this.state.email}
               onChange={this.handleInputChangeFor("email")}
             ></TextField>
             <TextField
+              color="secondary"
               required
-              label="Organization Address"
+              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
+              placeholder={this.props.reduxState.organization.address}
+              margin="normal"
               variant="outlined"
               value={this.state.organizationAddress}
               onChange={this.handleInputChangeFor("organizationAddress")}
             ></TextField>
             <Button
               variant="contained"
-              color="secondary"
+              style={{ marginTop: "20px" }}
+              color="default"
               onClick={this.handleEditOrg}
             >
-              Edit ORGANIZATION
+              Save Changes
             </Button>
           </form>
         </Grid>

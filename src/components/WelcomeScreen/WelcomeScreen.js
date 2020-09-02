@@ -9,7 +9,7 @@ class WelcomeScreen extends Component {
     let centerText = {textAlign: 'center', color: 'white', fontFamily: 'Crimson Text, Open Sans, sans-serif'}
     return (
         <Grid container justify='center' alignContent='center' alignItems='center' 
-        style={{minHeight: '75vh', minWidth: '100vw', background: 'linear-gradient(360deg, #041E41, #004e92 70%)'}}>
+            style={{minHeight: '75vh', minWidth: '100vw', background: 'linear-gradient(360deg, #041E41, #004e92 70%)'}}>
             <Grid item xs={8} style={{ maxWidth: '1000px'}} justify='center' >
                     <h1 style={centerText}>Welcome to the ZEFNET EZ onboarding site!</h1>
                     <p style={centerText}>
