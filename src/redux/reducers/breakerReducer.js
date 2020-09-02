@@ -1,9 +1,9 @@
-const breakerReducer = (state = {}, action) => {
+const breakerReducer = (state = [], action) => {
     switch(action.type){
         case 'SET_BREAKER':
             return action.payload;
         case 'CLEAR_BREAKER':
-            return {};
+            return [];
         default:
             return state;
     }
