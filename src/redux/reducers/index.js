@@ -5,6 +5,7 @@ import user from './userReducer';
 import organization from './organizationReducer'
 import site from './siteReducer'
 import device from './newDevice'
+import breaker from './breakerReducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   organization,//will have an id, name, address, email, and possible phone
   site,// will have an id, first_name, last_name, address, email, and possible phone
   device,//will have a site, breaker, name, serial number
+  breaker,
 });
 
 export default rootReducer;
