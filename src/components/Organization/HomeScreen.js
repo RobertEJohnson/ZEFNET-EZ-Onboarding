@@ -38,43 +38,44 @@ class HomeScreen extends Component {
   render() {
     const {classes} = this.props;
     return (
-        <>
-        <Grid container direction='row' justify='center' alignContent='center' alignItems='center' spacing={3}
-            style={{minHeight: '75vh', minWidth: '100vw', background: 'linear-gradient(360deg, #041E41, #004e92 70%)'}}>
-            <Grid item xs={12}>
-                <p style={{float:'left', minWidth: '100%', marginLeft: '50px', color: 'grey'}}>
-                    Organization Name
-                <span style={{float: 'right', marginRight: '100px'}}><MinimalLogOutButton/></span>
-                </p>    
-            
+   
+            <Grid container direction='row' justify='center' alignContent='center' alignItems='center' spacing={3}
+                style={{minHeight: '75vh', minWidth: '100vw', background: 'linear-gradient(360deg, #041E41, #004e92 70%)'}}>
+                <div style={{maxWidth: '1200px'}}>
+                    <Grid item xs={12}>
+                        <p style={{float:'left', minWidth: '100%', color: 'grey'}}>
+                            Organization Name
+                        <span style={{float: 'right'}}><MinimalLogOutButton/></span>
+                        </p>    
+                    </Grid>
+                    <GridList cellHeight={450}>
+                        {JSON.stringify(this.props)}
+                        <GridListTile className={classes.gridListTile} component={Link} to='/test'>
+                            <img src={zefNetPro} alt="ZEFNET Pro Charger" className={classes.image} />
+                            <GridListTileBar
+                                title="Add a Device"
+                                subtitle="0 Devices"
+                            />
+                        </GridListTile>
+                        <GridListTile className={classes.gridListTile} component={Link} to='/test'>
+                            <img src={user} alt="ZEFNET Pro Charger" className={classes.image} />
+                            <GridListTileBar
+                                title="Add a User"
+                                subtitle="1 User"
+                            />
+                        </GridListTile>
+                        <GridListTile className={classes.gridListTile} component={Link} to='/test'>
+                            <img src={review} alt="ZEFNET Pro Charger" className={classes.image, classes.greyscale}/>
+                            <GridListTileBar
+                                title="Review and Submit Onboarding Package"
+                                subtitle="(Please Add a Device)"
+                            />
+                        </GridListTile>
+                    </GridList>
+                </div>
+        
             </Grid>
-            
-            <GridList cellHeight={450}>
-            {JSON.stringify(this.props)}
-            <GridListTile className={classes.gridListTile} component={Link} to='/test'>
-                <img src={zefNetPro} alt="ZEFNET Pro Charger" className={classes.image} />
-                <GridListTileBar
-                    title="Add a Device"
-                    subtitle="0 Devices"
-                />
-            </GridListTile>
-            <GridListTile className={classes.gridListTile} component={Link} to='/test'>
-                <img src={user} alt="ZEFNET Pro Charger" className={classes.image} />
-                <GridListTileBar
-                    title="Add a User"
-                    subtitle="1 User"
-                 />
-            </GridListTile>
-            <GridListTile className={classes.gridListTile} component={Link} to='/test'>
-                <img src={review} alt="ZEFNET Pro Charger" className={classes.image, classes.greyscale}/>
-                <GridListTileBar
-                    title="Review and Submit Onboarding Package"
-                    subtitle="(Please Add a Device)"
-                />
-            </GridListTile>
-        </GridList>
-        </Grid>
-        </>
+    
     );
   }
 }
