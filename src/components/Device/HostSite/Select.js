@@ -107,6 +107,7 @@ class HostSelect extends Component {
                 </FormControl>
                 {/* {JSON.stringify(this.props.state.site)} */}
                 <br/>
+                <br/>
                 <Divider/>
                 <h1>Or</h1>
                 {this.state.selectedSite ? 
