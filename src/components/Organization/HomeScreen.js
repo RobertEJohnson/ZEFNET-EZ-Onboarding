@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import zefNetPro from './zefnetpro.png';
 import user from './zefUser.jpeg'
 import review from './packageReview.jpeg'
-
+import MinimalLogOutButton from '../LogOutButton/MinimalLogOutButton'
 
 
 
@@ -38,8 +38,17 @@ class HomeScreen extends Component {
   render() {
     const {classes} = this.props;
     return (
+        <>
         <Grid container direction='row' justify='center' alignContent='center' alignItems='center' spacing={3}
             style={{minHeight: '75vh', minWidth: '100vw', background: 'linear-gradient(360deg, #041E41, #004e92 70%)'}}>
+            <Grid item xs={12}>
+                <p style={{float:'left', minWidth: '100%', marginLeft: '50px', color: 'grey'}}>
+                    Organization Name
+                <span style={{float: 'right', marginRight: '100px'}}><MinimalLogOutButton/></span>
+                </p>    
+            
+            </Grid>
+            
             <GridList cellHeight={450}>
             {JSON.stringify(this.props)}
             <GridListTile className={classes.gridListTile} component={Link} to='/test'>
@@ -65,6 +74,7 @@ class HomeScreen extends Component {
             </GridListTile>
         </GridList>
         </Grid>
+        </>
     );
   }
 }
