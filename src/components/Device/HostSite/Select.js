@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { Link } from 'react-router-dom';
 
 
 const styles = theme => ({ 
@@ -38,12 +39,23 @@ const styles = theme => ({
 
 class HostSelect extends Component {
   state = {
-    selectedSite: ''
+    selectedSite: '',
+    open: false
   };
 
-  componentDidMount(){
-    
+  addSite = () => {
+      this.setState ({
+          ...this.state,
+          open: true,
+      })
   }
+
+  handleClose = () => {
+    this.setState ({
+        ...this.state,
+        open: false,
+    })
+}
 
   handleChange =  (event) => {
     this.setState({
@@ -51,10 +63,24 @@ class HostSelect extends Component {
     });
   }
 
+  assignSite = () => {
+    this.props.dispatch({type: 'SET_DEVICE_SITE', payload: this.state.selectedSite})
+  }
+
   render() {
     const {classes} = this.props;
     return (
       <div className = {classes.root}>
+          {this.state.open && 
+        /*soure the addsite modal in here
+         */ 
+        <div>
+        <p>you clicked add!</p>  
+        <Button onClick = {this.handleClose}>
+            ok
+        </Button>
+        </div>
+        }
         <Grid container direction = 'column' justify = 'center' alignItems = 'center'>
           <Grid item xs = {12} md = {10} lg = {9} xl = {8}>
             <Paper className = {classes.paper} elevation = {3}>
@@ -74,32 +100,36 @@ class HostSelect extends Component {
                     <MenuItem value="">
                         <em>None</em>
                     </MenuItem>
-                    {/* {this.props.state.site.map((site, index)=>
-                    (<MenuItem value={site} key = {index}>{site.name}</MenuItem>)
-                    )} */}
-                    <MenuItem value={10}>Site 1</MenuItem>
-                    <MenuItem value={20}>Site 2</MenuItem>
-                    <MenuItem value={30}>Site 3</MenuItem>
+                    {this.props.state.site.map((site, index)=>
+                    (<MenuItem value={site} key = {index}>{site.address}</MenuItem>)
+                    )}
                     </Select>
                 </FormControl>
-                {JSON.stringify(this.props.state.site)}
+                {/* {JSON.stringify(this.props.state.site)} */}
                 <br/>
                 <Divider/>
                 <h1>Or</h1>
                 {this.state.selectedSite ? 
-                    <Button variant = 'contained' disabled>Add New Host Site</Button>
+                    <Button variant = 'contained' disabled>
+                        Add New Host Site
+                    </Button>
                 :
-                <Button variant = 'contained' color = 'primary'>Add New Host Site</Button>
+                <Button variant = 'contained' color = 'primary' onClick = {this.addSite}>
+                    Add New Host Site
+                </Button>
                 }     
                 <br/>
                 <br/>
                 <Grid container direction = 'row'>
-                    <Button variant ='contained'>
+                    <Button variant ='contained'
+                    component = {Link} to ="/test">
                         <ChevronLeftIcon/> Previous
                     </Button>
                     <div className = {classes.grow}></div>
                     {this.state.selectedSite ?
-                        <Button variant = 'contained' color = 'primary'>
+                        <Button variant = 'contained' color = 'primary'
+                        onClick = {this.assignSite}
+                        component = {Link} to ="/test">
                             <ChevronRightIcon/> Next
                         </Button>
                     :

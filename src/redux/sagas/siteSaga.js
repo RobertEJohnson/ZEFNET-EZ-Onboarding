@@ -7,7 +7,7 @@ function* getSite(action) {
     //get site from database/server
     const response = yield axios.get('/api/site/' + action.payload);
     // store site in site reducer
-    console.log('in siteSaga', response);
+    //console.log('in siteSaga', response);
     yield put({ type: 'SET_SITE', payload: response.data });
   } catch (error) {
       console.log('Error with site get:', error);

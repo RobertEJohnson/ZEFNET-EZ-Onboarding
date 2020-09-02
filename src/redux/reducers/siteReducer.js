@@ -1,4 +1,4 @@
-const siteReducer = (state = {}, action) => {
+const siteReducer = (state = [], action) => {
     switch (action.type) {
       case 'SET_SITE':
         return action.payload;
