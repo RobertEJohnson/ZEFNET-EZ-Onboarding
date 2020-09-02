@@ -10,7 +10,7 @@ function* getOrganization(action) {
     console.log('in organizationSaga', response);
     yield put({ type: 'SET_ORGANIZATION', payload: response.data[0] });
   } catch (error) {
-      console.log('Error with category get:', error);
+      console.log('Error with organization get:', error);
   }
 }
 
