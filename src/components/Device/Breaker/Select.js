@@ -145,7 +145,7 @@ class BreakerSelect extends Component {
                             <br/>
                             <Grid container direction='row'>
                                 <Button variant='contained'
-                                component={Link} to="/test">
+                                component={Link} to="/hostSelect">
                                     <ChevronLeft/> Previous
                                 </Button>
                                 <div className={classes.grow}></div>
