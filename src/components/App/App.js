@@ -8,23 +8,25 @@ import {
 
 import { connect } from "react-redux";
 
-import Nav from '../Nav/Nav';
+import Nav from "../Nav/Nav";
 //import Footer from '../Footer/Footer';
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import AboutPage from '../AboutPage/AboutPage';
-import InfoPage from '../InfoPage/InfoPage';
-import WelcomeScreen from '../WelcomeScreen/WelcomeScreen';
-import CreateOrganization from '../Organization/CreateOrganization';
-import ViewOrganization from '../Organization/ViewOrganization';
-import OrganizationHomeScreen from '../Organization/HomeScreen';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import AboutPage from "../AboutPage/AboutPage";
+import InfoPage from "../InfoPage/InfoPage";
+import WelcomeScreen from "../WelcomeScreen/WelcomeScreen";
+import CreateOrganization from "../Organization/CreateOrganization";
+import ViewOrganization from "../Organization/ViewOrganization";
+import OrganizationHomeScreen from "../Organization/HomeScreen";
 import EditOrganization from "../Organization/EditOrganization";
-import HostSelect from '../Device/HostSite/Select';
+import HostSelect from "../Device/HostSite/Select";
+import DeviceSelectType from "../Device/DeviceSelectType";
+import DeviceSerial from "../Device/DeviceSerial";
+import DeviceName from "../Device/DeviceName";
 
-import './App.css';
+import "./App.css";
 
 class App extends Component {
-
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_USER" });
   }
@@ -61,16 +63,8 @@ class App extends Component {
               path="/createOrganization"
               component={CreateOrganization}
             />
-            <ProtectedRoute
-              exact
-              path="/home"
-              component={WelcomeScreen}
-            />
-            <ProtectedRoute
-              exact
-              path="/hostSelect"
-              component={HostSelect}
-            />
+            <ProtectedRoute exact path="/home" component={WelcomeScreen} />
+            <ProtectedRoute exact path="/hostSelect" component={HostSelect} />
             <ProtectedRoute
               exact
               path="/editOrganization"
@@ -83,6 +77,20 @@ class App extends Component {
               component={ViewOrganization}
             />
 
+            <ProtectedRoute
+              exact
+              path="/deviceType"
+              component={DeviceSelectType}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/deviceSerial"
+              component={DeviceSerial}
+            />
+
+            <ProtectedRoute exact path="/deviceName" component={DeviceName} />
+
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
@@ -91,8 +99,8 @@ class App extends Component {
     );
   }
 }
-const mapStateToProps = reduxState => ({
-  reduxState
+const mapStateToProps = (reduxState) => ({
+  reduxState,
 });
 
 export default connect(mapStateToProps)(App);

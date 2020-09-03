@@ -74,7 +74,7 @@ class CreateOrganization extends Component {
             <TextField
               color="secondary"
               style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
-              label="Number"
+              label="Phone Number"
               margin="normal"
               variant="outlined"
               type="number"
@@ -85,7 +85,7 @@ class CreateOrganization extends Component {
               color="secondary"
               required
               style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
-              label="email"
+              label="Email"
               margin="normal"
               variant="outlined"
               value={this.state.email}
