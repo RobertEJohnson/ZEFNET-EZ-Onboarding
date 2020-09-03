@@ -3,7 +3,7 @@ const siteReducer = (state = [], action) => {
       case 'SET_SITE':
         return action.payload;
       case 'UNSET_SITE':
-        return {};
+        return [];
       default:
         return state;
     }
