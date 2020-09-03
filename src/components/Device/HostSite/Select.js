@@ -73,7 +73,7 @@ class HostSelect extends Component {
     return (
       <div className = {classes.root} >
          {/* <Modal open = {this.state.open}> */}
-         <AddSite handleClose = {this.handleClose} open = {this.state.open}/>
+         <AddSite handleClose = {this.handleClose} open = {this.state.open} selectNew = {this.handleChange}/>
         {/* </Modal> */}
         <Grid container direction = 'column' justify = 'center' alignItems = 'center'>
           <Grid item xs = {12} md = {10} lg = {9} xl = {8}>
@@ -92,7 +92,7 @@ class HostSelect extends Component {
                     label="Age"
                     >
                     <MenuItem value="">
-                        <em>None</em>
+                        <em>None of these</em>
                     </MenuItem>
                     {this.props.state.site.map((site, index)=>
                     (<MenuItem value={site} key = {index}>{site.address}</MenuItem>)

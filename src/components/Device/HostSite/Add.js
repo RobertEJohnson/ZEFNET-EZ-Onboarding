@@ -59,15 +59,20 @@ class AddSite extends Component {
           organization_id: this.props.state.organization.id,
       }
       console.log('posting new site:', postObject)
-      this.props.dispatch({ type: "POST_SITE", payload: postObject });
-      this.props.handleClose()
+      if (postObject.organization_id && postObject.first_name && postObject.address && postObject.email)
+        {this.props.dispatch({ type: "POST_SITE", payload: postObject });
+        this.props.selectNew(postObject)
+        this.props.handleClose()
+        } else {
+            alert('Unable to add site. Have you filled all required fields?')
+        }
   }
 
   render() {
      const {classes} = this.props;
     return (
       <div>
-        <Dialog open={this.props.open}
+        <Dialog open={this.props.open} 
           onClose={this.props.handleClose}>
           <DialogTitle>Add A New Host Site</DialogTitle>
           <DialogContent>
