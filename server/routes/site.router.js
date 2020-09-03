@@ -22,10 +22,27 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * POST route template
+ * POST new site
  */
-router.post('/', (req, res) => {
-
+router.post('/', rejectUnauthenticated, (req, res) => {
+    const queryString = `INSERT INTO "site"
+    ("address", "first_name", "second_name", "email", "phone", "organization_id")
+    VALUES($1, $2, $3, $4, $5, $6);`
+    const postValues = [
+        req.body.address,
+        req.body.first_name,
+        req.body.last_name,
+        req.body.email,
+        req.body.phone,
+        req.body.organization_id
+    ]
+    pool.query(queryString, postValues)
+    .then(()=>{res.sendStatus(201)})
+    .catch((error)=>{
+     res.sendStatus(500)
+     console.log( 'error on POST /api/site/', error);
+   })
 });
+
 
 module.exports = router;
