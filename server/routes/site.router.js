@@ -10,7 +10,7 @@ const {
  */
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-    const query = `SELECT * FROM "site" WHERE "organization_id" = $1`
+    const query = `SELECT * FROM "site" WHERE "organization_id" = $1 ORDER BY "id" ASC;`
     const queryValue = [
         req.params.id
      ]
