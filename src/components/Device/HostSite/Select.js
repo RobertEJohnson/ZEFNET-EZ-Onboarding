@@ -66,6 +66,7 @@ class HostSelect extends Component {
 
   assignSite = () => {
     this.props.dispatch({type: 'SET_DEVICE_SITE', payload: this.state.selectedSite})
+    this.props.dispatch({type: 'FETCH_SITE_BREAKERS', payload: this.state.selectedSite.id})
   }
 
   render() {
@@ -99,11 +100,12 @@ class HostSelect extends Component {
                     )}
                     </Select>
                 </FormControl>
-                {/* {JSON.stringify(this.props.state.site)} */}
+
                 <br/>
                 <br/>
                 <Divider/>
                 <h1>Or</h1>
+                
                 {this.state.selectedSite ? 
                     <Button variant = 'contained' disabled>
                         Add New Host Site
@@ -124,7 +126,7 @@ class HostSelect extends Component {
                     {this.state.selectedSite ?
                         <Button variant = 'contained' color = 'primary'
                         onClick = {this.assignSite}
-                        component = {Link} to ="/test">
+                        component = {Link} to ="/breakerSelect">
                             <ChevronRightIcon/> Next
                         </Button>
                     :
