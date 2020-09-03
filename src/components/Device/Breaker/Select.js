@@ -40,10 +40,21 @@ const styles = theme => ({
 class BreakerSelect extends Component {
 
     state = {
-        breakers: [],
+        breakers: this.props.state.breaker.siteBreakerReducer,
         selectedBreaker: '',
         open: false
       };
+
+      componentDidUpdate(previousProps){
+          console.log('previous siteBreakers', previousProps.state.breaker.siteBreakerReducer);
+          console.log('current siteBreakers', this.props.state.breaker.siteBreakerReducer);
+          if(previousProps.state.breaker.siteBreakerReducer !== this.props.state.breaker.siteBreakerReducer){
+              this.setState({
+                  ...this.state,
+                  breakers: this.props.state.breaker.siteBreakerReducer
+              })
+          }
+      }
     
       addBreaker = () => {
           this.setState ({
@@ -73,6 +84,9 @@ class BreakerSelect extends Component {
         const {classes} = this.props;
         return(
             <div className={classes.root}>
+                <p>{JSON.stringify(this.state)}</p>
+                <p>{JSON.stringify(this.props.state.breaker)}</p>
+
                 {
                     this.state.open ? 
                         <div>
@@ -105,9 +119,11 @@ class BreakerSelect extends Component {
                                     <em>None</em>
                                 </MenuItem>
                                 {/*Map out all breakers stored in reducer*/}
+                    
                                 {
-                                    this.props.state.breaker.map((breaker, index)=>
-                                    <MenuItem value={breaker} key={index}>{breaker}</MenuItem>
+                                    this.state.breakers.map((breaker, index)=>
+                                    <MenuItem value={breaker} key={breaker.id}>
+                                        <span style={{backgroundColor: 'green'}}>Amps:{breaker.limit} </span> {breaker.description}</MenuItem>
                                 )}
                                 </Select>
                             </FormControl>
@@ -118,7 +134,8 @@ class BreakerSelect extends Component {
                             <Divider/>
                             <h1>Or</h1>
                             {/*Conditionally render the Add Breaker button as clickable/disabled based on if a breaker is selected*/}
-                            {this.state.selectedBreaker ? 
+                            {
+                                this.state.selectedBreaker ? 
                                 <Button variant='contained' disabled>
                                     Add New Breaker
                                 </Button>

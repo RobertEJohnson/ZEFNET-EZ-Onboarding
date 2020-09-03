@@ -1,4 +1,6 @@
-const breakerReducer = (state = [], action) => {
+import {combineReducers} from 'redux';
+
+const selectedBreakerReducer = (state = [], action) => {
     switch(action.type){
         case 'SET_BREAKER':
             return action.payload;
@@ -9,6 +11,21 @@ const breakerReducer = (state = [], action) => {
     }
 }
 
+const siteBreakerReducer = (state=[], action) => {
+    switch(action.type){
+        case 'SET_SITE_BREAKERS':
+            return action.payload;
+        case 'CLEAR_SITE_BREAKERS':
+            return [];
+        default:
+            return state;
+    }
+}
+
+
 // breaker will be on the redux state at:
 // state.breaker
-export default breakerReducer;
+export default combineReducers({
+    selectedBreakerReducer,
+    siteBreakerReducer
+})
