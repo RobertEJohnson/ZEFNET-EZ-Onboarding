@@ -27,7 +27,7 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 220,
+    minWidth: 320,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -64,6 +64,22 @@ class HostSelect extends Component {
     });
   }
 
+  selectNew = (value) => {
+      console.log(value)
+    this.setState({
+        selectedSite: value,
+      });
+  }
+
+  componentDidUpdate(previousProps){
+      if(previousProps.state.device.site!== this.props.state.device.site){
+         // set state to selectedsite: this.props.newDevice.site
+         this.setState({
+             selectedSite:this.props.state.device.site
+         })
+      }
+  }
+
   assignSite = () => {
     this.props.dispatch({type: 'SET_DEVICE_SITE', payload: this.state.selectedSite})
   }
@@ -73,7 +89,7 @@ class HostSelect extends Component {
     return (
       <div className = {classes.root} >
          {/* <Modal open = {this.state.open}> */}
-         <AddSite handleClose = {this.handleClose} open = {this.state.open} selectNew = {this.handleChange}/>
+         <AddSite handleClose = {this.handleClose} open = {this.state.open} selectNew = {this.selectNew}/>
         {/* </Modal> */}
         <Grid container direction = 'column' justify = 'center' alignItems = 'center'>
           <Grid item xs = {12} md = {10} lg = {9} xl = {8}>
@@ -87,9 +103,9 @@ class HostSelect extends Component {
                 <FormControl variant="outlined" className={classes.formControl}>
                     <InputLabel>Choose From Existing</InputLabel>
                     <Select
+                    id = 'siteSelect'
                     value={this.state.selectedSite}
                     onChange={this.handleChange}
-                    label="Age"
                     >
                     <MenuItem value="">
                         <em>None of these</em>
