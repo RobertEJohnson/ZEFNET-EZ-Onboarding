@@ -84,9 +84,6 @@ class BreakerSelect extends Component {
         const {classes} = this.props;
         return(
             <div className={classes.root}>
-                <p>{JSON.stringify(this.state)}</p>
-                <p>{JSON.stringify(this.props.state.breaker)}</p>
-
                 {
                     this.state.open ? 
                         <div>
