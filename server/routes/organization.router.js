@@ -1,4 +1,3 @@
-
 const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
@@ -9,19 +8,19 @@ const {
 /**
  * GET organization
  */
-router.get('/:id', rejectUnauthenticated, (req, res) => {
-    const queryString = `SELECT * FROM "organization" WHERE "id" = $1;`;
-    const queryValue = [
-       req.params.id
-    ]
-    //console.log('in/api/organization', req.params.id)
-    pool.query(queryString, queryValue)
-    .then((result) => {res.send(result.rows)
-    })  
-    .catch((error)=>{
-     res.sendStatus(500)
-     console.log(error);
-   })  
+router.get("/:id", rejectUnauthenticated, (req, res) => {
+  const queryString = `SELECT * FROM "organization" WHERE "id" = $1;`;
+  const queryValue = [req.params.id];
+  //console.log('in/api/organization', req.params.id)
+  pool
+    .query(queryString, queryValue)
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      res.sendStatus(500);
+      console.log(error);
+    });
 });
 
 /**
@@ -54,7 +53,7 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
     ]);
     // End transaction w/ COMMIT
     await connection.query("COMMIT;");
-    res.send(result.rows[0])
+    res.send(result.rows[0]);
   } catch (err) {
     console.log("Error adding organization", err);
     // Transaction failed, so send with ROLLBACK

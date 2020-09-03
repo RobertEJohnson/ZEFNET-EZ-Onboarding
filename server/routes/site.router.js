@@ -1,11 +1,14 @@
-const express = require('express');
-const pool = require('../modules/pool');
+const express = require("express");
+const pool = require("../modules/pool");
 const router = express.Router();
-const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+const {
+  rejectUnauthenticated,
+} = require("../modules/authentication-middleware");
 
 /**
  * GET sites by orgaization_id
  */
+
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     const query = `SELECT * FROM "site" WHERE "organization_id" = $1 ORDER BY "id" ASC;`
     const queryValue = [
@@ -18,7 +21,12 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     .catch((error)=>{
     res.sendStatus(500)
     console.log(error);
+
     })
+    .catch((error) => {
+      res.sendStatus(500);
+      console.log(error);
+    });
 });
 
 /**
@@ -44,5 +52,5 @@ router.post('/', rejectUnauthenticated, (req, res) => {
    })
 });
 
-
 module.exports = router;
+
