@@ -20,7 +20,10 @@ import ViewOrganization from '../Organization/ViewOrganization';
 import OrganizationHomeScreen from '../Organization/HomeScreen';
 import EditOrganization from "../Organization/EditOrganization";
 import HostSelect from '../Device/HostSite/Select';
+
 import DevicePrep from '../Device/DevicePrep';
+import BreakerSelect from '../Device/Breaker/Select';
+
 
 import './App.css';
 
@@ -86,6 +89,12 @@ class App extends Component {
               exact
               path="/viewOrganization"
               component={ViewOrganization}
+            />
+
+            <ProtectedRoute
+              exact
+              path="/breakerSelect"
+              component={BreakerSelect}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
