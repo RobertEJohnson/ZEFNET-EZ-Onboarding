@@ -12,6 +12,8 @@ const newDeviceReducer = (state = {}, action) => {
         return {name: action.payload};
       case 'SET_DATE':
         return {date: action.payload};
+      case 'CLEAR_DEVICE':
+          return {};
       default:
         return state;
     }

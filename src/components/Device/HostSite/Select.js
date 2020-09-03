@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import{Grid, Button, Select, Paper, Divider, InputLabel, FormControl, MenuItem} from '@material-ui/core';
+import{Grid, Button, Select, Paper, Modal, Divider, Dialog, InputLabel, FormControl, MenuItem} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Link } from 'react-router-dom';
+import AddSite from './Add';
 
 
 const styles = theme => ({ 
@@ -71,17 +72,10 @@ class HostSelect extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <div className = {classes.root}>
-          {this.state.open && 
-        /*soure the addsite modal in here
-         */ 
-        <div>
-        <p>you clicked add!</p>  
-        <Button onClick = {this.handleClose}>
-            ok
-        </Button>
-        </div>
-        }
+      <div className = {classes.root} >
+         {/* <Modal open = {this.state.open}> */}
+         <AddSite handleClose = {this.handleClose} open = {this.state.open} selectNew = {this.handleChange}/>
+        {/* </Modal> */}
         <Grid container direction = 'column' justify = 'center' alignItems = 'center'>
           <Grid item xs = {12} md = {10} lg = {9} xl = {8}>
             <Paper className = {classes.paper} elevation = {3}>
@@ -99,7 +93,7 @@ class HostSelect extends Component {
                     label="Age"
                     >
                     <MenuItem value="">
-                        <em>None</em>
+                        <em>None of these</em>
                     </MenuItem>
                     {this.props.state.site.map((site, index)=>
                     (<MenuItem value={site} key = {index}>{site.address}</MenuItem>)
