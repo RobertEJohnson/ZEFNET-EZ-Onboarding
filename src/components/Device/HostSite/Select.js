@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import{Grid, Button, Select, Paper, Modal, Divider, Dialog, InputLabel, FormControl, MenuItem} from '@material-ui/core';
+import{Grid, Button, Select, Paper, Divider, InputLabel, FormControl, MenuItem} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -44,6 +44,13 @@ class HostSelect extends Component {
     open: false
   };
 
+  componentDidMount = ()=> {
+        this.setState({
+            open: false,
+            selectedSite: ''
+        })
+  }
+
   addSite = () => {
       this.setState ({
           ...this.state,
@@ -64,18 +71,11 @@ class HostSelect extends Component {
     });
   }
 
-  selectNew = (value) => {
-      console.log(value)
-    this.setState({
-        selectedSite: value,
-      });
-  }
-
   componentDidUpdate(previousProps){
-      if(previousProps.state.device.site!== this.props.state.device.site){
+      if(previousProps.state.site && (previousProps.state.site !== this.props.state.site)){
          // set state to selectedsite: this.props.newDevice.site
          this.setState({
-             selectedSite:this.props.state.device.site
+             selectedSite:this.props.state.site[this.props.state.site.length-1]
          })
       }
   }
@@ -88,9 +88,7 @@ class HostSelect extends Component {
     const {classes} = this.props;
     return (
       <div className = {classes.root} >
-         {/* <Modal open = {this.state.open}> */}
-         <AddSite handleClose = {this.handleClose} open = {this.state.open} selectNew = {this.selectNew}/>
-        {/* </Modal> */}
+         <AddSite handleClose = {this.handleClose} open = {this.state.open}/>
         <Grid container direction = 'column' justify = 'center' alignItems = 'center'>
           <Grid item xs = {12} md = {10} lg = {9} xl = {8}>
             <Paper className = {classes.paper} elevation = {3}>
@@ -115,7 +113,6 @@ class HostSelect extends Component {
                     )}
                     </Select>
                 </FormControl>
-                {/* {JSON.stringify(this.props.state.site)} */}
                 <br/>
                 <br/>
                 <Divider/>
@@ -140,7 +137,7 @@ class HostSelect extends Component {
                     {this.state.selectedSite ?
                         <Button variant = 'contained' color = 'primary'
                         onClick = {this.assignSite}
-                        component = {Link} to ="/test">
+                        component = {Link} to ="/breakerSelect">
                             <ChevronRightIcon/> Next
                         </Button>
                     :

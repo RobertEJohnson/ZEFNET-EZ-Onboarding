@@ -1,35 +1,14 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import{ Button, TextField,} from '@material-ui/core';
+import{ Button, TextField } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle }from '@material-ui/core/';
 
 const styles = theme => ({ 
-    root: {
-      flexGrow: 1,
-      alignItems: 'center',
-      justify: 'center',
-      color: theme.palette.text.secondary,
-      fontFamily: 'Crimson Text, Open Sans, sans-serif',
-      minHeight: '100vh', 
-      minWidth: '100vw', 
-      background: 'white',
-      textAlign: 'center',
-    },
-    paper:{
-      padding: theme.spacing(2),
-      borderRadius: '5px',
-    },
     formControl: {
       margin: theme.spacing(1),
       minWidth: 220,
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-    grow:{
-        flexGrow: 1
     }
   })
   
@@ -58,10 +37,9 @@ class AddSite extends Component {
           address: this.state.address,
           organization_id: this.props.state.organization.id,
       }
-      console.log('posting new site:', postObject)
+      //console.log('posting new site:', postObject)
       if (postObject.organization_id && postObject.first_name && postObject.address && postObject.email)
         {this.props.dispatch({ type: "POST_SITE", payload: postObject });
-        this.props.selectNew(postObject)
         this.props.handleClose()
         } else {
             alert('Unable to add site. Have you filled all required fields?')
@@ -69,7 +47,7 @@ class AddSite extends Component {
   }
 
   render() {
-     const {classes} = this.props;
+     //const {classes} = this.props;
     return (
       <div>
         <Dialog open={this.props.open} 
@@ -141,7 +119,7 @@ class AddSite extends Component {
             <Button onClick={this.props.handleClose}>
                 Close
             </Button>
-            <Button onClick={this.props.handleClose} color="primary"
+            <Button color="primary"
                 onClick = {this.addSite}>
              Add Site
             </Button>
