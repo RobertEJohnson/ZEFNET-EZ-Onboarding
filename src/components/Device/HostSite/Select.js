@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import{Grid, Button, Select, Paper, Modal, Divider, Dialog, InputLabel, FormControl, MenuItem} from '@material-ui/core';
+import{Grid, Button, Select, Paper, Divider, InputLabel, FormControl, MenuItem} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -27,7 +27,7 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 220,
+    minWidth: 320,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -43,6 +43,13 @@ class HostSelect extends Component {
     selectedSite: '',
     open: false
   };
+
+  componentDidMount = ()=> {
+        this.setState({
+            open: false,
+            selectedSite: ''
+        })
+  }
 
   addSite = () => {
       this.setState ({
@@ -64,6 +71,15 @@ class HostSelect extends Component {
     });
   }
 
+  componentDidUpdate(previousProps){
+      if(previousProps.state.site && (previousProps.state.site !== this.props.state.site)){
+         // set state to selectedsite: this.props.newDevice.site
+         this.setState({
+             selectedSite:this.props.state.site[this.props.state.site.length-1]
+         })
+      }
+  }
+
   assignSite = () => {
     this.props.dispatch({type: 'SET_DEVICE_SITE', payload: this.state.selectedSite})
     this.props.dispatch({type: 'FETCH_SITE_BREAKERS', payload: this.state.selectedSite.id})
@@ -73,9 +89,7 @@ class HostSelect extends Component {
     const {classes} = this.props;
     return (
       <div className = {classes.root} >
-         {/* <Modal open = {this.state.open}> */}
-         <AddSite handleClose = {this.handleClose} open = {this.state.open} selectNew = {this.handleChange}/>
-        {/* </Modal> */}
+         <AddSite handleClose = {this.handleClose} open = {this.state.open}/>
         <Grid container direction = 'column' justify = 'center' alignItems = 'center'>
           <Grid item xs = {12} md = {10} lg = {9} xl = {8}>
             <Paper className = {classes.paper} elevation = {3}>
@@ -88,9 +102,9 @@ class HostSelect extends Component {
                 <FormControl variant="outlined" className={classes.formControl}>
                     <InputLabel>Choose From Existing</InputLabel>
                     <Select
+                    id = 'siteSelect'
                     value={this.state.selectedSite}
                     onChange={this.handleChange}
-                    label="Age"
                     >
                     <MenuItem value="">
                         <em>None of these</em>
@@ -119,7 +133,7 @@ class HostSelect extends Component {
                 <br/>
                 <Grid container direction = 'row'>
                     <Button variant ='contained'
-                    component = {Link} to ="/test">
+                    component = {Link} to ="/devicePrep">
                         <ChevronLeftIcon/> Previous
                     </Button>
                     <div className = {classes.grow}></div>

@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user, // will have an id and username if someone is logged in
   organization,//will have an id, name, address, email, and possible phone
-  site,// will have an id, first_name, last_name, address, email, and possible phone
+  site,// will have an array of objects containing id, first_name, last_name, address, email, and possible phone
   device,//will have a site, breaker, name, serial number
   breaker,
 });
