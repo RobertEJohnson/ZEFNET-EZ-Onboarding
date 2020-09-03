@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Grid, Button, withStyles, GridList, GridListTile, GridListTileBar} from '@material-ui/core';
+import {connect} from 'react-redux';
+import {Grid, Button, withStyles, GridList, GridListTile, GridListTileBar, withTheme} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import zefNetPro from './zefnetpro.png';
@@ -29,6 +30,9 @@ const styles = theme => ({
   },
   greyscale: {
     filter: 'grayscale(100%)'
+  },
+  button: {
+    color: 'white',
   }
 })
 
@@ -43,14 +47,16 @@ class HomeScreen extends Component {
                 style={{minHeight: '75vh', minWidth: '100vw', background: 'linear-gradient(360deg, #041E41, #004e92 70%)'}}>
                 <div style={{maxWidth: '1200px'}}>
                     <Grid item xs={12}>
-                        <p style={{float:'left', minWidth: '100%', color: 'grey'}}>
-                            Organization Name
-                        <span style={{float: 'right'}}><MinimalLogOutButton/></span>
-                        </p>    
+                        <Button className = {classes.button} component={Link} to='/viewOrganization'>
+                          {this.props.state.organization.name}
+                        </Button>
+                        <span style={{float: 'right'}}>
+                          <MinimalLogOutButton className = {classes.button}/>
+                        </span>
+                         
                     </Grid>
                     <GridList cellHeight={450}>
-                        {JSON.stringify(this.props)}
-                        <GridListTile className={classes.gridListTile} component={Link} to='/test'>
+                        <GridListTile className={classes.gridListTile} component={Link} to='/devicePrep'>
                             <img src={zefNetPro} alt="ZEFNET Pro Charger" className={classes.image} />
                             <GridListTileBar
                                 title="Add a Device"
@@ -79,9 +85,12 @@ class HomeScreen extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  state,
+});
 
 HomeScreen.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(HomeScreen);
+export default withStyles(styles)(connect(mapStateToProps)(HomeScreen));

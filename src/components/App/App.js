@@ -20,6 +20,7 @@ import ViewOrganization from '../Organization/ViewOrganization';
 import OrganizationHomeScreen from '../Organization/HomeScreen';
 import EditOrganization from "../Organization/EditOrganization";
 import HostSelect from '../Device/HostSite/Select';
+import DevicePrep from '../Device/DevicePrep';
 
 import './App.css';
 
@@ -55,7 +56,11 @@ class App extends Component {
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             <ProtectedRoute exact path="/info" component={InfoPage} />
-
+            <ProtectedRoute
+              exact
+              path="/devicePrep"
+              component={DevicePrep}
+            />
             <ProtectedRoute
               exact
               path="/createOrganization"

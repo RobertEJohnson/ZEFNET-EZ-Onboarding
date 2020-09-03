@@ -130,7 +130,7 @@ class HostSelect extends Component {
                 <br/>
                 <Grid container direction = 'row'>
                     <Button variant ='contained'
-                    component = {Link} to ="/test">
+                    component = {Link} to ="/devicePrep">
                         <ChevronLeftIcon/> Previous
                     </Button>
                     <div className = {classes.grow}></div>
