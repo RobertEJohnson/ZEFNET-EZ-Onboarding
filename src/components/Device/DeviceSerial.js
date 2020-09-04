@@ -19,7 +19,7 @@ class DeviceSerial extends Component {
   handleNext = () => {
     if (this.state.serialNumber === this.state.confirmSerialNumber) {
       const actionObject = {
-        serialNumber: this.state.serialNumber,
+        number: this.state.serialNumber,
         user_id: this.props.reduxState.user.id,
       };
       this.props.dispatch({ type: "SET_SERIAL", payload: actionObject });

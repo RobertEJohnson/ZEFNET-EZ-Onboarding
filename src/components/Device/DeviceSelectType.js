@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import {Grid, Button, withStyles, GridList, GridListTile, GridListTileBar} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import zefNetPro from '../Organization/zefnetpro.png';
-import user from '../Organization/zefUser.jpeg'
-import review from '../Organization/packageReview.jpeg';
-import MinimalLogOutButton from '../LogOutButton/MinimalLogOutButton'
-
+import zefNetPro from './zefpro.png';
+import wallmount from './wallMount.jpg';
+import single from './singleheadped.jpg';
+import double from './dualheadped.jpg';
 
 
 const styles = theme => ({ 
@@ -15,11 +14,16 @@ const styles = theme => ({
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
+        color: 'white',
+        textAlign: 'center',
+        minHeight: '100vh', 
+        minWidth: '100vw',
+        background: 'linear-gradient(360deg, #041E41, #004e92 70%)',
+        fontFamily: 'Crimson Text, Open Sans, sans-serif',
   },
   gridListTile: {
     color: 'rgba(255, 255, 255, 0.54)',
-    maxWidth: '350px',
+    maxWidth: '320px',
     maxHeight: '350px',
     margin: '20px 20px 0px 0px'
   },
@@ -27,8 +31,8 @@ const styles = theme => ({
     maxHeight: '350px',
     minWidth: '350px'
   },
-  greyscale: {
-    filter: 'grayscale(100%)'
+  grow: {
+    flexGrow:1
   }
 })
 
@@ -36,72 +40,70 @@ const styles = theme => ({
 class DeviceSelectType extends Component {
 
   state = {
-    wallMount: '',
-    singleHeadPedestal: '',
-    dualHeadPedestal: '',
-    zefnetPro: '',
+   selected:''
+  }
+
+  handleSelct = (number) =>{
+    this.setState({
+      selected: number
+    })
   }
 
   render() {
     const {classes} = this.props;
     return (
-   
+        <div className = {classes.root}>
+          <br/>
+          <br/>
+          <h1>Select your device model</h1>
             <Grid container direction='row' justify='center' alignContent='center' alignItems='center' spacing={3}
-                style={{minHeight: '75vh', minWidth: '100vw', background: 'linear-gradient(360deg, #041E41, #004e92 70%)'}}>
-                <div style={{maxWidth: '1200px'}}>
-                    <Grid item xs={12}>
-                        <p style={{float:'left', minWidth: '100%', color: 'grey'}}>
-                            Organization Name
-                        <span style={{float: 'right'}}><MinimalLogOutButton/></span>
-                        </p>    
-                    </Grid>
-                    <GridList cellHeight={450}>
-                        {JSON.stringify(this.props)}
-                        <GridListTile className={classes.gridListTile} component={Link} to='/test'>
+                >
+                <div style={{maxWidth: '1500px'}}>
+                    <GridList cellHeight={400}>
+                        <GridListTile className={classes.gridListTile}>
+                            <img src={wallmount} alt="Wall Mount Charger" className={classes.image} />
+                            <GridListTileBar
+                                title="Wall Mount Charger"
+                            />
+                        </GridListTile>
+                        <GridListTile className={classes.gridListTile}>
+                            <img src={single} alt="Single Head Pedestal Charger" className={classes.image}/>
+                            <GridListTileBar
+                                title="Single Head Pedestal Charger"
+                            />
+                        </GridListTile>
+                        <GridListTile className={classes.gridListTile} >
+                            <img src={double} alt="ZEFNET Pro Charger" className={classes.image}/>
+                            <GridListTileBar
+                                title="Dual Head Pedestal Charger"
+                            />
+                        </GridListTile>
+                        <GridListTile className={classes.gridListTile}>
                             <img src={zefNetPro} alt="ZEFNET Pro Charger" className={classes.image} />
                             <GridListTileBar
-                                title="Add a Device"
-                                subtitle="0 Devices"
-                            />
-                        </GridListTile>
-                        <GridListTile className={classes.gridListTile} component={Link} to='/test'>
-                            <img src={user} alt="ZEFNET Pro Charger" className={classes.image} />
-                            <GridListTileBar
-                                title="Add a User"
-                                subtitle="1 User"
-                            />
-                        </GridListTile>
-                        <GridListTile className={classes.gridListTile} component={Link} to='/test'>
-                            <img src={review} alt="ZEFNET Pro Charger" className={classes.image}/>
-                            <GridListTileBar
-                                title="Review and Submit Onboarding Package"
-                                subtitle="(Please Add a Device)"
-                            />
-                        </GridListTile>
-                        <GridListTile className={classes.gridListTile} component={Link} to='/test'>
-                            <img src={review} alt="ZEFNET Pro Charger" className={classes.image}/>
-                            <GridListTileBar
-                                title="Review and Submit Onboarding Package"
-                                subtitle="(Please Add a Device)"
+                                title="ZEFNET Pro Charger"
                             />
                         </GridListTile>
                     </GridList>
                 </div>
-               
+               </Grid>
+               <br/>
+               <Grid container direction = 'row'>
               <div style={{ align: "left" }}>
                 <Button
                   variant="contained"
-                  style={{ marginTop: "20px" }}
+                  style={{ margin: "20px" }}
                   color="default"
                   component = {Link} to ="/breakerSelect"
                 >
                   Previous
                 </Button>
               </div>
+              <div className = {classes.grow}></div>
               <div>
                 <Button
                   variant="contained"
-                  style={{ marginTop: "20px" }}
+                  style={{ margin: "20px" }}
                   color="default"
                   onClick={this.handleNext}
                   component = {Link} to ="/deviceSerial"
@@ -110,6 +112,7 @@ class DeviceSelectType extends Component {
                 </Button>
               </div>
             </Grid>
+          </div>
     
     );
   }
