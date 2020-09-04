@@ -26,8 +26,8 @@ const styles = theme => ({
   },
   gridListTile: {
     color: 'rgba(255, 255, 255, 0.54)',
-    maxWidth: '270px',
-    maxHeight: '270px',
+    maxWidth: '300px',
+    maxHeight: '300px',
     margin: '15px 15px 0px 0px'
   },
   image: {

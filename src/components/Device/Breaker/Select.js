@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Grid, Button, Select, Paper, Divider, InputLabel, FormControl, MenuItem} from '@material-ui/core';
-
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import {ChevronLeft, ChevronRight} from '@material-ui/icons';
@@ -154,7 +153,7 @@ class BreakerSelect extends Component {
                                     this.state.selectedBreaker ?
                                         <Button variant='contained' color='primary'
                                             onClick={this.assignBreaker}
-                                            component={Link} to="/test">
+                                            component={Link} to="/deviceType">
                                             <ChevronRight/> Next
                                         </Button>
                                 :

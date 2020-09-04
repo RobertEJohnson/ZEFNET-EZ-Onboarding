@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, TextField, Button } from "@material-ui/core";
 import user from "../Organization/zefUser.jpeg";
+import { Link } from 'react-router-dom';
 
 class DeviceSerial extends Component {
   state = {
@@ -113,7 +114,7 @@ class DeviceSerial extends Component {
                   variant="contained"
                   style={{ marginTop: "20px" }}
                   color="default"
-                  onClick={this.handlePrevious}
+                  component = {Link} to ="/breaker"
                 >
                   Previous
                 </Button>
