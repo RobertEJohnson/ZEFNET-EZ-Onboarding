@@ -13,8 +13,23 @@ function* getBreakers(action){
     }
 }
 
+// worker Saga: will be fired on "POST_BREAKER" actions
+function* addBreaker(action){
+    try {
+    //post new breaker to breaker table
+    const response = yield axios.post('/api/breaker', action.payload);
+    //log the response for testing
+    console.log('back from site POST with', response);
+    //call the GET saga to retrieve updated info
+    yield put({ type: 'FETCH_SITE_BREAKERS', payload: action.payload.site_id})
+    } catch (error) {
+        console.log('error with breaker post:', error);
+    }
+}
+
 function* breakerSaga(){
-    yield takeLatest('FETCH_SITE_BREAKERS', getBreakers)
+    yield takeLatest('FETCH_SITE_BREAKERS', getBreakers);
+    yield takeLatest('POST_BREAKER', addBreaker);
 }
 
 export default breakerSaga;

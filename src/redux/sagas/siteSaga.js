@@ -29,7 +29,7 @@ function* addSite(action){
 
 function* organizationSaga() {
   yield takeLatest('FETCH_SITE', getSite);
-  yield takeLatest('POST_SITE', addSite)
+  yield takeLatest('POST_SITE', addSite);
 }
 
 export default organizationSaga;
