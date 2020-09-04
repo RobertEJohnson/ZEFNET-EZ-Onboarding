@@ -21,7 +21,8 @@ class DeviceSerial extends Component {
         chargerName: this.state.chargerName,
         user_id: this.props.reduxState.user.id,
       };
-      this.props.dispatch({ type: "SET_NAME", payload: actionObject });
+      this.props.dispatch({ type: "SET_NAME", payload: this.state.chargerName});
+      this.props.dispatch({type: "SET_DATE", payload: this.state.installationDate});
       this.props.history.push("/deviceReview"); //change this
     } else {
       alert("Serial numbers do not match");
