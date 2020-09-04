@@ -22,7 +22,7 @@ class DeviceSerial extends Component {
         user_id: this.props.reduxState.user.id,
       };
       this.props.dispatch({ type: "SET_NAME", payload: actionObject });
-      this.props.history.push("/home"); //change this
+      this.props.history.push("/deviceReview"); //change this
     } else {
       alert("Serial numbers do not match");
     }
