@@ -72,7 +72,7 @@ class DeviceReview extends Component {
                     <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
                         <h3 style={{display: 'inline-block'}}>Address:{'\u00A0'}{'\u00A0'}</h3>
                         <p style={{display: 'inline-block'}}>
-                            {/*{this.props.state.device}*/}
+                            {this.props.state.device.site.address}
                         </p>
                     </Grid>
 
@@ -86,25 +86,25 @@ class DeviceReview extends Component {
                         <div>
                             <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>First Name:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.site.first_name}
                             </p>
                         </div>
                         <div>
                             <h3 className={classes.reviewItem}>Second Name:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.site.second_name}
                             </p>
                         </div>
                         <div>
                             <h3 className={classes.reviewItem}>Phone Number:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.site.phone}
                             </p>
                         </div> 
                         <div>
                             <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Email:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.site.email}
                             </p>
                         </div>
                     </Grid>
@@ -119,19 +119,19 @@ class DeviceReview extends Component {
                         <div>
                             <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Breaker Name:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.breaker.name}
                             </p>
                         </div>
                         <div>
                             <h3 className={classes.reviewItem}>Breaker Limit:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.breaker.limit}
                             </p>
                         </div>
                         <div>
                             <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Breaker Description:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.breaker.description}
                             </p>
                         </div>
                     </Grid>
@@ -146,13 +146,7 @@ class DeviceReview extends Component {
                         <div>
                             <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Device Type:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
-                            </p>
-                        </div>
-                        <div>
-                            <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Head Type (if pedestal):{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem} >
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.type.name}
                             </p>
                         </div>
                     </Grid>
@@ -167,7 +161,7 @@ class DeviceReview extends Component {
                         <div>
                             <h3 className={classes.reviewItem} style={{margin: '10px 0px'}}>Serial Number:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                               {/*{this.props.state.device}*/}
+                               {this.props.state.device.serial.number}
                             </p>
                         </div>
                     </Grid>
@@ -182,13 +176,13 @@ class DeviceReview extends Component {
                         <div>
                             <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Charger Name:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                               {/*{this.props.state.device}*/}
+                               {this.props.state.device.name}
                             </p>
                         </div>
                         <div>
                             <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Installation Date:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem} >
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.date}
                             </p>
                         </div>
                     </Grid>

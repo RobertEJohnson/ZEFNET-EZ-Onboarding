@@ -8,19 +8,31 @@ const newDeviceReducer = (state = {
 }, action) => {
     switch (action.type) {
       case 'SET_DEVICE_SITE':
-        return {site: action.payload};
+        state.site = action.payload;
+        return state;
       case 'SET_BREAKER':
-        return {breaker: action.payload};
+        state.breaker = action.payload;
+        return state;
       case 'SET_SERIAL':
-        return {serial: action.payload};
+        state.serial = action.payload;
+        return state;
       case 'SET_TYPE':
-        return {type: action.payload};
+        state.type = action.payload;
+        return state;
       case 'SET_NAME':
-        return {name: action.payload};
+        state.name = action.payload;
+        return state;
       case 'SET_DATE':
-        return {date: action.payload};
+        state.date = action.payload;
+        return state;
       case 'CLEAR_DEVICE':
-          return {site:'', breaker:'', serial:'', type:'', name: '', date: ''};
+          return {
+            site:{},
+            breaker:{},
+            serial: {},
+            type: {},
+            name: '',
+            date: ''};
       default:
         return state;
     }
