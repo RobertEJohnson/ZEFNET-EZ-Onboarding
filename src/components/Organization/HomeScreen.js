@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {Grid, Button, withStyles, GridList, GridListTile, GridListTileBar, withTheme} from '@material-ui/core';
+import {Grid, Button, withStyles, GridList, GridListTile, GridListTileBar,} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import zefNetPro from './zefnetpro.png';

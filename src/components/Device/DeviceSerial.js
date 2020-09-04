@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, TextField, Button } from "@material-ui/core";
-import user from "../Organization/zefUser.jpeg";
+import user from "../Organization/zefnetpro.png";
 import { Link } from 'react-router-dom';
 
 class DeviceSerial extends Component {
@@ -30,7 +30,7 @@ class DeviceSerial extends Component {
   };
 
   handlePrevious = () => {
-    this.props.history.push("/home"); //change this
+    this.props.history.push("/deviceType"); //change this
   };
 
   render() {
@@ -67,6 +67,7 @@ class DeviceSerial extends Component {
                   maxWidth: "200px",
                   paddingLeft: "0px",
                 }}
+                alt = 'zefnet pro device'
               />
               {/* Image should be changed */}
             </div>
@@ -74,7 +75,7 @@ class DeviceSerial extends Component {
               <h1 style={centerText}>Input your Serial Number</h1>
             </div>
             <div>
-              <h3 style={centerText}>It can be found lorem ipsum.</h3>
+              <h3 style={centerText}>It can be found [INFO NEEDE FROM ZEF].</h3>
             </div>
           </div>
           <form style={{ minWidth: "400px", background: "transparent" }}>
