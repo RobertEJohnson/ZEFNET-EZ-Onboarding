@@ -46,7 +46,7 @@ class HomeScreen extends Component {
             <Grid container direction='row' justify='center' alignContent='center' alignItems='center' spacing={3}
                 style={{minHeight: '75vh', minWidth: '100vw', background: 'linear-gradient(360deg, #041E41, #004e92 70%)'}}>
                 <div style={{maxWidth: '1200px'}}>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} style={{marginBottom: '10px'}}>
                         <Button className = {classes.button} component={Link} to='/viewOrganization'>
                           {this.props.state.organization.name}
                         </Button>
@@ -55,6 +55,7 @@ class HomeScreen extends Component {
                         </span>
                          
                     </Grid>
+                   
                     <GridList cellHeight={450}>
                         <GridListTile className={classes.gridListTile} component={Link} to='/devicePrep'>
                             <img src={zefNetPro} alt="ZEFNET Pro Charger" className={classes.image} />
