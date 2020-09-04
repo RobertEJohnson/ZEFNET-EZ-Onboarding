@@ -41,6 +41,11 @@ const styles = theme => ({
   grow:{
     flexGrow: 1,
     minWidth: '100px'
+  },
+  reviewItem: {
+    display: 'inline-block',
+    padding: '0px',
+    margin: '0px'
   }
 })
 
@@ -77,23 +82,57 @@ class DeviceReview extends Component {
                     </Grid>
 
                     <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                        <h3 style={{display: 'inline-block'}}>Address:{'\u00A0'}{'\u00A0'}</h3>
-                        <p style={{display: 'inline-block'}}>
-                            {this.props.state.site.address ? this.props.state.site.address : '6120 Westwood Parkway, St. Cloud, MN, 56303'}
-                        </p>
+                        <div>
+                            <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>First Name:{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem}>
+                                {this.props.state.site.address ? this.props.state.site.address : 'First name'}
+                            </p>
+                        </div>
+                        <div>
+                            <h3 className={classes.reviewItem}>Second Name:{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem}>
+                                {this.props.state.site.address ? this.props.state.site.address : 'First name'}
+                            </p>
+                        </div>
+                        <div>
+                            <h3 className={classes.reviewItem}>Phone Number:{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem}>
+                                {this.props.state.site.address ? this.props.state.site.address : 'First name'}
+                            </p>
+                        </div> 
+                        <div>
+                            <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Email:{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem}>
+                                {this.props.state.site.address ? this.props.state.site.address : 'First name'}
+                            </p>
+                        </div>
                     </Grid>
 
                     <Grid item align='center' xs={12}>
                         <br/>
                         <Divider/>
-                       <h2>Breaker Information</h2>
+                        <h2>Breaker Information</h2>
                     </Grid>
 
                     <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                        <h3 style={{display: 'inline-block'}}>Address:{'\u00A0'}{'\u00A0'}</h3>
-                        <p style={{display: 'inline-block'}}>
-                            {this.props.state.site.address ? this.props.state.site.address : '6120 Westwood Parkway, St. Cloud, MN, 56303'}
-                        </p>
+                        <div>
+                            <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Breaker Name:{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem}>
+                                {this.props.state.site.address ? this.props.state.site.address : 'Breaker Name'}
+                            </p>
+                        </div>
+                        <div>
+                            <h3 className={classes.reviewItem}>Breaker Limit:{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem}>
+                                {this.props.state.site.address ? this.props.state.site.address : 'Breaker Limit'}
+                            </p>
+                        </div>
+                        <div>
+                            <h3 className={classes.reviewItem}>Breaker Description:{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem} style={{marginBottom: '10px'}}>
+                                {this.props.state.site.address ? this.props.state.site.address : 'Breaker Description'}
+                            </p>
+                        </div>
                     </Grid>
 
                     <Grid item align='center' xs={12}>
@@ -103,10 +142,18 @@ class DeviceReview extends Component {
                     </Grid>
 
                     <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                        <h3 style={{display: 'inline-block'}}>Address:{'\u00A0'}{'\u00A0'}</h3>
-                        <p style={{display: 'inline-block'}}>
-                            {this.props.state.site.address ? this.props.state.site.address : '6120 Westwood Parkway, St. Cloud, MN, 56303'}
-                        </p>
+                        <div>
+                            <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Device Type:{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem}>
+                                {this.props.state.site.address ? this.props.state.site.address : 'Device Type'}
+                            </p>
+                        </div>
+                        <div>
+                            <h3 className={classes.reviewItem}>Head Type (if pedestal):{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem} style={{marginBottom: '10px'}}>
+                                {this.props.state.site.address ? this.props.state.site.address : 'Head Type'}
+                            </p>
+                        </div>
                     </Grid>
 
                     <Grid item align='center' xs={12}>
@@ -116,10 +163,12 @@ class DeviceReview extends Component {
                     </Grid>
 
                     <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                        <h3 style={{display: 'inline-block'}}>Address:{'\u00A0'}{'\u00A0'}</h3>
-                        <p style={{display: 'inline-block'}}>
-                            {this.props.state.site.address ? this.props.state.site.address : '6120 Westwood Parkway, St. Cloud, MN, 56303'}
-                        </p>
+                        <div>
+                            <h3 className={classes.reviewItem} style={{margin: '10px 0px'}}>Serial Number:{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem}>
+                                {this.props.state.site.address ? this.props.state.site.address : 'Serial Number'}
+                            </p>
+                        </div>
                     </Grid>
 
                     <Grid item align='center' xs={12}>
@@ -129,14 +178,22 @@ class DeviceReview extends Component {
                     </Grid>
 
                     <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                        <h3 style={{display: 'inline-block'}}>Address:{'\u00A0'}{'\u00A0'}</h3>
-                        <p style={{display: 'inline-block'}}>
-                            {this.props.state.site.address ? this.props.state.site.address : '6120 Westwood Parkway, St. Cloud, MN, 56303'}
-                        </p>
+                        <div>
+                            <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Charger Name:{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem}>
+                                {this.props.state.site.address ? this.props.state.site.address : 'Charger Name'}
+                            </p>
+                        </div>
+                        <div>
+                            <h3 className={classes.reviewItem}>Installation Date:{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem} style={{marginBottom: '10px'}}>
+                                {this.props.state.site.address ? this.props.state.site.address : 'Installation Date'}
+                            </p>
+                        </div>
                     </Grid>
 
                     
-                    <Grid container direction = 'row' justify = 'center' alignContent = 'center'>
+                    <Grid container direction = 'row' justify = 'center' alignContent = 'center' style={{marginTop: '35px'}}>
                             <Button variant ='contained'
                             component = {Link} to ="/OrganizationHome">
                                 <ChevronLeftIcon/> Previous
