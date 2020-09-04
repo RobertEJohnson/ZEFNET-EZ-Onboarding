@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Grid, withStyles, GridList, GridListTile, GridListTileBar} from '@material-ui/core';
+import {Grid, Button, withStyles, GridList, GridListTile, GridListTileBar} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import zefNetPro from '../Organization/zefnetpro.png';
@@ -87,7 +87,28 @@ class DeviceSelectType extends Component {
                         </GridListTile>
                     </GridList>
                 </div>
-        
+               
+              <div style={{ align: "left" }}>
+                <Button
+                  variant="contained"
+                  style={{ marginTop: "20px" }}
+                  color="default"
+                  component = {Link} to ="/breakerSelect"
+                >
+                  Previous
+                </Button>
+              </div>
+              <div>
+                <Button
+                  variant="contained"
+                  style={{ marginTop: "20px" }}
+                  color="default"
+                  onClick={this.handleNext}
+                  component = {Link} to ="/deviceSerial"
+                >
+                  Next
+                </Button>
+              </div>
             </Grid>
     
     );
