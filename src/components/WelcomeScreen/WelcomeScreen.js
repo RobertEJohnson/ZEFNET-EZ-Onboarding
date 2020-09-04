@@ -18,11 +18,10 @@ class WelcomeScreen extends Component {
                         need every step of the way. :)
                         <br/>
                         <br/>
-                        <Link to="/createOrganization">
-                            <Button variant='contained' style={{color: '#006dcc', backgroundColor: 'white'}}>
-                                Let's Get Started
-                            </Button>
-                        </Link>
+                        <Button variant='contained' style={{color: '#006dcc', backgroundColor: 'white'}}
+                            component = {Link} to ="/createOrganization">
+                            Let's Get Started
+                        </Button>
                     </p>
             </Grid>
         </Grid>

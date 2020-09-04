@@ -3,7 +3,7 @@ import {Grid, Paper, Button, withStyles, GridList, GridListTile, GridListTileBar
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import map from './7LLX9.jpg';
-import breaker from './Tandems.jpg';
+import breaker from './breaker2.jpg';
 //import MinimalLogOutButton from '../LogOutButton/MinimalLogOutButton'
 import HomeIcon from '@material-ui/icons/Home';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -26,8 +26,8 @@ const styles = theme => ({
   },
   gridListTile: {
     color: 'rgba(255, 255, 255, 0.54)',
-    maxWidth: '270px',
-    maxHeight: '270px',
+    maxWidth: '300px',
+    maxHeight: '300px',
     margin: '15px 15px 0px 0px'
   },
   image: {
