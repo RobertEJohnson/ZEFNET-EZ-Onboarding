@@ -27,19 +27,23 @@ class AddBreaker extends Component {
 
   addSite = () => {
       //post new site to site table
-      const postObject = {
-          name: this.state.name,
-          description: this.state.description,
-          limit: this.state.limit,
-          site_id: this.props.state.device.site.id,
-      }
-      console.log('posting new site:', postObject)
-      if (postObject.site_id && postObject.name && postObject.limit)
-        {//this.props.dispatch({ type: "POST_SITE", payload: postObject });
-        this.props.handleClose()
-        } else {
-            alert('Unable to add breaker. Have you filled all required fields?')
+      if (this.props.state.device.site){
+        const postObject = {
+            name: this.state.name,
+            description: this.state.description,
+            limit: this.state.limit,
+            site_id: this.props.state.device.site.id,
         }
+        console.log('posting new breaker:', postObject)
+        if (postObject.site_id && postObject.name && postObject.limit)
+            {this.props.dispatch({ type: "POST_BREAKER", payload: postObject });
+            this.props.handleClose()
+            } else {
+                alert('Unable to add breaker. Have you filled all required fields?')
+            }
+      } else {
+          alert('Oops! no site is currently selected. Please exit this field and select a site from the previous page!')
+      }
   }
 
   render() {
@@ -51,8 +55,8 @@ class AddBreaker extends Component {
           <DialogTitle>Add A New Breaker</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              The Breaker name textfield is an opportonity to provide identification for the breaker to make it easy
-              to find for thos who may be charged with supporting the equiprment for example "South East Utility Room: Panel 2B: Breaker 22/24".
+              The Breaker name field is an opportonity to provide identification for the breaker 
+              to make it easy to find for those who may be charged with supporting the equiptment.
               If additional information is beneficial, please use the description field.
             </DialogContentText>
             <TextField
@@ -64,6 +68,7 @@ class AddBreaker extends Component {
               label="Breaker Name"
               name = 'name'
               value = {this.state.name}
+              placeholder = "South East Utility Room: Panel 2B: Breaker 22/24"
               onChange = {this.handleChange}
             />
             <TextField
@@ -89,6 +94,7 @@ class AddBreaker extends Component {
               label="Breaker Description"
               rows="4"
               name = "description"
+              placeholder= "The South East Utility Room is located on the second floor across from the admin office.  The breaker panels are on the North wall."
               multiline
               value={this.state.description}
               onChange = {this.handleChange}

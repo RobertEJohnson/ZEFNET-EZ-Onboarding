@@ -17,4 +17,22 @@ router.get('/:id', rejectUnauthenticated, (req,res)=>{
         })
 })
 
+router.post('/', rejectUnauthenticated, (req, res) => {
+    const queryString = `INSERT INTO "breaker"
+    ("name", "limit", "description", "site_id")
+    VALUES($1, $2, $3, $4);`;
+    const postValues = [
+        req.body.name,
+        req.body.limit,
+        req.body.description,
+        req.body.site_id,
+    ]
+    pool.query(queryString, postValues)
+    .then(()=>{res.sendStatus(201)})
+    .catch((error)=>{
+     res.sendStatus(500)
+     console.log( 'error on POST /api/breaker/', error);
+   })
+});
+
 module.exports = router;
