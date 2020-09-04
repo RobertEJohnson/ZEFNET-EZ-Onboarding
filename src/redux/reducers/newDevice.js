@@ -20,7 +20,7 @@ const newDeviceReducer = (state = {
       case 'SET_DATE':
         return {date: action.payload};
       case 'CLEAR_DEVICE':
-          return {};
+          return {site:'', breaker:'', serial:'', type:'', name: '', date: ''};
       default:
         return state;
     }
