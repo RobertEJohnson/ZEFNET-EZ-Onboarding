@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import {ChevronLeft, ChevronRight} from '@material-ui/icons';
 import {Link} from 'react-router-dom';
+import AddBreaker from './Add';
 
 
 const styles = theme => ({
@@ -83,16 +84,7 @@ class BreakerSelect extends Component {
         const {classes} = this.props;
         return(
             <div className={classes.root}>
-                {
-                    this.state.open ? 
-                        <div>
-                            <p>you clicked add!</p>  
-                            <Button onClick = {this.handleClose}>
-                                ok
-                            </Button>
-                        </div>
-                    : <></>
-                }
+                 <AddBreaker handleClose = {this.handleClose} open = {this.state.open}/>
                 <Grid container direction='column' justify='center' alignItems='center'>
                     <Grid item xs={12} md={10} lg={9} xl={8}>
                         <Paper className={classes.paper} elevation={3}>
@@ -119,7 +111,7 @@ class BreakerSelect extends Component {
                                 {
                                     this.state.breakers.map((breaker, index)=>
                                     <MenuItem value={breaker} key={breaker.id}>
-                                        <span style={{backgroundColor: 'green'}}>Amps:{breaker.limit} </span> {breaker.description}</MenuItem>
+                                        <span style={{backgroundColor: '#b2ff59'}}>Amps:{breaker.limit} </span> {breaker.description}</MenuItem>
                                 )}
                                 </Select>
                             </FormControl>
