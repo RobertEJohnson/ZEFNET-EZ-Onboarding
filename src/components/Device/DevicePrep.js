@@ -3,7 +3,7 @@ import {Grid, Paper, Button, withStyles, GridList, GridListTile, GridListTileBar
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import map from './7LLX9.jpg';
-import breaker from './Tandems.jpg';
+import breaker from './breaker2.jpg';
 //import MinimalLogOutButton from '../LogOutButton/MinimalLogOutButton'
 import HomeIcon from '@material-ui/icons/Home';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';

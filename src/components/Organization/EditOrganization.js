@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, TextField, Button } from "@material-ui/core";
+import { Link } from 'react-router-dom';
 
 class EditOrganization extends Component {
   state = {
@@ -25,7 +26,7 @@ class EditOrganization extends Component {
       id: this.props.reduxState.organization.id,
     };
     this.props.dispatch({ type: "EDIT_ORGANIZATION", payload: actionObject });
-    alert("Change has been made");
+    //alert("Change has been made");
     this.setState({
       organizationName: this.props.reduxState.organization.organizationName,
       primaryNumber: this.props.reduxState.organization.primaryNumber,
@@ -112,6 +113,7 @@ class EditOrganization extends Component {
               style={{ marginTop: "20px" }}
               color="default"
               onClick={this.handleEditOrg}
+              component = {Link} to ="/viewOrganization"
             >
               Save Changes
             </Button>
