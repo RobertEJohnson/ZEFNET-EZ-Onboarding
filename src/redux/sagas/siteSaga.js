@@ -9,6 +9,7 @@ function* getSite(action) {
     // store site in site reducer
     //console.log('in siteSaga', response);
     yield put({ type: 'SET_SITE', payload: response.data });
+    
   } catch (error) {
       console.log('Error with site get:', error);
   }

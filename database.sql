@@ -67,3 +67,11 @@ CREATE TABLE "device" (
 	"name" VARCHAR(100),
 	"install_date" DATE
 );
+
+INSERT INTO "device_type" 
+	("name", "head") 
+VALUES 
+	('Wall Mount', 'Single'), 
+	('Pedestal', 'Single'), 
+	('Pedestal', 'Dual'),
+	('ZEFNET Pro', 'Dual');

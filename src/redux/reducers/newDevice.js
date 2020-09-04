@@ -1,4 +1,11 @@
-const newDeviceReducer = (state = {site:'', breaker:'', serial:'', type:'', name: '', date: ''}, action) => {
+const newDeviceReducer = (state = {
+  site:{},
+  breaker:{},
+  serial: {},
+  type: {},
+  name: '',
+  date: ''
+}, action) => {
     switch (action.type) {
       case 'SET_DEVICE_SITE':
         return {site: action.payload};
