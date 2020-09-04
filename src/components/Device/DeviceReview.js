@@ -57,7 +57,8 @@ class DeviceReview extends Component {
           <Grid container direction='row' justify='center' alignContent='center' alignItems='center' >
           <div className = {classes.root} style={{maxWidth: '1000px'}}>
             <Paper className = {classes.paper}>
-                {JSON.stringify(this.props.state)}
+                <p>this.props.state.device</p>
+                {JSON.stringify(this.props.state.device)}
 
                     <Grid item align='center'>
                     <h1>Let's make sure all this information is correct!</h1>
@@ -71,7 +72,7 @@ class DeviceReview extends Component {
                     <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
                         <h3 style={{display: 'inline-block'}}>Address:{'\u00A0'}{'\u00A0'}</h3>
                         <p style={{display: 'inline-block'}}>
-                            {this.props.state.site.address ? this.props.state.site.address : '6120 Westwood Parkway, St. Cloud, MN, 56303'}
+                            {this.props.state.device.site.address}
                         </p>
                     </Grid>
 
@@ -85,25 +86,25 @@ class DeviceReview extends Component {
                         <div>
                             <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>First Name:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {this.props.state.site.address ? this.props.state.site.address : 'First name'}
+                                {this.props.state.device.site.first_name}
                             </p>
                         </div>
                         <div>
                             <h3 className={classes.reviewItem}>Second Name:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {this.props.state.site.address ? this.props.state.site.address : 'First name'}
+                                {this.props.state.device.site.second_name}
                             </p>
                         </div>
                         <div>
                             <h3 className={classes.reviewItem}>Phone Number:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {this.props.state.site.address ? this.props.state.site.address : 'First name'}
+                                {this.props.state.device.site.phone}
                             </p>
                         </div> 
                         <div>
                             <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Email:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {this.props.state.site.address ? this.props.state.site.address : 'First name'}
+                                {this.props.state.device.site.email}
                             </p>
                         </div>
                     </Grid>
@@ -118,19 +119,19 @@ class DeviceReview extends Component {
                         <div>
                             <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Breaker Name:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {this.props.state.site.address ? this.props.state.site.address : 'Breaker Name'}
+                                {this.props.state.device.breaker}
                             </p>
                         </div>
                         <div>
                             <h3 className={classes.reviewItem}>Breaker Limit:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {this.props.state.site.address ? this.props.state.site.address : 'Breaker Limit'}
+                                {this.props.state.device.breaker}
                             </p>
                         </div>
                         <div>
-                            <h3 className={classes.reviewItem}>Breaker Description:{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem} style={{marginBottom: '10px'}}>
-                                {this.props.state.site.address ? this.props.state.site.address : 'Breaker Description'}
+                            <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Breaker Description:{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem}>
+                                {this.props.state.device.breaker}
                             </p>
                         </div>
                     </Grid>
@@ -145,13 +146,13 @@ class DeviceReview extends Component {
                         <div>
                             <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Device Type:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {this.props.state.site.address ? this.props.state.site.address : 'Device Type'}
+                                {this.props.state.device.type}
                             </p>
                         </div>
                         <div>
-                            <h3 className={classes.reviewItem}>Head Type (if pedestal):{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem} style={{marginBottom: '10px'}}>
-                                {this.props.state.site.address ? this.props.state.site.address : 'Head Type'}
+                            <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Head Type (if pedestal):{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem} >
+                                {this.props.state.device.head}
                             </p>
                         </div>
                     </Grid>
@@ -166,7 +167,7 @@ class DeviceReview extends Component {
                         <div>
                             <h3 className={classes.reviewItem} style={{margin: '10px 0px'}}>Serial Number:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {this.props.state.site.address ? this.props.state.site.address : 'Serial Number'}
+                                {this.props.state.device.serial}
                             </p>
                         </div>
                     </Grid>
@@ -181,13 +182,13 @@ class DeviceReview extends Component {
                         <div>
                             <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Charger Name:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {this.props.state.site.address ? this.props.state.site.address : 'Charger Name'}
+                                {this.props.state.device.name}
                             </p>
                         </div>
                         <div>
-                            <h3 className={classes.reviewItem}>Installation Date:{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem} style={{marginBottom: '10px'}}>
-                                {this.props.state.site.address ? this.props.state.site.address : 'Installation Date'}
+                            <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Installation Date:{'\u00A0'}{'\u00A0'}</h3>
+                            <p className={classes.reviewItem} >
+                                {this.props.state.device.date}
                             </p>
                         </div>
                     </Grid>
@@ -195,7 +196,7 @@ class DeviceReview extends Component {
                     
                     <Grid container direction = 'row' justify = 'center' alignContent = 'center' style={{marginTop: '35px'}}>
                             <Button variant ='contained'
-                            component = {Link} to ="/OrganizationHome">
+                            component = {Link} to ="/deviceName">
                                 <ChevronLeftIcon/> Previous
                             </Button>
                             <div className = {classes.grow}>{'\u00A0'}</div>
