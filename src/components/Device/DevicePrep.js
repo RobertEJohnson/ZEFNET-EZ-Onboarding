@@ -51,12 +51,13 @@ class DevicePrep extends Component {
     return (
         <div className = {classes.root}>
             <Grid container direction='row' justify='center' alignContent='center' alignItems='center'>
-                <Grid item xs = {12} md = {11}>
+                <Grid item style={{maxWidth: '1375px'}} align='center'>
                     <Paper className = {classes.paper}>
                         <h1>Before you start make sure you have the following information on hand</h1>
+                        <Grid container justify='center' alignContent='center' alignItems='center'>
                         <GridList cellHeight={300}>
                             {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                            <GridListTile className={classes.gridListTile} >
+                            <GridListTile className={classes.gridListTile}>
                                 <img src={map} alt="address" className={classes.image} />
                                 <GridListTileBar
                                     title="Device Host Site Address"
@@ -74,13 +75,14 @@ class DevicePrep extends Component {
                                     title="Device Type"
                                 />
                             </GridListTile>
-                            <GridListTile className={classes.gridListTile} >
+                            <GridListTile className={classes.gridListTile} style={{marginRight: '0px'}}>
                                 <img src={map} alt="Serial Number" className={classes.image} />
                                 <GridListTileBar
                                     title="Serial Number"
                                 />
                             </GridListTile>
                         </GridList>
+                        </Grid>
                         <br/>
                         <Grid container direction = 'row' justify = 'center' alignContent = 'center'>
                            
