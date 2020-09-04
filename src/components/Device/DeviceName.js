@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, TextField, Button } from "@material-ui/core";
-import user from "../Organization/zefUser.jpeg";
+import user from "../Organization/zefnetpro.png";
 
 class DeviceSerial extends Component {
   state = {
@@ -16,13 +16,13 @@ class DeviceSerial extends Component {
   };
 
   handleNext = () => {
-    if (this.state.chargerName === this.state.installationDate) {
+    if (this.state.chargerName && this.state.installationDate) {
       const actionObject = {
         chargerName: this.state.chargerName,
         user_id: this.props.reduxState.user.id,
       };
       this.props.dispatch({ type: "SET_NAME", payload: actionObject });
-      this.props.history.push("/home"); //change this
+      this.props.history.push("/deviceReview"); //change this
     } else {
       alert("Serial numbers do not match");
     }
@@ -66,6 +66,7 @@ class DeviceSerial extends Component {
                   maxWidth: "200px",
                   paddingLeft: "0px",
                 }}
+                alt = 'zef charging device'
               />
               {/* Image should be changed */}
             </div>
@@ -73,7 +74,7 @@ class DeviceSerial extends Component {
               <h1 style={centerText}>Name your Device</h1>
             </div>
             <div>
-              <h3 style={centerText}>Good names should be short and memorable and descriptive like lorem-ipsum</h3>
+              <h3 style={centerText}>Good names should be short and memorable and descriptive</h3>
             </div>
           </div>
           <form style={{ minWidth: "400px", background: "transparent" }}>
@@ -85,6 +86,7 @@ class DeviceSerial extends Component {
               margin="normal"
               variant="outlined"
               value={this.state.chargerName}
+              placeholder = "Rear parking lot charger"
               onChange={this.handleInputChangeFor("chargerName")}
             />
             <TextField
