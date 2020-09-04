@@ -1,6 +1,38 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, TextField, Button } from "@material-ui/core";
+import { withStyles, } from '@material-ui/core/styles';
+import PropTypes from 'prop-types'
+
+const styles = theme => ({ 
+    input: {
+      border: `1px solid white`,
+      outline: `1px solid transparent`, // we use a transparent outline here so the component doesn't move when focused
+      focused: {
+        border: `1px solid green`,
+        outline: `1px solid yellow`, // this outline makes our "border" thicker without moving the component
+        background: 'white'
+      }},
+      h1Reset: {
+        textAlign: "center",
+        color: "white",
+        fontFamily: "Crimson Text, Open Sans, sans-serif",
+        padding: '0px',
+        margin: '0px'
+      },
+      h3Reset: {
+        textAlign: "center",
+        color: "white",
+        fontFamily: "Crimson Text, Open Sans, sans-serif",
+        padding: '0px',
+        margin: '0px 0px 10px 0px'
+      },
+      header: {
+        border: "solid #e3e3e3 2px",
+        maxWidth: "450px",
+      }
+})
+
 
 class CreateOrganization extends Component {
   state = {
@@ -30,26 +62,14 @@ class CreateOrganization extends Component {
   };
 
   render() {
-    let h1Style = {
-      textAlign: "center",
-      color: "white",
-      fontFamily: "Crimson Text, Open Sans, sans-serif",
-      padding: '0px',
-      margin: '0px'
-    };
 
-    let h3Style = {...h1Style, marginBottom: '10px'}
-
-    let header = {
-      border: "solid #e3e3e3 2px",
-      maxWidth: "450px",
-    };
+    const {classes} = this.props;
 
     return (
         <Grid item xs={8} style={{ maxWidth: "1000px" }} align="center">
-          <div style={header}>
-            <h1 style={h1Style}>Organization Information</h1>
-            <h3 style={h3Style}>
+          <div className={classes.header}>
+            <h1 className={classes.h1Reset}>Organization Information</h1>
+            <h3 className={classes.h3Reset}>
               This will help us associate the chargers with your organization.
             </h3>
           </div>
@@ -89,10 +109,14 @@ class CreateOrganization extends Component {
               required
               style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', paddingTop: '15px', margin: '0px' }}
               label="Organization Address"
-              margin="normal"
               variant="outlined"
               value={this.state.organizationAddress}
               onChange={this.handleInputChangeFor("organizationAddress")}
+              InputProps={{
+                classes: {
+                  root: classes.input,
+                }
+              }}
             />
             <Button
               variant="contained"
@@ -113,5 +137,9 @@ const mapStateToProps = (reduxState) => ({
   reduxState,
 });
 
+CreateOrganization.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(CreateOrganization);
+export default withStyles(styles)(connect(mapStateToProps)(CreateOrganization));
