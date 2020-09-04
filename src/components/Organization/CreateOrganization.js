@@ -26,7 +26,7 @@ class CreateOrganization extends Component {
     };
     this.props.dispatch({ type: "ADD_ORGANIZATION", payload: actionObject });
     alert(`Organization ${this.state.organizationName} has been created`);
-    this.props.history.push("/home");
+    this.props.history.push("/organizationHome");
   };
 
   render() {
