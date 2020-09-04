@@ -10,7 +10,7 @@ class WelcomeScreen extends Component {
     return (
         <Grid container justify='center' alignContent='center' alignItems='center' 
             style={{minHeight: '75vh', minWidth: '100vw', background: 'linear-gradient(360deg, #041E41, #004e92 70%)'}}>
-            <Grid item xs={8} style={{ maxWidth: '1000px'}} justify='center' >
+            <Grid item xs={8} style={{ maxWidth: '1000px'}}  >
                     <h1 style={centerText}>Welcome to the ZEFNET EZ onboarding site!</h1>
                     <p style={centerText}>
                         We are going to collect some information about your ogranization,

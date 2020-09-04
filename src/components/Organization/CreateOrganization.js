@@ -47,8 +47,9 @@ class CreateOrganization extends Component {
         justify="center"
         alignContent="center"
         alignItems="center"
+        spacing = {3}
         style={{
-          minHeight: "75vh",
+          minHeight: "85vh",
           minWidth: "100vw",
           background: "linear-gradient(360deg, #041E41, #004e92 70%)",
         }}
@@ -112,6 +113,7 @@ class CreateOrganization extends Component {
           </form>
         </Grid>
       </Grid>
+      
     );
   }
 }
