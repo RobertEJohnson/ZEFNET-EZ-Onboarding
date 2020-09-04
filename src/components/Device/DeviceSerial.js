@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, TextField, Button } from "@material-ui/core";
 import user from "../Organization/zefUser.jpeg";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 class DeviceSerial extends Component {
   state = {
@@ -19,7 +19,7 @@ class DeviceSerial extends Component {
   handleNext = () => {
     if (
       this.state.serialNumber === this.state.confirmSerialNumber &&
-      this.state.serialNumber !== ''
+      this.state.serialNumber !== ""
     ) {
       const actionObject = {
         serialNumber: this.state.serialNumber,
@@ -28,7 +28,7 @@ class DeviceSerial extends Component {
       this.props.dispatch({ type: "SET_SERIAL", payload: actionObject });
       this.props.history.push("/deviceName");
     } else {
-      alert("Serial numbers do not match 33");
+      // alert("Serial numbers do not match 33");
     }
   };
 
@@ -41,11 +41,21 @@ class DeviceSerial extends Component {
       textAlign: "center",
       color: "white",
       fontFamily: "Crimson Text, Open Sans, sans-serif",
+      maxWidth: "inherit",
     };
 
     let header = {
       border: "solid #e3e3e3 2px",
       maxWidth: "515px",
+      display: "flex",
+    };
+
+    let buttons = {
+      display: "flex",
+      width: "515px",
+      justifyContent: "space-between",
+      align: "center",
+      marginTop: "20px",
     };
 
     return (
@@ -66,60 +76,73 @@ class DeviceSerial extends Component {
               <img
                 src={user}
                 style={{
-                  maxHeight: "200px",
+                  maxHeight: "inherit",
                   maxWidth: "200px",
-                  paddingLeft: "0px",
                 }}
               />
               {/* Image should be changed */}
             </div>
+
             <div>
-              <h1 style={centerText}>Input your Serial Number</h1>
-            </div>
-            <div>
-              <h3 style={centerText}>It can be found lorem ipsum.</h3>
+              <div>
+                <h1 style={centerText}>Input your Serial Number</h1>
+              </div>
+              <div>
+                <h3 style={centerText}>It can be found lorem ipsum.</h3>
+              </div>
             </div>
           </div>
-          <form style={{ minWidth: "400px", background: "transparent" }}>
-            <TextField
-              required
-              color="secondary"
-              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
-              label="Serial Number:"
-              margin="normal"
-              variant="outlined"
-              value={this.state.serialNumber}
-              onChange={this.handleInputChangeFor("serialNumber")}
-            />
-            <TextField
-              color="secondary"
-              required
-              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
-              label="Confirm Serial Number:"
-              margin="normal"
-              variant="outlined"
-              value={this.state.confirmSerialNumber}
-              onChange={this.handleInputChangeFor("confirmSerialNumber")}
-            />
+          <form
+            style={{
+              background: "transparent",
+              display: "flex",
+              flexDirection: "column",
+              width: "100%",
+            }}
+          >
             <div>
+              <TextField
+                required
+                color="secondary"
+                style={{ fontFamily: "Crimson Text", maxWidth: "inherit" }}
+                label="Serial Number:"
+                margin="normal"
+                variant="outlined"
+                value={this.state.serialNumber}
+                onChange={this.handleInputChangeFor("serialNumber")}
+              />
+            </div>
+            <div>
+              <TextField
+                color="secondary"
+                required
+                style={{ fontFamily: "Crimson Text" }}
+                label="Confirm Serial Number:"
+                margin="normal"
+                variant="outlined"
+                value={this.state.confirmSerialNumber}
+                onChange={this.handleInputChangeFor("confirmSerialNumber")}
+              />
+            </div>
+            <div style={buttons}>
               <div>
                 <Button
                   variant="contained"
-                  style={{ marginTop: "20px" }}
+                  color="default"
+                  component={Link}
+                  to="/breakerSelect"
+                >
+                  Previous
+                </Button>
+              </div>
+
+              <div>
+                <Button
+                  variant="contained"
                   color="default"
                   onClick={this.handleNext}
                 >
                   Next
-                </Button>
-              </div>
-              <div style={{ align: "left" }}>
-                <Button
-                  variant="contained"
-                  style={{ marginTop: "20px" }}
-                  color="default"
-                  component = {Link} to ="/breaker"
-                >
-                  Previous
                 </Button>
               </div>
             </div>

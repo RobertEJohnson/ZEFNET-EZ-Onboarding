@@ -3,6 +3,14 @@ import { connect } from "react-redux";
 import { Grid, TextField, Button } from "@material-ui/core";
 
 class CreateOrganization extends Component {
+
+  componentDidMount() {
+    this.props.dispatch({ type: 'FETCH_ORGANIZATION', payload: this.props.reduxState.user.id})
+    if (this.props.reduxState.organization.id) {
+      this.props.history.push("/organizationHome");
+  } 
+}
+
   state = {
     organizationName: "",
     primaryNumber: "",
@@ -25,7 +33,6 @@ class CreateOrganization extends Component {
       user_id: this.props.reduxState.user.id,
     };
     this.props.dispatch({ type: "ADD_ORGANIZATION", payload: actionObject });
-    alert(`Organization ${this.state.organizationName} has been created`);
     this.props.history.push("/organizationHome");
   };
 
