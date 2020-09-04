@@ -115,7 +115,7 @@ class DeviceSerial extends Component {
                   variant="contained"
                   style={{ marginTop: "20px" }}
                   color="default"
-                  component = {Link} to ="/breaker"
+                  component = {Link} to ="/deviceType"
                 >
                   Previous
                 </Button>
