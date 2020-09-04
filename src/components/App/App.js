@@ -23,11 +23,10 @@ import HostSelect from "../Device/HostSite/Select";
 import DeviceSelectType from "../Device/DeviceSelectType";
 import DeviceSerial from "../Device/DeviceSerial";
 import DeviceName from "../Device/DeviceName";
-import DevicePrep from '../Device/DevicePrep';
-import BreakerSelect from '../Device/Breaker/Select';
+import DevicePrep from "../Device/DevicePrep";
+import BreakerSelect from "../Device/Breaker/Select";
 
-
-import './App.css';
+import "./App.css";
 
 class App extends Component {
   componentDidMount() {
@@ -60,11 +59,7 @@ class App extends Component {
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             <ProtectedRoute exact path="/info" component={InfoPage} />
-            <ProtectedRoute
-              exact
-              path="/devicePrep"
-              component={DevicePrep}
-            />
+            <ProtectedRoute exact path="/devicePrep" component={DevicePrep} />
             <ProtectedRoute
               exact
               path="/createOrganization"
@@ -103,7 +98,6 @@ class App extends Component {
               path="/breakerSelect"
               component={BreakerSelect}
             />
-
 
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

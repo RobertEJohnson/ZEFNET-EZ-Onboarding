@@ -16,20 +16,16 @@ class DeviceSerial extends Component {
   };
 
   handleNext = () => {
-    if (this.state.chargerName === this.state.installationDate) {
-      const actionObject = {
-        chargerName: this.state.chargerName,
-        user_id: this.props.reduxState.user.id,
-      };
-      this.props.dispatch({ type: "SET_NAME", payload: actionObject });
-      this.props.history.push("/home"); //change this
-    } else {
-      alert("Serial numbers do not match");
-    }
+    const actionObject = {
+      chargerName: this.state.chargerName,
+      user_id: this.props.reduxState.user.id,
+    };
+    this.props.dispatch({ type: "SET_NAME", payload: actionObject });
+    this.props.history.push("/home"); //change this
   };
 
   handlePrevious = () => {
-    this.props.history.push("/deviceSerial"); //change this
+    this.props.history.push("/deviceSerial");
   };
 
   render() {
@@ -73,7 +69,10 @@ class DeviceSerial extends Component {
               <h1 style={centerText}>Name your Device</h1>
             </div>
             <div>
-              <h3 style={centerText}>Good names should be short and memorable and descriptive like lorem-ipsum</h3>
+              <h3 style={centerText}>
+                Good names should be short and memorable and descriptive like
+                lorem-ipsum
+              </h3>
             </div>
           </div>
           <form style={{ minWidth: "400px", background: "transparent" }}>

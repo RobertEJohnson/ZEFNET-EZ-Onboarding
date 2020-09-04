@@ -16,20 +16,23 @@ class DeviceSerial extends Component {
   };
 
   handleNext = () => {
-    if (this.state.serialNumber === this.state.confirmSerialNumber) {
+    if (
+      this.state.serialNumber === this.state.confirmSerialNumber &&
+      this.state.serialNumber !== ''
+    ) {
       const actionObject = {
         serialNumber: this.state.serialNumber,
         user_id: this.props.reduxState.user.id,
       };
       this.props.dispatch({ type: "SET_SERIAL", payload: actionObject });
-      this.props.history.push("/deviceName"); //change this
+      this.props.history.push("/deviceName");
     } else {
-      alert("Serial numbers do not match");
+      alert("Serial numbers do not match 33");
     }
   };
 
   handlePrevious = () => {
-    this.props.history.push("/home"); //change this
+    this.props.history.push("/deviceType");
   };
 
   render() {
