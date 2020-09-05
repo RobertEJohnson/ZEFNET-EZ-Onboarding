@@ -8,12 +8,21 @@ class WelcomeScreen extends Component {
   render() {
     let centerText = {textAlign: 'center', color: 'white', fontFamily: 'Crimson Text, Open Sans, sans-serif'}
     return (
-            <Grid item xs={8} style={{ maxWidth: '1000px'}}  >
+            <Grid item xs={8} style={{ maxWidth: '1000px', marginBottom: '100px'}}  >
                     <h1 style={centerText}>Welcome to the ZEFNET EZ onboarding site!</h1>
-                    <p style={centerText}>
-                        We are going to collect some information about your ogranization,
-                        device(s), and device adminstrators. <br/> We'll let you know what we
-                        need every step of the way. :)
+                    <p style={{textAlign:'center', color: 'white', fontSize: '15px'}}>
+                        Congratulations on installing your new ZEF charging devices! 
+                        <br/>To be fully entered into our system we will be collecting the following information:
+                        <div style={{textAlign: 'center'}}>
+                          <ul style={{ textAlign: 'left', display: 'inline-block'}}>
+                            <li>Organization information</li>
+                            <li>Device information</li>
+                            <li>Installation location(s)</li>
+                            <li>Device adminstrator information</li>
+                          </ul>
+                        </div>
+                        
+                        We'll let you know what we need every step of the way. :)
                         <br/>
                         <br/>
                         <Button variant='contained' style={{color: '#006dcc', backgroundColor: 'white'}}
