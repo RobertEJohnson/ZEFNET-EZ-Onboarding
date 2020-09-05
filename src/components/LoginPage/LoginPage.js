@@ -67,8 +67,8 @@ class LoginPage extends Component {
           </h2>
         )}
         <div style={{color:'white'}}>
-          <h2>Welcome to ZEFNET EZ Onboarding! </h2>
-          <h3>The first stop for a new ZEF Energy customer</h3>
+          <h2 style={{margin: '0px'}}>Welcome to ZEFNET EZ Onboarding! </h2>
+          <h3 style={{margin: '0px'}}>The first stop for a new ZEF Energy customer</h3>
         </div>
         <br/>
           <div>
@@ -115,11 +115,11 @@ class LoginPage extends Component {
           <div>
             <Button onClick = {this.login}
             variant = 'contained'
-            style={{color: '#006dcc', backgroundColor: 'white', marginLeft: '90px'}}
+            style={{color: '#006dcc', backgroundColor: 'white', marginLeft: '75px'}}
             >
              Sign in!
             </Button>
-            <Button className = {classes.whiteText} style={{float: 'right'}}
+            <Button className = {classes.whiteText} style={{float: 'right', fontSize: '12px'}}
             onClick={() => {
               this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
             }}
