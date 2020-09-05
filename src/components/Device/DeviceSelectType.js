@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import zefNetPro from '../Organization/zefnetpro.png';
 import user from '../Organization/zefUser.jpeg'
 import review from '../Organization/packageReview.jpeg';
-import MinimalLogOutButton from '../LogOutButton/MinimalLogOutButton'
 
 
 
@@ -49,12 +48,6 @@ class DeviceSelectType extends Component {
             <Grid container direction='row' justify='center' alignContent='center' alignItems='center' spacing={3}
                 style={{minHeight: '75vh', minWidth: '100vw', background: 'linear-gradient(360deg, #041E41, #004e92 70%)'}}>
                 <div style={{maxWidth: '1200px'}}>
-                    <Grid item xs={12}>
-                        <p style={{float:'left', minWidth: '100%', color: 'grey'}}>
-                            Organization Name
-                        <span style={{float: 'right'}}><MinimalLogOutButton/></span>
-                        </p>    
-                    </Grid>
                     <GridList cellHeight={450}>
                         {JSON.stringify(this.props)}
                         <GridListTile className={classes.gridListTile} component={Link} to='/test'>
