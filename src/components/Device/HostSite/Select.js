@@ -34,6 +34,14 @@ const styles = theme => ({
   },
   grow:{
       flexGrow: 1
+  },
+  previousButton: {
+    paddingLeft: '8px',
+    marginLeft: '10px'
+  },
+  nextButton: {
+    paddingRight: '8px', 
+    marginRight: '5px'
   }
 })
 
@@ -131,19 +139,22 @@ class HostSelect extends Component {
                 <br/>
                 <Grid container direction = 'row'>
                     <Button variant ='contained'
-                    component = {Link} to ="/devicePrep">
+                      className={classes.previousButton}
+                      component = {Link} to ="/devicePrep">
                         <ChevronLeftIcon/> Previous
                     </Button>
                     <div className = {classes.grow}></div>
                     {this.state.selectedSite ?
                         <Button variant = 'contained' color = 'primary'
-                        onClick = {this.assignSite}
-                        component = {Link} to ="/breakerSelect">
-                            <ChevronRightIcon/> Next
+                          className={classes.nextButton}
+                          onClick = {this.assignSite}
+                          component = {Link} to ="/breakerSelect">
+                            Next <ChevronRightIcon/>
                         </Button>
                     :
-                        <Button variant = 'contained' disabled>
-                            <ChevronRightIcon/> Next
+                        <Button variant = 'contained' disabled
+                             className={classes.nextButton}>
+                             Next <ChevronRightIcon/>
                         </Button>
                     }
                 </Grid>
