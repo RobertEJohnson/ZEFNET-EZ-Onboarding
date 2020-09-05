@@ -48,16 +48,25 @@ const styles = theme => ({
 
 class DeviceReview extends Component {
 
+    saveDevice = () => {
+        const postObject = {
+            name: this.props.state.device.name,
+            installation_date: this.props.state.device.date,
+            serial_numnber: this.props.state.device.serial.number,
+            type_id: this.props.state.device.type.id,
+            breaker_id:this.props.state.device.breaker.id,
+        };
+        console.log('saving new device:', postObject)
+        // call saga that posts the new 
+    }
+
     render() {
       const {classes} = this.props;
       return (
           <Grid container direction='row' justify='center' alignContent='center' alignItems='center' >
           <div className = {classes.root} style={{maxWidth: '1000px'}}>
             <Paper className = {classes.paper}>
-                <p>this.props.state.device</p>
-                {JSON.stringify(this.props.state.device)}
-
-                    <Grid item align='center'>
+                <Grid item align='center'>
                     <h1>Let's make sure all this information is correct!</h1>
                     </Grid>
 
@@ -234,7 +243,7 @@ class DeviceReview extends Component {
                             </Button>
                             <div className = {classes.grow}>{'\u00A0'}</div>
                             <Button variant = 'contained' color = 'primary'
-                            onClick = {this.assignSite}
+                            onClick = {this.saveDevice}
                             component = {Link} to ="/OrganizationHome">
                                 <SaveIcon/> Save Device
                             </Button>
