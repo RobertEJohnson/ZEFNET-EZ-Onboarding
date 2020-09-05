@@ -1,6 +1,32 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, TextField, Button } from "@material-ui/core";
+import { withStyles, } from '@material-ui/core/styles';
+import PropTypes from 'prop-types'
+
+const styles = theme => ({ 
+    input: {
+      color: 'white',
+      border: `1px solid white`,
+      backgroundColor: '#243353',
+      outline: `1px solid transparent`,// we use a transparent outline here so the component doesn't move when focused
+      },
+      h1Reset: {
+        textAlign: "center",
+        color: "white",
+        fontFamily: "Crimson Text, Open Sans, sans-serif",
+        padding: '0px',
+        margin: '0px'
+      },
+      h3Reset: {
+        textAlign: "center",
+        color: "white",
+        fontFamily: "Crimson Text, Open Sans, sans-serif",
+        padding: '0px',
+        margin: '0px 0px 0px 0px'
+      },
+})
+
 
 class CreateOrganization extends Component {
 
@@ -37,80 +63,88 @@ class CreateOrganization extends Component {
   };
 
   render() {
-    let centerText = {
-      textAlign: "center",
-      color: "white",
-      fontFamily: "Crimson Text, Open Sans, sans-serif",
-    };
 
-    let header = {
-      border: "solid #e3e3e3 2px",
-      maxWidth: "515px",
-    };
+    const {classes} = this.props;
 
     return (
-      <Grid
-        container
-        justify="center"
-        alignContent="center"
-        alignItems="center"
-        style={{
-          minHeight: "75vh",
-          minWidth: "100vw",
-          background: "linear-gradient(360deg, #041E41, #004e92 70%)",
-        }}
-      >
         <Grid item xs={8} style={{ maxWidth: "1000px" }} align="center">
-          <div style={header}>
-            <h1 style={centerText}>Organization Information</h1>
-            <h3 style={centerText}>
+          <div>
+            <h1 className={classes.h1Reset}>Organization Information</h1>
+            <h2 className={classes.h3Reset}>
               This will help us associate the chargers with your organization.
-            </h3>
+            </h2>
           </div>
-          <form style={{ minWidth: "400px", background: "transparent" }}>
+          <form style={{ minWidth: "400px", minHeight: "400px", margin: '0px', padding:'0px', background: "transparent" }}>
             <TextField
               required
-              color="secondary"
-              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
+              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '25px 0px 0px 0px'  }}
               label="Organization / Company Name"
               margin="normal"
               variant="outlined"
               value={this.state.organizationName}
               onChange={this.handleInputChangeFor("organizationName")}
+              InputProps={{
+                classes: {
+                  root: classes.input,
+                }
+              }}
+              InputLabelProps={{
+                style: { color: '#fff' }
+              }}
             />
             <TextField
-              color="secondary"
-              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
+              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px' }}
               label="Phone Number"
               margin="normal"
               variant="outlined"
               type="number"
               value={this.state.primaryNumber}
               onChange={this.handleInputChangeFor("primaryNumber")}
+              InputProps={{
+                classes: {
+                  root: classes.input,
+                }
+              }}
+              InputLabelProps={{
+                style: { color: '#fff' },
+              }}
             />
             <TextField
-              color="secondary"
               required
-              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
+              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'}}
               label="Email"
               margin="normal"
               variant="outlined"
               value={this.state.email}
               onChange={this.handleInputChangeFor("email")}
+              InputProps={{
+                classes: {
+                  root: classes.input,
+                }
+              }}
+              InputLabelProps={{
+                style: { color: '#fff' },
+              }}
             />
             <TextField
-              color="secondary"
               required
-              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
+              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'}}
               label="Organization Address"
-              margin="normal"
               variant="outlined"
               value={this.state.organizationAddress}
               onChange={this.handleInputChangeFor("organizationAddress")}
+              InputProps={{
+                classes: {
+                  root: classes.input,
+                }
+              }}
+              InputLabelProps={{
+                style: { color: '#fff' },
+              }}
             />
             <Button
               variant="contained"
-              style={{ marginTop: "20px" }}
+              style={{marginTop: "20px", margin: '15px 0px 0px 0px', color: '#006dcc', backgroundColor: 'white'}}
               color="default"
               onClick={this.handleAddOrg}
             >
@@ -118,7 +152,6 @@ class CreateOrganization extends Component {
             </Button>
           </form>
         </Grid>
-      </Grid>
     );
   }
 }
@@ -128,5 +161,9 @@ const mapStateToProps = (reduxState) => ({
   reduxState,
 });
 
+CreateOrganization.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(CreateOrganization);
+export default withStyles(styles)(connect(mapStateToProps)(CreateOrganization));

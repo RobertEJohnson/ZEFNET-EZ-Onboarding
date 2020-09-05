@@ -9,6 +9,7 @@ function* getSite(action) {
     // store site in site reducer
     //console.log('in siteSaga', response);
     yield put({ type: 'SET_SITE', payload: response.data });
+    
   } catch (error) {
       console.log('Error with site get:', error);
   }
@@ -29,7 +30,7 @@ function* addSite(action){
 
 function* organizationSaga() {
   yield takeLatest('FETCH_SITE', getSite);
-  yield takeLatest('POST_SITE', addSite)
+  yield takeLatest('POST_SITE', addSite);
 }
 
 export default organizationSaga;

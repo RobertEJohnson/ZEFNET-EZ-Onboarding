@@ -40,6 +40,12 @@ const styles = theme => ({
   grow:{
     flexGrow: 1,
     minWidth: '100px'
+  },
+  homeButton: {
+    paddingLeft: '8px',
+  },
+  nextButton: {
+    paddingRight: '8px', 
   }
 })
 
@@ -49,14 +55,13 @@ class DevicePrep extends Component {
   render() {
     const {classes} = this.props;
     return (
-        <div className = {classes.root}>
-            <Grid container direction='row' justify='center' alignContent='center' alignItems='center'>
-                <Grid item xs = {12} md = {11}>
+                <Grid item style={{maxWidth: '1375px', marginBottom: '35px'}} align='center'>
                     <Paper className = {classes.paper}>
                         <h1>Before you start make sure you have the following information on hand</h1>
+                        <Grid container justify='center' alignContent='center' alignItems='center'>
                         <GridList cellHeight={300}>
                             {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                            <GridListTile className={classes.gridListTile} >
+                            <GridListTile className={classes.gridListTile}>
                                 <img src={map} alt="address" className={classes.image} />
                                 <GridListTileBar
                                     title="Device Host Site Address"
@@ -74,32 +79,34 @@ class DevicePrep extends Component {
                                     title="Device Type"
                                 />
                             </GridListTile>
-                            <GridListTile className={classes.gridListTile} >
+                            <GridListTile className={classes.gridListTile} style={{marginRight: '0px'}}>
                                 <img src={map} alt="Serial Number" className={classes.image} />
                                 <GridListTileBar
                                     title="Serial Number"
                                 />
                             </GridListTile>
                         </GridList>
+                        </Grid>
                         <br/>
                         <Grid container direction = 'row' justify = 'center' alignContent = 'center'>
                            
-                                <Button variant ='contained'
+                                <Button 
+                                variant ='contained'
+                                className={classes.homeButton}
                                 component = {Link} to ="/OrganizationHome">
                                     <HomeIcon/> Home
                                 </Button>
                                 <div className = {classes.grow}>{'\u00A0'}</div>
                                 <Button variant = 'contained' color = 'primary'
+                                className={classes.nextButton}
                                 onClick = {this.assignSite}
                                 component = {Link} to ="/hostSelect">
-                                    <ChevronRightIcon/> Next
+                                    Next <ChevronRightIcon/>
                                 </Button>
                             
                         </Grid>
                     </Paper>
                 </Grid>
-            </Grid>
-        </div>
     );
   }
 }

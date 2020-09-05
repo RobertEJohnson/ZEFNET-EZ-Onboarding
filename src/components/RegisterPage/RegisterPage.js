@@ -6,16 +6,6 @@ import { withStyles, } from '@material-ui/core/styles';
 
 
 const styles = theme => ({ 
-  root: {
-    flexGrow: 1,
-    alignItems: 'center',
-    justify: 'center',
-    color: 'white', 
-    fontFamily: 'Crimson Text, Open Sans, sans-serif',
-    minHeight: '80vh', 
-    minWidth: '100vw', 
-    background: 'linear-gradient(360deg, #041E41, #004e92 70%)',
-  },
   paper: {
     width: '100%',
     padding: theme.spacing(3),
@@ -27,14 +17,24 @@ const styles = theme => ({
     border: 'none',
     color: 'white'
     },
-
-    longField:{
-      width: '388px',
+  input: {
+    color: 'white',
+    border: `1px solid white`,
+    backgroundColor: '#1c2447',
+    backgroundColor: '#243353',
+    outline: `1px solid transparent`,// we use a transparent outline here so the component doesn't move when focused
     },
-    login:{
-      color:'white',
-      marginLeft: '40vw'
-    },
+  longField:{
+    width: '388px',
+  },
+  whiteText:{
+    color: 'white',
+    backgroundColor: '#1c2447',
+    borderRadius: '5px',
+    '&:hover': {
+      backgroundColor: '#243953',
+    }
+  }
 })
 
 
@@ -75,9 +75,7 @@ class RegisterPage extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <div className = {classes.root}>
-        <Grid container direction = 'column' justify = 'center' alignItems = 'center'>
-          <Grid item xs = {12} >
+          <Grid item align='center' style={{marginBottom: '100px'}}>
             {this.props.errors.registrationMessage && (
               <h2
                 className="alert"
@@ -92,79 +90,117 @@ class RegisterPage extends Component {
                   <TextField
                     required
                     variant = 'outlined'
-                    className = {classes.input}
-                    color = 'secondary'
+                    style={{maxWidth: '185px', marginRight:'15px'}}
                     name="first_name"
                     label ='First Name'
                     value={this.state.first_name}
                     onChange={this.handleInputChangeFor('first_name')}
+                    InputProps={{
+                      classes: {
+                        root: classes.input,
+                      }
+                    }}
+                    InputLabelProps={{
+                      style: { color: '#fff' }
+                    }}
                   />
                   {/* {'\u00A0'} {'\u00A0'} */}
                   <TextField
                     required
                     variant = 'outlined'
-                    color = 'secondary'
                     label = 'Last Name'
                     name="last_name"
                     value={this.state.last_name}
                     onChange={this.handleInputChangeFor('last_name')}
+                    InputProps={{
+                      classes: {
+                        root: classes.input,
+                      }
+                    }}
+                    InputLabelProps={{
+                      style: { color: '#fff' }
+                    }}
                   />
               </div>
+              <br/>
               <div>
                   <TextField
                     required
                     variant = 'outlined'
-                    color = 'secondary'
-                    className = {classes.longField}
                     label = 'Email'
                     name="email"
                     value={this.state.email}
                     onChange={this.handleInputChangeFor('email')}
+                    style={{minWidth: '398px'}}
+                    InputProps={{
+                      classes: {
+                        root: classes.input,
+                      }
+                    }}
+                    InputLabelProps={{
+                      style: { color: '#fff' }
+                    }}
                   />
               </div>
+              <br/>
               <div>
                 <TextField
                   required
                   variant = 'outlined'
-                  color='secondary'
-                  className = {classes.longField}
                   type="password"
                   name="password"
                   label = 'Password'
                   value={this.state.password}
                   onChange={this.handleInputChangeFor('password')}
+                  style={{minWidth: '398px'}}
+                  InputProps={{
+                    classes: {
+                      root: classes.input,
+                    }
+                  }}
+                  InputLabelProps={{
+                    style: { color: '#fff' }
+                  }}
                 />
             </div>
+            <br/>
               <div>
                   <TextField
                     variant = 'outlined'
-                    color = 'secondary'
-                    className = {classes.longField}
                     label = 'Primay Phone (optional)'
                     name='phone'
                     value={this.state.phone}
                     onChange={this.handleInputChangeFor('phone')}
+                    style={{minWidth: '398px'}}
+                    InputProps={{
+                      classes: {
+                        root: classes.input,
+                      }
+                    }}
+                    InputLabelProps={{
+                      style: { color: '#fff' }
+                    }}
                   />
               </div>
               <br/>
-              <div>
-                <Button onClick = {this.registerUser}
-                  variant = 'contained'>
-                  Create Account
+                <div>
+                  <Button onClick = {this.registerUser}
+                  variant = 'contained'
+                  style={{color: '#006dcc', backgroundColor: 'white', marginLeft: '105px'}}
+                  >
+                  Create Account!
+                  </Button>
+                  <Button className = {classes.whiteText} style={{float: 'right', fontSize: '12px'}}
+                  onClick={() => {
+                    this.props.dispatch({ type: "SET_TO_LOGIN_MODE" });
+                  }}
+                >
+                  Existing User? 
                 </Button>
-              </div>
+                </div>
              </Paper>
-            <div className = {classes.right}>
-            <Button
-              className= {classes.login}
-              onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
-            >
-              Have an Account?
-            </Button>
-            </div>
+            
           </Grid>
-        </Grid>
-      </div>
     );
   }
 }

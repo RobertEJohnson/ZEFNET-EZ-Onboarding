@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, Paper, TextField, Button, withStyles } from "@material-ui/core";
+import {ChevronLeft, ChevronRight} from '@material-ui/icons';
 import PropTypes from "prop-types";
 import user from "../Organization/zefUser.jpeg";
 import { Link } from "react-router-dom";
@@ -30,7 +31,7 @@ class DeviceSerial extends Component {
       this.state.serialNumber !== ""
     ) {
       const actionObject = {
-        serialNumber: this.state.serialNumber,
+        number: this.state.serialNumber,
         user_id: this.props.reduxState.user.id,
       };
       this.props.dispatch({ type: "SET_SERIAL", payload: actionObject });
@@ -89,7 +90,7 @@ class DeviceSerial extends Component {
         style={{
           minHeight: "75vh",
           minWidth: "100vw",
-          background: "linear-gradient(360deg, #041E41, #004e92 70%)",
+          // background: "linear-gradient(360deg, #041E41, #004e92 70%)",
         }}
       >
         <Grid item xs={8} style={{ maxWidth: "1000px" }} align="center">
@@ -105,13 +106,12 @@ class DeviceSerial extends Component {
                 />
                 {/* Image should be changed */}
               </div>
-
               <div>
                 <div>
                   <h1 style={centerText}>Input your Serial Number</h1>
                 </div>
                 <div>
-                  <h3 style={centerText}>It can be found lorem ipsum.</h3>
+                  <h3 style={centerText}>It can be found in image.</h3>
                 </div>
               </div>
             </div>
@@ -161,7 +161,7 @@ class DeviceSerial extends Component {
                     component={Link}
                     to="/breakerSelect"
                   >
-                    Previous
+                    <ChevronLeft/> Previous
                   </Button>
                 </div>
 
@@ -170,9 +170,9 @@ class DeviceSerial extends Component {
                     variant="contained"
                     color="default"
                     onClick={this.handleNext}
-                    style={{width:"107px"}}
+                    style={{ width: "131px" }}
                   >
-                    Next
+                    Next <ChevronRight/>
                   </Button>
                 </div>
               </div>
@@ -195,7 +195,3 @@ DeviceSerial.propTypes = {
 
 // this allows us to use <App /> in index.js
 export default withStyles(styles)(connect(mapStateToProps)(DeviceSerial));
-
-
-
-
