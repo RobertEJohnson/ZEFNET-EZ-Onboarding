@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, Paper, TextField, Button, withStyles } from "@material-ui/core";
-import {ChevronLeft, ChevronRight} from '@material-ui/icons';
+import { ChevronLeft, ChevronRight } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import user from "../Organization/zefUser.jpeg";
 import { Link } from "react-router-dom";
@@ -100,9 +100,10 @@ class DeviceSerial extends Component {
                 <img
                   src={user}
                   style={{
-                    maxHeight: "150px",
+                    maxHeight: "146px",
                     maxWidth: "150px",
                   }}
+                  alt="zef charger"
                 />
                 {/* Image should be changed */}
               </div>
@@ -161,7 +162,7 @@ class DeviceSerial extends Component {
                     component={Link}
                     to="/breakerSelect"
                   >
-                    <ChevronLeft/> Previous
+                    <ChevronLeft /> Previous
                   </Button>
                 </div>
 
@@ -172,7 +173,7 @@ class DeviceSerial extends Component {
                     onClick={this.handleNext}
                     style={{ width: "131px" }}
                   >
-                    Next <ChevronRight/>
+                    Next <ChevronRight />
                   </Button>
                 </div>
               </div>

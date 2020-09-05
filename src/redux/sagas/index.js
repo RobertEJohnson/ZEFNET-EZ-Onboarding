@@ -8,7 +8,7 @@ import editOrganizationSaga from "./editOrganizationSaga";
 import organizationSaga from './organizationSaga';
 import siteSaga from './siteSaga';
 import breakerSaga from "./breakerSaga";
-
+import addUser from "./addUserSaga";
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -27,5 +27,6 @@ export default function* rootSaga() {
     organizationSaga(),
     siteSaga(),
     breakerSaga(),
+    addUser(),
   ]);
 }

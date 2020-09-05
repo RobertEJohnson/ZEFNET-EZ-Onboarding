@@ -24,6 +24,7 @@ import DevicePrep from "../Device/DevicePrep";
 import BreakerSelect from "../Device/Breaker/Select";
 import { CssBaseline, MuiThemeProvider, createMuiTheme, Grid } from '@material-ui/core';
 import DeviceReview from "../Device/DeviceReview";
+import AddUser from "../AddUser/AddUser"
 import { indigo,yellow, green,} from '@material-ui/core/colors';
 import './App.css';
 
@@ -126,6 +127,12 @@ class App extends Component {
                 exact
                 path="/deviceReview"
                 component={DeviceReview}
+              />
+
+              <ProtectedRoute
+                exact
+                path="/addUser"
+                component={AddUser}
               />
 
               {/* If none of the other routes matched, we will show a 404. */}
