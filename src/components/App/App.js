@@ -22,7 +22,10 @@ import DeviceSerial from "../Device/DeviceSerial";
 import DeviceName from "../Device/DeviceName";
 import DevicePrep from '../Device/DevicePrep';
 import BreakerSelect from '../Device/Breaker/Select';
+
 import { CssBaseline, MuiThemeProvider, createMuiTheme, Grid } from '@material-ui/core';
+import DeviceReview from "../Device/DeviceReview";
+
 import { indigo,yellow, green,} from '@material-ui/core/colors';
 
 
@@ -123,6 +126,11 @@ class App extends Component {
                 component={BreakerSelect}
               />
 
+              <ProtectedRoute
+                exact
+                path="/deviceReview"
+                component={DeviceReview}
+              />
 
               {/* If none of the other routes matched, we will show a 404. */}
               <Route render={() => <h1>404</h1>} />
