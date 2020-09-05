@@ -40,6 +40,12 @@ const styles = theme => ({
   grow:{
     flexGrow: 1,
     minWidth: '100px'
+  },
+  homeButton: {
+    paddingLeft: '8px',
+  },
+  nextButton: {
+    paddingRight: '8px', 
   }
 })
 
@@ -84,15 +90,18 @@ class DevicePrep extends Component {
                         <br/>
                         <Grid container direction = 'row' justify = 'center' alignContent = 'center'>
                            
-                                <Button variant ='contained'
+                                <Button 
+                                variant ='contained'
+                                className={classes.homeButton}
                                 component = {Link} to ="/OrganizationHome">
                                     <HomeIcon/> Home
                                 </Button>
                                 <div className = {classes.grow}>{'\u00A0'}</div>
                                 <Button variant = 'contained' color = 'primary'
+                                className={classes.nextButton}
                                 onClick = {this.assignSite}
                                 component = {Link} to ="/hostSelect">
-                                    <ChevronRightIcon/> Next
+                                    Next <ChevronRightIcon/>
                                 </Button>
                             
                         </Grid>
