@@ -49,8 +49,6 @@ class DevicePrep extends Component {
   render() {
     const {classes} = this.props;
     return (
-        <div className = {classes.root}>
-            <Grid container direction='row' justify='center' alignContent='center' alignItems='center'>
                 <Grid item style={{maxWidth: '1375px'}} align='center'>
                     <Paper className = {classes.paper}>
                         <h1>Before you start make sure you have the following information on hand</h1>
@@ -100,8 +98,6 @@ class DevicePrep extends Component {
                         </Grid>
                     </Paper>
                 </Grid>
-            </Grid>
-        </div>
     );
   }
 }
