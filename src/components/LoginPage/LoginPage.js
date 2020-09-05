@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import{Grid, Button, TextField, } from '@material-ui/core';
-import PropTypes from 'prop-types';
-import { withStyles, } from '@material-ui/core/styles';
+import { Grid, Button, TextField } from "@material-ui/core";
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
 
 import "./LoginPage.css";
 
@@ -57,8 +57,14 @@ class LoginPage extends Component {
     });
   };
 
+  handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      this.login(event);
+    }
+  };
+
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
       <Grid item align='center' style={{marginBottom: '150px'}}>
         {this.props.errors.loginMessage && (
@@ -90,7 +96,7 @@ class LoginPage extends Component {
                 }}
               />
           </div>
-          <br/>
+          <br />
           <div>
               <TextField
                 className = {classes.longField}
@@ -111,7 +117,7 @@ class LoginPage extends Component {
                 }}
               />
           </div>
-          <br/>
+          <br />
           <div>
             <Button onClick = {this.login}
             variant = 'contained'
@@ -140,7 +146,7 @@ const mapStateToProps = (state) => ({
 });
 
 LoginPage.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(connect(mapStateToProps)(LoginPage));

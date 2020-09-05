@@ -94,7 +94,7 @@ class HostSelect extends Component {
   }
 
   render() {
-    const {classes} = this.props;
+    const {classes} = this.props; //3
     return (
           <Grid item style={{maxWidth: '800px'}} align='center'>
           <AddSite handleClose = {this.handleClose} open = {this.state.open}/>

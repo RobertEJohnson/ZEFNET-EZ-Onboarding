@@ -20,15 +20,11 @@ import HostSelect from "../Device/HostSite/Select";
 import DeviceSelectType from "../Device/DeviceSelectType";
 import DeviceSerial from "../Device/DeviceSerial";
 import DeviceName from "../Device/DeviceName";
-import DevicePrep from '../Device/DevicePrep';
-import BreakerSelect from '../Device/Breaker/Select';
-
+import DevicePrep from "../Device/DevicePrep";
+import BreakerSelect from "../Device/Breaker/Select";
 import { CssBaseline, MuiThemeProvider, createMuiTheme, Grid } from '@material-ui/core';
 import DeviceReview from "../Device/DeviceReview";
-
 import { indigo,yellow, green,} from '@material-ui/core/colors';
-
-
 import './App.css';
 
 const theme = createMuiTheme({
