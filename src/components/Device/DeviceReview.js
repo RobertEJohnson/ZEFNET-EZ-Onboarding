@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import {Grid, Paper, Button, withStyles, GridList, GridListTile, GridListTileBar, Divider} from '@material-ui/core';
+import {Grid, Paper, Button, withStyles, Divider} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import map from './7LLX9.jpg';
-import breaker from './breaker2.jpg';
-//import MinimalLogOutButton from '../LogOutButton/MinimalLogOutButton'
-import HomeIcon from '@material-ui/icons/Home';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import SaveIcon from '@material-ui/icons/SaveAlt';
+import EditIcon from '@material-ui/icons/Edit';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 
 const styles = theme => ({ 
@@ -51,28 +48,47 @@ const styles = theme => ({
 
 class DeviceReview extends Component {
 
+    saveDevice = () => {
+        const postObject = {
+            name: this.props.state.device.name,
+            installation_date: this.props.state.device.date,
+            serial_numnber: this.props.state.device.serial.number,
+            type_id: this.props.state.device.type.id,
+            breaker_id:this.props.state.device.breaker.id,
+        };
+        console.log('saving new device:', postObject)
+        // call saga that posts the new 
+    }
+
     render() {
       const {classes} = this.props;
       return (
           <Grid container direction='row' justify='center' alignContent='center' alignItems='center' >
           <div className = {classes.root} style={{maxWidth: '1000px'}}>
             <Paper className = {classes.paper}>
-                <p>this.props.state.device</p>
-                {JSON.stringify(this.props.state.device)}
-
-                    <Grid item align='center'>
+                <Grid item align='center'>
                     <h1>Let's make sure all this information is correct!</h1>
                     </Grid>
 
                     <Grid item align='center' xs={12}>
                         <Divider/>
-                       <h2>Hosting Location</h2>
+                        <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
+                            <div>
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                            </div>
+                            <h2>Hosting Location</h2> 
+                            <Button component = {Link} to ="/hostSelect">
+                                Edit <EditIcon/>
+                            </Button>
+                       </Grid>
                     </Grid>
 
                     <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
                         <h3 style={{display: 'inline-block'}}>Address:{'\u00A0'}{'\u00A0'}</h3>
                         <p style={{display: 'inline-block'}}>
-                            {/*{this.props.state.device}*/}
+                            {this.props.state.device.site.address}
                         </p>
                     </Grid>
 
@@ -86,109 +102,135 @@ class DeviceReview extends Component {
                         <div>
                             <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>First Name:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.site.first_name}
                             </p>
                         </div>
                         <div>
                             <h3 className={classes.reviewItem}>Second Name:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.site.second_name}
                             </p>
                         </div>
                         <div>
                             <h3 className={classes.reviewItem}>Phone Number:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.site.phone}
                             </p>
                         </div> 
                         <div>
                             <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Email:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.site.email}
                             </p>
                         </div>
                     </Grid>
 
                     <Grid item align='center' xs={12}>
-                        <br/>
-                        <Divider/>
-                        <h2>Breaker Information</h2>
+                        <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
+                            <div>
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                            </div>
+                            <h2>Breaker Information</h2> 
+                            <Button component = {Link} to ="/breakerSelect">
+                                Edit <EditIcon/>
+                            </Button>
+                       </Grid>
                     </Grid>
 
                     <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
                         <div>
                             <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Breaker Name:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.breaker.name}
                             </p>
                         </div>
                         <div>
                             <h3 className={classes.reviewItem}>Breaker Limit:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.breaker.limit}kW
                             </p>
                         </div>
                         <div>
                             <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Breaker Description:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.breaker.description}
                             </p>
                         </div>
                     </Grid>
 
                     <Grid item align='center' xs={12}>
-                        <br/>
-                        <Divider/>
-                       <h2>Device Type</h2>
+                        <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
+                            <div>
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                            </div>
+                            <h2>Device Type</h2> 
+                            <Button component = {Link} to ="/deviceType">
+                                Edit <EditIcon/>
+                            </Button>
+                       </Grid>
                     </Grid>
 
                     <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
                         <div>
                             <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Device Type:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {/*{this.props.state.device}*/}
-                            </p>
-                        </div>
-                        <div>
-                            <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Head Type (if pedestal):{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem} >
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.type.name}
                             </p>
                         </div>
                     </Grid>
 
                     <Grid item align='center' xs={12}>
-                        <br/>
-                        <Divider/>
-                       <h2>Device Information</h2>
+                        <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
+                            <div>
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                            </div>
+                            <h2>Device Information</h2> 
+                            <Button component = {Link} to ="/deviceSerial">
+                                Edit <EditIcon/>
+                            </Button>
+                       </Grid>
                     </Grid>
 
                     <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
                         <div>
                             <h3 className={classes.reviewItem} style={{margin: '10px 0px'}}>Serial Number:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                               {/*{this.props.state.device}*/}
+                               {this.props.state.device.serial.number}
                             </p>
                         </div>
                     </Grid>
 
                     <Grid item align='center' xs={12}>
-                        <br/>
-                        <Divider/>
-                       <h2>Additional Information</h2>
+                    <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
+                            <div>
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                            </div>
+                            <h2>Additional Information</h2> 
+                            <Button component = {Link} to ="/deviceName">
+                                Edit <EditIcon/>
+                            </Button>
+                       </Grid>
                     </Grid>
 
                     <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
                         <div>
                             <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Charger Name:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                               {/*{this.props.state.device}*/}
+                               {this.props.state.device.name}
                             </p>
                         </div>
                         <div>
                             <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Installation Date:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem} >
-                                {/*{this.props.state.device}*/}
+                                {this.props.state.device.date}
                             </p>
                         </div>
                     </Grid>
@@ -201,9 +243,9 @@ class DeviceReview extends Component {
                             </Button>
                             <div className = {classes.grow}>{'\u00A0'}</div>
                             <Button variant = 'contained' color = 'primary'
-                            onClick = {this.assignSite}
+                            onClick = {this.saveDevice}
                             component = {Link} to ="/OrganizationHome">
-                                <ChevronRightIcon/> Save Device
+                                <SaveIcon/> Save Device
                             </Button>
                         
                         </Grid> 

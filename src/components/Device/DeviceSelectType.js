@@ -84,7 +84,7 @@ class DeviceSelectType extends Component {
       img: 'src/components/Device/dualheadped.jpg',
       name: 'Dual Head Pedestal Charger'
     }
-    this.props.dispatch({ type: "SET_TYPE", dispatchObject })
+    this.props.dispatch({ type: "SET_TYPE", payload: dispatchObject })
 
   };
   handleChange4 = () => {
