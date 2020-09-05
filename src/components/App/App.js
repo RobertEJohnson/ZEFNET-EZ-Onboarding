@@ -8,9 +8,6 @@ import {
 
 import { connect } from "react-redux";
 
-import Nav from "../Nav/Nav";
-//import Footer from '../Footer/Footer';
-
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import AboutPage from "../AboutPage/AboutPage";
 import InfoPage from "../InfoPage/InfoPage";
@@ -45,6 +42,7 @@ const theme = createMuiTheme({
       backgroundColor: 'white'
     }
   }
+  
 })
 
 class App extends Component {
@@ -58,10 +56,8 @@ class App extends Component {
       <MuiThemeProvider theme = {theme}>
         <Router>
          <CssBaseline/>
-          <Grid container justify='center' alignItems='center'
-          style={{minHeight: '100vh', minWidth: '100vw', background: 'linear-gradient(360deg, #08346e, #004e92 70%)'}}>
+          <Grid container justify='center' alignItems='center' className='background'>
           <div>
-            
             <Switch>
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
               <Redirect exact from="/" to="/home" />
