@@ -8,9 +8,6 @@ import {
 
 import { connect } from "react-redux";
 
-import Nav from "../Nav/Nav";
-//import Footer from '../Footer/Footer';
-
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import AboutPage from "../AboutPage/AboutPage";
 import InfoPage from "../InfoPage/InfoPage";
@@ -25,9 +22,10 @@ import DeviceSerial from "../Device/DeviceSerial";
 import DeviceName from "../Device/DeviceName";
 import DevicePrep from '../Device/DevicePrep';
 import BreakerSelect from '../Device/Breaker/Select';
+
+import { CssBaseline, MuiThemeProvider, createMuiTheme, Grid } from '@material-ui/core';
 import DeviceReview from "../Device/DeviceReview";
 
-import { CssBaseline, MuiThemeProvider, createMuiTheme, } from '@material-ui/core';
 import { indigo,yellow, green,} from '@material-ui/core/colors';
 
 
@@ -47,6 +45,7 @@ const theme = createMuiTheme({
       backgroundColor: 'white'
     }
   }
+  
 })
 
 class App extends Component {
@@ -60,8 +59,8 @@ class App extends Component {
       <MuiThemeProvider theme = {theme}>
         <Router>
          <CssBaseline/>
+          <Grid container justify='center' alignItems='center' className='background'>
           <div>
-            {/* <Nav /> */}
             <Switch>
               {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
               <Redirect exact from="/" to="/home" />
@@ -137,6 +136,7 @@ class App extends Component {
               <Route render={() => <h1>404</h1>} />
             </Switch>
           </div>
+          </Grid>
         </Router>
       </MuiThemeProvider>
     );

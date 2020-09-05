@@ -83,17 +83,14 @@ class BreakerSelect extends Component {
     render(){
         const {classes} = this.props;
         return(
-            <div className={classes.root}>
-                 <AddBreaker handleClose = {this.handleClose} open = {this.state.open}/>
-                <Grid container direction='column' justify='center' alignItems='center'>
-                    <Grid item xs={12} md={10} lg={9} xl={8}>
+                 
+                    <Grid item style={{maxWidth: '800px'}} align='center'>
+                    <AddBreaker handleClose = {this.handleClose} open = {this.state.open}/>
                         <Paper className={classes.paper} elevation={3}>
                             <h1>Select Your Breaker for the Device</h1>
                             <div>
-                                <p>
-                                    Click 'Add a New Breaker' to add a breaker for this site.<br/>
-                                    You can complete this process multiple times for your selected site.<br/>
-                                    Change the selected breaker from the 'Choose from Existing' dropdown.
+                                <p style={{margin: 'auto 40px'}}>
+                                    Please choose from existing below or press the 'Add New Breaker' button.
                                 </p>   
                             </div>
                             <FormControl variant="outlined" className={classes.formControl}>
@@ -156,8 +153,6 @@ class BreakerSelect extends Component {
                             </Grid>
                         </Paper>
                     </Grid>
-                </Grid>
-            </div>
         )
     }
 }
