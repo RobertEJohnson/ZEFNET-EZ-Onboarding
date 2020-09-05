@@ -9,6 +9,9 @@ const styles = theme => ({
     formControl: {
       margin: theme.spacing(1),
       minWidth: 220,
+    },
+    minorPadding: {
+      padding: '0px 10px'
     }
   })
   
@@ -47,76 +50,92 @@ class AddSite extends Component {
   }
 
   render() {
-     //const {classes} = this.props;
+     const {classes} = this.props;
     return (
       <div>
-        <Dialog open={this.props.open} 
-          onClose={this.props.handleClose}>
-          <DialogTitle>Add A New Host Site</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Information and Local contact details fof the site where the charger is installed.
-              This doesn't have to be the same as your company's primary address.
-            </DialogContentText>
+        <Dialog style={{textAlign: 'center'}}
+          open={this.props.open} 
+          onClose={this.props.handleClose}
+          title='Add A New Host Site'>
+         <h1 style={{padding: '15px 0px 10px 0px', margin: '0px'}}>New Host Site</h1>
+         <p style={{padding: '0px', margin: '0px', fontWeight: '500', fontSize: '16px'}}>Enter the location of the organization's charging device.</p>
+          <DialogContent style={{marginTop: '0px', paddingTop: '0px'}}>
             <TextField
+              className={classes.minorPadding}
+              autoFocus
+              required
+              variant = 'filled'
+              margin="dense"
+              label='Host Site Address'
+              type="address"
+              fullWidth
+              name='address'
+              value={this.state.address}
+              onChange={this.handleChange}
+            />
+            <p style={{textAlign: 'left', margin: '0px 0px 15px 10px'}}>
+              *Address does <strong>NOT</strong>  have to be your organization's primary address.
+            </p>
+              
+              
+   
+            <h3 style={{margin:'5px', padding: '0px'}}>
+              Primary Contact Information for Host Site
+            </h3>
+            <TextField
+              className={classes.minorPadding}
               autoFocus
               required
               fullWidth
-              variant = 'outlined'
+              variant='filled'
               margin="dense"
-              label="Name/ First Name"
-              name = 'first_name'
-              value = {this.state.first_name}
-              onChange = {this.handleChange}
+              label="First Name"
+              name='first_name'
+              value={this.state.first_name}
+              onChange={this.handleChange}
             />
             <TextField
+              className={classes.minorPadding}
               autoFocus
               fullWidth
-              variant = 'outlined'
+              variant='filled'
               margin="dense"
               label="Last Name"
-              name = "last_name"
+              name="last_name"
               value={this.state.last_name}
-              onChange = {this.handleChange}
+              onChange={this.handleChange}
             />
             <TextField
+            className={classes.minorPadding}
+            autoFocus
+            variant='filled'
+            margin="dense"
+            label="Phone Number"
+            type='tel'
+            fullWidth
+            name='phone'
+            value={this.state.phone}
+            onChange={this.handleChange}
+          />
+            <TextField  
+              className={classes.minorPadding}
               autoFocus
               required
-              variant = 'outlined'
+              variant='filled'
               margin="dense"
               label="Email Address"
               type="email"
               fullWidth
-              name = 'email'
-              value = {this.state.email}
-              onChange = {this.handleChange}
+              name='email'
+              value={this.state.email}
+              onChange={this.handleChange}
             />
-            <TextField
-              autoFocus
-              variant = 'outlined'
-              margin="dense"
-              label="Phone Number"
-              type="tel"
-              fullWidth
-              name = 'phone'
-              value = {this.state.phone}
-              onChange = {this.handleChange}
-            />
-            <TextField
-              autoFocus
-              required
-              variant = 'outlined'
-              margin="dense"
-              label='Address'
-              type="address"
-              fullWidth
-              name = 'address'
-              value = {this.state.address}
-              onChange = {this.handleChange}
-            />
+            <DialogContentText style={{marginTop: '5px'}}>
+              You may repeat this process if you have multiple sites.
+            </DialogContentText>
           </DialogContent>
-          <DialogActions>
-            <Button onClick={this.props.handleClose}>
+          <DialogActions style={{textAlign: 'left'}}>
+            <Button onClick={this.props.handleClose} style={{float: 'left'}}>
                 Close
             </Button>
             <Button color="primary"
