@@ -40,6 +40,12 @@ const styles = theme => ({
   grow:{
     flexGrow: 1,
     minWidth: '100px'
+  },
+  homeButton: {
+    paddingLeft: '8px',
+  },
+  nextButton: {
+    paddingRight: '8px', 
   }
 })
 
@@ -49,9 +55,7 @@ class DevicePrep extends Component {
   render() {
     const {classes} = this.props;
     return (
-        <div className = {classes.root}>
-            <Grid container direction='row' justify='center' alignContent='center' alignItems='center'>
-                <Grid item style={{maxWidth: '1375px'}} align='center'>
+                <Grid item style={{maxWidth: '1375px', marginBottom: '35px'}} align='center'>
                     <Paper className = {classes.paper}>
                         <h1>Before you start make sure you have the following information on hand</h1>
                         <Grid container justify='center' alignContent='center' alignItems='center'>
@@ -86,22 +90,23 @@ class DevicePrep extends Component {
                         <br/>
                         <Grid container direction = 'row' justify = 'center' alignContent = 'center'>
                            
-                                <Button variant ='contained'
+                                <Button 
+                                variant ='contained'
+                                className={classes.homeButton}
                                 component = {Link} to ="/OrganizationHome">
                                     <HomeIcon/> Home
                                 </Button>
                                 <div className = {classes.grow}>{'\u00A0'}</div>
                                 <Button variant = 'contained' color = 'primary'
+                                className={classes.nextButton}
                                 onClick = {this.assignSite}
                                 component = {Link} to ="/hostSelect">
-                                    <ChevronRightIcon/> Next
+                                    Next <ChevronRightIcon/>
                                 </Button>
                             
                         </Grid>
                     </Paper>
                 </Grid>
-            </Grid>
-        </div>
     );
   }
 }

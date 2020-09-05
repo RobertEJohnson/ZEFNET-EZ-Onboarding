@@ -34,6 +34,14 @@ const styles = theme => ({
   },
   grow:{
       flexGrow: 1
+  },
+  previousButton: {
+    paddingLeft: '8px',
+    marginLeft: '10px'
+  },
+  nextButton: {
+    paddingRight: '8px', 
+    marginRight: '5px'
   }
 })
 
@@ -88,19 +96,17 @@ class HostSelect extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <div className = {classes.root} >
-         <AddSite handleClose = {this.handleClose} open = {this.state.open}/>
-        <Grid container direction = 'column' justify = 'center' alignItems = 'center'>
-          <Grid item xs = {12} md = {10} lg = {9} xl = {8}>
+          <Grid item style={{maxWidth: '800px'}} align='center'>
+          <AddSite handleClose = {this.handleClose} open = {this.state.open}/>
             <Paper className = {classes.paper} elevation = {3}>
                 <h1>Select Your Host Site</h1>
-                <div>
-                <p>Please choose from below or input a new Host Site where your new charger will be located. 
-                    This does not have to be the same as your organization's primary address.
-                    If you have multiple Host Sites, you can complete this process multiple times for each device.</p>   
+                <div style={{marginBottom: '20px'}}> 
+                <p style={{margin: 'auto 40px'}}>
+                    Please choose from existing below or press the 'Add New Site' button.
+                    </p>   
                 </div>
                 <FormControl variant="outlined" className={classes.formControl}>
-                    <InputLabel>Choose From Existing</InputLabel>
+                    <InputLabel>Choose From Existing Sites</InputLabel>
                     <Select
                     id = 'siteSelect'
                     value={this.state.selectedSite}
@@ -122,37 +128,38 @@ class HostSelect extends Component {
                 
                 {this.state.selectedSite ? 
                     <Button variant = 'contained' disabled>
-                        Add New Host Site
+                        Add New Site
                     </Button>
                 :
                 <Button variant = 'contained' color = 'primary' onClick = {this.addSite}>
-                    Add New Host Site
+                    Add New Site
                 </Button>
                 }     
                 <br/>
                 <br/>
                 <Grid container direction = 'row'>
                     <Button variant ='contained'
-                    component = {Link} to ="/devicePrep">
+                      className={classes.previousButton}
+                      component = {Link} to ="/devicePrep">
                         <ChevronLeftIcon/> Previous
                     </Button>
                     <div className = {classes.grow}></div>
                     {this.state.selectedSite ?
                         <Button variant = 'contained' color = 'primary'
-                        onClick = {this.assignSite}
-                        component = {Link} to ="/breakerSelect">
-                            <ChevronRightIcon/> Next
+                          className={classes.nextButton}
+                          onClick = {this.assignSite}
+                          component = {Link} to ="/breakerSelect">
+                            Next <ChevronRightIcon/>
                         </Button>
                     :
-                        <Button variant = 'contained' disabled>
-                            <ChevronRightIcon/> Next
+                        <Button variant = 'contained' disabled
+                             className={classes.nextButton}>
+                             Next <ChevronRightIcon/>
                         </Button>
                     }
                 </Grid>
             </Paper>
             </Grid>
-        </Grid>
-      </div>
     );
   }
 }

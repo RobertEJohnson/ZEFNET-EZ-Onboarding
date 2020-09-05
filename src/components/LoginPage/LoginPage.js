@@ -7,24 +7,24 @@ import { withStyles, } from '@material-ui/core/styles';
 import "./LoginPage.css";
 
 const styles = theme => ({ 
-  root: {
-    flexGrow: 1,
-    alignItems: 'center',
-    justify: 'center',
-    color: 'white', 
-    fontFamily: 'Crimson Text, Open Sans, sans-serif',
-    minHeight: '80vh', 
-    minWidth: '100vw', 
-    background: 'linear-gradient(360deg, #041E41, #004e92 70%)',
-    textAlign: 'center',
-  },
-
+  input: {
+    color: 'white',
+    border: `1px solid white`,
+    backgroundColor: '#1c2447',
+    backgroundColor: '#243353',
+    outline: `1px solid transparent`,// we use a transparent outline here so the component doesn't move when focused
+    },
     longField:{
       width: '380px',
     },
-     new :{
-      color:'white'
-    },
+    whiteText:{
+      color: 'white',
+      backgroundColor: '#1c2447',
+      borderRadius: '5px',
+      '&:hover': {
+        backgroundColor: '#243953',
+      }
+    }
 })
 
 
@@ -60,28 +60,34 @@ class LoginPage extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <div className = {classes.root}>
-        <Grid container direction = 'column' justify = 'center' alignContent = 'center' >
+      <Grid item align='center' style={{marginBottom: '150px'}}>
         {this.props.errors.loginMessage && (
           <h2 className="alert" role="alert">
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <div className="header">
-          <h2>Welcome to ZEFNET EZ Onboarding! </h2>
-          <h3>The first stop for a new ZEF Energy customer</h3>
+        <div style={{color:'white'}}>
+          <h2 style={{margin: '0px'}}>Welcome to ZEFNET EZ Onboarding! </h2>
+          <h3 style={{margin: '0px'}}>The first stop for a new ZEF Energy customer</h3>
         </div>
         <br/>
           <div>
               <TextField
                 className = {classes.longField}
                 required
-                color = 'secondary'
                 variant = 'outlined'
                 label = 'Email Address'
                 name="email"
                 value={this.state.email}
                 onChange={this.handleInputChangeFor("email")}
+                InputProps={{
+                  classes: {
+                    root: classes.input,
+                  }
+                }}
+                InputLabelProps={{
+                  style: { color: '#fff' }
+                }}
               />
           </div>
           <br/>
@@ -89,34 +95,39 @@ class LoginPage extends Component {
               <TextField
                 className = {classes.longField}
                 required
-                color = 'secondary'
                 variant = 'outlined'
                 type="password"
                 label = 'Password'
                 name="password"
                 value={this.state.password}
                 onChange={this.handleInputChangeFor("password")}
+                InputProps={{
+                  classes: {
+                    root: classes.input,
+                  }
+                }}
+                InputLabelProps={{
+                  style: { color: '#fff' }
+                }}
               />
           </div>
           <br/>
           <div>
             <Button onClick = {this.login}
             variant = 'contained'
+            style={{color: '#006dcc', backgroundColor: 'white', marginLeft: '75px'}}
             >
              Sign in!
             </Button>
-          </div>
-        <center>
-          <Button className = {classes.new}
+            <Button className = {classes.whiteText} style={{float: 'right', fontSize: '12px'}}
             onClick={() => {
               this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
             }}
           >
-            New User? Click here.
+            New User? 
           </Button>
-        </center>
+          </div>
         </Grid>
-      </div>
     );
   }
 }

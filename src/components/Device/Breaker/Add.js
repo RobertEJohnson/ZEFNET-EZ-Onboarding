@@ -50,14 +50,15 @@ class AddBreaker extends Component {
      //const {classes} = this.props;
     return (
       <div>
-        <Dialog open={this.props.open} 
+        <Dialog style={{textAlign: 'center'}}
+          title='Add a New Breakerf'
+          open={this.props.open} 
           onClose={this.props.handleClose}>
-          <DialogTitle>Add A New Breaker</DialogTitle>
-          <DialogContent>
+          <h1 style={{padding: '15px 0px 0px 0px', margin: '0px'}}>Add a New Breaker</h1>
+          <DialogContent style={{padding: '0px auto'}}>
             <DialogContentText>
-              The Breaker name field is an opportonity to provide identification for the breaker 
-              to make it easy to find for those who may be charged with supporting the equiptment.
-              If additional information is beneficial, please use the description field.
+              Please name the breaker in a way to provide quick and easy identification. 
+              This should be indicating where an engineer would go to isolate or reboot the charger device manually.
             </DialogContentText>
             <TextField
               autoFocus
@@ -86,6 +87,9 @@ class AddBreaker extends Component {
                 startAdornment: <InputAdornment position="start">kW</InputAdornment>,
               }}
             />
+            <h3 style={{margin:'10px 0px 5px 0px', padding: '0px'}}>
+              If additional information is beneficial, please fill in the description field.
+            </h3>
             <TextField
               autoFocus
               fullWidth
@@ -99,6 +103,9 @@ class AddBreaker extends Component {
               value={this.state.description}
               onChange = {this.handleChange}
             />   
+            <DialogContentText style={{marginTop: '5px'}}>
+              You can complete this process multiple times for your selected site.
+            </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.props.handleClose}>
