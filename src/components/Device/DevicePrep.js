@@ -49,7 +49,7 @@ class DevicePrep extends Component {
   render() {
     const {classes} = this.props;
     return (
-                <Grid item style={{maxWidth: '1375px'}} align='center'>
+                <Grid item style={{maxWidth: '1375px', marginBottom: '35px'}} align='center'>
                     <Paper className = {classes.paper}>
                         <h1>Before you start make sure you have the following information on hand</h1>
                         <Grid container justify='center' alignContent='center' alignItems='center'>
