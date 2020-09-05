@@ -7,17 +7,7 @@ import { withStyles, } from '@material-ui/core/styles';
 import "./LoginPage.css";
 
 const styles = theme => ({ 
-  root: {
-    flexGrow: 1,
-    alignItems: 'center',
-    justify: 'center',
-    color: 'white', 
-    fontFamily: 'Crimson Text, Open Sans, sans-serif',
-    minHeight: '80vh', 
-    minWidth: '100vw', 
-    background: 'linear-gradient(360deg, #041E41, #004e92 70%)',
-    textAlign: 'center',
-  },
+
 
     longField:{
       width: '380px',
@@ -60,8 +50,7 @@ class LoginPage extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <div className = {classes.root}>
-        <Grid container direction = 'column' justify = 'center' alignContent = 'center' >
+      <Grid item align='center' style={{marginBottom: '150px'}}>
         {this.props.errors.loginMessage && (
           <h2 className="alert" role="alert">
             {this.props.errors.loginMessage}
@@ -116,7 +105,6 @@ class LoginPage extends Component {
           </Button>
         </center>
         </Grid>
-      </div>
     );
   }
 }
