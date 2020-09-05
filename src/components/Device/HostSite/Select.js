@@ -86,13 +86,13 @@ class HostSelect extends Component {
   }
 
   render() {
-    const {classes} = this.props;
+    const {classes} = this.props; //3
     return (
       <div className = {classes.root} >
          <AddSite handleClose = {this.handleClose} open = {this.state.open}/>
         <Grid container direction = 'column' justify = 'center' alignItems = 'center'>
           <Grid item xs = {12} md = {10} lg = {9} xl = {8}>
-            <Paper className = {classes.paper} elevation = {3}>
+            <Paper className = {classes.paper} elevation = {3}> 
                 <h1>Select Your Host Site</h1>
                 <div>
                 <p>Please choose from below or input a new Host Site where your new charger will be located. 

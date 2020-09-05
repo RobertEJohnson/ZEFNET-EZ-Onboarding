@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, TextField, Button } from "@material-ui/core";
+import { Grid, Paper, TextField, Button, withStyles } from "@material-ui/core";
+import PropTypes from "prop-types";
 import user from "../Organization/zefUser.jpeg";
 import { Link } from "react-router-dom";
+
+const styles = (theme) => ({
+  paper: {
+    padding: theme.spacing(2),
+    borderRadius: "5px",
+  },
+});
 
 class DeviceSerial extends Component {
   state = {
@@ -28,7 +36,7 @@ class DeviceSerial extends Component {
       this.props.dispatch({ type: "SET_SERIAL", payload: actionObject });
       this.props.history.push("/deviceName");
     } else {
-      // alert("Serial numbers do not match 33");
+      alert("Serial input incorrect");
     }
   };
 
@@ -36,10 +44,22 @@ class DeviceSerial extends Component {
     this.props.history.push("/deviceType");
   };
 
+  handleOnFocusOut = () => {
+    if (
+      this.state.serialNumber === this.state.confirmSerialNumber &&
+      this.state.serialNumber !== ""
+    ) {
+      // Remove.attribute("disabled")
+    }
+  };
+
   render() {
+    const { classes } = this.props;
+
     let centerText = {
+      paddingLeft: "15px",
       textAlign: "center",
-      color: "white",
+      color: "black",
       fontFamily: "Crimson Text, Open Sans, sans-serif",
       maxWidth: "inherit",
     };
@@ -47,7 +67,9 @@ class DeviceSerial extends Component {
     let header = {
       border: "solid #e3e3e3 2px",
       maxWidth: "515px",
+      height: "150px",
       display: "flex",
+      borderRadius: "5px",
     };
 
     let buttons = {
@@ -71,82 +93,91 @@ class DeviceSerial extends Component {
         }}
       >
         <Grid item xs={8} style={{ maxWidth: "1000px" }} align="center">
-          <div style={header}>
-            <div>
-              <img
-                src={user}
-                style={{
-                  maxHeight: "inherit",
-                  maxWidth: "200px",
-                }}
-              />
-              {/* Image should be changed */}
-            </div>
-
-            <div>
+          <Paper className={classes.paper} elevation={3}>
+            <div style={header}>
               <div>
-                <h1 style={centerText}>Input your Serial Number</h1>
-              </div>
-              <div>
-                <h3 style={centerText}>It can be found lorem ipsum.</h3>
-              </div>
-            </div>
-          </div>
-          <form
-            style={{
-              background: "transparent",
-              display: "flex",
-              flexDirection: "column",
-              width: "100%",
-            }}
-          >
-            <div>
-              <TextField
-                required
-                color="secondary"
-                style={{ fontFamily: "Crimson Text", maxWidth: "inherit" }}
-                label="Serial Number:"
-                margin="normal"
-                variant="outlined"
-                value={this.state.serialNumber}
-                onChange={this.handleInputChangeFor("serialNumber")}
-              />
-            </div>
-            <div>
-              <TextField
-                color="secondary"
-                required
-                style={{ fontFamily: "Crimson Text" }}
-                label="Confirm Serial Number:"
-                margin="normal"
-                variant="outlined"
-                value={this.state.confirmSerialNumber}
-                onChange={this.handleInputChangeFor("confirmSerialNumber")}
-              />
-            </div>
-            <div style={buttons}>
-              <div>
-                <Button
-                  variant="contained"
-                  color="default"
-                  component={Link}
-                  to="/breakerSelect"
-                >
-                  Previous
-                </Button>
+                <img
+                  src={user}
+                  style={{
+                    maxHeight: "150px",
+                    maxWidth: "150px",
+                  }}
+                />
+                {/* Image should be changed */}
               </div>
 
               <div>
-                <Button
-                  variant="contained"
-                  color="default"
-                  onClick={this.handleNext}
-                >
-                  Next
-                </Button>
+                <div>
+                  <h1 style={centerText}>Input your Serial Number</h1>
+                </div>
+                <div>
+                  <h3 style={centerText}>It can be found lorem ipsum.</h3>
+                </div>
               </div>
             </div>
-          </form>
+            <form
+              style={{
+                background: "transparent",
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                padding: "0px",
+              }}
+            >
+              <div>
+                <TextField
+                  required
+                  color="secondary"
+                  style={{
+                    fontFamily: "Crimson Text",
+                    maxWidth: "inherit",
+                    minWidth: "400px",
+                  }}
+                  label="Serial Number:"
+                  margin="normal"
+                  variant="outlined"
+                  value={this.state.serialNumber}
+                  onChange={this.handleInputChangeFor("serialNumber")}
+                />
+              </div>
+              <div>
+                <TextField
+                  color="secondary"
+                  required
+                  style={{ fontFamily: "Crimson Text", minWidth: "400px" }}
+                  label="Confirm Serial Number:"
+                  margin="normal"
+                  variant="outlined"
+                  value={this.state.confirmSerialNumber}
+                  onChange={this.handleInputChangeFor("confirmSerialNumber")}
+                  // onfocusout={this.handleOnFocusOut}
+                />
+              </div>
+              <div style={buttons}>
+                <div>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    component={Link}
+                    to="/breakerSelect"
+                  >
+                    Previous
+                  </Button>
+                </div>
+
+                <div>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    onClick={this.handleNext}
+                    style={{width:"107px"}}
+                  >
+                    Next
+                  </Button>
+                </div>
+              </div>
+            </form>
+          </Paper>
         </Grid>
       </Grid>
     );
@@ -158,5 +189,13 @@ const mapStateToProps = (reduxState) => ({
   reduxState,
 });
 
+DeviceSerial.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(DeviceSerial);
+export default withStyles(styles)(connect(mapStateToProps)(DeviceSerial));
+
+
+
+
