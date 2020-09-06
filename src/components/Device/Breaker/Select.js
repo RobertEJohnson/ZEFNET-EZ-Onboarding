@@ -46,7 +46,7 @@ class BreakerSelect extends Component {
       };
       
       componentDidMount = ()=> {
-        if( this.props.state.device.breaker !== {} ){
+        if( this.props.state.device.breaker.id ){
             this.setState({
                 ...this.state,
                 selectedBreaker: this.props.state.device.breaker
@@ -58,10 +58,9 @@ class BreakerSelect extends Component {
           //console.log('previous siteBreakers', previousProps.state.breaker.siteBreakerReducer);
           //console.log('current siteBreakers', this.props.state.breaker.siteBreakerReducer);
           if(previousProps.state.breaker.siteBreakerReducer !== this.props.state.breaker.siteBreakerReducer){
-            if( this.props.state.device.site !== {} ){
+            if( this.props.state.device.breaker.id ){
                 this.setState({
                     ...this.state,
-                    breakers: this.props.state.breaker.siteBreakerReducer,
                     selectedBreaker: this.props.state.device.breaker
                 })
             } else{
