@@ -21,7 +21,7 @@ const styles = theme => ({
     color: 'white',
     border: `1px solid white`,
     backgroundColor: '#1c2447',
-    backgroundColor: '#243353',
+    //backgroundColor: '#243353',
     outline: `1px solid transparent`,// we use a transparent outline here so the component doesn't move when focused
     },
   longField:{

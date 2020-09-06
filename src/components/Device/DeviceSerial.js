@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
 import { Grid, Paper, TextField, Button, withStyles } from "@material-ui/core";
 import {ChevronLeft, ChevronRight} from '@material-ui/icons';
 import PropTypes from "prop-types";
-import user from "../Organization/zefUser.jpeg";
+import user from "./zefpro2.png";
 import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
@@ -11,6 +12,9 @@ const styles = (theme) => ({
     padding: theme.spacing(2),
     borderRadius: "5px",
   },
+  grow: {
+    flexgrow:1,
+  }
 });
 
 class DeviceSerial extends Component {
@@ -18,6 +22,15 @@ class DeviceSerial extends Component {
     serialNumber: "",
     confirmSerialNumber: "",
   };
+
+  componentDidMount = ()=> {
+    if( this.props.reduxState.device.serial !== {} ){
+        this.setState({
+            serialNumber: this.props.reduxState.device.serial.number,
+            confirmSerialNumber: this.props.reduxState.device.serial.number,
+        })
+    }
+  } 
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
@@ -81,6 +94,8 @@ class DeviceSerial extends Component {
       marginTop: "20px",
     };
 
+    
+
     return (
       <Grid
         container
@@ -99,6 +114,7 @@ class DeviceSerial extends Component {
               <div>
                 <img
                   src={user}
+                  alt = {this.props.reduxState.device.type.name}
                   style={{
                     maxHeight: "150px",
                     maxWidth: "150px",
@@ -159,21 +175,31 @@ class DeviceSerial extends Component {
                     variant="contained"
                     color="default"
                     component={Link}
-                    to="/breakerSelect"
+                    to="/deviceType"
                   >
                     <ChevronLeft/> Previous
                   </Button>
                 </div>
-
+                {/* <div className = {classes.grow}></div> */}
                 <div>
+                  {this.state.serialNumber && this.state.serialNumber === this.state.confirmSerialNumber?
                   <Button
                     variant="contained"
-                    color="default"
+                    color="primary"
                     onClick={this.handleNext}
                     style={{ width: "131px" }}
                   >
                     Next <ChevronRight/>
                   </Button>
+                  :
+                  <Button
+                  disabled
+                  variant = 'contained'
+                  style={{ width: "131px" }}
+                >
+                  Next <ChevronRight/>
+                </Button>
+                  }
                 </div>
               </div>
             </form>
