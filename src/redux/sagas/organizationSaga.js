@@ -9,7 +9,8 @@ function* getOrganization(action) {
     // store organizaiton in organization reducer
     console.log('in organizationSaga', response);
     yield put({ type: 'SET_ORGANIZATION', payload: response.data[0] });
-    yield put ({type: 'FETCH_SITE', payload: response.data[0].id})
+    yield put({type: 'FETCH_SITE', payload: response.data[0].id});
+    yield put({ type: 'GET_ALL_DEVICE', payload: response.data[0].id});
   } catch (error) {
       console.log('Error with organization get:', error);
   }

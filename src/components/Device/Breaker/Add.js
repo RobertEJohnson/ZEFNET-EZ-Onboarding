@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import{ Button, TextField, InputAdornment } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle }from '@material-ui/core/';
+import { Dialog, DialogActions, DialogContent, DialogContentText }from '@material-ui/core/';
 
 const styles = theme => ({ 
     formControl: {
