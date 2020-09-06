@@ -2,10 +2,11 @@ import { combineReducers } from 'redux';
 import errors from './errorsReducer';
 import loginMode from './loginModeReducer';
 import user from './userReducer';
-import organization from './organizationReducer'
-import site from './siteReducer'
-import device from './newDevice'
-import breaker from './breakerReducer'
+import organization from './organizationReducer';
+import site from './siteReducer';
+import device from './newDevice';
+import breaker from './breakerReducer';
+import allDevice from './allDeviceReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   site,// will have an array of objects containing id, first_name, last_name, address, email, and possible phone
   device,//will have a site, breaker, name, serial number
   breaker,
+  allDevice, //will have some giant heccin device objects ya
 });
 
 export default rootReducer;

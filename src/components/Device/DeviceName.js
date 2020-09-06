@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, Paper, withStyles, TextField, Button } from "@material-ui/core";
+<<<<<<< HEAD
 import { ChevronLeft, ChevronRight } from "@material-ui/icons";
+=======
+import {ChevronLeft, EvStation} from '@material-ui/icons';
+>>>>>>> master
 import PropTypes from "prop-types";
 import user from "../Organization/zefUser.jpeg";
 import { Link } from "react-router-dom";
@@ -18,6 +22,15 @@ class DeviceName extends Component {
     chargerName: "",
     installationDate: "",
   };
+
+  componentDidMount = ()=> {
+    if( this.props.reduxState.device.name !== '' ){
+        this.setState({
+            chargerName: this.props.reduxState.device.name,
+            installationDate: this.props.reduxState.device.date,
+        })
+    }
+  } 
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
@@ -37,6 +50,8 @@ class DeviceName extends Component {
       });
 
       this.props.history.push("/deviceReview"); //change this
+    } else {
+      alert("Oops! Please enter both a name and installation date for your device");
     }
   };
 
@@ -94,7 +109,11 @@ class DeviceName extends Component {
                     maxHeight: "146px",
                     maxWidth: "150px",
                   }}
+<<<<<<< HEAD
                   alt="zef charger"
+=======
+                  alt = {this.props.reduxState.device.type.name}
+>>>>>>> master
                 />
                 {/* Image should be changed */}
               </div>
@@ -159,8 +178,8 @@ class DeviceName extends Component {
                     <ChevronLeft /> Previous
                   </Button>
                 </div>
-
                 <div>
+<<<<<<< HEAD
                   <Button
                     variant="contained"
                     color="default"
@@ -169,6 +188,27 @@ class DeviceName extends Component {
                   >
                     Review <ChevronRight />
                   </Button>
+=======
+                {this.state.chargerName && this.state.installationDate ?
+                    <Button
+                      variant="contained"
+                      color = 'primary'
+                      onClick={this.handleNext}
+                      style={{ width: "131px" }}
+                    >
+                      Review Device<EvStation/>
+                    </Button>
+                  :
+                    <Button
+                      variant="contained"
+                      disabled
+                      onClick={this.handleNext}
+                      style={{ width: "131px" }}
+                    >
+                      Review Device <EvStation/>
+                    </Button>
+                  }
+>>>>>>> master
                 </div>
               </div>
             </form>
