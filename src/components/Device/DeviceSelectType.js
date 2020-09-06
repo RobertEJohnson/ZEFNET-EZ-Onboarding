@@ -10,6 +10,7 @@ import double from './dualheadped.jpg';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
 
 
 const styles = theme => ({ 
@@ -175,6 +176,7 @@ class DeviceSelectType extends Component {
                   color="default"
                   component = {Link} to ="/breakerSelect"
                 >
+                  <ChevronLeft/>
                   Previous
                 </Button>
               </div>

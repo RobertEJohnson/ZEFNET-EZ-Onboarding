@@ -100,8 +100,10 @@ class HostSelect extends Component {
   }
 
   assignSite = () => {
+    if (this.state.selectedSite !== this.props.state.device.site){
     this.props.dispatch({type: 'SET_DEVICE_SITE', payload: this.state.selectedSite})
     this.props.dispatch({type: 'FETCH_SITE_BREAKERS', payload: this.state.selectedSite.id})
+    }
   }
 
   render() {

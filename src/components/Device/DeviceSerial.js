@@ -175,7 +175,7 @@ class DeviceSerial extends Component {
                     variant="contained"
                     color="default"
                     component={Link}
-                    to="/breakerSelect"
+                    to="/deviceType"
                   >
                     <ChevronLeft/> Previous
                   </Button>
