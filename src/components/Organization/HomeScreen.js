@@ -74,7 +74,7 @@ class HomeScreen extends Component {
                     <img src={zefNetPro} alt="ZEFNET Pro Charger" className={classes.image} />
                     <GridListTileBar
                         title="Add a Device"
-                        subtitle="0 Devices"
+                        subtitle={this.props.state.allDevice.length + ' Devices'}
                     />
                 </GridListTile>
                 <GridListTile className={classes.gridListTile} component={Link} to='/test'>

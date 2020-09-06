@@ -32,14 +32,6 @@ const theme = createMuiTheme({
     primary: indigo,
     secondary: yellow,
     success: green, 
-  },
-  overrides: {
-    MuiSelect: {
-      backgroundColor: 'white',
-    },
-    MuiTextField: {
-      backgroundColor: 'white'
-    }
   }
   
 })
