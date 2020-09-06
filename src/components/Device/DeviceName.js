@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, Paper, withStyles, TextField, Button } from "@material-ui/core";
+<<<<<<< HEAD
+import { ChevronLeft, ChevronRight } from "@material-ui/icons";
+=======
 import {ChevronLeft, EvStation} from '@material-ui/icons';
+>>>>>>> master
 import PropTypes from "prop-types";
 import user from "../Organization/zefUser.jpeg";
 import { Link } from "react-router-dom";
@@ -91,20 +95,25 @@ class DeviceName extends Component {
         style={{
           minHeight: "75vh",
           minWidth: "100vw",
-        // background: "linear-gradient(360deg, #041E41, #004e92 70%)",
+          // background: "linear-gradient(360deg, #041E41, #004e92 70%)",
         }}
       >
         <Grid item xs={8} style={{ maxWidth: "1000px" }} align="center">
           <Paper className={classes.paper} elevation={3}>
             <div style={header}>
+              
               <div>
                 <img
                   src={user}
                   style={{
-                    maxHeight: "150px",
+                    maxHeight: "146px",
                     maxWidth: "150px",
                   }}
+<<<<<<< HEAD
+                  alt="zef charger"
+=======
                   alt = {this.props.reduxState.device.type.name}
+>>>>>>> master
                 />
                 {/* Image should be changed */}
               </div>
@@ -166,10 +175,20 @@ class DeviceName extends Component {
                     component={Link}
                     to="/deviceSerial"
                   >
-                    <ChevronLeft/> Previous
+                    <ChevronLeft /> Previous
                   </Button>
                 </div>
                 <div>
+<<<<<<< HEAD
+                  <Button
+                    variant="contained"
+                    color="default"
+                    onClick={this.handleNext}
+                    style={{ width: "131px" }}
+                  >
+                    Review <ChevronRight />
+                  </Button>
+=======
                 {this.state.chargerName && this.state.installationDate ?
                     <Button
                       variant="contained"
@@ -189,6 +208,7 @@ class DeviceName extends Component {
                       Review Device <EvStation/>
                     </Button>
                   }
+>>>>>>> master
                 </div>
               </div>
             </form>
