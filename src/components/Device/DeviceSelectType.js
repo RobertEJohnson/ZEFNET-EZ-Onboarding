@@ -14,36 +14,18 @@ import ChevronLeft from '@material-ui/icons/ChevronLeft';
 
 
 const styles = theme => ({ 
-  root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        //overflow: 'hidden',
-        color: 'white',
-        alignContent: 'center',
-        minHeight: '100vh', 
-        minWidth: '100vw',
-        background: 'linear-gradient(360deg, #041E41, #004e92 70%)',
-        fontFamily: 'Crimson Text, Open Sans, sans-serif',
-  },
-  gridListTile: {
-    color: 'rgba(255, 255, 255, 0.54)',
-    maxWidth: '320px',
-    maxHeight: '350px',
-    margin: '20px 20px 0px 0px'
-  },
-  image: {
-    maxHeight: '350px',
-    minWidth: '350px'
-  },
-  grow: {
-    flexGrow:1
-  },
   card: {
-    maxWidth: 325,
+    transition: 'all .2s ease-in-out',
+    maxWidth: '300px',
+    width: '300px',
+    border: '1px solid black',
+    marginBottom: '25px',
+    boxShadow: '0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028),0 12.5px 10px rgba(0, 0, 0, 0.035),0 22.3px 17.9px rgba(0, 0, 0, 0.042),0 41.8px 33.4px rgba(0, 0, 0, 0.05),0 100px 80px rgba(0, 0, 0, 0.07)',
+    '&:hover': {transform: 'scale(1.07)',boxShadow: '0 0 15px #c8ffff,-5px 0 20px #66fbfb, 5px 0 25px #049494',}
   },
   media: {
-    height: 340,
+    height: '300px',
+    width: '300px'
   },
 })
 
@@ -103,85 +85,86 @@ class DeviceSelectType extends Component {
   render() {
     const {classes} = this.props;
     return (
-        <div className = {classes.root}>
-          <br/>
-          <br/>
-          <h1>Select your device model</h1>
-          <br/>
-            
-            <Grid container direction='row' alignContent = 'center' spacing={3} >
-                <Grid item xs = {6} md = {3}>
-                      <Card className={classes.card}>
-                        <CardActionArea onClick={this.handleChange1}
-                          component = {Link} to ="/deviceSerial">
-                          <CardMedia
-                          image={wallmount}
-                          title="Wall Mount Charger" 
-                          className={classes.media} />
-                          <GridListTileBar
-                              title="Wall Mount Charger"
-                          />
-                          </CardActionArea>
-                    </Card>
-                    </Grid>
-                    <Grid item xs = {6} md = {3}>
-                      <Card className={classes.card}>
-                        <CardActionArea onClick={this.handleChange2}
-                          component = {Link} to ="/deviceSerial">
-                          <CardMedia
-                          image={single}
-                          title="Single Head Pedestal Charger" 
-                          className={classes.media} />
-                          <GridListTileBar
-                              title="Single Head Pedestal Charger"
-                          />
-                          </CardActionArea>
-                      </Card>
-                    </Grid>
-                    <Grid item xs = {6} md = {3}>
-                    <Card className={classes.card}>
-                      <CardActionArea onClick={this.handleChange3} 
-                        component = {Link} to ="/deviceSerial">
-                        <CardMedia
-                        image={double}
-                        title="Double Head Pedestal Charger" 
-                        className={classes.media} />
-                        <GridListTileBar
-                            title="Double Head Pedestal Charger"
-                        />
-                        </CardActionArea>
-                    </Card>
-                    </Grid>
-                    <Grid item xs = {6} md = {3}>
-                    <Card className={classes.card}>
-                      <CardActionArea onClick={this.handleChange4} 
-                        component = {Link} to ="/deviceSerial">
-                        <CardMedia
-                        image={zefNetPro}
-                        title="ZEFNET Pro Charger" 
-                        className={classes.media} />
-                        <GridListTileBar
-                            title="ZEFNET Pro Charger"
-                        />
-                        </CardActionArea>
-                    </Card>
-                  
-                </Grid>
-               </Grid>
-               <br/>
-              <div style={{ align: 'center' }}>
-                <Button
-                  variant="contained"
-                  style={{ margin: "20px" }}
-                  color="default"
-                  component = {Link} to ="/breakerSelect"
-                >
-                  <ChevronLeft/>
-                  Previous
-                </Button>
-              </div>
-          </div>
-    
+
+      <Grid container justify='center' alignContent='center' alignItems='center'  xs={12}>
+      <Grid item xs={12} align='center'>
+        <h1 style={{color:'white',marginBottom: '30px'}}>Please Select Your Charging Device Type</h1>
+      </Grid>
+      
+        <Grid item xs={8} md={4} lg={3} align='center'>
+          <Card className={classes.card}>
+            <CardActionArea onClick={this.handleChange1}
+              component = {Link} to ="/deviceSerial">
+              <CardMedia
+              image={wallmount}
+              title="Wall Mount Charger" 
+              className={classes.media} />
+              <GridListTileBar
+                  title="Wall Mount Charger"
+              />
+              </CardActionArea>
+            </Card>
+        </Grid>
+
+        <Grid item xs={8} md={4} lg={3} align='center'>
+          <Card className={classes.card}>
+            <CardActionArea onClick={this.handleChange2}
+              component = {Link} to ="/deviceSerial">
+              <CardMedia
+              image={single}
+              title="Single Head Pedestal Charger" 
+              className={classes.media} />
+              <GridListTileBar
+                  title="Single Head Pedestal Charger"
+              />
+              </CardActionArea>
+          </Card>
+        </Grid>
+
+        <Grid item xs={8} md={4} lg={3} align='center'>
+          <Card className={classes.card}>
+            <CardActionArea onClick={this.handleChange3} 
+              component = {Link} to ="/deviceSerial">
+              <CardMedia
+              image={double}
+              title="Double Head Pedestal Charger" 
+              className={classes.media} />
+              <GridListTileBar
+                  title="Double Head Pedestal Charger"
+              />
+              </CardActionArea>
+          </Card>
+        </Grid>
+        
+        <Grid item xs={8} md={4} lg={3} align='center'>
+            <Card className={classes.card}>
+              <CardActionArea onClick={this.handleChange4} 
+                component = {Link} to ="/deviceSerial">
+                <CardMedia
+                image={zefNetPro}
+                title="ZEFNET Pro Charger" 
+                className={classes.media} />
+                <GridListTileBar
+                    title="ZEFNET Pro Charger"
+                />
+                </CardActionArea>
+            </Card>
+          
+        </Grid>
+       <Grid item align='center' xs={12}>
+        <div style={{ align: 'center' }}>
+          <Button
+            variant="contained"
+            style={{ margin: "20px" }}
+            color="default"
+            component = {Link} to ="/breakerSelect"
+          >
+            Previous
+          </Button>
+        </div>
+       </Grid>
+    </Grid>
+
     );
   }
 }
