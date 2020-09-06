@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { Grid, Paper, TextField, Button, withStyles } from "@material-ui/core";
-import {ChevronLeft, ChevronRight} from '@material-ui/icons';
+import { ChevronLeft, ChevronRight } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import user from "./zefpro2.png";
 import { Link } from "react-router-dom";
@@ -116,8 +116,10 @@ class DeviceSerial extends Component {
             <div className={classes.borderedBox}>
                 <img
                   src={user}
+
                   alt={this.props.reduxState.device.type.name}
                   className={classes.image}
+
                 />
               <div>
                 <h1 className={classes.centerFont}>Input your Serial Number</h1>
@@ -161,7 +163,7 @@ class DeviceSerial extends Component {
                     to="/deviceType"
                     className={classes.previousButton}
                   >
-                    <ChevronLeft/> Previous
+                    <ChevronLeft /> Previous
                   </Button>
                 </div>
                 <div>
@@ -172,7 +174,7 @@ class DeviceSerial extends Component {
                     onClick={this.handleNext}
                     className={classes.nextButton}
                   >
-                    Next <ChevronRight/>
+                    Next <ChevronRight />
                   </Button>
                   :
                   <Button
