@@ -13,6 +13,7 @@ const userRouter = require('./routes/user.router');
 const organizationRouter = require('./routes/organization.router');
 const siteRouter = require('./routes/site.router');
 const breakerRouter = require('./routes/breaker.router');
+const deviceRouter = require('./routes/device.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,7 +32,8 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/organization', organizationRouter);
 app.use('/api/site', siteRouter);
-app.use('/api/breaker', breakerRouter)
+app.use('/api/breaker', breakerRouter);
+app.use('/api/device', deviceRouter);
 
 // Serve static files
 app.use(express.static("build"));

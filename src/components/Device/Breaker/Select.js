@@ -108,7 +108,9 @@ class BreakerSelect extends Component {
                                 {
                                     this.state.breakers.map((breaker, index)=>
                                     <MenuItem value={breaker} key={breaker.id}>
-                                        <span style={{backgroundColor: '#b2ff59'}}>Amps:{breaker.limit} </span> {breaker.name}</MenuItem>
+                                        <span style={{backgroundColor: '#b2ff59'}}>limit:{breaker.limit}kW </span> 
+                                        {'\u00A0'}{'\u00A0'}{breaker.name}
+                                    </MenuItem>
                                 )}
                                 </Select>
                             </FormControl>
