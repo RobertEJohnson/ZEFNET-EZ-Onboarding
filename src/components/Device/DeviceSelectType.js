@@ -86,7 +86,7 @@ class DeviceSelectType extends Component {
     const {classes} = this.props;
     return (
 
-      <Grid container justify='center' alignContent='center' alignItems='center'  xs={12}>
+      <Grid container justify='center' alignContent='center' alignItems='center'>
       <Grid item xs={12} align='center'>
         <h1 style={{color:'white',marginBottom: '30px'}}>Please Select Your Charging Device Type</h1>
       </Grid>
@@ -159,6 +159,7 @@ class DeviceSelectType extends Component {
             color="default"
             component = {Link} to ="/breakerSelect"
           >
+            <ChevronLeft/>
             Previous
           </Button>
         </div>
