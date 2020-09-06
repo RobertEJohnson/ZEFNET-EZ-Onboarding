@@ -13,10 +13,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 
 
 const styles = theme => ({ 
-
-  grow: {
-    flexGrow:1
-  },
   card: {
     transition: 'all .2s ease-in-out',
     maxWidth: '300px',
@@ -165,10 +161,6 @@ class DeviceSelectType extends Component {
           </Button>
         </div>
        </Grid>
-
-
-
-
     </Grid>
     );
   }
