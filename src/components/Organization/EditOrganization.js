@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom';
 
 class EditOrganization extends Component {
   state = {
-    organizationName: "",
-    primaryNumber: "",
-    email: "",
-    organizationAddress: "",
+    organizationName: this.props.reduxState.organization.name,
+    primaryNumber: this.props.reduxState.organization.phone,
+    email: this.props.reduxState.organization.email,
+    organizationAddress: this.props.reduxState.organization.address,
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -68,12 +68,11 @@ class EditOrganization extends Component {
             </h3>
           </div>
           <form style={{ minWidth: "400px", background: "transparent" }}>
-            <label>Organization Name</label>
             <TextField
+              label = 'Organization Name'
               required
               color="secondary"
               style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
-              placeholder={this.props.reduxState.organization.name}
               margin="normal"
               variant="outlined"
               value={this.state.organizationName}
@@ -81,30 +80,32 @@ class EditOrganization extends Component {
             ></TextField>
             <TextField
               color="secondary"
-              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
-              placeholder={this.props.reduxState.organization.phone}
-              margin="normal"
-              variant="outlined"
-              value={this.state.primaryNumber}
-              onChange={this.handleInputChangeFor("primaryNumber")}
-            ></TextField>
-            <TextField
-              color="secondary"
               required
               style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
-              placeholder={this.props.reduxState.organization.email}
+              label = 'Primary Email'
               margin="normal"
               variant="outlined"
               value={this.state.email}
               onChange={this.handleInputChangeFor("email")}
             ></TextField>
             <TextField
+              label = 'Primary Phone Number'
+              color="secondary"
+              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
+              margin="normal"
+              variant="outlined"
+              value={this.state.primaryNumber}
+              onChange={this.handleInputChangeFor("primaryNumber")}
+            ></TextField>
+            
+            <TextField
               color="secondary"
               required
               style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
-              placeholder={this.props.reduxState.organization.address}
+              label = 'Organization Address'
               margin="normal"
               variant="outlined"
+              multiline
               value={this.state.organizationAddress}
               onChange={this.handleInputChangeFor("organizationAddress")}
             ></TextField>
