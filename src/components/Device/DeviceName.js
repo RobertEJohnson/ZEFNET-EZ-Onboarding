@@ -1,9 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, TextField, Button } from "@material-ui/core";
-import user from "../Organization/zefnetpro.png";
+import { Grid, Paper, withStyles, TextField, Button } from "@material-ui/core";
+import {ChevronLeft, ChevronRight} from '@material-ui/icons';
+import PropTypes from "prop-types";
+import user from "../Organization/zefUser.jpeg";
+import { Link } from "react-router-dom";
 
-class DeviceSerial extends Component {
+const styles = (theme) => ({
+  paper: {
+    padding: theme.spacing(2),
+    borderRadius: "5px",
+  },
+});
+
+class DeviceName extends Component {
   state = {
     chargerName: "",
     installationDate: "",
@@ -25,13 +35,16 @@ class DeviceSerial extends Component {
   };
 
   handleNext = () => {
-    if (this.state.chargerName && this.state.installationDate) {
-      const actionObject = {
-        chargerName: this.state.chargerName,
-        user_id: this.props.reduxState.user.id,
-      };
-      this.props.dispatch({ type: "SET_NAME", payload: this.state.chargerName});
-      this.props.dispatch({type: "SET_DATE", payload: this.state.installationDate});
+    if (this.state.chargerName && this.state.installationDate !== "") {
+      this.props.dispatch({
+        type: "SET_NAME",
+        payload: this.state.chargerName,
+      });
+      this.props.dispatch({
+        type: "SET_DATE",
+        payload: this.state.installationDate,
+      });
+
       this.props.history.push("/deviceReview"); //change this
     } else {
       alert("Oops! Please enter both a name and installation date for your device");
@@ -39,19 +52,34 @@ class DeviceSerial extends Component {
   };
 
   handlePrevious = () => {
-    this.props.history.push("/deviceSerial"); //change this
+    this.props.history.push("/deviceSerial");
   };
 
   render() {
+    const { classes } = this.props;
+
     let centerText = {
+      paddingLeft: "15px",
       textAlign: "center",
-      color: "white",
+      color: "black",
       fontFamily: "Crimson Text, Open Sans, sans-serif",
+      maxWidth: "inherit",
     };
 
     let header = {
       border: "solid #e3e3e3 2px",
       maxWidth: "515px",
+      height: "150px",
+      display: "flex",
+      borderRadius: "5px",
+    };
+
+    let buttons = {
+      display: "flex",
+      width: "515px",
+      justifyContent: "space-between",
+      align: "center",
+      marginTop: "20px",
     };
 
     return (
@@ -63,76 +91,97 @@ class DeviceSerial extends Component {
         style={{
           minHeight: "75vh",
           minWidth: "100vw",
-          background: "linear-gradient(360deg, #041E41, #004e92 70%)",
+        // background: "linear-gradient(360deg, #041E41, #004e92 70%)",
         }}
       >
         <Grid item xs={8} style={{ maxWidth: "1000px" }} align="center">
-          <div style={header}>
-            <div>
-              <img
-                src={user}
-                style={{
-                  maxHeight: "200px",
-                  maxWidth: "200px",
-                  paddingLeft: "0px",
-                }}
-                alt = 'zef charging device'
-              />
-              {/* Image should be changed */}
-            </div>
-            <div>
-              <h1 style={centerText}>Name your Device</h1>
-            </div>
-            <div>
-              <h3 style={centerText}>Good names should be short and memorable and descriptive</h3>
-            </div>
-          </div>
-          <form style={{ minWidth: "400px", background: "transparent" }}>
-            <TextField
-              required
-              color="secondary"
-              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
-              label="Charger Name:"
-              margin="normal"
-              variant="outlined"
-              value={this.state.chargerName}
-              placeholder = "Rear parking lot charger"
-              onChange={this.handleInputChangeFor("chargerName")}
-            />
-            <TextField
-              color="secondary"
-              required
-              type="Date"
-              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
-              label=""
-              margin="normal"
-              variant="outlined"
-              value={this.state.installationDate}
-              onChange={this.handleInputChangeFor("installationDate")}
-            />
-            <div>
+          <Paper className={classes.paper} elevation={3}>
+            <div style={header}>
               <div>
-                <Button
-                  variant="contained"
-                  style={{ marginTop: "20px" }}
-                  color="default"
-                  onClick={this.handleNext}
-                >
-                  Next
-                </Button>
+                <img
+                  src={user}
+                  style={{
+                    maxHeight: "150px",
+                    maxWidth: "150px",
+                  }}
+                />
+                {/* Image should be changed */}
               </div>
-              <div style={{ align: "left" }}>
-                <Button
-                  variant="contained"
-                  style={{ marginTop: "20px" }}
-                  color="default"
-                  onClick={this.handlePrevious}
-                >
-                  Previous
-                </Button>
+
+              <div>
+                <div>
+                  <h1 style={centerText}>Name your Device</h1>
+                </div>
+                <div>
+                  <h3 style={centerText}>
+                    Good names should be short and memorable and descriptive..
+                  </h3>
+                </div>
               </div>
             </div>
-          </form>
+            <form
+              style={{
+                background: "transparent",
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                padding: "0px",
+              }}
+            >
+              <div>
+                <TextField
+                  required
+                  color="secondary"
+                  style={{
+                    fontFamily: "Crimson Text",
+                    maxWidth: "inherit",
+                    minWidth: "400px",
+                  }}
+                  label="Charger Name:"
+                  margin="normal"
+                  variant="outlined"
+                  value={this.state.chargerName}
+                  onChange={this.handleInputChangeFor("chargerName")}
+                />
+              </div>
+              <div>
+                <TextField
+                  color="secondary"
+                  required
+                  type="Date"
+                  style={{ fontFamily: "Crimson Text", minWidth: "400px" }}
+                  label=""
+                  margin="normal"
+                  variant="outlined"
+                  value={this.state.installationDate}
+                  onChange={this.handleInputChangeFor("installationDate")}
+                />
+              </div>
+              <div style={buttons}>
+                <div>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    component={Link}
+                    to="/deviceSerial"
+                  >
+                    <ChevronLeft/> Previous
+                  </Button>
+                </div>
+
+                <div>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    onClick={this.handleNext}
+                    style={{ width: "131px" }}
+                  >
+                    Review <ChevronRight/>
+                  </Button>
+                </div>
+              </div>
+            </form>
+          </Paper>
         </Grid>
       </Grid>
     );
@@ -144,5 +193,9 @@ const mapStateToProps = (reduxState) => ({
   reduxState,
 });
 
+DeviceName.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(DeviceSerial);
+export default withStyles(styles)(connect(mapStateToProps)(DeviceName));

@@ -1,9 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, TextField, Button } from "@material-ui/core";
+
+import { Grid, Paper, TextField, Button, withStyles } from "@material-ui/core";
+import {ChevronLeft, ChevronRight, EvStation} from '@material-ui/icons';
+import PropTypes from "prop-types";
 import user from "./zefpro2.png";
-import { Link } from 'react-router-dom';
-import {ChevronLeft, ChevronRight, EvStation} from '@material-ui/icons'
+import { Link } from "react-router-dom";
+
+const styles = (theme) => ({
+  paper: {
+    padding: theme.spacing(2),
+    borderRadius: "5px",
+  },
+  grow: {
+    flexgrow:1,
+  }
+});
 
 class DeviceSerial extends Component {
   state = {
@@ -27,32 +39,59 @@ class DeviceSerial extends Component {
   };
 
   handleNext = () => {
-    if (this.state.serialNumber === this.state.confirmSerialNumber) {
+    if (
+      this.state.serialNumber === this.state.confirmSerialNumber &&
+      this.state.serialNumber !== ""
+    ) {
       const actionObject = {
         number: this.state.serialNumber,
         user_id: this.props.reduxState.user.id,
       };
       this.props.dispatch({ type: "SET_SERIAL", payload: actionObject });
-      this.props.history.push("/deviceName"); //change this
+      this.props.history.push("/deviceName");
     } else {
-      alert("Serial numbers do not match");
+      alert("Serial input incorrect");
     }
   };
 
   handlePrevious = () => {
-    this.props.history.push("/deviceType"); //change this
+    this.props.history.push("/deviceType");
+  };
+
+  handleOnFocusOut = () => {
+    if (
+      this.state.serialNumber === this.state.confirmSerialNumber &&
+      this.state.serialNumber !== ""
+    ) {
+      // Remove.attribute("disabled")
+    }
   };
 
   render() {
+    const { classes } = this.props;
+
     let centerText = {
+      paddingLeft: "15px",
       textAlign: "center",
-      color: "white",
+      color: "black",
       fontFamily: "Crimson Text, Open Sans, sans-serif",
+      maxWidth: "inherit",
     };
 
     let header = {
       border: "solid #e3e3e3 2px",
       maxWidth: "515px",
+      height: "150px",
+      display: "flex",
+      borderRadius: "5px",
+    };
+
+    let buttons = {
+      display: "flex",
+      width: "515px",
+      justifyContent: "space-between",
+      align: "center",
+      marginTop: "20px",
     };
 
     return (
@@ -64,52 +103,69 @@ class DeviceSerial extends Component {
         style={{
           minHeight: "75vh",
           minWidth: "100vw",
-          background: "linear-gradient(360deg, #041E41, #004e92 70%)",
+          // background: "linear-gradient(360deg, #041E41, #004e92 70%)",
         }}
       >
         <Grid item xs={8} style={{ maxWidth: "1000px" }} align="center">
-          <div style={header}>
-            <div>
-              <img
-                src={user}
-                style={{
-                  maxHeight: "200px",
-                  maxWidth: "200px",
-                  paddingLeft: "0px",
-                }}
-                alt = 'zefnet pro device'
-              />
-              {/* Image should be changed */}
+          <Paper className={classes.paper} elevation={3}>
+            <div style={header}>
+              <div>
+                <img
+                  src={user}
+                  style={{
+                    maxHeight: "150px",
+                    maxWidth: "150px",
+                  }}
+                />
+                {/* Image should be changed */}
+              </div>
+              <div>
+                <div>
+                  <h1 style={centerText}>Input your Serial Number</h1>
+                </div>
+                <div>
+                  <h3 style={centerText}>It can be found in image.</h3>
+                </div>
+              </div>
             </div>
-            <div>
-              <h1 style={centerText}>Input your Serial Number</h1>
-            </div>
-            <div>
-              <h3 style={centerText}>It can be found [INFO NEEDE FROM ZEF].</h3>
-            </div>
-          </div>
-          <form style={{ minWidth: "400px", background: "transparent" }}>
-            <TextField
-              required
-              color="secondary"
-              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
-              label="Serial Number:"
-              margin="normal"
-              variant="outlined"
-              value={this.state.serialNumber}
-              onChange={this.handleInputChangeFor("serialNumber")}
-            />
-            <TextField
-              color="secondary"
-              required
-              style={{ minWidth: "380px", fontFamily: "Crimson Text" }}
-              label="Confirm Serial Number:"
-              margin="normal"
-              variant="outlined"
-              value={this.state.confirmSerialNumber}
-              onChange={this.handleInputChangeFor("confirmSerialNumber")}
-            />
-            <div>
+            <form
+              style={{
+                background: "transparent",
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                padding: "0px",
+              }}
+            >
+              <div>
+                <TextField
+                  required
+                  color="secondary"
+                  style={{
+                    fontFamily: "Crimson Text",
+                    maxWidth: "inherit",
+                    minWidth: "400px",
+                  }}
+                  label="Serial Number:"
+                  margin="normal"
+                  variant="outlined"
+                  value={this.state.serialNumber}
+                  onChange={this.handleInputChangeFor("serialNumber")}
+                />
+              </div>
+              <div>
+                <TextField
+                  color="secondary"
+                  required
+                  style={{ fontFamily: "Crimson Text", minWidth: "400px" }}
+                  label="Confirm Serial Number:"
+                  margin="normal"
+                  variant="outlined"
+                  value={this.state.confirmSerialNumber}
+                  onChange={this.handleInputChangeFor("confirmSerialNumber")}
+                  // onfocusout={this.handleOnFocusOut}
+                />
+              </div>
               {this.props.reduxState.device.serial.number?
               <div>
                 <br/>
@@ -123,29 +179,31 @@ class DeviceSerial extends Component {
               :
               <br/>
               }
-              <div>
-                <Button
-                  variant="contained"
-                  style={{ marginTop: "20px" }}
-                  color="default"
-                  onClick={this.handleNext}
-                >
-                  Next<ChevronRight/>
-                </Button>
+              <div style={buttons}>
+                <div>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    component={Link}
+                    to="/breakerSelect"
+                  >
+                    <ChevronLeft/> Previous
+                  </Button>
+                </div>
+                <div className = {classes.grow}></div>
+                <div>
+                  <Button
+                    variant="contained"
+                    color="default"
+                    onClick={this.handleNext}
+                    style={{ width: "131px" }}
+                  >
+                    Next <ChevronRight/>
+                  </Button>
+                </div>
               </div>
-              <div style={{ align: "left" }}>
-                <Button
-                  variant="contained"
-                  style={{ marginTop: "20px" }}
-                  color="default"
-                  component = {Link} to ="/deviceType"
-                >
-                  <ChevronLeft/>
-                  Previous
-                </Button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </Paper>
         </Grid>
       </Grid>
     );
@@ -157,5 +215,9 @@ const mapStateToProps = (reduxState) => ({
   reduxState,
 });
 
+DeviceSerial.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(DeviceSerial);
+export default withStyles(styles)(connect(mapStateToProps)(DeviceSerial));
