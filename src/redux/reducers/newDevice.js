@@ -32,7 +32,8 @@ const newDeviceReducer = (state = {
             serial: {},
             type: {},
             name: '',
-            date: ''};
+            date: ''
+          };
       default:
         return state;
     }

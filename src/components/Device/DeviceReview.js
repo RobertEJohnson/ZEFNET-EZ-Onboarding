@@ -63,7 +63,8 @@ class DeviceReview extends Component {
             && postObject.serial_number && postObject.type_id 
             && postObject.breaker_id)
         {
-            this.props.dispatch({ type: "ADD_DEVICE", payload: postObject })
+            this.props.dispatch({ type: "ADD_DEVICE", payload: postObject });
+            this.props.dispatch({ type: "CLEAR_DEVICE" });
         } else { alert('Oops: please make sure all fields are filled!') }
     }
 

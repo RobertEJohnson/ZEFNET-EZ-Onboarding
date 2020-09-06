@@ -1,14 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, TextField, Button } from "@material-ui/core";
-import user from "../Organization/zefnetpro.png";
+import user from "./zefpro2.png";
 import { Link } from 'react-router-dom';
+import {ChevronLeft, ChevronRight, EvStation} from '@material-ui/icons'
 
 class DeviceSerial extends Component {
   state = {
     serialNumber: "",
     confirmSerialNumber: "",
   };
+
+  componentDidMount = ()=> {
+    if( this.props.reduxState.device.serial !== {} ){
+        this.setState({
+            serialNumber: this.props.reduxState.device.serial.number,
+            confirmSerialNumber: this.props.reduxState.device.serial.number,
+        })
+    }
+  } 
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
@@ -100,6 +110,19 @@ class DeviceSerial extends Component {
               onChange={this.handleInputChangeFor("confirmSerialNumber")}
             />
             <div>
+              {this.props.reduxState.device.serial.number?
+              <div>
+                <br/>
+                <Button variant='contained' color='primary'
+                  component={Link} to="/deviceReview">
+                  <EvStation/>
+                  Review Device
+              </Button>
+                <br/>
+              </div>
+              :
+              <br/>
+              }
               <div>
                 <Button
                   variant="contained"
@@ -107,7 +130,7 @@ class DeviceSerial extends Component {
                   color="default"
                   onClick={this.handleNext}
                 >
-                  Next
+                  Next<ChevronRight/>
                 </Button>
               </div>
               <div style={{ align: "left" }}>
@@ -117,6 +140,7 @@ class DeviceSerial extends Component {
                   color="default"
                   component = {Link} to ="/deviceType"
                 >
+                  <ChevronLeft/>
                   Previous
                 </Button>
               </div>

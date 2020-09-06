@@ -44,15 +44,32 @@ class BreakerSelect extends Component {
         selectedBreaker: '',
         open: false
       };
+      
+      componentDidMount = ()=> {
+        if( this.props.state.device.breaker !== {} ){
+            this.setState({
+                ...this.state,
+                selectedBreaker: this.props.state.device.breaker
+            })
+        }
+      } 
 
       componentDidUpdate(previousProps){
-          console.log('previous siteBreakers', previousProps.state.breaker.siteBreakerReducer);
-          console.log('current siteBreakers', this.props.state.breaker.siteBreakerReducer);
+          //console.log('previous siteBreakers', previousProps.state.breaker.siteBreakerReducer);
+          //console.log('current siteBreakers', this.props.state.breaker.siteBreakerReducer);
           if(previousProps.state.breaker.siteBreakerReducer !== this.props.state.breaker.siteBreakerReducer){
-              this.setState({
+            if( this.props.state.device.site !== {} ){
+                this.setState({
+                    ...this.state,
+                    breakers: this.props.state.breaker.siteBreakerReducer,
+                    selectedBreaker: this.props.state.device.breaker
+                })
+            } else{
+                this.setState({
                   ...this.state,
                   breakers: this.props.state.breaker.siteBreakerReducer
               })
+            }
           }
       }
     
@@ -106,10 +123,10 @@ class BreakerSelect extends Component {
                                 {/*Map out all breakers stored in reducer*/}
                     
                                 {
-                                    this.state.breakers.map((breaker, index)=>
+                                    this.props.state.breaker.siteBreakerReducer.map((breaker, index)=>
                                     <MenuItem value={breaker} key={breaker.id}>
                                         <span style={{backgroundColor: '#b2ff59'}}>limit:{breaker.limit}kW </span> 
-                                        {'\u00A0'}{'\u00A0'}{breaker.name}
+                                        {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{breaker.name}
                                     </MenuItem>
                                 )}
                                 </Select>
@@ -145,11 +162,11 @@ class BreakerSelect extends Component {
                                         <Button variant='contained' color='primary'
                                             onClick={this.assignBreaker}
                                             component={Link} to="/deviceType">
-                                            <ChevronRight/> Next
+                                             Next<ChevronRight/>
                                         </Button>
                                 :
                                     <Button variant='contained' disabled>
-                                        <ChevronRight/> Next
+                                         Next<ChevronRight/>
                                     </Button>
                                 }
                             </Grid>

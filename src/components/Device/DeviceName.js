@@ -9,6 +9,15 @@ class DeviceSerial extends Component {
     installationDate: "",
   };
 
+  componentDidMount = ()=> {
+    if( this.props.reduxState.device.name !== '' ){
+        this.setState({
+            chargerName: this.props.reduxState.device.name,
+            installationDate: this.props.reduxState.device.date,
+        })
+    }
+  } 
+
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
@@ -25,7 +34,7 @@ class DeviceSerial extends Component {
       this.props.dispatch({type: "SET_DATE", payload: this.state.installationDate});
       this.props.history.push("/deviceReview"); //change this
     } else {
-      alert("Serial numbers do not match");
+      alert("Oops! Please enter both a name and installation date for your device");
     }
   };
 

@@ -53,11 +53,13 @@ class HostSelect extends Component {
   };
 
   componentDidMount = ()=> {
+    if( this.props.state.device.site !== {} ){
         this.setState({
-            open: false,
-            selectedSite: ''
+            ...this.state,
+            selectedSite: this.props.state.device.site
         })
-  }
+    }
+  } 
 
   addSite = () => {
       this.setState ({
@@ -80,12 +82,21 @@ class HostSelect extends Component {
   }
 
   componentDidUpdate(previousProps){
-      if(previousProps.state.site && (previousProps.state.site !== this.props.state.site)){
+   
+   if(previousProps.state.site && (previousProps.state.site !== this.props.state.site)){
+     if( this.props.state.device.site !== {} ){
+      this.setState({
+          ...this.state,
+          selectedSite: this.props.state.device.site
+      }) 
+    }else{
          // set state to selectedsite: this.props.newDevice.site
          this.setState({
-             selectedSite:this.props.state.site[this.props.state.site.length-1]
+           ...this.state, 
+             selectedSite: this.props.state.site[this.props.state.site.length-1]
          })
       }
+    } 
   }
 
   assignSite = () => {
