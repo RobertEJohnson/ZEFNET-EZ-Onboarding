@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Grid, Button, withStyles, CardHeader, GridListTile, GridListTileBar} from '@material-ui/core';
+import {Grid, Button, withStyles, GridListTileBar} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
@@ -10,6 +10,7 @@ import double from './dualheadped.jpg';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
 
 
 const styles = theme => ({ 
@@ -59,7 +60,7 @@ class DeviceSelectType extends Component {
     });
     const dispatchObject =  {
         id: 1,
-        img: 'src/components/Device//wallMount.jpg',
+        img: './wallMount.jpg',
         name: 'Wall Mount Charger'
       }
       this.props.dispatch({ type: "SET_TYPE", payload: dispatchObject })
@@ -70,7 +71,7 @@ class DeviceSelectType extends Component {
     });
     const dispatchObject =  {
       id: 2,
-      img: 'src/components/Device/singleheadped.jpg',
+      img: './singleheadped.jpg',
       name: 'Single Head Pedestal Charger'
     }
       this.props.dispatch({ type: "SET_TYPE", payload: dispatchObject })
@@ -81,7 +82,7 @@ class DeviceSelectType extends Component {
     });
     const dispatchObject =  {
       id: 3,
-      img: 'src/components/Device/dualheadped.jpg',
+      img: './dualheadped.jpg',
       name: 'Dual Head Pedestal Charger'
     }
     this.props.dispatch({ type: "SET_TYPE", payload: dispatchObject })
@@ -93,7 +94,7 @@ class DeviceSelectType extends Component {
     });
     const dispatchObject =  {
       id: 4,
-      img: 'src/components/Device/zefpro.png',
+      img: './zefpro.png',
       name: 'ZEFNET Pro Charger'
     }
       this.props.dispatch({ type: "SET_TYPE", payload:dispatchObject })
@@ -175,6 +176,7 @@ class DeviceSelectType extends Component {
                   color="default"
                   component = {Link} to ="/breakerSelect"
                 >
+                  <ChevronLeft/>
                   Previous
                 </Button>
               </div>
