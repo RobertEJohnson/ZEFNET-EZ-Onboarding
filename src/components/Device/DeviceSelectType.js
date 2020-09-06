@@ -159,6 +159,7 @@ class DeviceSelectType extends Component {
             color="default"
             component = {Link} to ="/breakerSelect"
           >
+            <ChevronLeft/>
             Previous
           </Button>
         </div>
