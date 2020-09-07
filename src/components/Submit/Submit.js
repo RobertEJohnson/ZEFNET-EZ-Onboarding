@@ -58,16 +58,18 @@ class Submit extends Component {
             first_name:device.first_name,
             second_name: device.second_name,
             phone: device.phone,
-            email: device.email
+            email: device.email,
+            organization_id:this.props.state.organization.id
         }
         console.log('device site:', site)
         this.props.dispatch({ type: "SET_DEVICE_SITE", payload: site });
         this.props.dispatch({ type: "FETCH_SITE_BREAKERS", payload: site.id });
         const breaker = {
-            name: device.breaker_name,
-            id: device.breaker_id,
             description: device.description,
+            id: device.breaker_id,
             limit: device.limit,
+            name: device.breaker_name,
+            site_id: device.site_id
         }
         console.log('device breaker:', breaker)
         this.props.dispatch({ type: "SET_BREAKER", payload: breaker });
@@ -299,7 +301,7 @@ class Submit extends Component {
                                     <div>
                                         <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Installation Date:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem} >
-                                            {device.install_date}
+                                            {device.install_date.substring(0,10)}
                                         </p>
                                     </div>
                                 </Grid>
