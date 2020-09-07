@@ -35,6 +35,7 @@ class DeviceSelectType extends Component {
 
  setTypeReducer = (id, img, name) => {
   this.props.dispatch({ type: "SET_TYPE", payload: {id,img,name} });
+  this.props.history.push('/deviceSerial')
 }
 
   render() {

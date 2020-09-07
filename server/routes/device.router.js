@@ -13,7 +13,7 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 	"device"."serial_number",
 	"device"."id",
 	"device"."breaker_id",
-	"breaker"."name",
+	"breaker"."name" as "breaker_name",
 	"breaker"."limit",
 	"breaker"."description",
 	"breaker"."site_id",

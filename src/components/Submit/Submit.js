@@ -24,18 +24,8 @@ const styles = theme => ({
     padding: theme.spacing(2),
     borderRadius: '5px',
   },
-  gridListTile: {
-    color: 'rgba(255, 255, 255, 0.54)',
-    maxWidth: '300px',
-    maxHeight: '300px',
-    margin: '15px 15px 0px 0px'
-  },
-  image: {
-    maxHeight: '350px',
-    minWidth: '350px'
-  },
-  greyscale: {
-    filter: 'grayscale(100%)'
+  left:{
+    width: '75px'
   },
   grow:{
     flexGrow: 1,
@@ -121,10 +111,12 @@ class Submit extends Component {
                 <h2>Here are your devices, with breaker and location information</h2>
                 <h2>Please open each device to ensure information accuracy</h2>
             </Grid>
-            
-            <Accordion>
+            {/* Map out each device as an accordion */}
+            {this.props.state.allDevice.map((device, index) => 
+            (
+            <Accordion key = {index}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                        <h2>Device Name</h2>
+                    <h2>{device.name}</h2>
                     </AccordionSummary>
                     
                     <AccordionDetails>
@@ -133,11 +125,7 @@ class Submit extends Component {
                                     
                                     <Divider/>
                                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                                        <div>
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                        </div>
+                                        <div className = {classes.left}/>
                                         <h2>Hosting Location</h2> 
                                         <Button component = {Link} to ="/hostSelect">
                                             Edit <EditIcon/>
@@ -148,7 +136,7 @@ class Submit extends Component {
                                 <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
                                     <h3 style={{display: 'inline-block'}}>Address:{'\u00A0'}{'\u00A0'}</h3>
                                     <p style={{display: 'inline-block'}}>
-                                        {this.props.state.device.site.address}
+                                        {device.address}
                                     </p>
                                 </Grid>
 
@@ -162,36 +150,32 @@ class Submit extends Component {
                                     <div>
                                         <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>First Name:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem}>
-                                            {this.props.state.device.site.first_name}
+                                            {device.first_name}
                                         </p>
                                     </div>
                                     <div>
                                         <h3 className={classes.reviewItem}>Second Name:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem}>
-                                            {this.props.state.device.site.second_name}
+                                            {device.second_name}
                                         </p>
                                     </div>
                                     <div>
                                         <h3 className={classes.reviewItem}>Phone Number:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem}>
-                                            {this.props.state.device.site.phone}
+                                            {device.phone}
                                         </p>
                                     </div> 
                                     <div>
                                         <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Email:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem}>
-                                            {this.props.state.device.site.email}
+                                            {device.email}
                                         </p>
                                     </div>
                                 </Grid>
                             
                                 <Grid item align='center' xs={12}>
                                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                                        <div>
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                        </div>
+                                     <div className = {classes.left}/>
                                         <h2>Breaker Information</h2> 
                                         <Button component = {Link} to ="/breakerSelect">
                                             Edit <EditIcon/>
@@ -203,30 +187,26 @@ class Submit extends Component {
                                     <div>
                                         <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Breaker Name:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem}>
-                                            {this.props.state.device.breaker.name}
+                                            {device.breaker_name}
                                         </p>
                                     </div>
                                     <div>
                                         <h3 className={classes.reviewItem}>Breaker Limit:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem}>
-                                            {this.props.state.device.breaker.limit}kW
+                                            {device.limit}{'\u00A0'}kW
                                         </p>
                                     </div>
                                     <div>
                                         <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Breaker Description:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem}>
-                                            {this.props.state.device.breaker.description}
+                                            {device.description}
                                         </p>
                                     </div>
                                 </Grid>
 
                                 <Grid item align='center' xs={12}>
                                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                                        <div>
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                        </div>
+                                        <div className = {classes.left}/>
                                         <h2>Device Type</h2> 
                                         <Button component = {Link} to ="/deviceType">
                                             Edit <EditIcon/>
@@ -238,18 +218,14 @@ class Submit extends Component {
                                     <div>
                                         <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Device Type:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem}>
-                                            {this.props.state.device.type.name}
+                                            {device.type_name}
                                         </p>
                                     </div>
                                 </Grid>
 
                                 <Grid item align='center' xs={12}>
                                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                                        <div>
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                        </div>
+                                        <div className = {classes.left}/>
                                         <h2>Device Information</h2> 
                                         <Button component = {Link} to ="/deviceSerial">
                                             Edit <EditIcon/>
@@ -261,18 +237,14 @@ class Submit extends Component {
                                     <div>
                                         <h3 className={classes.reviewItem} style={{margin: '10px 0px'}}>Serial Number:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem}>
-                                        {this.props.state.device.serial.number}
+                                        {device.serial_number}
                                         </p>
                                     </div>
                                 </Grid>
 
                                 <Grid item align='center' xs={12}>
                                 <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                                        <div>
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                            {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                        </div>
+                                        <div className = {classes.left}/>
                                         <h2>Additional Information</h2> 
                                         <Button component = {Link} to ="/deviceName">
                                             Edit <EditIcon/>
@@ -284,13 +256,13 @@ class Submit extends Component {
                                     <div>
                                         <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Charger Name:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem}>
-                                        {this.props.state.device.name}
+                                        {device.name}
                                         </p>
                                     </div>
                                     <div>
                                         <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Installation Date:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem} >
-                                            {this.props.state.device.date}
+                                            {device.install_date}
                                         </p>
                                     </div>
                                 </Grid>
@@ -298,7 +270,7 @@ class Submit extends Component {
                             </Grid>
                         </AccordionDetails>
                  </Accordion>
-                    
+                    ))}
                     <Grid container direction = 'row' justify = 'center' alignContent = 'center' style={{marginTop: '35px'}}>
                             <Button variant ='contained'
                             component = {Link} to ="/organizationHome">
