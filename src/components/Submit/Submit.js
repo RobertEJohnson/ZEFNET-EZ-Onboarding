@@ -43,9 +43,34 @@ const styles = theme => ({
 
 class Submit extends Component {
 
-    handleEditFor = index => (event) => {
-        console.log('in handleEditFor', this.props.state.allDevice[index]);
-        //supply newdevice rediucer with info for this device
+    handleEditFor = (index) => {
+        //console.log('in handleEditFor', index)
+        console.log('selected device:', this.props.state.allDevice[index.index]);
+        //supply newdevice reducer with info for this device
+        const device = this.props.state.allDevice[index.index];
+        this.props.dispatch({ type: "SET_NAME", payload: device.name });
+        this.props.dispatch({ type: "SET_ID", payload: device.id });
+        this.props.dispatch({ type: "SET_DATE", payload: device.install_date });
+        const site = {
+            id: device.site_id,
+            address: device.address,
+            first_name:device.first_name,
+            second_name: device.second_name,
+            phone: device.phone,
+            email: device.email
+        }
+        console.log('device site:', site)
+        this.props.dispatch({ type: "SET_DEVICE_SITE", payload: site });
+        this.props.dispatch({ type: "FETCH_SITE_BREAKERS", payload: site.id });
+        const breaker = {
+            name: device.breaker_name,
+            id: device.breaker_id,
+            description: device.description,
+            limit: device.limit,
+        }
+        console.log('device breaker:', breaker)
+        this.props.dispatch({ type: "SET_BREAKER", payload: breaker });
+        this.props.dispatch({ type: "SET_SERIAL", payload: {number: device.serial_number} });
       }
 
     render() {
@@ -127,7 +152,9 @@ class Submit extends Component {
                                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
                                         <div className = {classes.left}/>
                                         <h2>Hosting Location</h2> 
-                                        <Button component = {Link} to ="/hostSelect">
+                                        <Button onClick={()=>{this.handleEditFor({index})}}
+                                        // component = {Link} to ="/hostSelect"
+                                        >
                                             Edit <EditIcon/>
                                         </Button>
                                 </Grid>
@@ -177,7 +204,8 @@ class Submit extends Component {
                                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
                                      <div className = {classes.left}/>
                                         <h2>Breaker Information</h2> 
-                                        <Button component = {Link} to ="/breakerSelect">
+                                        <Button onClick={()=>{this.handleEditFor({index})}}
+                                            component = {Link} to ="/breakerSelect">
                                             Edit <EditIcon/>
                                         </Button>
                                 </Grid>
@@ -227,7 +255,8 @@ class Submit extends Component {
                                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
                                         <div className = {classes.left}/>
                                         <h2>Device Information</h2> 
-                                        <Button component = {Link} to ="/deviceSerial">
+                                        <Button onClick={()=>{this.handleEditFor({index})}}
+                                            component = {Link} to ="/deviceSerial">
                                             Edit <EditIcon/>
                                         </Button>
                                 </Grid>
@@ -246,7 +275,8 @@ class Submit extends Component {
                                 <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
                                         <div className = {classes.left}/>
                                         <h2>Additional Information</h2> 
-                                        <Button component = {Link} to ="/deviceName">
+                                        <Button onClick={()=>{this.handleEditFor({index})}}
+                                         component = {Link} to ="/deviceName">
                                             Edit <EditIcon/>
                                         </Button>
                                 </Grid>
