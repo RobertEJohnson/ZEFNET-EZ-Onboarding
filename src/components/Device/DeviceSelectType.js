@@ -45,10 +45,12 @@ class DeviceSelectType extends Component {
     const {classes} = this.props;
     return (
       <Grid container justify='center' alignContent='center' alignItems='center'  xs={12}>
+        {/*Title */}
         <Grid item xs={12} align='center'>
           <h1 style={{color:'white',marginBottom: '30px'}}>Please Select Your Charging Device Type</h1>
         </Grid>
       
+        {/*Wall Mount Device Card*/}
         <Grid item xs={8} md={4} lg={3} align='center'>
           <Card className={classes.card}>
             <CardActionArea onClick={()=>{this.setTypeReducer(1,'./wallMount.jpg','Wall Mount Charger')}}
@@ -65,6 +67,7 @@ class DeviceSelectType extends Component {
             </Card>
         </Grid>
 
+        {/*Single Head Device Card*/}
         <Grid item xs={8} md={4} lg={3} align='center'>
           <Card className={classes.card}>
             <CardActionArea onClick={()=>{this.setTypeReducer(2,'./singleheadped.jpg','Single Head Pedestal Charger')}}
@@ -78,8 +81,11 @@ class DeviceSelectType extends Component {
               />
               </CardActionArea>
           </Card>
-          <Card className={classes.card}>
+          </Grid>
 
+          {/*Dual Head Device Card*/}
+          <Grid item xs={8} md={4} lg={3} align='center'>
+          <Card className={classes.card}>
             <CardActionArea onClick={()=>{this.setTypeReducer(3,'./dualheadped.jpg','Dual Head Pedestal Charger')}} 
               component = {Link} to ="/deviceSerial">
                 <CardMedia
@@ -93,8 +99,8 @@ class DeviceSelectType extends Component {
           </Card>
         </Grid>
         
+        {/*ZEFNET Pro Device Card*/}
         <Grid item xs={8} md={4} lg={3} align='center'>
-
             <Card className={classes.card}>
               <CardActionArea onClick={()=>{this.setTypeReducer(4,'./zefpro.png','ZEFNET Pro Charger')}}
                 component = {Link} to ="/deviceSerial">
@@ -107,9 +113,9 @@ class DeviceSelectType extends Component {
                 />
                 </CardActionArea>
             </Card>
-          </div>
           </Grid>
 
+        {/*Previous Button*/}
         <Grid item align='center' xs={12}>
           <div style={{ align: 'center' }}>
             <Button
@@ -119,28 +125,12 @@ class DeviceSelectType extends Component {
               component = {Link} to ="/breakerSelect"
               className={classes.previousButton}
              >
-              <ChevronLeft/>
-              Previous
+              <ChevronLeft/>Previous
             </Button>
           </div>
         </Grid>
 
-       <Grid item align='center' xs={12}>
-        <div style={{ align: 'center' }}>
-          <Button
-            className={classes.previousButton}
-            variant="contained"
-            style={{ margin: "20px" }}
-            color="default"
-            component = {Link} to ="/breakerSelect"
-          >
-            <ChevronLeft/> Previous
-
-          </Button>
-        </div>
-       </Grid>
-    </Grid>
-
+      </Grid>
 
     );
   }
