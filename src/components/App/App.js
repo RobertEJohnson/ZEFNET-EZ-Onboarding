@@ -81,6 +81,12 @@ class App extends Component {
               />
 
               <ProtectedRoute
+              exact
+              path="/devicePrep"
+              component={DevicePrep}
+            />
+
+              <ProtectedRoute
                 exact
                 path="/deviceType"
                 component={DeviceSelectType}
