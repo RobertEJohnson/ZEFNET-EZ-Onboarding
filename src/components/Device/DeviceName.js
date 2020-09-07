@@ -201,7 +201,6 @@ class DeviceName extends Component {
   }
 }
 
-// Instead of taking everything from state, we just want the user info.
 const mapStateToProps = (reduxState) => ({
   reduxState,
 });

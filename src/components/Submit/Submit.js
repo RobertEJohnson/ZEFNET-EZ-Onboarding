@@ -79,7 +79,13 @@ class Submit extends Component {
             id: device.type_id,
         }
         this.props.dispatch({ type: "SET_TYPE", payload: type });
-      }
+    }//end handleReviewFor
+    
+    handleSubmit = () =>{
+        console.log('submit clicked');
+        this.props.dispatch({ type: "SUBMIT_ORGANIZATION", payload:this.props.state.organization.id });
+    }
+
 
     render() {
       const {classes} = this.props;
@@ -105,7 +111,7 @@ class Submit extends Component {
                             <TableCell align="right">Last Name</TableCell>
                             <TableCell align="right">Email Address</TableCell>
                             <TableCell align="right">Phone Number</TableCell>
-                            <TableCell align="right">Priveleges</TableCell>
+                            <TableCell align="right">Privileges</TableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody> 
@@ -318,6 +324,8 @@ class Submit extends Component {
                             <div className = {classes.grow}>{'\u00A0'}</div>
                             <Button variant = 'contained' color = 'primary'
                             size = 'large'
+                            component = {Link} to ="/completed"
+                            onClick = {this.handleSubmit}
                             >
                                 <SaveIcon/> Submit Onboarding Package for Review
                             </Button>
