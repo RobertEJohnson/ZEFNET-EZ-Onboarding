@@ -101,4 +101,25 @@ router.put("/", rejectUnauthenticated, async (req, res) => {
   }
 });
 
+/**
+ * Submit Organization (PUT) route
+ */
+router.put("/submit/:id", rejectUnauthenticated, (req, res) => {
+  const queryString = `UPDATE "organization"
+    SET "status" = 'submitted'
+    WHERE id = $1;`;
+  const postValues = [
+      req.params.id
+  ]
+  pool.query(queryString, postValues)
+  .then(()=>{res.sendStatus(201)})
+  .catch((error)=>{
+   res.sendStatus(500)
+   console.log( 'error on POST /api/device/', error);
+ })
+});
+
+
+
+
 module.exports = router;

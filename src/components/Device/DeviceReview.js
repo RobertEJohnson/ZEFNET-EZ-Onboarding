@@ -45,18 +45,23 @@ class DeviceReview extends Component {
             serial_number: this.props.state.device.serial.number,
             type_id: this.props.state.device.type.id,
             breaker_id:this.props.state.device.breaker.id,
-            org_id:this.props.state.organization.id
+            org_id:this.props.state.organization.id,
+            id: this.props.state.device.id,
         };
-        console.log('saving new device:', postObject)
+        console.log('saving device:', postObject)
         // call saga that posts the new device if required fields filled
         if(postObject.name && postObject.installation_date
             && postObject.serial_number && postObject.type_id 
             && postObject.breaker_id)
-        {
-            this.props.dispatch({ type: "ADD_DEVICE", payload: postObject });
+        {   
+            //post the new device, or update if navigated here from submit page
+            if ( postObject.id ) {
+                this.props.dispatch({ type: "UPDATE_DEVICE", payload: postObject });
+            } else{
+                this.props.dispatch({ type: "ADD_DEVICE", payload: postObject });        
+            }
             this.props.dispatch({ type: "CLEAR_DEVICE" });
             this.props.history.push("/OrganizationHome");
-           
         } else { alert('Oops: please make sure all fields are filled!') }
     }
 
