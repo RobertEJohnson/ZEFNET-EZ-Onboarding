@@ -34,7 +34,18 @@ const styles = theme => ({
     },
     grow: {
         flexGrow: 1
-    }
+    },
+    hrWordDivder: {
+        width: '90%',
+        textAlign: 'center',
+        borderBottom: '1px solid #000',
+        lineHeight: '0.1em',
+        margin: '0px 0px 35px 0px' 
+     },
+      hrWord: { 
+         background: '#fff',
+         padding:'0px 10px',
+     }
 })
 
 class BreakerSelect extends Component {
@@ -134,9 +145,9 @@ class BreakerSelect extends Component {
                            
                             <br/>
                             <br/>
-                            {/* Divider is a material-ui hr*/}
-                            <Divider/>
-                            <h1>Or</h1>
+
+                            <h2 className={classes.hrWordDivder}><span className={classes.hrWord}>Or</span></h2>
+                            
                             {/*Conditionally render the Add Breaker button as clickable/disabled based on if a breaker is selected*/}
                             {
                                 this.state.selectedBreaker ? 

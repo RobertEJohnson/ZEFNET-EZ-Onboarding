@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import{Grid, Button,} from '@material-ui/core';
+import{Grid, Button, Paper} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
@@ -9,33 +9,17 @@ import { Link } from 'react-router-dom';
 
 
 const styles = theme => ({ 
-  root: {
-    flexGrow: 1,
-    alignItems: 'center',
-    justify: 'center',
-    color: 'white', 
-    fontFamily: 'Crimson Text, Open Sans, sans-serif',
-    minHeight: '75vh', 
-    minWidth: '100vw', 
-    background: 'linear-gradient(360deg, #041E41, #004e92 70%)',
-  },
-  topHead:{
-      marginTop: '5px'
+  resetMargin:{
+      margin: '0'
   },
   headerZone: {
-      borderStyle: 'solid',
-      textAlign: 'center',
       fontFamily: 'Crimson Text, Open Sans, sans-serif',
-      padding: theme.spacing(1),
-      paddingTop: '0px',
+      minWidth: '100%',
+      position: 'relative'
   },
-  edit: {
-      color: '#f5f5f5',
-      borderColor: '#f5f5f5'
-  },
-  details: {
-    marginLeft: '3vw',
-    marginRight: '3vw',
+  paper:{
+    padding: theme.spacing(2),
+    borderRadius: '5px',
   },
 })
 
@@ -50,58 +34,56 @@ componentDidMount(){
   render() {
     const {classes} = this.props;
     return (
-      <div className = {classes.root}>
-          <br/>
-          <Grid container direction = 'column' alignContent = 'center' justify = 'center'>
-              <Grid item xs = {12} sm = {10} md = {8} lg = {6}>
+        
+        <Paper className = {classes.paper} elevation = {3} style={{minWidth: '425px'}}>
+          <Grid container direction = 'column' alignContent = 'center' justify = 'center' style={{minWidth: '100%'}}>
+          
+            <Grid item align='center' style={{minWidth: '100%'}}>
                 <div className = {classes.headerZone}>
-                    <h1 className = {classes.topHead}>Organization Information</h1>
-                    <i>This is the primary information for your company.
-                        <br/>
-                        It doesn't need to be the address that the chargers are located.
-                    </i>
-                    <br/>
+                    <span style={{position: 'absolute', right: '10px', top: '8px'}}>
+                      <Button variant='outlined' component={Link} to ="/editOrganization" size='small'>
+                          <EditIcon/> Edit
+                      </Button>
+                    </span>
+                    <h1 className={classes.resetMargin}>
+                      {this.props.reduxState.organization.name}
+                    </h1>
+                    <h4 className={classes.resetMargin}>Organization Information</h4>
+                </div>
+                
+            </Grid>
+            <Grid item style={{minWidth: '100%'}}>
+                <div style={{display: 'flex', flexDirection: 'row', paddingTop:'12px'}}>
+                  <div style={{minWidth: '30%',  padding: '0px 0px 0px 50px'}}>
+                    <p>
+                      Email:
+                      <br/>Phone:
+                      <br/>Address:
+                    </p>
+                  </div>
+                  <div style={{minWidth: '70%'}}>
+                    <p>
+                      {this.props.reduxState.organization.email}
+                      <br/>{this.props.reduxState.organization.phone}
+                      <br/>{this.props.reduxState.organization.address}
+                    </p>
+                  </div>
                 </div>
             </Grid>
-            <Grid item xs = {12} sm = {10} md = {8} lg = {6} >
-                <div className = {classes.details}>
-                    <br/>
-                    <br/>
-                    <h2> {this.props.reduxState.organization.name}</h2>
-                    <p>Email: {this.props.reduxState.organization.email}
-                    <br/>
-                    Phone: {this.props.reduxState.organization.phone}
-                    <br/>
-                    Address: {this.props.reduxState.organization.address}</p>
-                </div>
-            </Grid>
-            <br/>
-            <center>
-                <Button className = {classes.edit} 
-                    variant = 'outlined'
-                    component = {Link} to ="/editOrganization"
-                     >
-                    <EditIcon/>
-                    Edit Organization
-                </Button>
-                <br/>
-                <br/>
-                <Button variant = 'contained' 
+            <center style={{marginTop: '20px'}}>
+                <Button variant = 'contained'
                     component = {Link} to ="/organizationHome"
                     >
                     <HomeIcon/>
                     Home
                 </Button>
             </center>
-        </Grid>
-      </div>
+            </Grid>
+        </Paper>
     );
   }
 }
 
-// Instead of taking everything from state, we just want the error messages.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = reduxState => ({
   reduxState
 });

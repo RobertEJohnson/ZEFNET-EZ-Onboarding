@@ -4,7 +4,6 @@ import { Grid, Button, TextField } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 
-import "./LoginPage.css";
 
 const styles = (theme) => ({
   input: {
@@ -17,14 +16,25 @@ const styles = (theme) => ({
   longField: {
     width: "380px",
   },
-  whiteText: {
+  darkButton: {
     color: "white",
     backgroundColor: "#1c2447",
     borderRadius: "5px",
     "&:hover": {
       backgroundColor: "#243953",
+      transform: 'scale(1.03)',
     },
   },
+  smallTechGlow:{
+    color: '#006dcc',
+    backgroundColor: '#f1f1f1',
+    transition: 'all .2s ease-in-out',
+    '&:hover':{
+      transform: 'scale(1.03)',
+      color: '#006dcc',
+      backgroundColor: 'white', 
+      boxShadow: '0 0 5px #c8ffff,-5px 0 10px #66fbfb, 5px 0 15px #049494'}
+}
 });
 
 class LoginPage extends Component {
@@ -122,17 +132,14 @@ class LoginPage extends Component {
         <div>
           <Button
             onClick={this.login}
+            className={classes.smallTechGlow}
             variant="contained"
-            style={{
-              color: "#006dcc",
-              backgroundColor: "white",
-              marginLeft: "75px",
-            }}
+            style={{marginLeft: '75px'}}
           >
-            Sign in!
+            Sign in
           </Button>
           <Button
-            className={classes.whiteText}
+            className={classes.darkButton}
             style={{ float: "right", fontSize: "12px" }}
             onClick={() => {
               this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
