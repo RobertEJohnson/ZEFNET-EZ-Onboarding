@@ -45,12 +45,13 @@ class Submit extends Component {
 
     handleEditFor = (index) => {
         //console.log('in handleEditFor', index)
-        console.log('selected device:', this.props.state.allDevice[index.index]);
+        //console.log('selected device:', this.props.state.allDevice[index.index]);
         //supply newdevice reducer with info for this device
         const device = this.props.state.allDevice[index.index];
         this.props.dispatch({ type: "SET_NAME", payload: device.name });
         this.props.dispatch({ type: "SET_ID", payload: device.id });
-        this.props.dispatch({ type: "SET_DATE", payload: device.install_date });
+        const date = device.install_date.substring(0,10)
+        this.props.dispatch({ type: "SET_DATE", payload: date});
         const site = {
             id: device.site_id,
             address: device.address,
@@ -71,6 +72,11 @@ class Submit extends Component {
         console.log('device breaker:', breaker)
         this.props.dispatch({ type: "SET_BREAKER", payload: breaker });
         this.props.dispatch({ type: "SET_SERIAL", payload: {number: device.serial_number} });
+        const type = {
+            name: device.type_name,
+            id: device.type_id,
+        }
+        this.props.dispatch({ type: "SET_TYPE", payload: type });
       }
 
     render() {
@@ -236,7 +242,8 @@ class Submit extends Component {
                                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
                                         <div className = {classes.left}/>
                                         <h2>Device Type</h2> 
-                                        <Button component = {Link} to ="/deviceType">
+                                        <Button onClick={()=>{this.handleEditFor({index})}}
+                                        component = {Link} to ="/deviceType">
                                             Edit <EditIcon/>
                                         </Button>
                                 </Grid>

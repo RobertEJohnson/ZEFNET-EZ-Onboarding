@@ -22,6 +22,7 @@ class DeviceName extends Component {
   componentDidMount = ()=> {
     if( this.props.reduxState.device.name !== '' ){
         this.setState({
+            ...this.state,
             chargerName: this.props.reduxState.device.name,
             installationDate: this.props.reduxState.device.date,
         })
