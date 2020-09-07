@@ -167,7 +167,7 @@ class RegisterPage extends Component {
               <div>
                   <TextField
                     variant = 'outlined'
-                    label = 'Primay Phone (optional)'
+                    label = 'Primary Phone (optional)'
                     name='phone'
                     value={this.state.phone}
                     onChange={this.handleInputChangeFor('phone')}
