@@ -44,76 +44,70 @@ class DeviceSelectType extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <Grid container justify='center' alignContent='center' alignItems='center'  xs={12}>
+      <Grid container justify='center' alignContent='center' alignItems='center' xs={12}>
         {/*Title */}
         <Grid item xs={12} align='center'>
           <h1 style={{color:'white',marginBottom: '30px'}}>Please Select Your Charging Device Type</h1>
         </Grid>
       
-        {/*Wall Mount Device Card*/}
-        <Grid item xs={8} md={4} lg={3} align='center'>
-          <Card className={classes.card}>
-            <CardActionArea onClick={()=>{this.setTypeReducer(1,'./wallMount.jpg','Wall Mount Charger')}}
-               component = {Link} to ="/deviceSerial"
-            >
-              <CardMedia
-              image={wallmount}
-              title="Wall Mount Charger" 
-              className={classes.media} />
-              <GridListTileBar
-                  title="Wall Mount Charger"
-              />
-              </CardActionArea>
-            </Card>
-        </Grid>
-
-        {/*Single Head Device Card*/}
-        <Grid item xs={8} md={4} lg={3} align='center'>
-          <Card className={classes.card}>
-            <CardActionArea onClick={()=>{this.setTypeReducer(2,'./singleheadped.jpg','Single Head Pedestal Charger')}}
-              component = {Link} to ="/deviceSerial">
-              <CardMedia
-              image={single}
-              title="Single Head Pedestal Charger" 
-              className={classes.media} />
-              <GridListTileBar
-                  title="Single Head Pedestal Charger"
-              />
-              </CardActionArea>
-          </Card>
-          </Grid>
-
-          {/*Dual Head Device Card*/}
-          <Grid item xs={8} md={4} lg={3} align='center'>
-          <Card className={classes.card}>
-            <CardActionArea onClick={()=>{this.setTypeReducer(3,'./dualheadped.jpg','Dual Head Pedestal Charger')}} 
-              component = {Link} to ="/deviceSerial">
-                <CardMedia
-                  image={double}
-                  title="Double Head Pedestal Charger" 
+        <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
+              {/*Wall Mount Device Card*/}
+              <Card className={classes.card}>
+                <CardActionArea onClick={()=>{this.setTypeReducer(1,'./wallMount.jpg','Wall Mount Charger')}}
+                   component = {Link} to ="/deviceSerial"
+                >
+                  <CardMedia
+                  image={wallmount}
+                  title="Wall Mount Charger" 
                   className={classes.media} />
-                <GridListTileBar
-                    title="Double Head Pedestal Charger"
-                />
-              </CardActionArea>
-          </Card>
-        </Grid>
-        
-        {/*ZEFNET Pro Device Card*/}
-        <Grid item xs={8} md={4} lg={3} align='center'>
-            <Card className={classes.card}>
-              <CardActionArea onClick={()=>{this.setTypeReducer(4,'./zefpro.png','ZEFNET Pro Charger')}}
-                component = {Link} to ="/deviceSerial">
-                <CardMedia
-                image={zefNetPro}
-                title="ZEFNET Pro Charger" 
-                className={classes.media} />
-                <GridListTileBar
-                    title="ZEFNET Pro Charger"
-                />
-                </CardActionArea>
-            </Card>
-          </Grid>
+                  <GridListTileBar
+                      title="Wall Mount Charger"
+                  />
+                  </CardActionArea>
+                </Card>
+    
+            {/*Single Head Device Card*/}
+              <Card className={classes.card}>
+                <CardActionArea onClick={()=>{this.setTypeReducer(2,'./singleheadped.jpg','Single Head Pedestal Charger')}}
+                  component = {Link} to ="/deviceSerial">
+                  <CardMedia
+                  image={single}
+                  title="Single Head Pedestal Charger" 
+                  className={classes.media} />
+                  <GridListTileBar
+                      title="Single Head Pedestal Charger"
+                  />
+                  </CardActionArea>
+              </Card>
+    
+              {/*Dual Head Device Card*/}
+              <Card className={classes.card}>
+                <CardActionArea onClick={()=>{this.setTypeReducer(3,'./dualheadped.jpg','Dual Head Pedestal Charger')}} 
+                  component = {Link} to ="/deviceSerial">
+                    <CardMedia
+                      image={double}
+                      title="Double Head Pedestal Charger" 
+                      className={classes.media} />
+                    <GridListTileBar
+                        title="Double Head Pedestal Charger"
+                    />
+                  </CardActionArea>
+              </Card>
+            
+            {/*ZEFNET Pro Device Card*/}
+                <Card className={classes.card}>
+                  <CardActionArea onClick={()=>{this.setTypeReducer(4,'./zefpro.png','ZEFNET Pro Charger')}}
+                    component = {Link} to ="/deviceSerial">
+                    <CardMedia
+                    image={zefNetPro}
+                    title="ZEFNET Pro Charger" 
+                    className={classes.media} />
+                    <GridListTileBar
+                        title="ZEFNET Pro Charger"
+                    />
+                    </CardActionArea>
+                </Card>
+        </div>
 
         {/*Previous Button*/}
         <Grid item align='center' xs={12}>
