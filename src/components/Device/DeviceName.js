@@ -142,7 +142,7 @@ class DeviceName extends Component {
                   label="Charger Name:"
                   margin="normal"
                   variant="outlined"
-                  value={this.state.chargerName}
+                  value={this.state.chargerName || "" }
                   onChange={this.handleInputChangeFor("chargerName")}
                 />
               </div>
@@ -155,7 +155,7 @@ class DeviceName extends Component {
                   label=""
                   margin="normal"
                   variant="outlined"
-                  value={this.state.installationDate}
+                  value={this.state.installationDate || ""}
                   onChange={this.handleInputChangeFor("installationDate")}
                 />
               </div>

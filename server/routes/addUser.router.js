@@ -13,6 +13,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         req.body.email,
         req.body.phone,
         req.body.editor,
+        req.body.orgId,
     ]
     pool.query(queryString, postValues)
     .then(()=>{res.sendStatus(201)})
