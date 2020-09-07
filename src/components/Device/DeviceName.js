@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, Paper, withStyles, TextField, Button } from "@material-ui/core";
-import {ChevronLeft, EvStation} from '@material-ui/icons';
+import { ChevronLeft, EvStation } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import user from "../Organization/zefUser.jpeg";
 import { Link } from "react-router-dom";
@@ -91,20 +91,21 @@ class DeviceName extends Component {
         style={{
           minHeight: "75vh",
           minWidth: "100vw",
-        // background: "linear-gradient(360deg, #041E41, #004e92 70%)",
+          // background: "linear-gradient(360deg, #041E41, #004e92 70%)",
         }}
       >
         <Grid item xs={8} style={{ maxWidth: "1000px" }} align="center">
           <Paper className={classes.paper} elevation={3}>
             <div style={header}>
+              
               <div>
                 <img
                   src={user}
                   style={{
-                    maxHeight: "150px",
+                    maxHeight: "146px",
                     maxWidth: "150px",
                   }}
-                  alt = {this.props.reduxState.device.type.name}
+                  alt="zef charger"
                 />
                 {/* Image should be changed */}
               </div>
@@ -166,7 +167,7 @@ class DeviceName extends Component {
                     component={Link}
                     to="/deviceSerial"
                   >
-                    <ChevronLeft/> Previous
+                    <ChevronLeft /> Previous
                   </Button>
                 </div>
                 <div>

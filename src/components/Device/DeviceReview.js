@@ -65,6 +65,8 @@ class DeviceReview extends Component {
         {
             this.props.dispatch({ type: "ADD_DEVICE", payload: postObject });
             this.props.dispatch({ type: "CLEAR_DEVICE" });
+            this.props.history.push("/OrganizationHome");
+           
         } else { alert('Oops: please make sure all fields are filled!') }
     }
 
@@ -252,7 +254,7 @@ class DeviceReview extends Component {
                             <div className = {classes.grow}>{'\u00A0'}</div>
                             <Button variant = 'contained' color = 'primary'
                             onClick = {this.saveDevice}
-                            component = {Link} to ="/OrganizationHome">
+                            >
                                 <SaveIcon/> Save Device
                             </Button>
                         
