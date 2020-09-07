@@ -16,8 +16,19 @@ function* getOrganization(action) {
   }
 }
 
+function* submitOrganization (action) {
+  try{
+    const response = yield axios.put('/api/organization/submit/' + action.payload);
+    console.log( 'in submitOrganization with:', response);
+  } catch (error) {
+    console.log('Error with organization get:', error);
+  }
+}
+
+
 function* organizationSaga() {
   yield takeLatest('FETCH_ORGANIZATION', getOrganization);
+  yield takeLatest('SUBMIT_ORGANIZATION', submitOrganization);
 }
 
 export default organizationSaga;

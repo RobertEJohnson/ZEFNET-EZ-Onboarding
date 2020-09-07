@@ -26,6 +26,7 @@ import AddUser from "../AddUser/AddUser"
 import { indigo,yellow, green,} from '@material-ui/core/colors';
 import './App.css';
 import Submit from '../Submit/Submit';
+import Completed from '../Submit/Completed';
 
 const theme = createMuiTheme({
   palette:{
@@ -122,6 +123,11 @@ class App extends Component {
                 exact
                 path="/submit"
                 component={Submit}
+              />
+              <ProtectedRoute
+                exact
+                path="/completed"
+                component={Completed}
               />
 
               {/* If none of the other routes matched, we will show a 404. */}

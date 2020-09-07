@@ -12,7 +12,8 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 	"device"."install_date",
 	"device"."serial_number",
 	"device"."id",
-	"device"."breaker_id",
+  "device"."breaker_id",
+  "device"."type_id",
 	"breaker"."name" as "breaker_name",
 	"breaker"."limit",
 	"breaker"."description",
@@ -72,6 +73,33 @@ router.post('/', rejectUnauthenticated, (req, res) => {
      res.sendStatus(500)
      console.log( 'error on POST /api/device/', error);
    })
+});
+
+/**
+ * UPDATE existing  device
+ */
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  const queryString = `UPDATE "device"
+  SET "type_id" = $1,
+    "breaker_id" = $2,
+    "serial_number" = $3,
+    "name" = $4,
+    "install_date" = $5
+  WHERE id = $6;`;
+  const postValues = [
+      req.body.type_id,
+      req.body.breaker_id,
+      req.body.serial_number,
+      req.body.name,
+      req.body.installation_date,
+      req.params.id
+  ]
+  pool.query(queryString, postValues)
+  .then(()=>{res.sendStatus(201)})
+  .catch((error)=>{
+   res.sendStatus(500)
+   console.log( 'error on POST /api/device/', error);
+ })
 });
 
 module.exports = router;

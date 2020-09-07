@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Grid, Paper, TextField, Button, withStyles } from "@material-ui/core";
 import { ChevronLeft, ChevronRight } from "@material-ui/icons";
 import PropTypes from "prop-types";
-import user from "./zefpro2.png";
+import user from "./serial.png";
 import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
@@ -123,7 +123,8 @@ class DeviceSerial extends Component {
                 />
               <div>
                 <h1 className={classes.centerFont}>Input your Serial Number</h1>
-                <h3 className={classes.centerFont}>It can be found in image.</h3>
+                <h3 className={classes.centerFont}>Serial Number can be found on the sticker on the left-hand side of the unit.
+                It begins with 'HC1C'</h3>
               </div>
             </div>
             <form
@@ -137,6 +138,7 @@ class DeviceSerial extends Component {
                   className={classes.textField}
                   label="Serial Number:"
                   margin="normal"
+                  placeholder = 'HC1C190987067'
                   variant="outlined"
                   value={this.state.serialNumber}
                   onChange={this.handleInputChangeFor("serialNumber")}

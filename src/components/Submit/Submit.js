@@ -43,10 +43,49 @@ const styles = theme => ({
 
 class Submit extends Component {
 
-    handleEditFor = index => (event) => {
-        console.log('in handleEditFor', this.props.state.allDevice[index]);
-        //supply newdevice rediucer with info for this device
-      }
+    handleEditFor = (index) => {
+        //console.log('in handleEditFor', index)
+        //console.log('selected device:', this.props.state.allDevice[index.index]);
+        //supply newdevice reducer with info for this device
+        const device = this.props.state.allDevice[index.index];
+        this.props.dispatch({ type: "SET_NAME", payload: device.name });
+        this.props.dispatch({ type: "SET_ID", payload: device.id });
+        const date = device.install_date.substring(0,10)
+        this.props.dispatch({ type: "SET_DATE", payload: date});
+        const site = {
+            id: device.site_id,
+            address: device.address,
+            first_name:device.first_name,
+            second_name: device.second_name,
+            phone: device.phone,
+            email: device.email,
+            organization_id:this.props.state.organization.id
+        }
+        console.log('device site:', site)
+        this.props.dispatch({ type: "SET_DEVICE_SITE", payload: site });
+        this.props.dispatch({ type: "FETCH_SITE_BREAKERS", payload: site.id });
+        const breaker = {
+            description: device.description,
+            id: device.breaker_id,
+            limit: device.limit,
+            name: device.breaker_name,
+            site_id: device.site_id
+        }
+        console.log('device breaker:', breaker)
+        this.props.dispatch({ type: "SET_BREAKER", payload: breaker });
+        this.props.dispatch({ type: "SET_SERIAL", payload: {number: device.serial_number} });
+        const type = {
+            name: device.type_name,
+            id: device.type_id,
+        }
+        this.props.dispatch({ type: "SET_TYPE", payload: type });
+    }//end handleReviewFor
+    
+    handleSubmit = () =>{
+        console.log('submit clicked');
+        this.props.dispatch({ type: "SUBMIT_ORGANIZATION", payload:this.props.state.organization.id });
+    }
+
 
     render() {
       const {classes} = this.props;
@@ -72,7 +111,7 @@ class Submit extends Component {
                             <TableCell align="right">Last Name</TableCell>
                             <TableCell align="right">Email Address</TableCell>
                             <TableCell align="right">Phone Number</TableCell>
-                            <TableCell align="right">Priveleges</TableCell>
+                            <TableCell align="right">Privileges</TableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody> 
@@ -127,7 +166,9 @@ class Submit extends Component {
                                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
                                         <div className = {classes.left}/>
                                         <h2>Hosting Location</h2> 
-                                        <Button component = {Link} to ="/hostSelect">
+                                        <Button onClick={()=>{this.handleEditFor({index})}}
+                                         component = {Link} to ="/hostSelect"
+                                        >
                                             Edit <EditIcon/>
                                         </Button>
                                 </Grid>
@@ -177,7 +218,8 @@ class Submit extends Component {
                                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
                                      <div className = {classes.left}/>
                                         <h2>Breaker Information</h2> 
-                                        <Button component = {Link} to ="/breakerSelect">
+                                        <Button onClick={()=>{this.handleEditFor({index})}}
+                                            component = {Link} to ="/breakerSelect">
                                             Edit <EditIcon/>
                                         </Button>
                                 </Grid>
@@ -208,7 +250,8 @@ class Submit extends Component {
                                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
                                         <div className = {classes.left}/>
                                         <h2>Device Type</h2> 
-                                        <Button component = {Link} to ="/deviceType">
+                                        <Button onClick={()=>{this.handleEditFor({index})}}
+                                        component = {Link} to ="/deviceType">
                                             Edit <EditIcon/>
                                         </Button>
                                 </Grid>
@@ -227,7 +270,8 @@ class Submit extends Component {
                                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
                                         <div className = {classes.left}/>
                                         <h2>Device Information</h2> 
-                                        <Button component = {Link} to ="/deviceSerial">
+                                        <Button onClick={()=>{this.handleEditFor({index})}}
+                                            component = {Link} to ="/deviceSerial">
                                             Edit <EditIcon/>
                                         </Button>
                                 </Grid>
@@ -246,7 +290,8 @@ class Submit extends Component {
                                 <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
                                         <div className = {classes.left}/>
                                         <h2>Additional Information</h2> 
-                                        <Button component = {Link} to ="/deviceName">
+                                        <Button onClick={()=>{this.handleEditFor({index})}}
+                                         component = {Link} to ="/deviceName">
                                             Edit <EditIcon/>
                                         </Button>
                                 </Grid>
@@ -262,7 +307,7 @@ class Submit extends Component {
                                     <div>
                                         <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Installation Date:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem} >
-                                            {device.install_date}
+                                            {device.install_date.substring(0,10)}
                                         </p>
                                     </div>
                                 </Grid>
@@ -279,6 +324,8 @@ class Submit extends Component {
                             <div className = {classes.grow}>{'\u00A0'}</div>
                             <Button variant = 'contained' color = 'primary'
                             size = 'large'
+                            component = {Link} to ="/completed"
+                            onClick = {this.handleSubmit}
                             >
                                 <SaveIcon/> Submit Onboarding Package for Review
                             </Button>
