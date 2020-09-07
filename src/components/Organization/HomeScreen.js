@@ -84,7 +84,7 @@ class HomeScreen extends Component {
                         subtitle="1 User"
                     />
                 </GridListTile>
-                <GridListTile className={classes.gridListTile} component={Link} to='/test'>
+                <GridListTile className={classes.gridListTile} component={Link} to='/submit'>
                     <img src={review} alt="ZEFNET Pro Charger" className={classes.image, classes.greyscale}/>
                     <GridListTileBar
                         title="Review and Submit Onboarding Package"

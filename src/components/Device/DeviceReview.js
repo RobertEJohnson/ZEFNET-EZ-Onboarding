@@ -22,18 +22,8 @@ const styles = theme => ({
     padding: theme.spacing(2),
     borderRadius: '5px',
   },
-  gridListTile: {
-    color: 'rgba(255, 255, 255, 0.54)',
-    maxWidth: '300px',
-    maxHeight: '300px',
-    margin: '15px 15px 0px 0px'
-  },
-  image: {
-    maxHeight: '350px',
-    minWidth: '350px'
-  },
-  greyscale: {
-    filter: 'grayscale(100%)'
+  left:{
+    width: '75px'
   },
   grow:{
     flexGrow: 1,
@@ -83,11 +73,7 @@ class DeviceReview extends Component {
                     <Grid item align='center' xs={12}>
                         <Divider/>
                         <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                            <div>
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                            </div>
+                        <div className = {classes.left}/>                  
                             <h2>Hosting Location</h2> 
                             <Button component = {Link} to ="/hostSelect">
                                 Edit <EditIcon/>
@@ -137,11 +123,7 @@ class DeviceReview extends Component {
 
                     <Grid item align='center' xs={12}>
                         <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                            <div>
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                            </div>
+                            <div className = {classes.left}/> 
                             <h2>Breaker Information</h2> 
                             <Button component = {Link} to ="/breakerSelect">
                                 Edit <EditIcon/>
@@ -172,11 +154,7 @@ class DeviceReview extends Component {
 
                     <Grid item align='center' xs={12}>
                         <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                            <div>
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                            </div>
+                            <div className = {classes.left}/> 
                             <h2>Device Type</h2> 
                             <Button component = {Link} to ="/deviceType">
                                 Edit <EditIcon/>
@@ -195,11 +173,7 @@ class DeviceReview extends Component {
 
                     <Grid item align='center' xs={12}>
                         <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                            <div>
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                            </div>
+                            <div className = {classes.left}/> 
                             <h2>Device Information</h2> 
                             <Button component = {Link} to ="/deviceSerial">
                                 Edit <EditIcon/>
@@ -218,11 +192,7 @@ class DeviceReview extends Component {
 
                     <Grid item align='center' xs={12}>
                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                            <div>
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                            </div>
+                            <div className = {classes.left}/> 
                             <h2>Additional Information</h2> 
                             <Button component = {Link} to ="/deviceName">
                                 Edit <EditIcon/>

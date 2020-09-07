@@ -11,20 +11,28 @@ const styles = theme => ({
       backgroundColor: '#243353',
       outline: `1px solid transparent`,// we use a transparent outline here so the component doesn't move when focused
       },
-      h1Reset: {
+      title: {
         textAlign: "center",
         color: "white",
         fontFamily: "Crimson Text, Open Sans, sans-serif",
         padding: '0px',
         margin: '0px'
       },
-      h3Reset: {
+      subTitle: {
         textAlign: "center",
         color: "white",
         fontFamily: "Crimson Text, Open Sans, sans-serif",
         padding: '0px',
-        margin: '0px 0px 0px 0px'
+        margin: '0px 0px 0px 0px',
+        fontSize: '17px'
       },
+      form:{
+       minWidth: "400px",
+       minHeight: "400px",
+       margin: '0px',
+       padding:'0px',
+       background: "transparent"
+      }
 })
 
 
@@ -67,17 +75,17 @@ class CreateOrganization extends Component {
     const {classes} = this.props;
 
     return (
-        <Grid item xs={8} style={{ maxWidth: "1000px" }} align="center">
+        <Grid item xs={8} style={{ maxWidth: "1000px", paddingBottom: '50px' }} align="center">
           <div>
-            <h1 className={classes.h1Reset}>Organization Information</h1>
-            <h2 className={classes.h3Reset}>
+            <h1 className={classes.title}>Organization Information</h1>
+            <p className={classes.subTitle}>
               This will help us associate the chargers with your organization.
-            </h2>
+            </p>
           </div>
-          <form style={{ minWidth: "400px", minHeight: "400px", margin: '0px', padding:'0px', background: "transparent" }}>
+          <form className="form">
             <TextField
               required
-              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '25px 0px 0px 0px'  }}
+              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'  }}
               label="Organization / Company Name"
               margin="normal"
               variant="outlined"
@@ -92,6 +100,7 @@ class CreateOrganization extends Component {
                 style: { color: '#fff' }
               }}
             />
+            <br/>
             <TextField
               style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px' }}
               label="Phone Number"
@@ -109,6 +118,7 @@ class CreateOrganization extends Component {
                 style: { color: '#fff' },
               }}
             />
+            <br/>
             <TextField
               required
               style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'}}
@@ -126,6 +136,7 @@ class CreateOrganization extends Component {
                 style: { color: '#fff' },
               }}
             />
+            <br/>
             <TextField
               required
               style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'}}
@@ -142,6 +153,7 @@ class CreateOrganization extends Component {
                 style: { color: '#fff' },
               }}
             />
+            <br/>
             <Button
               variant="contained"
               style={{marginTop: "20px", margin: '15px 0px 0px 0px', color: '#006dcc', backgroundColor: 'white'}}

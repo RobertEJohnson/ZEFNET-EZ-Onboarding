@@ -4,7 +4,8 @@ const newDeviceReducer = (state = {
   serial: {},
   type: {},
   name: '',
-  date: ''
+  date: '',
+  id: '',
 }, action) => {
     switch (action.type) {
       case 'SET_DEVICE_SITE':
@@ -25,6 +26,9 @@ const newDeviceReducer = (state = {
       case 'SET_DATE':
         state.date = action.payload;
         return state;
+      case 'SET_ID':
+          state.id = action.payload;
+          return state;
       case 'CLEAR_DEVICE':
           return {
             site:{},
@@ -32,7 +36,8 @@ const newDeviceReducer = (state = {
             serial: {},
             type: {},
             name: '',
-            date: ''
+            date: '',
+            id: '',
           };
       default:
         return state;

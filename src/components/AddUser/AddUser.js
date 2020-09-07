@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Grid, Paper, TextField, Button, Select, FormControl, InputLabel, MenuItem, withStyles } from "@material-ui/core";
 import { ChevronLeft } from "@material-ui/icons";
 import PropTypes from "prop-types";
-import user from "../Organization/zefUser.jpeg";
 import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
@@ -46,7 +45,7 @@ class AddUser extends Component {
         privileges: this.state.privileges,
       };
       // Double check the type
-        // this.props.dispatch({ type: "ADD_USER", payload: actionObject });
+        this.props.dispatch({ type: "ADD_USER", payload: actionObject });
     } else {
       alert("enter required information");
     }
@@ -129,7 +128,7 @@ class AddUser extends Component {
                   label="First Name:"
                   margin="normal"
                   variant="outlined"
-                  value={this.state.fname}
+                  value={this.state.fname || "" }
                   onChange={this.handleInputChangeFor("fname")}
                 />
               </div>
@@ -141,7 +140,7 @@ class AddUser extends Component {
                   label="Last Name"
                   margin="normal"
                   variant="outlined"
-                  value={this.state.lname}
+                  value={this.state.lname || "" }
                   onChange={this.handleInputChangeFor("lname")}
                 />
               </div>
@@ -153,7 +152,7 @@ class AddUser extends Component {
                   label="Email"
                   margin="normal"
                   variant="outlined"
-                  value={this.state.email}
+                  value={this.state.email || "" }
                   onChange={this.handleInputChangeFor("email")}
                 />
               </div>
@@ -165,7 +164,7 @@ class AddUser extends Component {
                   label="Phone"
                   margin="normal"
                   variant="outlined"
-                  value={this.state.phone}
+                  value={this.state.phone || "" }
                   onChange={this.handleInputChangeFor("phone")}
                 />
               </div>
@@ -183,7 +182,7 @@ class AddUser extends Component {
                 <FormControl variant="outlined" className={classes.formControl}>
                                 <InputLabel>Choose From Existing</InputLabel>
                                 <Select
-                                    value={this.state.selectedPrivileges}
+                                    value={this.state.selectedPrivileges || "" }
                                     onChange={this.handleChange}
                                     label="Breaker"
                                 >

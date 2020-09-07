@@ -42,7 +42,18 @@ const styles = theme => ({
   nextButton: {
     paddingRight: '8px', 
     marginRight: '5px'
-  }
+  },
+  hrWordDivder: {
+    width: '90%',
+    textAlign: 'center',
+    borderBottom: '1px solid #000',
+    lineHeight: '0.1em',
+    margin: '0px 0px 35px 0px' 
+ },
+  hrWord: { 
+     background: '#fff',
+     padding:'0px 10px',
+ }
 })
 
 
@@ -53,12 +64,13 @@ class HostSelect extends Component {
   };
 
   componentDidMount = ()=> {
-    if( this.props.state.device.site !== {} ){
-        this.setState({
-            ...this.state,
-            selectedSite: this.props.state.device.site
-        })
-    }
+    if( this.props.state.device.site.id ){
+      this.setState({
+        ...this.state,
+        selectedSite: this.props.state.device.site
+      })
+    } 
+    
   } 
 
   addSite = () => {
@@ -84,17 +96,16 @@ class HostSelect extends Component {
   componentDidUpdate(previousProps){
    
    if(previousProps.state.site && (previousProps.state.site !== this.props.state.site)){
-     if( this.props.state.device.site !== {} ){
+     if( this.props.state.device.site.id ){
       this.setState({
           ...this.state,
           selectedSite: this.props.state.device.site
       }) 
-    }else{
-         // set state to selectedsite: this.props.newDevice.site
-         this.setState({
-           ...this.state, 
-             selectedSite: this.props.state.site[this.props.state.site.length-1]
-         })
+    // }else{
+    //      this.setState({
+    //        ...this.state, 
+    //          selectedSite: this.props.state.site[this.props.state.site.length-1]
+    //      })
       }
     } 
   }
@@ -109,7 +120,9 @@ class HostSelect extends Component {
   render() {
     const {classes} = this.props; //3
     return (
+      
           <Grid item style={{maxWidth: '800px'}} align='center'>
+            {JSON.stringify(this.props.state.device.site)}
           <AddSite handleClose = {this.handleClose} open = {this.state.open}/>
             <Paper className = {classes.paper} elevation = {3}>
                 <h1>Select Your Host Site</h1>
@@ -134,10 +147,11 @@ class HostSelect extends Component {
                     </Select>
                 </FormControl>
 
+                
                 <br/>
                 <br/>
-                <Divider/>
-                <h1>Or</h1>
+
+                <h2 className={classes.hrWordDivder}><span className={classes.hrWord}>Or</span></h2>
                 
                 {this.state.selectedSite ? 
                     <Button variant = 'contained' disabled>
