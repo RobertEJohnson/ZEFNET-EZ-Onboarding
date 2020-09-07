@@ -52,6 +52,7 @@ class BreakerSelect extends Component {
                 selectedBreaker: this.props.state.device.breaker
             })
         }
+        console.log('stored breaker:', this.props.state.device.breaker)
       } 
 
       componentDidUpdate(previousProps){

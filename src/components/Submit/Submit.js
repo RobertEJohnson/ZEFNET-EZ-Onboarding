@@ -161,7 +161,7 @@ class Submit extends Component {
                                         <div className = {classes.left}/>
                                         <h2>Hosting Location</h2> 
                                         <Button onClick={()=>{this.handleEditFor({index})}}
-                                        // component = {Link} to ="/hostSelect"
+                                         component = {Link} to ="/hostSelect"
                                         >
                                             Edit <EditIcon/>
                                         </Button>

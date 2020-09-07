@@ -59,7 +59,7 @@ class HostSelect extends Component {
         selectedSite: this.props.state.device.site
       })
     } 
-    
+    console.log('stored site:', this.props.state.device.site)
   } 
 
   addSite = () => {
