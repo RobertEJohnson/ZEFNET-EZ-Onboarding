@@ -35,7 +35,7 @@ componentDidMount(){
     const {classes} = this.props;
     return (
         
-        <Paper className = {classes.paper} elevation = {3} style={{minWidth: '500px'}}>
+        <Paper className = {classes.paper} elevation = {3} style={{minWidth: '425px'}}>
           <Grid container direction = 'column' alignContent = 'center' justify = 'center' style={{minWidth: '100%'}}>
           
             <Grid item align='center' style={{minWidth: '100%'}}>
@@ -53,8 +53,8 @@ componentDidMount(){
                 
             </Grid>
             <Grid item style={{minWidth: '100%'}}>
-                <div style={{display: 'flex', flexDirection: 'row'}}>
-                  <div style={{minWidth: '30%',  padding: '0px 0px 0px 70px'}}>
+                <div style={{display: 'flex', flexDirection: 'row', paddingTop:'12px'}}>
+                  <div style={{minWidth: '30%',  padding: '0px 0px 0px 50px'}}>
                     <p>
                       Email:
                       <br/>Phone:
@@ -70,7 +70,7 @@ componentDidMount(){
                   </div>
                 </div>
             </Grid>
-            <center>
+            <center style={{marginTop: '20px'}}>
                 <Button variant = 'contained'
                     component = {Link} to ="/organizationHome"
                     >
@@ -84,9 +84,6 @@ componentDidMount(){
   }
 }
 
-// Instead of taking everything from state, we just want the error messages.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = reduxState => ({
   reduxState
 });
