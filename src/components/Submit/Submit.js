@@ -53,7 +53,10 @@ const styles = theme => ({
 
 class Submit extends Component {
 
-    
+    handleEditFor = index => (event) => {
+        console.log('in handleEditFor', this.props.state.allDevice[index]);
+        //supply newdevice rediucer with info for this device
+      }
 
     render() {
       const {classes} = this.props;
@@ -118,6 +121,7 @@ class Submit extends Component {
                 <h2>Here are your devices, with breaker and location information</h2>
                 <h2>Please open each device to ensure information accuracy</h2>
             </Grid>
+            
             <Accordion>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                         <h2>Device Name</h2>
