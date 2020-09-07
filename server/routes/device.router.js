@@ -13,9 +13,10 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 	"device"."serial_number",
 	"device"."id",
 	"device"."breaker_id",
-	"breaker"."name",
+	"breaker"."name" as "breaker_name",
 	"breaker"."limit",
 	"breaker"."description",
+	"breaker"."site_id",
 	"site"."address",
 	"site"."first_name",
 	"site"."second_name",
@@ -23,14 +24,15 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 	"site"."phone",
 	ARRAY_AGG ("device_type"."head" || '-Head ' || "device_type"."name") as "type_name" 
 FROM "device"
-JOIN "device_type" ON "type_id" = "device_type"."id"
-JOIN "breaker" ON "breaker_id" = "breaker"."id"
-JOIN "site" ON "site_id" = "site"."id"
+INNER JOIN "device_type" ON "type_id" = "device_type"."id"
+INNER JOIN "breaker" ON "breaker_id" = "breaker"."id"
+INNER JOIN "site" ON "site_id" = "site"."id"
 WHERE "organization_id" = $1
 GROUP BY "device"."id",
 	"breaker"."name", 
 	"breaker"."limit", 
 	"breaker"."description",
+	"breaker"."site_id",
 	"site"."address",
 	"site"."first_name",
 	"site"."second_name",
