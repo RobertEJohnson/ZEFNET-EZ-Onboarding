@@ -15,16 +15,19 @@ import ChevronLeft from '@material-ui/icons/ChevronLeft';
 const styles = theme => ({ 
   card: {
     transition: 'all .2s ease-in-out',
-    maxWidth: '300px',
-    width: '300px',
+    maxWidth: '2500px',
+    width: '250px',
     border: '1px solid black',
-    marginBottom: '25px',
+    margin: '0px 30px 25px 0px',
     boxShadow: '0 2.8px 2.2px rgba(0, 0, 0, 0.02), 0 6.7px 5.3px rgba(0, 0, 0, 0.028),0 12.5px 10px rgba(0, 0, 0, 0.035),0 22.3px 17.9px rgba(0, 0, 0, 0.042),0 41.8px 33.4px rgba(0, 0, 0, 0.05),0 100px 80px rgba(0, 0, 0, 0.07)',
                 '&:hover': {transform: 'scale(1.07)',boxShadow: '0 0 15px #c8ffff,-5px 0 20px #66fbfb, 5px 0 25px #049494',}
   },
   media: {
-    height: '300px',
-    width: '300px'
+    height: '250px',
+    width: '250px'
+  },
+  previousButton: {
+    paddingLeft: '8px',
   },
   previousButton: {
     paddingLeft: '8px'
@@ -49,7 +52,7 @@ class DeviceSelectType extends Component {
         <Grid item xs={8} md={4} lg={3} align='center'>
           <Card className={classes.card}>
             <CardActionArea onClick={()=>{this.setTypeReducer(1,'./wallMount.jpg','Wall Mount Charger')}}
-              
+               component = {Link} to ="/deviceSerial"
             >
               <CardMedia
               image={wallmount}
@@ -65,8 +68,7 @@ class DeviceSelectType extends Component {
         <Grid item xs={8} md={4} lg={3} align='center'>
           <Card className={classes.card}>
             <CardActionArea onClick={()=>{this.setTypeReducer(2,'./singleheadped.jpg','Single Head Pedestal Charger')}}
-             
-            >
+              component = {Link} to ="/deviceSerial">
               <CardMedia
               image={single}
               title="Single Head Pedestal Charger" 
@@ -76,13 +78,10 @@ class DeviceSelectType extends Component {
               />
               </CardActionArea>
           </Card>
-        </Grid>
-
-        <Grid item xs={8} md={4} lg={3} align='center'>
           <Card className={classes.card}>
+
             <CardActionArea onClick={()=>{this.setTypeReducer(3,'./dualheadped.jpg','Dual Head Pedestal Charger')}} 
-         
-            >
+              component = {Link} to ="/deviceSerial">
                 <CardMedia
                   image={double}
                   title="Double Head Pedestal Charger" 
@@ -95,10 +94,10 @@ class DeviceSelectType extends Component {
         </Grid>
         
         <Grid item xs={8} md={4} lg={3} align='center'>
+
             <Card className={classes.card}>
               <CardActionArea onClick={()=>{this.setTypeReducer(4,'./zefpro.png','ZEFNET Pro Charger')}}
-   
-              >
+                component = {Link} to ="/deviceSerial">
                 <CardMedia
                 image={zefNetPro}
                 title="ZEFNET Pro Charger" 
@@ -108,8 +107,24 @@ class DeviceSelectType extends Component {
                 />
                 </CardActionArea>
             </Card>
-          
+          </div>
+          </Grid>
+
+        <Grid item align='center' xs={12}>
+          <div style={{ align: 'center' }}>
+            <Button
+              variant="contained"
+              style={{ margin: "20px" }}
+              color="default"
+              component = {Link} to ="/breakerSelect"
+              className={classes.previousButton}
+             >
+              <ChevronLeft/>
+              Previous
+            </Button>
+          </div>
         </Grid>
+
        <Grid item align='center' xs={12}>
         <div style={{ align: 'center' }}>
           <Button
@@ -125,6 +140,7 @@ class DeviceSelectType extends Component {
         </div>
        </Grid>
     </Grid>
+
 
     );
   }

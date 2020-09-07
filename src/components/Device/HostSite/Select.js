@@ -42,7 +42,18 @@ const styles = theme => ({
   nextButton: {
     paddingRight: '8px', 
     marginRight: '5px'
-  }
+  },
+  hrWordDivder: {
+    width: '90%',
+    textAlign: 'center',
+    borderBottom: '1px solid #000',
+    lineHeight: '0.1em',
+    margin: '0px 0px 35px 0px' 
+ },
+  hrWord: { 
+     background: '#fff',
+     padding:'0px 10px',
+ }
 })
 
 
@@ -136,10 +147,11 @@ class HostSelect extends Component {
                     </Select>
                 </FormControl>
 
+                
                 <br/>
                 <br/>
-                <Divider/>
-                <h1>Or</h1>
+
+                <h2 className={classes.hrWordDivder}><span className={classes.hrWord}>Or</span></h2>
                 
                 {this.state.selectedSite ? 
                     <Button variant = 'contained' disabled>
