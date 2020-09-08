@@ -136,7 +136,7 @@ class BreakerSelect extends Component {
                                 {
                                     this.props.state.breaker.siteBreakerReducer.map((breaker, index)=>
                                     <MenuItem value={breaker} key={breaker.id}>
-                                        <span style={{backgroundColor: '#b2ff59'}}>limit:{'\u00A0'}{breaker.limit}kW </span> 
+                                        <span style={{backgroundColor: '#b2ff59'}}>limit:{'\u00A0'}{breaker.limit}Amps </span> 
                                         {'\u00A0'}{'\u00A0'}{breaker.name}
                                     </MenuItem>
                                 )}

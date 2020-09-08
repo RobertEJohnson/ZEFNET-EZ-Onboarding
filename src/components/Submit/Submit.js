@@ -307,7 +307,7 @@ class Submit extends Component {
                                     <div>
                                         <h3 className={classes.reviewItem}>Breaker Limit:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem}>
-                                            {device.limit}{'\u00A0'}kW
+                                            {device.limit}{'\u00A0'}Amps
                                         </p>
                                     </div>
                                     <div>
