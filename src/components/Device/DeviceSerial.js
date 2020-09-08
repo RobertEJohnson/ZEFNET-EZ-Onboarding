@@ -140,7 +140,7 @@ class DeviceSerial extends Component {
                   margin="normal"
                   placeholder = 'HC1C190987067'
                   variant="outlined"
-                  value={this.state.serialNumber}
+                  value={this.state.serialNumber || "" }
                   onChange={this.handleInputChangeFor("serialNumber")}
                 />
 
@@ -151,7 +151,7 @@ class DeviceSerial extends Component {
                   label="Confirm Serial Number:"
                   margin="normal"
                   variant="outlined"
-                  value={this.state.confirmSerialNumber}
+                  value={this.state.confirmSerialNumber || "" }
                   onChange={this.handleInputChangeFor("confirmSerialNumber")}
                   // onfocusout={this.handleOnFocusOut}
                 />

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, Paper, withStyles, TextField, Button } from "@material-ui/core";
-import { ChevronLeft, EvStation } from "@material-ui/icons";
+import {ChevronLeft, EvStation} from '@material-ui/icons';
 import PropTypes from "prop-types";
 import user from "../Organization/zefUser.jpeg";
 import { Link } from "react-router-dom";
@@ -106,7 +106,7 @@ class DeviceName extends Component {
                     maxHeight: "146px",
                     maxWidth: "150px",
                   }}
-                  alt="zef charger"
+                  alt = {this.props.reduxState.device.type.name}
                 />
                 {/* Image should be changed */}
               </div>
@@ -143,7 +143,7 @@ class DeviceName extends Component {
                   label="Charger Name:"
                   margin="normal"
                   variant="outlined"
-                  value={this.state.chargerName}
+                  value={this.state.chargerName || "" }
                   onChange={this.handleInputChangeFor("chargerName")}
                 />
               </div>
@@ -156,7 +156,7 @@ class DeviceName extends Component {
                   label=""
                   margin="normal"
                   variant="outlined"
-                  value={this.state.installationDate}
+                  value={this.state.installationDate || ""}
                   onChange={this.handleInputChangeFor("installationDate")}
                 />
               </div>
