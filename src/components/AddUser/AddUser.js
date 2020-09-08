@@ -30,7 +30,7 @@ class AddUser extends Component {
     lname: "",
     email: "",
     phone: "",
-    privileges: "",
+    editor: "",
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -45,14 +45,14 @@ class AddUser extends Component {
       this.state.lname &&
       this.state.email &&
       this.state.phone &&
-      this.state.privileges !== ""
+      this.state.editor !== ""
     ) {
       const actionObject = {
         fname: this.state.fname,
         lname: this.state.lname,
         email: this.state.email,
         phone: this.state.phone,
-        privileges: this.state.privileges,
+        editor: this.state.editor,
         orgId: this.props.reduxState.organization.id,
       };
       console.log(actionObject);
@@ -67,7 +67,6 @@ class AddUser extends Component {
     const { classes } = this.props;
 
     let centerText = {
-      // paddingLeft: "15px",
       textAlign: "center",
       color: "black",
       fontFamily: "Crimson Text, Open Sans, sans-serif",
@@ -92,8 +91,7 @@ class AddUser extends Component {
     };
 
     let textFields = {
-      fontFamily: "Crimson Text",
-      minWidth: "100px",
+      width: "200px",
       margin: "5px",
     };
 
@@ -108,7 +106,7 @@ class AddUser extends Component {
           minWidth: "100vw",
         }}
       >
-        <Grid item xs={8} style={{ maxWidth: "1000px" }} align="center">
+        <Grid item xs={8} align="center">
           <Paper className={classes.paper} elevation={3}>
             <div style={header}>
               <div style={centerText}>
@@ -139,79 +137,59 @@ class AddUser extends Component {
                   color="secondary"
                   style={textFields}
                   label="First Name:"
-                  margin="normal"
                   variant="outlined"
-                  value={this.state.fname || ""}
+                  value={this.state.fname}
                   onChange={this.handleInputChangeFor("fname")}
                 />
               </div>
               <div>
                 <TextField
-                  color="secondary"
                   required
+                  color="secondary"
                   style={textFields}
-                  label="Last Name"
-                  margin="normal"
+                  label="Last Name:"
                   variant="outlined"
-                  value={this.state.lname || ""}
+                  value={this.state.lname}
                   onChange={this.handleInputChangeFor("lname")}
                 />
               </div>
               <div>
                 <TextField
-                  color="secondary"
                   required
+                  color="secondary"
                   style={textFields}
-                  label="Email"
-                  margin="normal"
+                  label="Email:"
                   variant="outlined"
-                  value={this.state.email || ""}
+                  value={this.state.email}
                   onChange={this.handleInputChangeFor("email")}
                 />
               </div>
               <div>
                 <TextField
-                  color="secondary"
                   required
+                  color="secondary"
                   style={textFields}
-                  label="Phone"
-                  margin="normal"
+                  label="Phone:"
                   variant="outlined"
                   value={this.state.phone || ""}
                   onChange={this.handleInputChangeFor("phone")}
                 />
               </div>
               <div>
-                {/* <Select
-                  color="secondary"
-                  required
-                  style={textFields}
-                  label="Privileges"
-                  margin="normal"
-                  variant="outlined"
-                  value={this.state.privileges}
-                  onChange={this.handleInputChangeFor("privileges")}
-                /> */}
                 <FormControl variant="outlined">
-                  <InputLabel>Choose From Existing</InputLabel>
+                  <InputLabel>Privileges:</InputLabel>
                   <Select
-                    value={this.state.selectedPrivileges || ""}
-                    onChange={this.handleChange}
-                    label="Breaker"
+                    required
+                    onChange={this.handleInputChangeFor("editor")}
+                    style={textFields}
+                    value={this.state.editor || ""}
                   >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    {/*Map out all breakers stored in reducer*/}
-
-                    {/* {
-                                    this.state.breakers.map((breaker, index)=>
-                                    <MenuItem value={breaker} key={breaker.id}>
-                                        <span style={{backgroundColor: '#b2ff59'}}>Amps:{breaker.limit} </span> {breaker.name}</MenuItem>
-                                )} */}
+                    <MenuItem value="False">View</MenuItem>
+                    <MenuItem value="True">Edit</MenuItem>
                   </Select>
                 </FormControl>
               </div>
+
               <div style={buttons}>
                 <div>
                   <Button

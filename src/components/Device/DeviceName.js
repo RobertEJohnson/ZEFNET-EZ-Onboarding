@@ -153,7 +153,8 @@ class DeviceName extends Component {
                   required
                   type="Date"
                   style={{ fontFamily: "Crimson Text", minWidth: "400px" }}
-                  label=""
+                  label="Installation Date"
+                  disableFutureDate={true}
                   margin="normal"
                   variant="outlined"
                   value={this.state.installationDate || ""}
