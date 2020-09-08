@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Grid, Paper, Button, withStyles, Divider, Accordion, TableHead, TableRow} from '@material-ui/core';
-import {AccordionSummary, AccordionDetails, Table, TableCell, TableBody} from '@material-ui/core';
+import {AccordionSummary, AccordionDetails, Table, TableCell, TableBody, Switch, FormControlLabel} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import SaveIcon from '@material-ui/icons/SaveAlt';
@@ -37,11 +37,23 @@ const styles = theme => ({
     margin: '0px'
   },
   table: {
-    minWidth: 500,
+    maxWidth: '1000px',
   },
+  reviewTable:{
+      overflowX: 'auto',
+      whiteSpace:'nowrap',
+  }
 })
 
 class Submit extends Component {
+    state = {
+        tableMode: false
+    }
+
+    handleChange = name => event => {
+        this.setState({ [name]: event.target.checked });
+        //console.log(this.state);
+      };
 
     handleEditFor = (index) => {
         //console.log('in handleEditFor', index)
@@ -149,12 +161,72 @@ class Submit extends Component {
             <Grid item align = 'center' xs = {12}>
                 <h2>Here are your devices, with breaker and location information</h2>
                 <h2>Please open each device to ensure information accuracy</h2>
+
+                <br/>
+                <h3>Use Switch to View Device Table or Expandable Pages</h3>
+                <Grid component="label" container alignItems="center" spacing={1} Direction = 'row' justify = 'center'>
+                    <Grid item>Expandable Form View</Grid>
+                    <Grid item>
+                        <Switch
+                        checked={this.state.tableMode}
+                        onChange={this.handleChange('tableMode')}
+                        value="tableMode"
+                        color = 'primary'
+                        />
+                    </Grid>
+                    <Grid item>Table View</Grid>
+                </Grid>
             </Grid>
-            {/* Map out each device as an accordion */}
-            {this.props.state.allDevice.map((device, index) => 
-            (
-            <Accordion key = {index}>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            {/* Map out each device as an accordion, or a table */}
+            {this.state.tableMode
+            ?
+                <div className={classes.reviewTable}>
+                    <Table >
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Device Name</TableCell>
+                                <TableCell align="right">Device Type</TableCell>
+                                <TableCell align="right">Serial Number</TableCell>
+                                <TableCell align="right">Installation Date</TableCell>
+                                <TableCell align="right">Hosting Site Address</TableCell>
+                                <TableCell align="right">Contact First Name</TableCell>
+                                <TableCell align="right">Contact Last Name</TableCell>
+                                <TableCell align="right">Contact Phone</TableCell>
+                                <TableCell align="right">Contact Email</TableCell>
+                                <TableCell align="right">Breaker Name</TableCell>
+                                <TableCell align="right">Breaker Limit</TableCell>
+                                <TableCell align="right">Breaker Description</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody> 
+                        {this.props.state.allDevice.map((device, index) => 
+                            (
+                            <TableRow key = {index} >
+                                 <TableCell component="th" scope="row">
+                                    {device.name}
+                                </TableCell>
+                                <TableCell align="right">{device.type_name}</TableCell>
+                                <TableCell align="right">{device.serial_number}</TableCell>
+                                <TableCell align="right"> {device.install_date.substring(0,10)}</TableCell>
+                                <TableCell align="right">{device.address}</TableCell>
+                                <TableCell align="right">{device.first_name}</TableCell>
+                                <TableCell align="right">{device.second_name}</TableCell>
+                                <TableCell align="right">{device.phone}</TableCell>
+                                <TableCell align="right">{device.email}</TableCell>
+                                <TableCell align="right">{device.breaker_name}</TableCell>
+                                <TableCell align="right">{device.limit}{'\u00A0'} Amps</TableCell>
+                                <TableCell align="right">{device.description}</TableCell>
+                            </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </div>
+            :
+            < Grid item xs = {12}>
+                {this.props.state.allDevice.map((device, index) => 
+                (
+                    <Accordion key = {index}>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                     <h2>{device.name}</h2>
                     </AccordionSummary>
                     
@@ -235,7 +307,7 @@ class Submit extends Component {
                                     <div>
                                         <h3 className={classes.reviewItem}>Breaker Limit:{'\u00A0'}{'\u00A0'}</h3>
                                         <p className={classes.reviewItem}>
-                                            {device.limit}{'\u00A0'}kW
+                                            {device.limit}{'\u00A0'}Amps
                                         </p>
                                     </div>
                                     <div>
@@ -311,11 +383,13 @@ class Submit extends Component {
                                         </p>
                                     </div>
                                 </Grid>
-                            
+        
                             </Grid>
-                        </AccordionDetails>
-                 </Accordion>
+                         </AccordionDetails>
+                        </Accordion>
                     ))}
+                    </Grid>
+                    }
                     <Grid container direction = 'row' justify = 'center' alignContent = 'center' style={{marginTop: '35px'}}>
                             <Button variant ='contained'
                             component = {Link} to ="/organizationHome">

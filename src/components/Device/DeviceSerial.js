@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Grid, Paper, TextField, Button, withStyles } from "@material-ui/core";
 import { ChevronLeft, ChevronRight } from "@material-ui/icons";
 import PropTypes from "prop-types";
-import user from "./serial.png";
+import user from "./Images/serial.png";
 import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
@@ -19,11 +19,11 @@ const styles = (theme) => ({
     paddingRight: '8px', 
   },
   borderedBox: {
-    border: "solid #e3e3e3 5px",
+    border: "solid #e3e3e3 3px",
     maxWidth: "515px",
     height: "150px",
     display: "flex",
-    borderRadius: '2px'
+    borderRadius: '5px'
   },
   image: {
     maxHeight: "145px",
@@ -132,9 +132,7 @@ class DeviceSerial extends Component {
             >
                 <TextField
                   required
-                  style={{
-                    margin:'25px auto 0px auto'
-                  }}
+                  style={{margin:'25px auto 0px auto'}}
                   className={classes.textField}
                   label="Serial Number:"
                   margin="normal"

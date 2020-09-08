@@ -146,7 +146,7 @@ class DeviceReview extends Component {
                         <div>
                             <h3 className={classes.reviewItem}>Breaker Limit:{'\u00A0'}{'\u00A0'}</h3>
                             <p className={classes.reviewItem}>
-                                {this.props.state.device.breaker.limit}kW
+                                {this.props.state.device.breaker.limit}Amps
                             </p>
                         </div>
                         <div>

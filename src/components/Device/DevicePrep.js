@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import {Grid, Paper, Button, withStyles, GridList, GridListTile, GridListTileBar} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import map from './7LLX9.jpg';
-import breaker from './breaker2.jpg';
-//import MinimalLogOutButton from '../LogOutButton/MinimalLogOutButton'
+import map from './Images/7LLX9.jpg';
+import breaker from './Images/breaker2.jpg';
+import serial from './Images/serial.png';
+import device from './Images/dualHeadStylized.jpg';
 import HomeIcon from '@material-ui/icons/Home';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
@@ -74,13 +75,13 @@ class DevicePrep extends Component {
                                 />
                             </GridListTile>
                             <GridListTile className={classes.gridListTile}>
-                                <img src='https://images.squarespace-cdn.com/content/v1/5a452989f6576e04a03298a3/1546871975572-KHM4BAX6QQBZ1538E86J/ke17ZwdGBToddI8pDm48kCt9awVbelElqJMHRaaRJp97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UU4G2p1hy_eRrLVSvZqYrujvXWdLAlapTAj4CtD__Nuogw70n2sEakuJ3CMJig9qhg/ZEFEnergy-ZEFNET-DualPedestal_15-4kW-555.jpg?format=1000w' alt="ZEFNET Pro Charger" className={classes.image}/>
+                                <img src={device} alt="ZEFNET Pro Charger" className={classes.image}/>
                                 <GridListTileBar
                                     title="Device Type"
                                 />
                             </GridListTile>
                             <GridListTile className={classes.gridListTile} style={{marginRight: '0px'}}>
-                                <img src={map} alt="Serial Number" className={classes.image} />
+                                <img src={serial} alt="Serial Number" className={classes.image} />
                                 <GridListTileBar
                                     title="Serial Number"
                                 />

@@ -45,22 +45,27 @@ class RegisterPage extends Component {
     first_name: '',
     last_name: '',
     phone: '',
+    confirm_password:''
   };
 
   registerUser = (event) => {
     event.preventDefault();
 
     if (this.state.email && this.state.password && this.state.first_name && this.state.last_name) {
-      this.props.dispatch({
-        type: 'REGISTER',
-        payload: {
-          email: this.state.email,
-          password: this.state.password,
-          first_name: this.state.first_name,
-          last_name: this.state.last_name,
-          phone: this.state.phone,
-        },
-      });
+      if (this.state.password === this.state.confirm_password){
+        this.props.dispatch({
+            type: 'REGISTER',
+            payload: {
+              email: this.state.email,
+              password: this.state.password,
+              first_name: this.state.first_name,
+              last_name: this.state.last_name,
+              phone: this.state.phone,
+            }
+         });
+     } else {
+        alert(`Oops! Passwords don't match!`)    
+      }
     } else {
       this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
     }
@@ -164,11 +169,33 @@ class RegisterPage extends Component {
                 />
             </div>
             <br/>
+            <div>
+                <TextField
+                  required
+                  variant = 'outlined'
+                  type="password"
+                  name="confirm_password"
+                  label = 'Confirm Password'
+                  value={this.state.confirm_password}
+                  onChange={this.handleInputChangeFor('confirm_password')}
+                  style={{minWidth: '398px'}}
+                  InputProps={{
+                    classes: {
+                      root: classes.input,
+                    }
+                  }}
+                  InputLabelProps={{
+                    style: { color: '#fff' }
+                  }}
+                />
+            </div>
+            <br/>
               <div>
                   <TextField
                     variant = 'outlined'
-                    label = 'Primay Phone (optional)'
+                    label = 'Primary Phone (optional)'
                     name='phone'
+                    type = 'tel'
                     value={this.state.phone}
                     onChange={this.handleInputChangeFor('phone')}
                     style={{minWidth: '398px'}}

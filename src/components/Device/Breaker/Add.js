@@ -84,7 +84,7 @@ class AddBreaker extends Component {
               value = {this.state.limit}
               onChange = {this.handleChange}
               InputProps={{
-                startAdornment: <InputAdornment position="start">kW</InputAdornment>,
+                startAdornment: <InputAdornment position="start">Amps</InputAdornment>,
               }}
             />
             <h3 style={{margin:'10px 0px 5px 0px', padding: '0px'}}>

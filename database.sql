@@ -49,7 +49,7 @@ CREATE TABLE "breaker" (
 	"limit" NUMERIC NOT NULL,
 	"description" VARCHAR(300),
 	"site_id" INT REFERENCES "site",
-	"name" VARCHAR(100),
+	"name" VARCHAR(100)
 	);
 	
 CREATE TABLE "device_type" (
