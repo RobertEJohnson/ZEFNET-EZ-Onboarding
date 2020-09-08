@@ -5,8 +5,28 @@ const {
   rejectUnauthenticated,
 } = require("../modules/authentication-middleware");
 
+
+router.get("/:id", rejectUnauthenticated, (req, res) => {
+    console.log('in /api/add-user req.params.id:',req.params.id);
+    const queryString = `SELECT * FROM "zefnet_user" WHERE "organization_id" = $1;`;
+    const postValues = [
+      req.params.id,
+    ];
+    pool
+      .query(queryString, postValues)
+      .then((result) => {
+        res.send(result.rows);
+        console.log(result.rows);
+      })
+      .catch((error) => {
+        res.sendStatus(500);
+        console.log("error on POST /api/add-user/", error);
+      });
+  });
+
+
 router.post("/", rejectUnauthenticated, (req, res) => {
-  console.log(req.body);
+//   console.log(req.body);
   const queryString = `INSERT INTO "zefnet_user"
     ("first_name", "last_name", "email", "phone", "editor", "organization_id")
     VALUES($1, $2, $3, $4, $5, $6);`;

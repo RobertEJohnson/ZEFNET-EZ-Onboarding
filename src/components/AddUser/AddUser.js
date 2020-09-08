@@ -9,6 +9,11 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
   withStyles,
 } from "@material-ui/core";
 import { ChevronLeft } from "@material-ui/icons";
@@ -58,6 +63,13 @@ class AddUser extends Component {
       console.log(actionObject);
       // Double check the type
       this.props.dispatch({ type: "ADD_USER", payload: actionObject });
+      this.setState({
+        fname: "",
+        lname: "",
+        email: "",
+        phone: "",
+        editor: "",
+      });
     } else {
       alert("enter required information");
     }
@@ -120,6 +132,24 @@ class AddUser extends Component {
                 </div>
               </div>
             </div>
+            <div>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                        <TableCell>First Name</TableCell>
+                        <TableCell>Last Name</TableCell>
+                        <TableCell>Email</TableCell>
+                        <TableCell>Phone</TableCell>
+                        <TableCell>Privileges</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                      <TableRow>
+                          <TableCell></TableCell>
+                      </TableRow>
+                  </TableBody>
+                </Table>
+              </div>
             <form
               style={{
                 background: "transparent",
@@ -189,7 +219,7 @@ class AddUser extends Component {
                   </Select>
                 </FormControl>
               </div>
-
+              {JSON.stringify(this.props.reduxState.zefUser)}
               <div style={buttons}>
                 <div>
                   <Button
