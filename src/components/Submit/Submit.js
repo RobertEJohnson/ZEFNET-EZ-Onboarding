@@ -164,7 +164,7 @@ class Submit extends Component {
 
                 <br/>
                 <h3>Use Switch to View Device Table or Expandable Pages</h3>
-                <Grid component="label" container alignItems="center" spacing={1} Direction = 'row' justify = 'center'>
+                <Grid component="label" container alignItems="center" spacing={1} direction = 'row' justify = 'center'>
                     <Grid item>Expandable Form View</Grid>
                     <Grid item>
                         <Switch
