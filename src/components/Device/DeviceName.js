@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import { Grid, Paper, withStyles, TextField, Button } from "@material-ui/core";
 import {ChevronLeft, EvStation} from '@material-ui/icons';
 import PropTypes from "prop-types";
-import user from "../Organization/zefUser.jpeg";
+import zefNetPro from './Images/zefpro.png';
+import wallMount from './Images/wallMountStylized.jpg';
+import singleHead from './Images/singleHeadStylized.jpg';
+import dualHead from './Images/dualHeadStylized.jpg';
 import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
@@ -71,6 +74,27 @@ class DeviceName extends Component {
     }
   } 
 
+  chooseDeviceImage = ()=>{
+    let deviceImage;
+    switch(this.props.reduxState.device.type.img){
+      case './Images/wallMount.jpg':
+        deviceImage = wallMount;
+        break;
+      case './Images/singleheadped.jpg':
+        deviceImage = singleHead;
+        break;
+      case './Images/dualheadped.jpg':
+        deviceImage = dualHead;
+        break;
+      case './Images/zefpro.png':
+        deviceImage = zefNetPro;
+        break;
+      default:
+        deviceImage = dualHead;
+    }
+    return deviceImage;
+  }
+
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
@@ -107,7 +131,7 @@ class DeviceName extends Component {
               
               <div>
                 <img
-                  src={user}
+                  src={this.chooseDeviceImage()}
                   className={classes.image}
                   alt = {this.props.reduxState.device.type.name}
                 />

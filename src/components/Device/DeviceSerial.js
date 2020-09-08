@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Grid, Paper, TextField, Button, withStyles } from "@material-ui/core";
 import { ChevronLeft, ChevronRight } from "@material-ui/icons";
 import PropTypes from "prop-types";
-import user from "./serial.png";
+import user from "./Images/serial.png";
 import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
