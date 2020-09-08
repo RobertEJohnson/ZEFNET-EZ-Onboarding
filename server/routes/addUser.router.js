@@ -26,7 +26,6 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 
 
 router.post("/", rejectUnauthenticated, (req, res) => {
-//   console.log(req.body);
   const queryString = `INSERT INTO "zefnet_user"
     ("first_name", "last_name", "email", "phone", "editor", "organization_id")
     VALUES($1, $2, $3, $4, $5, $6);`;

@@ -5,7 +5,6 @@ function* addUser(action) {
   try {
       console.log( "====> In addUser Saga", action.payload)
     const response = yield axios.post("/api/add-user", action.payload);
-    // yield console.log("In addUser", response.data);
     yield put ({ type: 'FETCH_ZEFUSER', payload: action.payload.orgId})
   } catch (error) {
     console.log("Trouble adding User", error);
@@ -15,7 +14,6 @@ function* addUser(action) {
 function* fetchZefUser(action) {
     try {
         console.log( "====> in fetchZefUser Saga", action.payload)
-    //   const postObject = {orgId: action.payload}
       const response = yield axios.get(`/api/add-user/${action.payload}`);
       console.log('back from get /api/add-user with:', response)
       yield put ({ type: 'SET_ZEFUSER', payload: response.data})
