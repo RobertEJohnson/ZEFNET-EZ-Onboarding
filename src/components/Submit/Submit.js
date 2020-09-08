@@ -40,7 +40,6 @@ const styles = theme => ({
     maxWidth: '1000px',
   },
   reviewTable:{
-      width: '30em',
       overflowX: 'auto',
       whiteSpace:'nowrap',
   }
@@ -181,46 +180,47 @@ class Submit extends Component {
             {/* Map out each device as an accordion, or a table */}
             {this.state.tableMode
             ?
-                <Grid item xs = {12}>
-                    <Table className={classes.reviewTable}>
+                <div className={classes.reviewTable}>
+                    <Table >
                         <TableHead>
                             <TableRow>
                                 <TableCell>Device Name</TableCell>
+                                <TableCell align="right">Device Type</TableCell>
+                                <TableCell align="right">Serial Number</TableCell>
                                 <TableCell align="right">Installation Date</TableCell>
                                 <TableCell align="right">Hosting Site Address</TableCell>
                                 <TableCell align="right">Contact First Name</TableCell>
                                 <TableCell align="right">Contact Last Name</TableCell>
                                 <TableCell align="right">Contact Phone</TableCell>
                                 <TableCell align="right">Contact Email</TableCell>
-                                <TableCell align="right">Privileges</TableCell>
-                                <TableCell align="right">Privileges</TableCell>
-                                <TableCell align="right">Privileges</TableCell>
-                                <TableCell align="right">Privileges</TableCell>
-                                <TableCell align="right">Privileges</TableCell>
-                                <TableCell align="right">Privileges</TableCell>
+                                <TableCell align="right">Breaker Name</TableCell>
+                                <TableCell align="right">Breaker Limit</TableCell>
+                                <TableCell align="right">Breaker Description</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody> 
-                            <TableRow >
-                                <TableCell component="th" scope="row">
-                                    Ace
+                        {this.props.state.allDevice.map((device, index) => 
+                            (
+                            <TableRow key = {index} >
+                                 <TableCell component="th" scope="row">
+                                    {device.name}
                                 </TableCell>
-                                <TableCell align="right">Fox</TableCell>
-                                <TableCell align="right">afox09@gmail.com</TableCell>
-                                <TableCell align="right">(203)731-1310</TableCell>
-                                <TableCell align="right">View</TableCell>
-                                <TableCell align="right">Fox</TableCell>
-                                <TableCell align="right">afox09@gmail.com</TableCell>
-                                <TableCell align="right">(203)731-1310</TableCell>
-                                <TableCell align="right">View</TableCell>
-                                <TableCell align="right">Fox</TableCell>
-                                <TableCell align="right">afox09@gmail.com</TableCell>
-                                <TableCell align="right">(203)731-1310</TableCell>
-                                <TableCell align="right">View</TableCell>
+                                <TableCell align="right">{device.type_name}</TableCell>
+                                <TableCell align="right">{device.serial_number}</TableCell>
+                                <TableCell align="right"> {device.install_date.substring(0,10)}</TableCell>
+                                <TableCell align="right">{device.address}</TableCell>
+                                <TableCell align="right">{device.first_name}</TableCell>
+                                <TableCell align="right">{device.second_name}</TableCell>
+                                <TableCell align="right">{device.phone}</TableCell>
+                                <TableCell align="right">{device.email}</TableCell>
+                                <TableCell align="right">{device.breaker_name}</TableCell>
+                                <TableCell align="right">{device.limit}{'\u00A0'} Amps</TableCell>
+                                <TableCell align="right">{device.description}</TableCell>
                             </TableRow>
+                            ))}
                         </TableBody>
                     </Table>
-                </Grid>
+                </div>
             :
             < Grid item xs = {12}>
                 {this.props.state.allDevice.map((device, index) => 
