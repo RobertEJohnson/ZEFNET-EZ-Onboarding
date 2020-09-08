@@ -129,7 +129,6 @@ class DeviceName extends Component {
               <div>
                 <TextField
                   required
-                  color="secondary"
                   style={{margin:'25px auto 0px auto'}}
                   className={classes.textField}
                   label="Charger Name:"
@@ -141,7 +140,6 @@ class DeviceName extends Component {
               </div>
               <div>
                 <TextField
-                  color="secondary"
                   required
                   type="Date"
                   style={{margin:'10px auto 0px auto' }}
