@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import map from './7LLX9.jpg';
 import breaker from './breaker2.jpg';
-//import MinimalLogOutButton from '../LogOutButton/MinimalLogOutButton'
+import serial from './serial.png';
 import HomeIcon from '@material-ui/icons/Home';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
@@ -80,7 +80,7 @@ class DevicePrep extends Component {
                                 />
                             </GridListTile>
                             <GridListTile className={classes.gridListTile} style={{marginRight: '0px'}}>
-                                <img src={map} alt="Serial Number" className={classes.image} />
+                                <img src={serial} alt="Serial Number" className={classes.image} />
                                 <GridListTileBar
                                     title="Serial Number"
                                 />
