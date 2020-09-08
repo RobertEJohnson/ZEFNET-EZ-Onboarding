@@ -24,9 +24,9 @@ function* fetchZefUser(action) {
     }
   }
 
-function* addOrganizationSaga() {
+function* addUserSaga() {
   yield takeLatest("ADD_USER", addUser);
   yield takeLatest("FETCH_ZEFUSER", fetchZefUser)
 }
 
-export default addOrganizationSaga;
+export default addUserSaga;
