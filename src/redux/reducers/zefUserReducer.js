@@ -1,9 +1,9 @@
-const zefUserReducer = (state = {}, action) => {
+const zefUserReducer = (state = [], action) => {
     switch (action.type) {
       case 'SET_ZEFUSER':
         return action.payload;
       case 'UNSET_ZEFUSER':
-        return {};
+        return [];
       default:
         return state;
     }

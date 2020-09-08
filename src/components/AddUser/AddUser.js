@@ -16,7 +16,8 @@ import {
   TableBody,
   withStyles,
 } from "@material-ui/core";
-import { ChevronLeft } from "@material-ui/icons";
+import { ChevronLeft, Delete, Edit } from "@material-ui/icons";
+import IconButton from "@material-ui/core/IconButton";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
@@ -133,23 +134,38 @@ class AddUser extends Component {
               </div>
             </div>
             <div>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                        <TableCell>First Name</TableCell>
-                        <TableCell>Last Name</TableCell>
-                        <TableCell>Email</TableCell>
-                        <TableCell>Phone</TableCell>
-                        <TableCell>Privileges</TableCell>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell> </TableCell>
+                    <TableCell>First Name</TableCell>
+                    <TableCell>Last Name</TableCell>
+                    <TableCell>Email</TableCell>
+                    <TableCell>Phone</TableCell>
+                    <TableCell>Privileges</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.props.reduxState.zefUser.map((user, index) => (
+                    <TableRow key={index}>
+                      <TableCell>
+                        <IconButton>
+                          <Edit />
+                        </IconButton>
+                        <IconButton>
+                          <Delete />
+                        </IconButton>
+                      </TableCell>
+                      <TableCell>{user.first_name}</TableCell>
+                      <TableCell>{user.last_name}</TableCell>
+                      <TableCell>{user.email}</TableCell>
+                      <TableCell>{user.phone}</TableCell>
+                      <TableCell>{user.editor ? "Edit" : "View"}</TableCell>
                     </TableRow>
-                  </TableHead>
-                  <TableBody>
-                      <TableRow>
-                          <TableCell></TableCell>
-                      </TableRow>
-                  </TableBody>
-                </Table>
-              </div>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
             <form
               style={{
                 background: "transparent",
@@ -219,7 +235,6 @@ class AddUser extends Component {
                   </Select>
                 </FormControl>
               </div>
-              {JSON.stringify(this.props.reduxState.zefUser)}
               <div style={buttons}>
                 <div>
                   <Button
