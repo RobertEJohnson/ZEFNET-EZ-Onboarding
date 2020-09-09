@@ -4,7 +4,7 @@ import { put, takeLatest } from "redux-saga/effects";
 function* addUser(action) {
   try {
       console.log( "====> In addUser Saga", action.payload)
-    const response = yield axios.post("/api/add-user", action.payload);
+    yield axios.post("/api/add-user", action.payload);
     yield put ({ type: 'FETCH_ZEFUSER', payload: action.payload.orgId})
   } catch (error) {
     console.log("Trouble adding User", error);
@@ -22,9 +22,32 @@ function* fetchZefUser(action) {
     }
   }
 
+  function* deleteZefUser(action) {
+    try {
+        console.log( "====> in deleteZefUser Saga", action.payload)
+      const response = yield axios.delete(`/api/add-user/${action.payload}`);
+      console.log('back from delete /api/add-user with:', response)
+      yield axios.get(`/api/add-user/${action.payload}`)
+    } catch (error) {
+      console.log("Trouble deleting users", error);
+    }
+  }
+
+  function* updateZefUser(action) {
+    try {
+        console.log( "====> in updateZefUser Saga", action.payload)
+      const response = yield axios.put(`/api/add-user/${action.payload}`);
+      console.log('back from update /api/add-user with:', response)
+    } catch (error) {
+      console.log("Trouble updating users", error);
+    }
+  }
+
 function* addUserSaga() {
   yield takeLatest("ADD_USER", addUser);
-  yield takeLatest("FETCH_ZEFUSER", fetchZefUser)
+  yield takeLatest("FETCH_ZEFUSER", fetchZefUser);
+  yield takeLatest("DELETE_ZEFUSER", deleteZefUser);
+  yield takeLatest("UPDATE_ZEFUSER", updateZefUser);
 }
 
 export default addUserSaga;

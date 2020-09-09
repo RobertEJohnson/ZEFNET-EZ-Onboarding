@@ -16,6 +16,7 @@ import {
   TableBody,
   withStyles,
 } from "@material-ui/core";
+// import EditTable from "material-ui-table-edit"
 import { ChevronLeft, Delete, Edit } from "@material-ui/icons";
 import IconButton from "@material-ui/core/IconButton";
 import PropTypes from "prop-types";
@@ -37,6 +38,7 @@ class AddUser extends Component {
     email: "",
     phone: "",
     editor: "",
+    toggle: false,
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -76,16 +78,33 @@ class AddUser extends Component {
     }
   };
 
-  handleDelete = () => {
-    //   console.log("Delete")
-    alert("User will be deleted")
-    
-  }
+  handleDelete = (index) => {
+    let zefUser_id = this.props.reduxState.zefUser[index].id;
+    // console.log(zefUser_id)
+    // alert([index].id, "will be deleted")
+    this.props.dispatch({ type: "DELETE_ZEFUSER", payload: zefUser_id });
+  };
 
-  handleEdit = () => {
-    //   console.log("Edit")
-  }
- 
+  handleEdit = (index) => {
+    let toggleVal = this.state.toggle;
+    if (toggleVal === false) {
+      toggleVal = true;
+    } else {
+      toggleVal = false;
+    }
+    this.setState({ toggle: toggleVal });
+
+    const actionObject = {
+      fname: this.state.fname,
+      lname: this.state.lname,
+      email: this.state.email,
+      phone: this.state.phone,
+      editor: this.state.editor,
+      zefUser_id: this.props.reduxState.zefUser[index].id,
+    };
+    // this.props.dispatch({ type: "UPDATE_ZEFUSER", payload: actionObject });
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -138,6 +157,7 @@ class AddUser extends Component {
                 </div>
                 <div>
                   <h3>
+                    {/* {JSON.stringify(this.props.reduxState.zefUser)} */}
                     Users can view or edit device information on ZEFNET Portal
                   </h3>
                 </div>
@@ -147,7 +167,6 @@ class AddUser extends Component {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell> </TableCell>
                     <TableCell>First Name</TableCell>
                     <TableCell>Last Name</TableCell>
                     <TableCell>Email</TableCell>
@@ -156,23 +175,65 @@ class AddUser extends Component {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {this.props.reduxState.zefUser.map((user, index) => (
-                    <TableRow key={index}>
-                      <TableCell>
-                        <IconButton onClick={this.handleEdit}>
-                          <Edit />
-                        </IconButton>
-                        <IconButton onClick={this.handleDelete} >
-                          <Delete/>
-                        </IconButton>
-                      </TableCell>
-                      <TableCell>{user.first_name}</TableCell>
-                      <TableCell>{user.last_name}</TableCell>
-                      <TableCell>{user.email}</TableCell>
-                      <TableCell>{user.phone}</TableCell>
-                      <TableCell>{user.editor ? "Edit" : "View"}</TableCell>
-                    </TableRow>
-                  ))}
+                  {!this.state.toggle &&
+                    this.props.reduxState.zefUser.map((user, index) => (
+                      <TableRow key={index}>
+                        <TableCell>
+                          <IconButton onClick={() => this.handleEdit(index)}>
+                            <Edit />
+                          </IconButton>
+                          <IconButton onClick={() => this.handleDelete(index)}>
+                            <Delete />
+                          </IconButton>
+                        </TableCell>
+                        <TableCell>{user.first_name}</TableCell>
+                        <TableCell>{user.last_name}</TableCell>
+                        <TableCell>{user.email}</TableCell>
+                        <TableCell>{user.phone}</TableCell>
+                        <TableCell>{user.editor ? "Edit" : "View"}</TableCell>
+                      </TableRow>
+                    ))}
+                  {this.state.toggle &&
+                    this.props.reduxState.zefUser.map((user, index) => (
+                      <TableRow key={index}>
+                        <TableCell>
+                          <IconButton onClick={() => this.handleEdit(index)}>
+                            <Edit />
+                          </IconButton>
+                          <IconButton onClick={() => this.handleDelete(index)}>
+                            <Delete />
+                          </IconButton>
+                        </TableCell>
+                        <TableCell>
+                          <TextField>
+                            {this.props.reduxState.zefUser.fname}
+                          </TextField>
+                        </TableCell>
+                        <TableCell>
+                          <TextField>
+                            {this.props.reduxState.zefUser.lname}
+                          </TextField>
+                        </TableCell>
+                        <TableCell>
+                          <TextField>
+                            {this.props.reduxState.zefUser.email}
+                          </TextField>
+                        </TableCell>
+                        <TableCell>
+                          <TextField>
+                            {this.props.reduxState.zefUser.phone}
+                          </TextField>
+                        </TableCell>
+                        <TableCell>
+                          <TextField>
+                            {this.props.reduxState.zefUser.editor}
+                          </TextField>
+                        </TableCell>
+                        <TableCell>
+                          <TextField>{user.editor ? "Edit" : "View"}</TextField>
+                        </TableCell>
+                      </TableRow>
+                    ))}
                 </TableBody>
               </Table>
             </div>
