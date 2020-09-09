@@ -116,6 +116,7 @@ class Submit extends Component {
                             Edit <EditIcon/>
                         </Button>
                     </Grid>
+                    
                     <Table className={classes.table}>
                         <TableHead>
                         <TableRow>
@@ -127,33 +128,17 @@ class Submit extends Component {
                         </TableRow>
                         </TableHead>
                         <TableBody> 
-                            <TableRow >
-                            <TableCell component="th" scope="row">
-                                Ace
-                            </TableCell>
-                            <TableCell align="right">Fox</TableCell>
-                            <TableCell align="right">afox09@gmail.com</TableCell>
-                            <TableCell align="right">(203)731-1310</TableCell>
-                            <TableCell align="right">View</TableCell>
+                        {this.props.state.zefUser.map((user, index)=>(
+                            <TableRow key = {index}>
+                                <TableCell component="th" scope="row">
+                                    {user.first_name}
+                                </TableCell>
+                                <TableCell align="right">{user.last_name}</TableCell>
+                                <TableCell align="right">{user.email}</TableCell>
+                                <TableCell align="right">{user.phone}</TableCell>
+                            <TableCell align="right">{user.editor?'Edit':'View'}</TableCell>
                             </TableRow>
-                            <TableRow >
-                            <TableCell component="th" scope="row">
-                                Amir
-                            </TableCell>
-                            <TableCell align="right">Mussa</TableCell>
-                            <TableCell align="right">exampleEmail@email.com</TableCell>
-                            <TableCell align="right">(612) 701-3316</TableCell>
-                            <TableCell align="right">Edit</TableCell>
-                            </TableRow>
-                            <TableRow >
-                            <TableCell component="th" scope="row">
-                                Rob
-                            </TableCell>
-                            <TableCell align="right">Wolfe</TableCell>
-                            <TableCell align="right">exampleEmail@email.com</TableCell>
-                            <TableCell align="right">(612) 701-3316</TableCell>
-                            <TableCell align="right">Edit</TableCell>
-                            </TableRow>
+                        ))}
                         </TableBody>
                     </Table>
                 </Grid>
