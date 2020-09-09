@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {Grid, Button, withStyles} from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import {Grid, withStyles} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import DynamicButton from '../Buttons/DynamicButton'
 

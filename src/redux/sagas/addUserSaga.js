@@ -4,7 +4,7 @@ import { put, takeLatest } from "redux-saga/effects";
 function* addUser(action) {
   try {
       console.log( "====> In addUser Saga", action.payload)
-    const response = yield axios.post("/api/add-user", action.payload);
+    yield axios.post("/api/add-user", action.payload);
     yield put ({ type: 'FETCH_ZEFUSER', payload: action.payload.orgId})
   } catch (error) {
     console.log("Trouble adding User", error);

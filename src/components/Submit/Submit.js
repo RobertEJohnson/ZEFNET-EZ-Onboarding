@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Grid, Paper, Button, withStyles, Divider, Accordion, TableHead, TableRow} from '@material-ui/core';
-import {AccordionSummary, AccordionDetails, Table, TableCell, TableBody, Switch, FormControlLabel} from '@material-ui/core';
+import {AccordionSummary, AccordionDetails, Table, TableCell, TableBody, Switch} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import SaveIcon from '@material-ui/icons/SaveAlt';
@@ -94,8 +94,21 @@ class Submit extends Component {
     }//end handleReviewFor
     
     handleSubmit = () =>{
-        console.log('submit clicked');
+        const sendObject = {
+            primary_user: this.props.state.user,
+            organization: this.props.state.organization,
+            host_sites: this.props.state.site,
+            devices: this.props.state.allDevice 
+        }
+        const onboardPackage = {
+            name: 'Zef EZ Onboard',
+            //change to the email that we want to send emails to
+            email: 'zef.ezonboard@gmail.com',
+            message: JSON.stringify(sendObject),
+        }
         this.props.dispatch({ type: "SUBMIT_ORGANIZATION", payload:this.props.state.organization.id });
+        this.props.dispatch({ type: "MAIL_PACKAGE", payload: onboardPackage });
+
     }
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Paper, withStyles, TextField, Button } from "@material-ui/core";
+import { Grid, Paper, withStyles, TextField, } from "@material-ui/core";
 import PropTypes from "prop-types";
 import zefNetPro from './Images/zefpro.png';
 import wallMount from './Images/wallMountStylized.jpg';

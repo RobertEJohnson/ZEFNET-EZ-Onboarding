@@ -191,6 +191,8 @@ class DynamicButton extends Component{
             case 'home':
                 startIcon = <HomeIcon/>;
                 break;
+            default:
+                break;
         }
 
         //set input attribute object and icon values as state values

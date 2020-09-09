@@ -29,7 +29,9 @@ const styles = theme => ({
     minWidth: '350px'
   },
   greyscale: {
-    filter: 'grayscale(100%)'
+    filter: 'grayscale(100%)',
+    maxHeight: '350px',
+    minWidth: '350px'
   },
   organizationName: {
     color: 'white',
@@ -48,7 +50,7 @@ class HomeScreen extends Component {
     const {classes} = this.props;
     return (
       <>
-        <Grid container xs={12} alignItems='center'
+        <Grid container alignItems='center'
           style={{backgroundColor: 'rgba(35, 40, 48, 0.699)', minHeight: '57px', minWidth: '100%', position: 'absolute', top: '0px', left: '0px'}}>
 
           <Grid item xs={12} style={{position:'absolute', left: '25px', minWidth: '97%'}}>
@@ -86,7 +88,7 @@ class HomeScreen extends Component {
                  
                 :
                 <GridListTile className={classes.gridListTile}>
-                    <img src={review} alt="ZEFNET Pro Charger" className={classes.image, classes.greyscale}/>
+                    <img src={review} alt="ZEFNET Pro Charger" className={classes.greyscale}/>
                     <GridListTileBar
                         title="Please add a device before submitting"
                         subtitle='click left tile to add a device'
