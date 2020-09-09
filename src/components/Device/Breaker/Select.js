@@ -112,13 +112,15 @@ class BreakerSelect extends Component {
         let allBreaker = this.props.state.breaker.siteBreakerReducer
         console.log('in assignBreaker with breakers:', allBreaker)
         let myBreaker = []
-        for (let i = 0; i < allBreaker.length; i++ ){
-            if (allBreaker[i].id === this.state.selectedBreaker){
-            console.log('match found!', allBreaker[i])
-            myBreaker.push(allBreaker[i]);
+        if(this.state.selectedBreaker){
+            for (let i = 0; i < allBreaker.length; i++ ){
+                if (allBreaker[i].id === this.state.selectedBreaker){
+                console.log('match found!', allBreaker[i])
+                myBreaker.push(allBreaker[i]);
+                }
             }
+                this.props.dispatch({type: 'SET_BREAKER', payload: myBreaker[0]})
         }
-            this.props.dispatch({type: 'SET_BREAKER', payload: myBreaker[0]})
       }
 
     render(){
@@ -172,7 +174,8 @@ class BreakerSelect extends Component {
                     <br/>
                     <Grid container direction='row'>
                         <Button variant='contained'
-                        component={Link} to="/hostSelect">
+                        component={Link} to="/hostSelect"
+                        onClick={this.assignBreaker}>
                             <ChevronLeft/> Previous
                         </Button>
                         <div className={classes.grow}></div>
