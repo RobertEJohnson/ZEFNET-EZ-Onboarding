@@ -6,7 +6,7 @@ const {
 } = require("../modules/authentication-middleware");
 
 const nodemailer = require('nodemailer');
-const creds = require('../modules/mailer');
+const creds = require('../../mailer');
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -24,11 +24,11 @@ transporter.verify((error) => {
   }
 });
 
-router.post('/send', (req, res, next) => {
+router.post('/send', rejectUnauthenticated, (req, res, next) => {
     const name = req.body.name
     const email = req.body.email
     const message = req.body.message
-    const content = `New onboarding package from ZEF EZ Onboarding app: ${message} `
+    const content = `New onboarding package from ZEF EZ Onboarding app: ${message}`
   
     const mail = {
       from: name,

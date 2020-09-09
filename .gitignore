@@ -65,4 +65,4 @@ typings/
 package-lock.json
 
 #put your email credentials in the file called mailer.js
-server/modules/mailer.js
+mailer.js
