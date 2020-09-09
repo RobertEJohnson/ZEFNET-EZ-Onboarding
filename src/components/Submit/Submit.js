@@ -142,13 +142,13 @@ class Submit extends Component {
                         </TableBody>
                     </Table>
                 </Grid>
-           <Divider/>
-            <Grid item align = 'center' xs = {12}>
-                <h2>Here are your devices, with breaker and location information</h2>
-                <h2>Please open each device to ensure information accuracy</h2>
-
                 <br/>
-                <h3>Use Switch to View Device Table or Expandable Pages</h3>
+          
+            <Grid item align = 'center' xs = {12}>
+                <Divider/>           
+                <h2>Here are your devices, with breaker and location information</h2>
+                <h2>Use switch to view device table or expandable pages</h2>
+                <br/>
                 <Grid component="label" container alignItems="center" spacing={1} direction = 'row' justify = 'center'>
                     <Grid item>Expandable Form View</Grid>
                     <Grid item>
@@ -161,6 +161,7 @@ class Submit extends Component {
                     </Grid>
                     <Grid item>Table View</Grid>
                 </Grid>
+                <br/>
             </Grid>
             {/* Map out each device as an accordion, or a table */}
             {this.state.tableMode
