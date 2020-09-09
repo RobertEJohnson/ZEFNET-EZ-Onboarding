@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import{Grid, Button, Select, Paper, Divider, InputLabel, FormControl, MenuItem} from '@material-ui/core';
+import{Grid, Button, Select, Paper, InputLabel, FormControl, MenuItem} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -95,29 +95,33 @@ class HostSelect extends Component {
   }
 
   componentDidUpdate(previousProps){
-   
-   if(previousProps.state.site && (previousProps.state.site !== this.props.state.site)){
-     if( this.props.state.device.site.id ){
-      this.setState({
-          ...this.state,
-          selectedSite: this.props.state.device.site.id
-      }) 
-    // }else{
-    //      this.setState({
-    //        ...this.state, 
-    //          selectedSite: this.props.state.site[this.props.state.site.length-1]
-    //      })
+   //if site was reacently added to the breaker reducer, check through the org's sites, and make sure it 
+   //exists, then set it to state if it does!
+   if(previousProps.state.site !== this.props.state.site){
+      if( this.props.state.device.site.id ){
+        for (let i = 0; i <this.props.state.site.length; i++)
+          {  
+            if (this.props.state.site[i].id === this.props.state.device.site.id ){
+                this.setState({
+                  ...this.state,
+                  selectedSite: this.props.state.device.site.id,
+                  //breakers: this.props.state.breaker.siteBreakerReducer
+                })
+            }
+          }
       }
     } 
   }
 
   assignSite = () => {
+    //check if this site isn't already saved in the breaker reducer. if it is,
+    //moce it to there and dispatch breakers!
     if (this.state.selectedSite !== this.props.state.device.site.id ){
       let allSite = this.props.state.site
       //console.log('in assignSite with sites:', allSite)
       let mySite = []
       for (let i = 0; i < allSite.length; i++ ){
-        if (allSite[i].id == this.state.selectedSite){
+        if (allSite[i].id === this.state.selectedSite){
           //console.log('match found!', allSite[i])
           mySite.push(allSite[i]);
         }

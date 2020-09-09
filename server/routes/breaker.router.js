@@ -29,7 +29,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     ]
     pool.query(queryString, postValues)
     .then((response)=>{res.send(response.rows)
-        console.log(response)})
+        //console.log(response)
+    })
     .catch((error)=>{
      res.sendStatus(500)
      console.log( 'error on POST /api/breaker/', error);
