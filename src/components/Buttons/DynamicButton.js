@@ -5,6 +5,17 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import {ChevronLeft, ChevronRight, Home as HomeIcon, Edit as EditIcon} from '@material-ui/icons';
 
+/*
+    DynamicButton API
+    
+        text='string' -> will be the text inside of the button
+        type='string' -> Sets styling type and icon of button
+            Available types: 'glow','home','previous','next','edit','organization',
+        isDisabled={boolean} -> toggles the disabled attribute
+        handleClick={function} -> passed in as onClick function
+        linkURL='/string' -> will add component={Link} and to='/url' attributes
+*/
+
 const styles = {
     Button:{
         transition: 'all .2s ease-in-out',
@@ -101,7 +112,7 @@ class DynamicButton extends Component{
     }
     componentDidMount(){
         //this object will hold input attributes from this.props for DynamicButton
-        const inputProps = {onClick: this.props.handleClick};
+        const inputProps = {onClick: this.props.handleClick, disabled: this.props.isDisabled};
 
         //add properties to inputProps depending on this.props.type
         switch(this.props.type){
@@ -172,6 +183,8 @@ class DynamicButton extends Component{
             {[classes['Button--previous']]: (this.props.type === 'previous')},
             {[classes['Button--next']]: (this.props.type === 'next')},
             {[classes['Button--logOut']]: (this.props.type === 'logOut')},
+            {[classes['Button--home']]: (this.props.type === 'home')},
+            {[classes['Button--edit']]: (this.props.type === 'edit')},
             {[classes['Button--organization']]: (this.props.type === 'organization')},
             );
         return(
