@@ -49,10 +49,6 @@ class LoginPage extends Component {
     }
   }; // end login
 
-    registerMode = ()=>{
-    this.props.dispatch({ type: "SET_TO_REGISTER_MODE" })
-  }
-
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
@@ -126,7 +122,9 @@ class LoginPage extends Component {
         <br/>
         <br/>
         <DynamicButton type='glow' text='Sign in' handleClick={this.login}/>
-        <DynamicButton type='dark' text='New User?' handleClick={this.registerMode}/>
+        <DynamicButton type='dark' text='New User?' 
+          handleClick={()=>this.props.dispatch({ type: "SET_TO_REGISTER_MODE" })}
+          />
       </Grid>
     );
   }
