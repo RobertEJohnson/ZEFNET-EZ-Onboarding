@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Grid, Paper, withStyles, TextField, Button } from "@material-ui/core";
-import {ChevronLeft, EvStation} from '@material-ui/icons';
 import PropTypes from "prop-types";
 import zefNetPro from './Images/zefpro.png';
 import wallMount from './Images/wallMountStylized.jpg';
 import singleHead from './Images/singleHeadStylized.jpg';
 import dualHead from './Images/dualHeadStylized.jpg';
-import { Link } from "react-router-dom";
 import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = (theme) => ({

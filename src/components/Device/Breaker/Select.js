@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 import {Grid, Button, Select, Paper, InputLabel, FormControl, MenuItem} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-import {ChevronLeft, ChevronRight} from '@material-ui/icons';
-import {Link} from 'react-router-dom';
 import AddBreaker from './Add';
 import DynamicButton from '../../Buttons/DynamicButton';
 
