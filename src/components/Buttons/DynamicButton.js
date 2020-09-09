@@ -3,10 +3,13 @@ import {Button, withStyles} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import {ChevronLeft, ChevronRight} from '@material-ui/icons';
+
 
 const styles = {
     Button:{
         transition: 'all .2s ease-in-out',
+        height: '36px'
     },
     'Button--glow':{
         color: '#006dcc',
@@ -30,8 +33,26 @@ const styles = {
             backgroundColor: '#243953',
         }
       },
-    'Button__text':{
-        fontFamily: 'Titillium Arial Helvetica'
+    'Button--previous':{
+        paddingLeft: '8px',
+        '&:hover': {
+            transform: 'scale(1.03)',
+        }
+    },
+    'Button--next':{
+        paddingRight: "8px",
+        backgroundColor: "#3f51b5",
+        color: "white",
+        '&:hover': {
+            transform: 'scale(1.03)',
+            backgroundColor: '#757de8',
+        }
+    },
+    'Button__textContainer':{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center'
     }
 }
 
@@ -47,21 +68,33 @@ class DynamicButton extends Component{
     }
     render(){
         const {classes} = this.props;
-        const conditionalClasses = classNames(
+        const buttonClasses = classNames(
             classes.Button, 
             {[classes['Button--glow']]: (this.props.type === 'glow')},
-            {[classes['Button--dark']]: (this.props.type === 'dark')}
+            {[classes['Button--dark']]: (this.props.type === 'dark')},
+            {[classes['Button--previous']]: (this.props.type === 'previous')},
+            {[classes['Button--next']]: (this.props.type === 'next')},
             );
         return(
             <>
                 {
                     this.props.linkURL ?
-                        <Button variant='contained' className={conditionalClasses} component={Link} to={this.props.linkURL}>
-                            <span className={classes.BasicButton__text}>{this.props.text}</span>
+                        <Button variant='contained' className={buttonClasses} disabled={this.props.isDisabled} 
+                            component={Link} to={this.props.linkURL}>
+                            <span className={classes.Button__textContainer}>
+                                {this.props.type === 'previous' ? <ChevronLeft/> : <></>}
+                                {this.props.text}
+                                {this.props.type === 'next' ? <ChevronRight/> : <></>}
+                            </span>
                         </Button>
                         :
-                        <Button variant='contained' className={conditionalClasses} onClick={this.props.handleClick}>
-                            <span className={classes.BasicButton__text}>{this.props.text}</span>
+                        <Button variant='contained' className={buttonClasses} disabled={this.props.isDisabled}
+                            onClick={this.props.handleClick}>
+                            <span className={classes.Button__textContainer}>
+                                {this.props.type === 'previous' ? <ChevronLeft/> : <></>}
+                                {this.props.text}
+                                {this.props.type === 'next' ? <ChevronRight/> : <></>}
+                            </span>
                         </Button>
                 }
             </>
