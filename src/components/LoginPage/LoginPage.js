@@ -1,41 +1,31 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Button, TextField } from "@material-ui/core";
+import { Grid, TextField } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-
+import DynamicButton from "../Buttons/DynamicButton";
 
 const styles = (theme) => ({
-  input: {
-    color: "white",
-    border: `1px solid white`,
-    backgroundColor: "#1c2447",
-    //backgroundColor: "#243353",
-    outline: `1px solid transparent`, // we use a transparent outline here so the component doesn't move when focused
-  },
-  longField: {
-    width: "380px",
-  },
-  darkButton: {
-    color: "white",
-    backgroundColor: "#1c2447",
-    borderRadius: "5px",
-    "&:hover": {
-      backgroundColor: "#243953",
-      transform: 'scale(1.03)',
+    input: {
+      '--dark-background':'#1c2447',
+      '--focus-background':'#244d6e',
+      color: 'white',
+      border: '1px solid white',
+      backgroundColor: 'var(--dark-background)',
+      caretColor:'white',
+      width: '400px',
+      '&:focus':{
+        backgroundColor: 'var(--focus-background)'
+      },
+      '&:-webkit-autofill': {
+        WebkitBoxShadow: '0 0 0 40px var(--dark-background) inset',
+        '-webkit-text-fill-color': 'white',
+        '&:focus':{
+          WebkitBoxShadow: '0 0 0 30px var(--focus-background) inset',
+        }
+      },
     },
-  },
-  smallTechGlow:{
-    color: '#006dcc',
-    backgroundColor: '#f1f1f1',
-    transition: 'all .2s ease-in-out',
-    '&:hover':{
-      transform: 'scale(1.03)',
-      color: '#006dcc',
-      backgroundColor: 'white', 
-      boxShadow: '0 0 5px #c8ffff,-5px 0 10px #66fbfb, 5px 0 15px #049494'}
-}
-});
+  });
 
 class LoginPage extends Component {
   state = {
@@ -59,6 +49,10 @@ class LoginPage extends Component {
     }
   }; // end login
 
+    registerMode = ()=>{
+    this.props.dispatch({ type: "SET_TO_REGISTER_MODE" })
+  }
+
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
@@ -74,7 +68,7 @@ class LoginPage extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid item align="center" style={{ marginBottom: "150px" }}>
+      <Grid item style={{ marginBottom: "150px", position: 'relative'}} align='center'>
         {this.props.errors.loginMessage && (
           <h2 className="alert" role="alert">
             {this.props.errors.loginMessage}
@@ -87,11 +81,9 @@ class LoginPage extends Component {
           </h3>
         </div>
         <br />
-        <div>
           <TextField
-            className={classes.longField}
             required
-            variant="outlined"
+            variant="filled"
             label="Email Address"
             name="email"
             value={this.state.email}
@@ -101,17 +93,18 @@ class LoginPage extends Component {
                 root: classes.input,
               },
             }}
+            inputProps={{
+              className: classes.input, 
+            }}
             InputLabelProps={{
-              style: { color: "#fff" },
+              style:{color: 'white'}
             }}
           />
-        </div>
-        <br />
-        <div>
+        <br/>
+        <br/>
           <TextField
-            className={classes.longField}
             required
-            variant="outlined"
+            variant="filled"
             type="password"
             label="Password"
             name="password"
@@ -122,32 +115,18 @@ class LoginPage extends Component {
                 root: classes.input,
               },
             }}
+            inputProps={{
+              className: classes.input, 
+            }}
             InputLabelProps={{
-              style: { color: "#fff" },
+              style:{color: 'white'}
             }}
             onKeyDown={this.handleKeyDown}
           />
-        </div>
-        <br />
-        <div>
-          <Button
-            onClick={this.login}
-            className={classes.smallTechGlow}
-            variant="contained"
-            style={{marginLeft: '75px'}}
-          >
-            Sign in
-          </Button>
-          <Button
-            className={classes.darkButton}
-            style={{ float: "right", fontSize: "12px" }}
-            onClick={() => {
-              this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
-            }}
-          >
-            New User?
-          </Button>
-        </div>
+        <br/>
+        <br/>
+        <DynamicButton type='glow' text='Sign in' handleClick={this.login}/>
+        <DynamicButton type='dark' text='New User?' handleClick={this.registerMode}/>
       </Grid>
     );
   }
