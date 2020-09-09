@@ -94,8 +94,14 @@ class Submit extends Component {
     }//end handleReviewFor
     
     handleSubmit = () =>{
-        console.log('submit clicked');
+        const onboardPackage = {
+            name: 'Ace',
+            email: 'afox09@gmail.com',
+            message: 'hello, world!'
+        }
         this.props.dispatch({ type: "SUBMIT_ORGANIZATION", payload:this.props.state.organization.id });
+        this.props.dispatch({ type: "MAIL_PACKAGE", payload: onboardPackage });
+
     }
 
 

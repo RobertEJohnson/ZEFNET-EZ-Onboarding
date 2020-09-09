@@ -14,7 +14,8 @@ const addUserRouter = require('./routes/addUser.router');
 const organizationRouter = require('./routes/organization.router');
 const siteRouter = require('./routes/site.router');
 const breakerRouter = require('./routes/breaker.router');
-const deviceRouter = require('./routes/device.router')
+const deviceRouter = require('./routes/device.router');
+const packageRouter = require('./routes/package.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -34,6 +35,7 @@ app.use('/api/organization', organizationRouter);
 app.use('/api/site', siteRouter);
 app.use('/api/breaker', breakerRouter);
 app.use('/api/device', deviceRouter);
+app.use('/api/package', packageRouter);
 
 // Serve static files
 app.use(express.static("build"));

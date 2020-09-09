@@ -1,0 +1,53 @@
+const express = require("express");
+const pool = require("../modules/pool");
+const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require("../modules/authentication-middleware");
+
+const nodemailer = require('nodemailer');
+const creds = require('../modules/mailer');
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+         user: creds.USER,
+         pass: creds.PASS
+     }
+ })
+
+transporter.verify((error) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Server is ready to take messages');
+  }
+});
+
+router.post('/send', (req, res, next) => {
+    const name = req.body.name
+    const email = req.body.email
+    const message = req.body.message
+    const content = `name: ${name} \n email: ${email} \n message: ${content} `
+  
+    const mail = {
+      from: name,
+      to: 'afox09@gmail.com',  //Change to email address that you want to receive messages on
+      subject: 'New Message from Contact Form',
+      text: content
+    }
+  
+    transporter.sendMail(mail, (err, data) => {
+      if (err) {
+        res.json({
+          msg: 'fail'
+        })
+      } else {
+        res.json({
+          msg: 'success'
+        })
+      }
+    })
+  })
+
+  module.exports = router;
