@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, TextField, Button } from "@material-ui/core";
-import { Link } from 'react-router-dom';
+import { Grid, TextField} from "@material-ui/core";
 import { withStyles, } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import DynamicButton from '../Buttons/DynamicButton'
 
 const styles = theme => ({ 
   input: {
@@ -151,15 +151,8 @@ class EditOrganization extends Component {
               }}
             ></TextField>
             <br/>
-            <Button
-              variant="contained"
-              style={{ marginTop: "20px", color: '#006dcc', backgroundColor: 'white' }}
-              color="default"
-              onClick={this.handleEditOrg}
-              component = {Link} to ="/viewOrganization"
-            >
-              Save Changes
-            </Button>
+            <br/>
+            <DynamicButton type='glow' text='Save Changes' linkURL='/viewOrganization' handleClick={this.handleEditOrg}/>
           </form>
         </Grid>
     );
