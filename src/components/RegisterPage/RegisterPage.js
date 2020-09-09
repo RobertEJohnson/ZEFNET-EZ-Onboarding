@@ -53,10 +53,11 @@ class RegisterPage extends Component {
 
     if (this.state.email && this.state.password && this.state.first_name && this.state.last_name) {
       if (this.state.password === this.state.confirm_password){
+        const lowerEmail = this.state.email.toLowerCase();
         this.props.dispatch({
             type: 'REGISTER',
             payload: {
-              email: this.state.email,
+              email: lowerEmail,
               password: this.state.password,
               first_name: this.state.first_name,
               last_name: this.state.last_name,

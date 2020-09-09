@@ -20,9 +20,12 @@ function* addSite(action){
     //post new site to site table
     const response = yield axios.post('/api/site', action.payload);
     //log the response for testing
-    console.log('back from site POST with', response);
-    //call the GET saga to retrieve updated info
+    console.log('back from site POST with', response.data);
+    //add the returned id from the post call to our action payload 
+    action.payload.id = response.data[0].id;
+     //call the GET saga to retrieve updated info
     yield put({ type: 'FETCH_SITE', payload: action.payload.organization_id})
+    yield put({type: 'SET_DEVICE_SITE', payload: action.payload});    
     } catch (error) {
         console.log('error with site post:', error);
     }
