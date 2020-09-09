@@ -71,21 +71,68 @@ const styles = {
 
 class DynamicButton extends Component{
     state = {
-        type: '',
-        variant: '',
+        inputProps: {},
+        startIcon: '',
+        endIcon: ''
     }
     componentDidMount(){
-        let VariationAndSize = (
-            this.props.type === 'edit' ? {variant:'outlined', size:'small'}
-                : {variant:'contained', size:'medium'})
+        //this object will hold input attributes from this.props for DynamicButton
+        const inputProps = {};
+
+        //add properties to inputProps depending on this.props.type
+        switch(this.props.type){
+            case 'edit':
+                inputProps.variant = 'outlined'
+                inputProps.size='small'
+                break;
+            default:
+                inputProps.variant='contained'
+                inputProps.size='medium'
+        }
+    
+        //add properties to inputProps depending on truthy/falsy this.props.linkURL
+        if(this.props.linkURL){
+            inputProps.component = Link
+            inputProps.to= this.props.linkURL
+        }
+        else{
+            inputProps.variant='contained'
+            inputProps.size='medium' 
+        }
+        
+        //set starting values of icons to React Fragment
+        let startIcon = <></>;
+        let endIcon = <></>;
+
+        //update values of icon depending on this.props.type
+        switch(this.props.type){
+            case 'previous':
+                startIcon = <ChevronLeft/>;
+                break;
+            case 'next':
+                endIcon = <ChevronRight/>;
+                break;
+            case 'edit':
+                startIcon = <EditIcon/>;
+                break;
+            case 'home':
+                startIcon = <HomeIcon/>;
+                break;
+        }
+
+        //set input attribute object and icon values as state values
         this.setState({
             ...this.state,
-            type: `Button__${this.props.type}`,
-            ...VariationAndSize
+            startIcon,
+            endIcon,
+            inputProps
         })
     }
     render(){
         const {classes} = this.props;
+
+        //conditionally add classes and bundle classes together, from type prop value
+        //this uses the classnames dependency: https://www.npmjs.com/package/classnames
         const buttonClasses = classNames(
             classes.Button, 
             {[classes['Button--glow']]: (this.props.type === 'glow')},
@@ -95,30 +142,15 @@ class DynamicButton extends Component{
             );
         return(
             <>
-                {
-                    this.props.linkURL ?
-                        <Button className={buttonClasses} disabled={this.props.isDisabled} 
-                            component={Link} to={this.props.linkURL} variant={this.state.variant} size={this.state.size}>
-                            <span className={classes.Button__textContainer}>
-                                {this.props.type === 'previous' ? <ChevronLeft/> : <></>}
-                                {this.props.type === 'edit' ? <EditIcon/>:<></>}
-                                {this.props.type === 'home' ? <HomeIcon/>:<></>}
-                                {this.props.text}
-                                {this.props.type === 'next' ? <ChevronRight/> : <></>}
-                            </span>
-                        </Button>
-                        :
-                        <Button className={buttonClasses} disabled={this.props.isDisabled}
-                            onClick={this.props.handleClick} variant={this.state.variant} size={this.state.size}>
-                            <span className={classes.Button__textContainer}>
-                                {this.props.type === 'previous' ? <ChevronLeft/> : <></>}
-                                {this.props.type === 'edit' ? <EditIcon/>:<></>}
-                                {this.props.type === 'home' ? <HomeIcon/>:<></>}
-                                {this.props.text}
-                                {this.props.type === 'next' ? <ChevronRight/> : <></>}
-                            </span>
-                        </Button>
-                }
+                {/*Spread conditional attributes from state*/}
+                <Button className={buttonClasses} {...this.state.inputProps}>
+                    <span className={classes.Button__textContainer}>
+                        {/*Render held icon values, before/after props text*/}
+                        {this.state.startIcon}
+                        {this.props.text}
+                        {this.state.endIcon}
+                    </span>
+                </Button>
             </>
         )
     }
@@ -126,6 +158,6 @@ class DynamicButton extends Component{
 
 DynamicButton.propTypes = {
     classes: PropTypes.object.isRequired
-  };
+};
 
 export default withStyles(styles)(DynamicButton);
