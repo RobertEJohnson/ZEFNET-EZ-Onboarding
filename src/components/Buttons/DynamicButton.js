@@ -3,7 +3,7 @@ import {Button, withStyles} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {ChevronLeft, ChevronRight, Home as HomeIcon, Edit as EditIcon} from '@material-ui/icons';
+import {ChevronLeft, ChevronRight, Home as HomeIcon, Edit as EditIcon, EvStation, Save} from '@material-ui/icons';
 
 /*
     DynamicButton API
@@ -50,7 +50,7 @@ const styles = {
         }
     },
     'Button--edit':{
-        paddingLeft: '8px',
+        padding: '0px 6px',
         background: 'transparent',
         border: '1px solid grey',
         '&:hover': {
@@ -64,6 +64,24 @@ const styles = {
         }
     },
     'Button--next':{
+        paddingRight: "8px",
+        backgroundColor: "#3f51b5",
+        color: "white",
+        '&:hover': {
+            transform: 'scale(1.03)',
+            backgroundColor: '#757de8',
+        }
+    },
+    'Button--review':{
+        paddingRight: "8px",
+        backgroundColor: "#3f51b5",
+        color: "white",
+        '&:hover': {
+            transform: 'scale(1.03)',
+            backgroundColor: '#757de8',
+        }
+    },
+    'Button--save':{
         paddingRight: "8px",
         backgroundColor: "#3f51b5",
         color: "white",
@@ -155,6 +173,12 @@ class DynamicButton extends Component{
             case 'next':
                 endIcon = <ChevronRight/>;
                 break;
+            case 'review':
+                endIcon = <EvStation/>;
+                break;
+            case 'save':
+                endIcon = <Save/>
+                break;
             case 'edit':
                 startIcon = <EditIcon/>;
                 break;
@@ -182,6 +206,8 @@ class DynamicButton extends Component{
             {[classes['Button--dark']]: (this.props.type === 'dark')},
             {[classes['Button--previous']]: (this.props.type === 'previous')},
             {[classes['Button--next']]: (this.props.type === 'next')},
+            {[classes['Button--review']]: (this.props.type === 'review')},
+            {[classes['Button--save']]: (this.props.type === 'save')},
             {[classes['Button--logOut']]: (this.props.type === 'logOut')},
             {[classes['Button--home']]: (this.props.type === 'home')},
             {[classes['Button--edit']]: (this.props.type === 'edit')},
