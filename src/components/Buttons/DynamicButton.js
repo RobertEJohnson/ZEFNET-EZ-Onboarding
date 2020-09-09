@@ -3,8 +3,7 @@ import {Button, withStyles} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {ChevronLeft, ChevronRight} from '@material-ui/icons';
-
+import {ChevronLeft, ChevronRight, Home as HomeIcon, Edit as EditIcon} from '@material-ui/icons';
 
 const styles = {
     Button:{
@@ -39,6 +38,20 @@ const styles = {
             transform: 'scale(1.03)',
         }
     },
+    'Button--edit':{
+        paddingLeft: '8px',
+        background: 'transparent',
+        border: '1px solid grey',
+        '&:hover': {
+            transform: 'scale(1.03)',
+        }
+    },
+    'Button--home':{
+        paddingLeft: '8px',
+        '&:hover': {
+            transform: 'scale(1.03)',
+        }
+    },
     'Button--next':{
         paddingRight: "8px",
         backgroundColor: "#3f51b5",
@@ -58,12 +71,17 @@ const styles = {
 
 class DynamicButton extends Component{
     state = {
-        type: ''
+        type: '',
+        variant: '',
     }
     componentDidMount(){
+        let VariationAndSize = (
+            this.props.type === 'edit' ? {variant:'outlined', size:'small'}
+                : {variant:'contained', size:'medium'})
         this.setState({
             ...this.state,
-            type: `Button__${this.props.type}`
+            type: `Button__${this.props.type}`,
+            ...VariationAndSize
         })
     }
     render(){
@@ -79,19 +97,23 @@ class DynamicButton extends Component{
             <>
                 {
                     this.props.linkURL ?
-                        <Button variant='contained' className={buttonClasses} disabled={this.props.isDisabled} 
-                            component={Link} to={this.props.linkURL}>
+                        <Button className={buttonClasses} disabled={this.props.isDisabled} 
+                            component={Link} to={this.props.linkURL} variant={this.state.variant} size={this.state.size}>
                             <span className={classes.Button__textContainer}>
                                 {this.props.type === 'previous' ? <ChevronLeft/> : <></>}
+                                {this.props.type === 'edit' ? <EditIcon/>:<></>}
+                                {this.props.type === 'home' ? <HomeIcon/>:<></>}
                                 {this.props.text}
                                 {this.props.type === 'next' ? <ChevronRight/> : <></>}
                             </span>
                         </Button>
                         :
-                        <Button variant='contained' className={buttonClasses} disabled={this.props.isDisabled}
-                            onClick={this.props.handleClick}>
+                        <Button className={buttonClasses} disabled={this.props.isDisabled}
+                            onClick={this.props.handleClick} variant={this.state.variant} size={this.state.size}>
                             <span className={classes.Button__textContainer}>
                                 {this.props.type === 'previous' ? <ChevronLeft/> : <></>}
+                                {this.props.type === 'edit' ? <EditIcon/>:<></>}
+                                {this.props.type === 'home' ? <HomeIcon/>:<></>}
                                 {this.props.text}
                                 {this.props.type === 'next' ? <ChevronRight/> : <></>}
                             </span>
