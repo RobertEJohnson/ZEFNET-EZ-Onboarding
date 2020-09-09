@@ -64,7 +64,7 @@ class HostSelect extends Component {
     if( this.props.state.device.site.id ){
       this.setState({
         ...this.state,
-        selectedSite: this.props.state.device.site
+        selectedSite: this.props.state.device.site.id
       })
     } 
     console.log('stored site:', this.props.state.device.site)
@@ -88,33 +88,52 @@ class HostSelect extends Component {
     this.setState({
       selectedSite: event.target.value,
     });
+    console.log(event.target.value)
   }
 
   componentDidUpdate(previousProps){
-   
-   if(previousProps.state.site && (previousProps.state.site !== this.props.state.site)){
-     if( this.props.state.device.site.id ){
-      this.setState({
-          ...this.state,
-          selectedSite: this.props.state.device.site
-      })
+   //if site was reacently added to the breaker reducer, check through the org's sites, and make sure it 
+   //exists, then set it to state if it does!
+   if(previousProps.state.site !== this.props.state.site){
+      if( this.props.state.device.site.id ){
+        for (let i = 0; i <this.props.state.site.length; i++)
+          {  
+            if (this.props.state.site[i].id === this.props.state.device.site.id ){
+                this.setState({
+                  ...this.state,
+                  selectedSite: this.props.state.device.site.id,
+                  //breakers: this.props.state.breaker.siteBreakerReducer
+                })
+            }
+          }
       }
     } 
   }
 
   assignSite = () => {
-    if (this.state.selectedSite !== this.props.state.device.site){
-    this.props.dispatch({type: 'SET_DEVICE_SITE', payload: this.state.selectedSite})
-    this.props.dispatch({type: 'FETCH_SITE_BREAKERS', payload: this.state.selectedSite.id})
+    //check if this site isn't already saved in the breaker reducer. if it is,
+    //moce it to there and dispatch breakers!
+    if (this.state.selectedSite !== this.props.state.device.site.id ){
+      let allSite = this.props.state.site
+      //console.log('in assignSite with sites:', allSite)
+      let mySite = []
+      for (let i = 0; i < allSite.length; i++ ){
+        if (allSite[i].id === this.state.selectedSite){
+          //console.log('match found!', allSite[i])
+          mySite.push(allSite[i]);
+        }
+      }
+    //console.log('assigning site:', mySite)
+    this.props.dispatch({type: 'SET_DEVICE_SITE', payload: mySite[0]})
+    this.props.dispatch({type: 'FETCH_SITE_BREAKERS', payload: this.state.selectedSite})
     }
   }
 
   render() {
-    const {classes} = this.props; //3
+    const {classes} = this.props; 
     return (
       
           <Grid item style={{maxWidth: '800px'}} align='center'>
-            {JSON.stringify(this.props.state.device.site)}
           <AddSite handleClose = {this.handleClose} open = {this.state.open}/>
             <Paper className = {classes.paper} elevation = {3}>
                 <h1>Select Your Host Site</h1>
@@ -134,7 +153,7 @@ class HostSelect extends Component {
                         <em>None of these</em>
                     </MenuItem>
                     {this.props.state.site.map((site, index)=>
-                    (<MenuItem value={site} key = {index}>{site.address}</MenuItem>)
+                    (<MenuItem value={site.id||''} key = {index}>{site.address}</MenuItem>)
                     )}
                     </Select>
                 </FormControl>
