@@ -77,7 +77,7 @@ class DynamicButton extends Component{
     }
     componentDidMount(){
         //this object will hold input attributes from this.props for DynamicButton
-        const inputProps = {};
+        const inputProps = {onClick: this.props.handleClick};
 
         //add properties to inputProps depending on this.props.type
         switch(this.props.type){
