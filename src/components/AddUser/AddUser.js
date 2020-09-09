@@ -76,6 +76,16 @@ class AddUser extends Component {
     }
   };
 
+  handleDelete = () => {
+    //   console.log("Delete")
+    alert("User will be deleted")
+    
+  }
+
+  handleEdit = () => {
+    //   console.log("Edit")
+  }
+ 
   render() {
     const { classes } = this.props;
 
@@ -149,11 +159,11 @@ class AddUser extends Component {
                   {this.props.reduxState.zefUser.map((user, index) => (
                     <TableRow key={index}>
                       <TableCell>
-                        <IconButton>
+                        <IconButton onClick={this.handleEdit}>
                           <Edit />
                         </IconButton>
-                        <IconButton>
-                          <Delete />
+                        <IconButton onClick={this.handleDelete} >
+                          <Delete/>
                         </IconButton>
                       </TableCell>
                       <TableCell>{user.first_name}</TableCell>
