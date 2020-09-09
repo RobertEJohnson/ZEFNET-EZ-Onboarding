@@ -17,7 +17,7 @@ class AddBreaker extends Component {
   state = {
     name: '',
     description: '',
-    limit: 0,
+    limit: '',
   };
   handleChange = (event) => {
     this.setState({ 
@@ -27,7 +27,7 @@ class AddBreaker extends Component {
 
   addSite = () => {
       //post new site to site table
-      if (this.props.state.device.site){
+      if (this.props.state.device.site.id){
         const postObject = {
             name: this.state.name,
             description: this.state.description,
