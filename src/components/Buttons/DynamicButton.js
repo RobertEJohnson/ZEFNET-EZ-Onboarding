@@ -7,13 +7,19 @@ import {ChevronLeft, ChevronRight, Home as HomeIcon, Edit as EditIcon, EvStation
 
 /*
     DynamicButton API
-    
-        text='string' -> will be the text inside of the button
-        type='string' -> Sets styling type and icon of button
-            Available types: 'glow','home','previous','next','edit','organization',
-        isDisabled={boolean} -> toggles the disabled attribute
-        handleClick={function} -> passed in as onClick function
-        linkURL='/string' -> will add component={Link} and to='/url' attributes
+        |NAME|          |TYPE|            |DEFAULT|    |DESCRIPTION|
+        text            string                          will be the text inside of the button
+        type            'glow'                          Sets styling type and icon of button
+                        | 'home'
+                        | 'previous'
+                        | 'next'
+                        | 'edit'
+                        | 'save'
+                        | 'review'
+                        | 'organization'
+        isDisabled      boolean             false       toggles the disabled attribute
+        handleClick     function()                      passed in as onClick function
+        linkURL         '/string'                       will add component={Link} and set $string as to='/$string'
 */
 
 const styles = {
