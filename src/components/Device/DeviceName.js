@@ -76,17 +76,17 @@ class DeviceName extends Component {
 
   chooseDeviceImage = ()=>{
     let deviceImage;
-    switch(this.props.reduxState.device.type.img){
-      case './Images/wallMount.jpg':
+    switch(this.props.reduxState.device.type.id){
+      case 1:
         deviceImage = wallMount;
         break;
-      case './Images/singleheadped.jpg':
+      case 2:
         deviceImage = singleHead;
         break;
-      case './Images/dualheadped.jpg':
+      case 3:
         deviceImage = dualHead;
         break;
-      case './Images/zefpro.png':
+      case 4:
         deviceImage = zefNetPro;
         break;
       default:
