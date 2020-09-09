@@ -141,9 +141,9 @@ class DeviceSerial extends Component {
                 <DynamicButton type='previous' text='Previous' linkURL='/deviceType'/>
                 {
                   this.state.serialNumber && this.state.serialNumber === this.state.confirmSerialNumber ? 
-                  <DynamicButton type='next' text='Next' handleClick={this.handleNext}/>
+                  <DynamicButton key='serial-enabled-next' type='next' text='Next' handleClick={this.handleNext}/>
                   : 
-                  <DynamicButton type='next' text='Next' isDisabled={true}/>
+                  <DynamicButton key='serial-disabled-next' type='next' text='Next' isDisabled={true}/>
                 }
             </div>
           </form>

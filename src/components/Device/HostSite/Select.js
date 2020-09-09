@@ -162,7 +162,7 @@ class HostSelect extends Component {
                     {this.state.selectedSite ?
                         <DynamicButton key={'enabled-site-next'} type='next' text='Next' handleClick={this.assignSite} linkURL='/breakerSelect'/>
                         :
-                      <DynamicButton key={'disabled-site-next'} type='next' text='Next' isDisabled={true}/>
+                        <DynamicButton key={'disabled-site-next'} type='next' text='Next' isDisabled={true}/>
                     }
                 </Grid>
             </Paper>

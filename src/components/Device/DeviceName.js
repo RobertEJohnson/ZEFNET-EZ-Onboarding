@@ -8,14 +8,12 @@ import wallMount from './Images/wallMountStylized.jpg';
 import singleHead from './Images/singleHeadStylized.jpg';
 import dualHead from './Images/dualHeadStylized.jpg';
 import { Link } from "react-router-dom";
+import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = (theme) => ({
   paper: {
     padding: theme.spacing(2),
     borderRadius: "5px",
-  },
-  previousButton: {
-    paddingLeft: '8px',
   },
   reviewButton: { 
     width: "162px" 
@@ -176,37 +174,13 @@ class DeviceName extends Component {
                 />
               </div>
               <div className={classes.buttonDiv}>
-                <div>
-                  <Button
-                    variant="contained"
-                    color="default"
-                    component={Link}
-                    to="/deviceSerial"
-                    className={classes.previousButton}
-                  >
-                    <ChevronLeft /> Previous
-                  </Button>
-                </div>
-                <div>
+                <DynamicButton type='previous' text='Previous' linkURL='/deviceSerial'/>
+                
                 {this.state.chargerName && this.state.installationDate ?
-                    <Button
-                      variant="contained"
-                      color = 'primary'
-                      onClick={this.handleNext}
-                    >
-                      Review Device<EvStation/>
-                    </Button>
-                  :
-                    <Button
-                      variant="contained"
-                      disabled
-                      onClick={this.handleNext}
-                      className={classes.reviewButton}
-                    >
-                      Review Device <EvStation/>
-                    </Button>
+                    <DynamicButton key={'name-enabled-next'} type='review' text='Review Device' handleClick={this.handleNext}/>
+                        :
+                    <DynamicButton key={'name-disabled-next'} type='review' text='Review Device' isDisabled={true}/>
                   }
-                </div>
               </div>
             </form>
           </Paper>

@@ -6,6 +6,7 @@ import {withStyles} from '@material-ui/core/styles';
 import {ChevronLeft, ChevronRight} from '@material-ui/icons';
 import {Link} from 'react-router-dom';
 import AddBreaker from './Add';
+import DynamicButton from '../../Buttons/DynamicButton';
 
 
 const styles = theme => ({
@@ -162,23 +163,17 @@ class BreakerSelect extends Component {
                             <br/>
                             <br/>
                             <Grid container direction='row'>
-                                <Button variant='contained'
-                                component={Link} to="/hostSelect">
-                                    <ChevronLeft/> Previous
-                                </Button>
+                                <DynamicButton type='previous' text='Previous' linkURL='/hostSelect'/>
                                 <div className={classes.grow}></div>
                                 {/*Conditionally render the Next button as clickable/disabled based on if a breaker is selected*/}
                                 {
                                     this.state.selectedBreaker ?
-                                        <Button variant='contained' color='primary'
-                                            onClick={this.assignBreaker}
-                                            component={Link} to="/deviceType">
-                                             Next<ChevronRight/>
-                                        </Button>
+                                        <DynamicButton key='breaker-enabled-next'
+                                            type='next' text='Next' linkURL='/deviceType' handleClick={this.assignBreaker}/>
+
                                 :
-                                    <Button variant='contained' disabled>
-                                         Next<ChevronRight/>
-                                    </Button>
+                                        <DynamicButton key='breaker-disabled-next'
+                                            type='next' text='Next' isDisabled={true}/>
                                 }
                             </Grid>
                         </Paper>
