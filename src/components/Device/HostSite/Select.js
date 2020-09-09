@@ -3,11 +3,8 @@ import {connect} from 'react-redux';
 import{Grid, Button, Select, Paper, InputLabel, FormControl, MenuItem} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { Link } from 'react-router-dom';
 import AddSite from './Add';
-
+import DynamicButton from '../../Buttons/DynamicButton';
 
 const styles = theme => ({ 
   root: {
@@ -179,24 +176,12 @@ class HostSelect extends Component {
                 <br/>
                 <br/>
                 <Grid container direction = 'row'>
-                    <Button variant ='contained'
-                      className={classes.previousButton}
-                      component = {Link} to ="/devicePrep">
-                        <ChevronLeftIcon/> Previous
-                    </Button>
+                    <DynamicButton type='previous' text='Previous' linkURL='/devicePrep'/>
                     <div className = {classes.grow}></div>
                     {this.state.selectedSite ?
-                        <Button variant = 'contained' color = 'primary'
-                          className={classes.nextButton}
-                          onClick = {this.assignSite}
-                          component = {Link} to ="/breakerSelect">
-                            Next <ChevronRightIcon/>
-                        </Button>
-                    :
-                        <Button variant = 'contained' disabled
-                             className={classes.nextButton}>
-                             Next <ChevronRightIcon/>
-                        </Button>
+                        <DynamicButton key={'enabled-site-next'} type='next' text='Next' handleClick={this.assignSite} linkURL='/breakerSelect'/>
+                        :
+                        <DynamicButton key={'disabled-site-next'} type='next' text='Next' isDisabled={true}/>
                     }
                 </Grid>
             </Paper>

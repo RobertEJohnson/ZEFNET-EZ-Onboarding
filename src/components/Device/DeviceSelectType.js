@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Grid, Button, withStyles, GridListTileBar} from '@material-ui/core';
+import {Grid, withStyles, GridListTileBar} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
@@ -10,7 +10,7 @@ import double from './Images/dualheadped.jpg';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
   card: {
@@ -25,9 +25,6 @@ const styles = theme => ({
   media: {
     height: '250px',
     width: '250px'
-  },
-  previousButton: {
-    paddingLeft: '8px',
   },
 })
 
@@ -63,7 +60,7 @@ class DeviceSelectType extends Component {
                   </CardActionArea>
                 </Card>
     
-            {/*Single Head Device Card*/}
+              {/*Single Head Device Card*/}
               <Card className={classes.card}>
                 <CardActionArea onClick={()=>{this.setTypeReducer(2,'./Images/singleheadped.jpg','Single Head Pedestal Charger')}}
                   component = {Link} to ="/deviceSerial">
@@ -91,7 +88,7 @@ class DeviceSelectType extends Component {
                   </CardActionArea>
               </Card>
             
-            {/*ZEFNET Pro Device Card*/}
+                {/*ZEFNET Pro Device Card*/}
                 <Card className={classes.card}>
                   <CardActionArea onClick={()=>{this.setTypeReducer(4,'./Images/zefpro.png','ZEFNET Pro Charger')}}
                     component = {Link} to ="/deviceSerial">
@@ -108,17 +105,7 @@ class DeviceSelectType extends Component {
 
         {/*Previous Button*/}
         <Grid item align='center' xs={12}>
-          <div style={{ align: 'center' }}>
-            <Button
-              variant="contained"
-              style={{ margin: "20px" }}
-              color="default"
-              component = {Link} to ="/breakerSelect"
-              className={classes.previousButton}
-             >
-              <ChevronLeft/>Previous
-            </Button>
-          </div>
+          <DynamicButton type='previous' text='Previous' linkURL='/breakerSelect'/>
         </Grid>
 
       </Grid>

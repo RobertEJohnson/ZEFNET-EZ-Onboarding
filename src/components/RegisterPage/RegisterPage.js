@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import{Grid, Button, TextField, Paper} from '@material-ui/core';
+import{Grid, TextField, Paper} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
+import DynamicButton from '../Buttons/DynamicButton'
 
 
 const styles = theme => ({ 
@@ -21,20 +22,11 @@ const styles = theme => ({
     color: 'white',
     border: `1px solid white`,
     backgroundColor: '#1c2447',
-    //backgroundColor: '#243353',
     outline: `1px solid transparent`,// we use a transparent outline here so the component doesn't move when focused
     },
   longField:{
     width: '388px',
   },
-  whiteText:{
-    color: 'white',
-    backgroundColor: '#1c2447',
-    borderRadius: '5px',
-    '&:hover': {
-      backgroundColor: '#243953',
-    }
-  }
 })
 
 
@@ -81,16 +73,11 @@ class RegisterPage extends Component {
   render() {
     const {classes} = this.props;
     return (
-          <Grid item align='center' style={{marginBottom: '100px'}}>
+          <Grid item align='center' style={{marginBottom: '100px', position: 'relative'}} >
             {this.props.errors.registrationMessage && (
-              <h2
-                className="alert"
-                role="alert"
-              >
-                {this.props.errors.registrationMessage}
-              </h2>
+              <h2 className="alert" role="alert">{this.props.errors.registrationMessage}</h2>
             )}
-          <Paper className = {classes.paper} elevation = {0}>
+          <Paper className={classes.paper} elevation={0}>
               <h1>Create User Account</h1>
               <div>
                   <TextField
@@ -212,19 +199,14 @@ class RegisterPage extends Component {
               </div>
               <br/>
                 <div>
-                  <Button onClick = {this.registerUser}
-                  variant = 'contained'
-                  style={{color: '#006dcc', backgroundColor: 'white', marginLeft: '105px'}}
-                  >
-                  Create Account!
-                  </Button>
-                  <Button className = {classes.whiteText} style={{float: 'right', fontSize: '12px'}}
-                  onClick={() => {
-                    this.props.dispatch({ type: "SET_TO_LOGIN_MODE" });
-                  }}
-                >
-                  Existing User? 
-                </Button>
+
+
+                  <DynamicButton type='glow' handleClick={this.registerUser} 
+                    text='Create Account!' style={{marginLeft: '105px'}}/>
+                  <DynamicButton type='dark' handleClick={()=>this.props.dispatch({type:"SET_TO_LOGIN_MODE"})}
+                    text='Existing User?'/>
+                <br/>
+                
                 </div>
              </Paper>
             
