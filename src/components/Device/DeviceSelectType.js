@@ -29,9 +29,6 @@ const styles = theme => ({
   previousButton: {
     paddingLeft: '8px',
   },
-  previousButton: {
-    paddingLeft: '8px'
-  },
 })
 
 class DeviceSelectType extends Component {
@@ -44,7 +41,7 @@ class DeviceSelectType extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <Grid container justify='center' alignContent='center' alignItems='center' xs={12}>
+      <Grid container justify='center' alignContent='center' alignItems='center'>
         {/*Title */}
         <Grid item xs={12} align='center'>
           <h1 style={{color:'white',marginBottom: '30px'}}>Please Select Your Charging Device Type</h1>

@@ -106,7 +106,7 @@ class CreateOrganization extends Component {
               label="Phone Number"
               margin="normal"
               variant="outlined"
-              type="number"
+              type="tel"
               value={this.state.primaryNumber}
               onChange={this.handleInputChangeFor("primaryNumber")}
               InputProps={{

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Grid, Paper, Button, withStyles, Divider, Accordion, TableHead, TableRow} from '@material-ui/core';
-import {AccordionSummary, AccordionDetails, Table, TableCell, TableBody, Switch, FormControlLabel} from '@material-ui/core';
+import {AccordionSummary, AccordionDetails, Table, TableCell, TableBody, Switch} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import SaveIcon from '@material-ui/icons/SaveAlt';
@@ -129,6 +129,7 @@ class Submit extends Component {
                             Edit <EditIcon/>
                         </Button>
                     </Grid>
+                    
                     <Table className={classes.table}>
                         <TableHead>
                         <TableRow>
@@ -140,43 +141,27 @@ class Submit extends Component {
                         </TableRow>
                         </TableHead>
                         <TableBody> 
-                            <TableRow >
-                            <TableCell component="th" scope="row">
-                                Ace
-                            </TableCell>
-                            <TableCell align="right">Fox</TableCell>
-                            <TableCell align="right">afox09@gmail.com</TableCell>
-                            <TableCell align="right">(203)731-1310</TableCell>
-                            <TableCell align="right">View</TableCell>
+                        {this.props.state.zefUser.map((user, index)=>(
+                            <TableRow key = {index}>
+                                <TableCell component="th" scope="row">
+                                    {user.first_name}
+                                </TableCell>
+                                <TableCell align="right">{user.last_name}</TableCell>
+                                <TableCell align="right">{user.email}</TableCell>
+                                <TableCell align="right">{user.phone}</TableCell>
+                            <TableCell align="right">{user.editor?'Edit':'View'}</TableCell>
                             </TableRow>
-                            <TableRow >
-                            <TableCell component="th" scope="row">
-                                Amir
-                            </TableCell>
-                            <TableCell align="right">Mussa</TableCell>
-                            <TableCell align="right">exampleEmail@email.com</TableCell>
-                            <TableCell align="right">(612) 701-3316</TableCell>
-                            <TableCell align="right">Edit</TableCell>
-                            </TableRow>
-                            <TableRow >
-                            <TableCell component="th" scope="row">
-                                Rob
-                            </TableCell>
-                            <TableCell align="right">Wolfe</TableCell>
-                            <TableCell align="right">exampleEmail@email.com</TableCell>
-                            <TableCell align="right">(612) 701-3316</TableCell>
-                            <TableCell align="right">Edit</TableCell>
-                            </TableRow>
+                        ))}
                         </TableBody>
                     </Table>
                 </Grid>
-           <Divider/>
-            <Grid item align = 'center' xs = {12}>
-                <h2>Here are your devices, with breaker and location information</h2>
-                <h2>Please open each device to ensure information accuracy</h2>
-
                 <br/>
-                <h3>Use Switch to View Device Table or Expandable Pages</h3>
+          
+            <Grid item align = 'center' xs = {12}>
+                <Divider/>           
+                <h2>Here are your devices, with breaker and location information</h2>
+                <h2>Use switch to view device table or expandable pages</h2>
+                <br/>
                 <Grid component="label" container alignItems="center" spacing={1} direction = 'row' justify = 'center'>
                     <Grid item>Expandable Form View</Grid>
                     <Grid item>
@@ -189,6 +174,7 @@ class Submit extends Component {
                     </Grid>
                     <Grid item>Table View</Grid>
                 </Grid>
+                <br/>
             </Grid>
             {/* Map out each device as an accordion, or a table */}
             {this.state.tableMode

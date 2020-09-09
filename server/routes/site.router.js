@@ -35,7 +35,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
     const queryString = `INSERT INTO "site"
     ("address", "first_name", "second_name", "email", "phone", "organization_id")
-    VALUES($1, $2, $3, $4, $5, $6);`
+    VALUES($1, $2, $3, $4, $5, $6) RETURNING "id";`
     const postValues = [
         req.body.address,
         req.body.first_name,
@@ -45,7 +45,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         req.body.organization_id
     ]
     pool.query(queryString, postValues)
-    .then(()=>{res.sendStatus(201)})
+    .then((response)=>{res.send(response.rows)})
     .catch((error)=>{
      res.sendStatus(500)
      console.log( 'error on POST /api/site/', error);
