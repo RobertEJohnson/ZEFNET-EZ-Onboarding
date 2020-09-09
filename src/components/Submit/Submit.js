@@ -94,10 +94,16 @@ class Submit extends Component {
     }//end handleReviewFor
     
     handleSubmit = () =>{
+        const sendObject = {
+            primary_user: this.props.state.user,
+            organization: this.props.state.organization,
+            host_sites: this.props.state.site,
+            devices: this.props.state.allDevice 
+        }
         const onboardPackage = {
             name: 'Ace',
             email: 'afox09@gmail.com',
-            message: 'hello, world!'
+            message: JSON.stringify(sendObject),
         }
         this.props.dispatch({ type: "SUBMIT_ORGANIZATION", payload:this.props.state.organization.id });
         this.props.dispatch({ type: "MAIL_PACKAGE", payload: onboardPackage });
@@ -170,7 +176,7 @@ class Submit extends Component {
 
                 <br/>
                 <h3>Use Switch to View Device Table or Expandable Pages</h3>
-                <Grid component="label" container alignItems="center" spacing={1} Direction = 'row' justify = 'center'>
+                <Grid component="label" container alignItems="center" spacing={1} direction = 'row' justify = 'center'>
                     <Grid item>Expandable Form View</Grid>
                     <Grid item>
                         <Switch

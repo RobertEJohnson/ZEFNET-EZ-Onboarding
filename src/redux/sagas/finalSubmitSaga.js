@@ -15,8 +15,8 @@ function* mailPackage(action) {
 }
 
 
-function* organizationSaga() {
+function* submitSaga() {
   yield takeLatest('MAIL_PACKAGE', mailPackage);
 }
 
-export default organizationSaga;
+export default submitSaga;

@@ -28,12 +28,12 @@ router.post('/send', (req, res, next) => {
     const name = req.body.name
     const email = req.body.email
     const message = req.body.message
-    const content = `name: ${name} \n email: ${email} \n message: ${content} `
+    const content = `New onboarding package from ZEF EZ Onboarding app: ${message} `
   
     const mail = {
       from: name,
-      to: 'afox09@gmail.com',  //Change to email address that you want to receive messages on
-      subject: 'New Message from Contact Form',
+      to: email,  //Change to email address that you want to receive messages on
+      subject: 'New ZEF EZ Onboard package',
       text: content
     }
   
