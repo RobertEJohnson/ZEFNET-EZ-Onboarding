@@ -151,7 +151,8 @@ class EditOrganization extends Component {
               }}
             ></TextField>
             <br/>
-            <DynamicButton type='glow' text='Save Changes' linkURL='/viewOrganization'/>
+            <br/>
+            <DynamicButton type='glow' text='Save Changes' linkURL='/viewOrganization' handleClick={this.handleEditOrg}/>
           </form>
         </Grid>
     );
