@@ -1,22 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
-import { Grid, Paper, TextField, Button, withStyles } from "@material-ui/core";
-import { ChevronLeft, ChevronRight } from "@material-ui/icons";
+import { Grid, Paper, TextField, withStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
 import user from "./Images/serial.png";
-import { Link } from "react-router-dom";
+import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = (theme) => ({
   paper: {
     padding: theme.spacing(2),
     borderRadius: "5px",
-  },
-  previousButton: {
-    paddingLeft: "8px",
-  },
-  nextButton: {
-    paddingRight: "8px",
   },
   borderedBox: {
     border: "solid #e3e3e3 3px",
@@ -93,19 +85,6 @@ class DeviceSerial extends Component {
     }
   };
 
-  handlePrevious = () => {
-    this.props.history.push("/deviceType");
-  };
-
-  handleOnFocusOut = () => {
-    if (
-      this.state.serialNumber === this.state.confirmSerialNumber &&
-      this.state.serialNumber !== ""
-    ) {
-      // Remove.attribute("disabled")
-    }
-  };
-
   handleCopynPaste = (e) => {
     e.preventDefault();
   };
@@ -156,42 +135,16 @@ class DeviceSerial extends Component {
               onChange={this.handleInputChangeFor("confirmSerialNumber")}
               onCopy={this.handleCopynPaste}
               onPaste={this.handleCopynPaste}
-              // onfocusout={this.handleOnFocusOut}
             />
 
             <div className={classes.buttonDiv}>
-              <div>
-                <Button
-                  variant="contained"
-                  color="default"
-                  component={Link}
-                  to="/deviceType"
-                  className={classes.previousButton}
-                >
-                  <ChevronLeft /> Previous
-                </Button>
-              </div>
-              <div>
-                {this.state.serialNumber &&
-                this.state.serialNumber === this.state.confirmSerialNumber ? (
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={this.handleNext}
-                    className={classes.nextButton}
-                  >
-                    Next <ChevronRight />
-                  </Button>
-                ) : (
-                  <Button
-                    disabled
-                    variant="contained"
-                    className={classes.nextButton}
-                  >
-                    Next <ChevronRight />
-                  </Button>
-                )}
-              </div>
+                <DynamicButton type='previous' text='Previous' linkURL='/deviceType'/>
+                {
+                  this.state.serialNumber && this.state.serialNumber === this.state.confirmSerialNumber ? 
+                  <DynamicButton key='serial-enabled-next' type='next' text='Next' handleClick={this.handleNext}/>
+                  : 
+                  <DynamicButton key='serial-disabled-next' type='next' text='Next' isDisabled={true}/>
+                }
             </div>
           </form>
         </Paper>

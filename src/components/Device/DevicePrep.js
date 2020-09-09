@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import {Grid, Paper, Button, withStyles, GridList, GridListTile, GridListTileBar} from '@material-ui/core';
+import {Grid, Paper, withStyles, GridList, GridListTile, GridListTileBar} from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import map from './Images/7LLX9.jpg';
 import breaker from './Images/breaker2.jpg';
 import serial from './Images/serial.png';
 import device from './Images/dualHeadStylized.jpg';
-import HomeIcon from '@material-ui/icons/Home';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
   root: {
@@ -90,21 +88,9 @@ class DevicePrep extends Component {
                         </Grid>
                         <br/>
                         <Grid container direction = 'row' justify = 'center' alignContent = 'center'>
-                           
-                                <Button 
-                                variant ='contained'
-                                className={classes.homeButton}
-                                component = {Link} to ="/OrganizationHome">
-                                    <HomeIcon/> Home
-                                </Button>
-                                <div className = {classes.grow}>{'\u00A0'}</div>
-                                <Button variant = 'contained' color = 'primary'
-                                className={classes.nextButton}
-                                onClick = {this.assignSite}
-                                component = {Link} to ="/hostSelect">
-                                    Next <ChevronRightIcon/>
-                                </Button>
-                            
+                            <DynamicButton type='home' text='Home' linkURL='/OrganizationHome'/>
+                            <div className = {classes.grow}>{'\u00A0'}</div>
+                            <DynamicButton type='next' text='Next' linkURL='/hostSelect'/>
                         </Grid>
                     </Paper>
                 </Grid>
