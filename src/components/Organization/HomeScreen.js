@@ -74,23 +74,35 @@ class HomeScreen extends Component {
                     <img src={zefNetPro} alt="ZEFNET Pro Charger" className={classes.image} />
                     <GridListTileBar
                         title="Add a Device"
-                        subtitle={this.props.state.allDevice.length + ' Devices'}
+                        subtitle={this.props.state.allDevice.length + ' Device(s)'}
                     />
                 </GridListTile>
                 <GridListTile className={classes.gridListTile} component={Link} to='/addUser'>
                     <img src={user} alt="ZEFNET Pro Charger" className={classes.image} />
                     <GridListTileBar
                         title="Add a User"
-                        subtitle="1 User"
+                        subtitle={this.props.state.zefUser.length + ' User(s)'}
                     />
                 </GridListTile>
-                <GridListTile className={classes.gridListTile} component={Link} to='/submit'>
+                {this.props.state.allDevice.length>0?
+                  <GridListTile className={classes.gridListTile} component={Link} to='/submit'>
+                    <img src={review} alt="ZEFNET Pro Charger" className={classes.image}/>
+                      <GridListTileBar
+                          title="Review and Submit Onboarding Package"
+                          subtitle='Ensure all Users and Devices Added before Clicking'
+                      />
+                    </GridListTile>
+                 
+                :
+                <GridListTile className={classes.gridListTile}>
                     <img src={review} alt="ZEFNET Pro Charger" className={classes.image, classes.greyscale}/>
                     <GridListTileBar
-                        title="Review and Submit Onboarding Package"
-                        subtitle="(Please Add a Device)"
+                        title="Please add a device before submitting"
+                        subtitle='click left tile to add a device'
                     />
                 </GridListTile>
+                }
+               
             </GridList>
         </div>
         </>
