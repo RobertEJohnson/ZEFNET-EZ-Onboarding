@@ -61,12 +61,36 @@ const styles = {
             backgroundColor: '#757de8',
         }
     },
+    'Button--logOut':{
+        color:'white',
+        border: '1px solid white',
+        backgroundColor: 'transparent',
+        '&:hover': {
+            transform: 'scale(1.03)',
+            backgroundColor: 'white',
+            color: 'black'
+        }
+    },
+    'Button--organization':{
+        color:'white',
+        border: '1px solid white',
+        backgroundColor: 'transparent',
+        height: '40px',
+        fontSize: '26px',
+        paddingBottom: '6px',
+        '&:hover': {
+            transform: 'scale(1.02)',
+            backgroundColor: 'white',
+            color: 'black',
+        }
+    },
     'Button__textContainer':{
         width: '100%',
         height: '100%',
         display: 'flex',
         justifyContent: 'center'
-    }
+    },
+
 }
 
 class DynamicButton extends Component{
@@ -84,6 +108,14 @@ class DynamicButton extends Component{
             case 'edit':
                 inputProps.variant = 'outlined'
                 inputProps.size='small'
+                break;
+            case 'logOut':
+                inputProps.variant = 'outlined'
+                inputProps.size='medium'
+                break;
+            case 'organization':
+                inputProps.variant = 'outlined'
+                inputProps.size='medium'
                 break;
             default:
                 inputProps.variant='contained'
@@ -139,6 +171,8 @@ class DynamicButton extends Component{
             {[classes['Button--dark']]: (this.props.type === 'dark')},
             {[classes['Button--previous']]: (this.props.type === 'previous')},
             {[classes['Button--next']]: (this.props.type === 'next')},
+            {[classes['Button--logOut']]: (this.props.type === 'logOut')},
+            {[classes['Button--organization']]: (this.props.type === 'organization')},
             );
         return(
             <>
