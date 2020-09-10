@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Grid, Paper, Button, withStyles, Divider, Accordion, TableHead, TableRow} from '@material-ui/core';
-import {AccordionSummary, AccordionDetails, Table, TableCell, TableBody, Switch, AccordionActions} from '@material-ui/core';
+import {AccordionSummary, 
+        AccordionDetails, 
+        Table, 
+        TableCell,
+        TableBody, 
+        Switch, 
+        AccordionActions,
+        Dialog,
+        DialogContent,
+        DialogContentText,
+        DialogActions,} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import SaveIcon from '@material-ui/icons/SaveAlt';
@@ -48,7 +58,10 @@ const styles = theme => ({
 
 class Submit extends Component {
     state = {
-        tableMode: false
+        tableMode: false,
+        open: false,
+        deletedName: '',
+        deletedID: '',
     }
 
     handleChange = name => event => {
@@ -112,11 +125,53 @@ class Submit extends Component {
 
     }
 
+    handleDelete = () => {
+        const deleteObject = {
+            id: this.state.deletedID,
+            org_id: this.props.state.organization.id
+        }
+        this.props.dispatch({ type: "DELETE_DEVICE", payload: deleteObject});
+        this.handleClose();
+      };
+
+      handleClickOpen = (name, id) => {
+        this.setState({ ...this.state, 
+            open: true, 
+            deletedName: name,
+            deletedID: id
+         });
+      };
+    
+      handleClose = () => {
+        this.setState({ ...this.state, open: false });
+      };
+
 
     render() {
       const {classes} = this.props;
       return (
           <Grid container direction='row' justify='center' alignContent='center' alignItems='center' >
+              
+              <Dialog
+                open={this.state.open}
+                onClose={this.handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+                >
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Are you sure you want to delete this device - {this.state.deletedName}?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={this.handleClose} color="primary">
+                        Oops, no.
+                    </Button>
+                    <Button onClick={this.handleDelete} color="primary" autoFocus>
+                        Yes, delete!
+                    </Button>
+                    </DialogActions>
+                </Dialog>
           <div className = {classes.root} style={{maxWidth: '1000px'}}>
             <Paper className = {classes.paper}>
                 <Grid item align='center'>
@@ -204,7 +259,8 @@ class Submit extends Component {
                             (
                             <TableRow key = {index} >
                                  <TableCell component="th" scope="row">
-                                    <Button variant = 'outlined'>
+                                    <Button variant = 'outlined' 
+                                    onClick={()=>{this.handleClickOpen(device.name, device.id)}}>
                                             Delete<DeleteIcon/>
                                     </Button> 
                                 </TableCell>
@@ -234,7 +290,8 @@ class Submit extends Component {
                     <h2>{device.name}</h2>
                     </AccordionSummary>
                     <AccordionActions>
-                        <Button variant = 'outlined'>
+                        <Button variant = 'outlined'
+                            onClick={()=>{this.handleClickOpen(device.name, device.id)}}>
                             Delete Device<DeleteIcon/>
                         </Button>
                     </AccordionActions>
