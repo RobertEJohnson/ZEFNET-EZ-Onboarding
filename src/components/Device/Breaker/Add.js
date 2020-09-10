@@ -73,7 +73,6 @@ class AddBreaker extends Component {
               onChange = {this.handleChange}
             />
             <TextField
-              autoFocus
               required
               variant = 'outlined'
               margin="dense"
@@ -91,7 +90,6 @@ class AddBreaker extends Component {
               If additional information is beneficial, please fill in the description field.
             </h3>
             <TextField
-              autoFocus
               fullWidth
               variant = 'outlined'
               margin="dense"
