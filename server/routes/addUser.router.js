@@ -7,7 +7,8 @@ const {
 
 router.get("/:id", rejectUnauthenticated, (req, res) => {
     //console.log('in /api/add-user req.params.id:',req.params.id);
-    const queryString = `SELECT * FROM "zefnet_user" WHERE "organization_id" = $1;`;
+    const queryString = `SELECT * FROM "zefnet_user" WHERE "organization_id" = $1
+      ORDER BY "last_name" ASC;`;
     const postValues = [
       req.params.id,
     ];

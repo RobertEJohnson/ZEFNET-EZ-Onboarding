@@ -61,8 +61,8 @@ class AddSite extends Component {
          <p style={{padding: '0px', margin: '0px', fontWeight: '500', fontSize: '16px'}}>Enter the location of the organization's charging device.</p>
           <DialogContent style={{marginTop: '0px', paddingTop: '0px'}}>
             <TextField
-              className={classes.minorPadding}
               autoFocus
+              className={classes.minorPadding}
               required
               variant = 'filled'
               margin="dense"
@@ -84,7 +84,6 @@ class AddSite extends Component {
             </h3>
             <TextField
               className={classes.minorPadding}
-              autoFocus
               required
               fullWidth
               variant='filled'
@@ -96,7 +95,6 @@ class AddSite extends Component {
             />
             <TextField
               className={classes.minorPadding}
-              autoFocus
               fullWidth
               variant='filled'
               margin="dense"
@@ -107,7 +105,6 @@ class AddSite extends Component {
             />
             <TextField
             className={classes.minorPadding}
-            autoFocus
             variant='filled'
             margin="dense"
             label="Phone Number"
@@ -119,7 +116,6 @@ class AddSite extends Component {
           />
             <TextField  
               className={classes.minorPadding}
-              autoFocus
               required
               variant='filled'
               margin="dense"
