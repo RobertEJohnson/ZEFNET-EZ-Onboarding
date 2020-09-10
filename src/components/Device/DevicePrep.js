@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import {Grid, Paper, Button, withStyles, GridList, GridListTile, GridListTileBar} from '@material-ui/core';
+import {Grid, Paper, withStyles, GridList, GridListTile, GridListTileBar} from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import map from './7LLX9.jpg';
-import breaker from './breaker2.jpg';
-import serial from './serial.png';
-import HomeIcon from '@material-ui/icons/Home';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import map from './Images/7LLX9.jpg';
+import breaker from './Images/breaker2.jpg';
+import serial from './Images/serial.png';
+import device from './Images/dualHeadStylized.jpg';
+import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
   root: {
@@ -74,7 +73,7 @@ class DevicePrep extends Component {
                                 />
                             </GridListTile>
                             <GridListTile className={classes.gridListTile}>
-                                <img src='https://images.squarespace-cdn.com/content/v1/5a452989f6576e04a03298a3/1546871975572-KHM4BAX6QQBZ1538E86J/ke17ZwdGBToddI8pDm48kCt9awVbelElqJMHRaaRJp97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UU4G2p1hy_eRrLVSvZqYrujvXWdLAlapTAj4CtD__Nuogw70n2sEakuJ3CMJig9qhg/ZEFEnergy-ZEFNET-DualPedestal_15-4kW-555.jpg?format=1000w' alt="ZEFNET Pro Charger" className={classes.image}/>
+                                <img src={device} alt="ZEFNET Pro Charger" className={classes.image}/>
                                 <GridListTileBar
                                     title="Device Type"
                                 />
@@ -89,21 +88,9 @@ class DevicePrep extends Component {
                         </Grid>
                         <br/>
                         <Grid container direction = 'row' justify = 'center' alignContent = 'center'>
-                           
-                                <Button 
-                                variant ='contained'
-                                className={classes.homeButton}
-                                component = {Link} to ="/OrganizationHome">
-                                    <HomeIcon/> Home
-                                </Button>
-                                <div className = {classes.grow}>{'\u00A0'}</div>
-                                <Button variant = 'contained' color = 'primary'
-                                className={classes.nextButton}
-                                onClick = {this.assignSite}
-                                component = {Link} to ="/hostSelect">
-                                    Next <ChevronRightIcon/>
-                                </Button>
-                            
+                            <DynamicButton type='home' text='Home' linkURL='/OrganizationHome'/>
+                            <div className = {classes.grow}>{'\u00A0'}</div>
+                            <DynamicButton type='next' text='Next' linkURL='/hostSelect'/>
                         </Grid>
                     </Paper>
                 </Grid>

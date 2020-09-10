@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, TextField, Button } from "@material-ui/core";
+import { Grid, TextField} from "@material-ui/core";
 import { withStyles, } from '@material-ui/core/styles';
 import PropTypes from 'prop-types'
+import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
     input: {
@@ -65,6 +66,12 @@ class CreateOrganization extends Component {
       email: this.state.email,
       organizationAddress: this.state.organizationAddress,
       user_id: this.props.reduxState.user.id,
+      fname: this.props.reduxState.user.first_name,
+      lname: this.props.reduxState.user.last_name,
+      email: this.props.reduxState.user.email,
+      phone: this.props.reduxState.user.phone,
+      editor: 'true',
+      primary: 'true',
     };
     this.props.dispatch({ type: "ADD_ORGANIZATION", payload: actionObject });
     this.props.history.push("/organizationHome");
@@ -106,7 +113,7 @@ class CreateOrganization extends Component {
               label="Phone Number"
               margin="normal"
               variant="outlined"
-              type="number"
+              type="tel"
               value={this.state.primaryNumber}
               onChange={this.handleInputChangeFor("primaryNumber")}
               InputProps={{
@@ -154,14 +161,8 @@ class CreateOrganization extends Component {
               }}
             />
             <br/>
-            <Button
-              variant="contained"
-              style={{marginTop: "20px", margin: '15px 0px 0px 0px', color: '#006dcc', backgroundColor: 'white'}}
-              color="default"
-              onClick={this.handleAddOrg}
-            >
-              Create Organization
-            </Button>
+            <br/>
+            <DynamicButton type='glow' text='Create Organization' handleClick={this.handleAddOrg}/>
           </form>
         </Grid>
     );

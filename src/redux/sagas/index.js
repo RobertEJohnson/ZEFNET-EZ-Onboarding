@@ -10,6 +10,7 @@ import siteSaga from './siteSaga';
 import breakerSaga from "./breakerSaga";
 import addUser from "./addUserSaga";
 import deviceSaga from './deviceSaga';
+import submitSaga from './finalSubmitSaga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -30,5 +31,6 @@ export default function* rootSaga() {
     breakerSaga(),
     addUser(),
     deviceSaga(),
+    submitSaga(),
   ]);
 }

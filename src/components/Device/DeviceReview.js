@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import {Grid, Paper, Button, withStyles, Divider} from '@material-ui/core';
+import {Grid, Paper, withStyles} from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import SaveIcon from '@material-ui/icons/SaveAlt';
-import EditIcon from '@material-ui/icons/Edit';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
   root: {
@@ -73,167 +70,146 @@ class DeviceReview extends Component {
             <Paper className = {classes.paper}>
                 <Grid item align='center'>
                     <h1>Let's make sure all this information is correct!</h1>
-                    </Grid>
+                </Grid>
 
-                    <Grid item align='center' xs={12}>
-                        <Divider/>
-                        <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                        <div className = {classes.left}/>                  
-                            <h2>Hosting Location</h2> 
-                            <Button component = {Link} to ="/hostSelect">
-                                Edit <EditIcon/>
-                            </Button>
-                       </Grid>
-                    </Grid>
-
-                    <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                        <h3 style={{display: 'inline-block'}}>Address:{'\u00A0'}{'\u00A0'}</h3>
-                        <p style={{display: 'inline-block'}}>
-                            {this.props.state.device.site.address}
-                        </p>
-                    </Grid>
-
-                    <Grid item align='center' xs={12}>
-                        <br/>
-                        <Divider/>
-                       <h2>Local Contact for Location</h2>
-                    </Grid>
-
-                    <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                        <div>
-                            <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>First Name:{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem}>
-                                {this.props.state.device.site.first_name}
-                            </p>
-                        </div>
-                        <div>
-                            <h3 className={classes.reviewItem}>Second Name:{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem}>
-                                {this.props.state.device.site.second_name}
-                            </p>
-                        </div>
-                        <div>
-                            <h3 className={classes.reviewItem}>Phone Number:{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem}>
-                                {this.props.state.device.site.phone}
-                            </p>
-                        </div> 
-                        <div>
-                            <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Email:{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem}>
-                                {this.props.state.device.site.email}
-                            </p>
-                        </div>
-                    </Grid>
-
-                    <Grid item align='center' xs={12}>
-                        <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                            <div className = {classes.left}/> 
-                            <h2>Breaker Information</h2> 
-                            <Button component = {Link} to ="/breakerSelect">
-                                Edit <EditIcon/>
-                            </Button>
-                       </Grid>
-                    </Grid>
-
-                    <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                        <div>
-                            <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Breaker Name:{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem}>
-                                {this.props.state.device.breaker.name}
-                            </p>
-                        </div>
-                        <div>
-                            <h3 className={classes.reviewItem}>Breaker Limit:{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem}>
-                                {this.props.state.device.breaker.limit}kW
-                            </p>
-                        </div>
-                        <div>
-                            <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Breaker Description:{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem}>
-                                {this.props.state.device.breaker.description}
-                            </p>
-                        </div>
-                    </Grid>
-
-                    <Grid item align='center' xs={12}>
-                        <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                            <div className = {classes.left}/> 
-                            <h2>Device Type</h2> 
-                            <Button component = {Link} to ="/deviceType">
-                                Edit <EditIcon/>
-                            </Button>
-                       </Grid>
-                    </Grid>
-
-                    <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                        <div>
-                            <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Device Type:{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem}>
-                                {this.props.state.device.type.name}
-                            </p>
-                        </div>
-                    </Grid>
-
-                    <Grid item align='center' xs={12}>
-                        <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                            <div className = {classes.left}/> 
-                            <h2>Device Information</h2> 
-                            <Button component = {Link} to ="/deviceSerial">
-                                Edit <EditIcon/>
-                            </Button>
-                       </Grid>
-                    </Grid>
-
-                    <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                        <div>
-                            <h3 className={classes.reviewItem} style={{margin: '10px 0px'}}>Serial Number:{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem}>
-                               {this.props.state.device.serial.number}
-                            </p>
-                        </div>
-                    </Grid>
-
-                    <Grid item align='center' xs={12}>
+                <Grid item align='center' xs={12}>
                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                            <div className = {classes.left}/> 
-                            <h2>Additional Information</h2> 
-                            <Button component = {Link} to ="/deviceName">
-                                Edit <EditIcon/>
-                            </Button>
-                       </Grid>
+                    <div className = {classes.left}/>                  
+                        <h2>Hosting Location</h2> 
+                        <DynamicButton type='edit' text="Edit" linkURL='/hostSelect'/>
                     </Grid>
+                </Grid>
 
-                    <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                        <div>
-                            <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Charger Name:{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem}>
-                               {this.props.state.device.name}
-                            </p>
-                        </div>
-                        <div>
-                            <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Installation Date:{'\u00A0'}{'\u00A0'}</h3>
-                            <p className={classes.reviewItem} >
-                                {this.props.state.device.date}
-                            </p>
-                        </div>
+                <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
+                    <h3 style={{display: 'inline-block'}}>Address:{'\u00A0'}{'\u00A0'}</h3>
+                    <p style={{display: 'inline-block'}}>
+                        {this.props.state.device.site.address}
+                    </p>
+                </Grid>
+
+                <Grid item align='center' xs={12}>
+                    <h2>Local Contact for Location</h2>
+                </Grid>
+
+                <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
+                    <div>
+                        <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>First Name:{'\u00A0'}{'\u00A0'}</h3>
+                        <p className={classes.reviewItem}>
+                            {this.props.state.device.site.first_name}
+                        </p>
+                    </div>
+                    <div>
+                        <h3 className={classes.reviewItem}>Second Name:{'\u00A0'}{'\u00A0'}</h3>
+                        <p className={classes.reviewItem}>
+                            {this.props.state.device.site.second_name}
+                        </p>
+                    </div>
+                    <div>
+                        <h3 className={classes.reviewItem}>Phone Number:{'\u00A0'}{'\u00A0'}</h3>
+                        <p className={classes.reviewItem}>
+                            {this.props.state.device.site.phone}
+                        </p>
+                    </div> 
+                    <div>
+                        <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Email:{'\u00A0'}{'\u00A0'}</h3>
+                        <p className={classes.reviewItem}>
+                            {this.props.state.device.site.email}
+                        </p>
+                    </div>
+                </Grid>
+                
+                <Grid item align='center' xs={12}>
+                    <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
+                        <div className = {classes.left}/> 
+                        <h2>Breaker Information</h2> 
+                        <DynamicButton type='edit' text="Edit" linkURL='/breakerSelect'/>
                     </Grid>
+                </Grid>
 
-                    
-                    <Grid container direction = 'row' justify = 'center' alignContent = 'center' style={{marginTop: '35px'}}>
-                            <Button variant ='contained'
-                            component = {Link} to ="/deviceName">
-                                <ChevronLeftIcon/> Previous
-                            </Button>
-                            <div className = {classes.grow}>{'\u00A0'}</div>
-                            <Button variant = 'contained' color = 'primary'
-                            onClick = {this.saveDevice}
-                            >
-                                <SaveIcon/> Save Device
-                            </Button>
-                        
-                        </Grid> 
+                <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
+                    <div>
+                        <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Breaker Name:{'\u00A0'}{'\u00A0'}</h3>
+                        <p className={classes.reviewItem}>
+                            {this.props.state.device.breaker.name}
+                        </p>
+                    </div>
+                    <div>
+                        <h3 className={classes.reviewItem}>Breaker Limit:{'\u00A0'}{'\u00A0'}</h3>
+                        <p className={classes.reviewItem}>
+                            {this.props.state.device.breaker.limit}Amps
+                        </p>
+                    </div>
+                    <div>
+                        <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Breaker Description:{'\u00A0'}{'\u00A0'}</h3>
+                        <p className={classes.reviewItem}>
+                            {this.props.state.device.breaker.description}
+                        </p>
+                    </div>
+                </Grid>
+
+                <Grid item align='center' xs={12}>
+                    <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
+                        <div className = {classes.left}/> 
+                        <h2>Device Type</h2> 
+                        <DynamicButton type='edit' text="Edit" linkURL='/deviceType'/>
+                    </Grid>
+                </Grid>
+
+                <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
+                    <div>
+                        <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Device Type:{'\u00A0'}{'\u00A0'}</h3>
+                        <p className={classes.reviewItem}>
+                            {this.props.state.device.type.name}
+                        </p>
+                    </div>
+                </Grid>
+
+                <Grid item align='center' xs={12}>
+                    <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
+                        <div className = {classes.left}/> 
+                        <h2>Device Information</h2> 
+                        <DynamicButton type='edit' text="Edit" linkURL='/deviceSerial'/>
+                    </Grid>
+                </Grid>
+
+                <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
+                    <div>
+                        <h3 className={classes.reviewItem} style={{margin: '10px 0px'}}>Serial Number:{'\u00A0'}{'\u00A0'}</h3>
+                        <p className={classes.reviewItem}>
+                            {this.props.state.device.serial.number}
+                        </p>
+                    </div>
+                </Grid>
+
+                <Grid item align='center' xs={12}>
+                <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
+                        <div className = {classes.left}/> 
+                        <h2>Additional Information</h2> 
+                        <DynamicButton type='edit' text="Edit" linkURL='/deviceName'/>
+                    </Grid>
+                </Grid>
+
+                <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
+                    <div>
+                        <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Charger Name:{'\u00A0'}{'\u00A0'}</h3>
+                        <p className={classes.reviewItem}>
+                            {this.props.state.device.name}
+                        </p>
+                    </div>
+                    <div>
+                        <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Installation Date:{'\u00A0'}{'\u00A0'}</h3>
+                        <p className={classes.reviewItem} >
+                            {this.props.state.device.date}
+                        </p>
+                    </div>
+                </Grid>
+
+                
+                <Grid container direction = 'row' justify = 'center' alignContent = 'center' style={{marginTop: '35px'}}>
+                    <DynamicButton type='previous' text='Previous' linkURL='/deviceName'/>
+                    <div className = {classes.grow}>{'\u00A0'}</div>
+                    <DynamicButton type='save' text='Save Device' handleClick={this.saveDevice}/>
+                </Grid> 
             </Paper>
           </div>  
           </Grid>

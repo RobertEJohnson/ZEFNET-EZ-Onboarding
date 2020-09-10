@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import {Grid, Button, withStyles, GridListTileBar} from '@material-ui/core';
+import {Grid, withStyles, GridListTileBar} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import zefNetPro from './zefpro.png';
-import wallmount from './wallMount.jpg';
-import single from './singleheadped.jpg';
-import double from './dualheadped.jpg';
+import zefNetPro from './Images/zefpro.png';
+import wallmount from './Images/wallMount.jpg';
+import single from './Images/singleheadped.jpg';
+import double from './Images/dualheadped.jpg';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
   card: {
@@ -26,12 +26,6 @@ const styles = theme => ({
     height: '250px',
     width: '250px'
   },
-  previousButton: {
-    paddingLeft: '8px',
-  },
-  previousButton: {
-    paddingLeft: '8px'
-  },
 })
 
 class DeviceSelectType extends Component {
@@ -44,7 +38,7 @@ class DeviceSelectType extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <Grid container justify='center' alignContent='center' alignItems='center' xs={12}>
+      <Grid container justify='center' alignContent='center' alignItems='center'>
         {/*Title */}
         <Grid item xs={12} align='center'>
           <h1 style={{color:'white',marginBottom: '30px'}}>Please Select Your Charging Device Type</h1>
@@ -53,7 +47,7 @@ class DeviceSelectType extends Component {
         <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
               {/*Wall Mount Device Card*/}
               <Card className={classes.card}>
-                <CardActionArea onClick={()=>{this.setTypeReducer(1,'./wallMount.jpg','Wall Mount Charger')}}
+                <CardActionArea onClick={()=>{this.setTypeReducer(1,'./Images/wallMount.jpg','Wall Mount Charger')}}
                    component = {Link} to ="/deviceSerial"
                 >
                   <CardMedia
@@ -66,9 +60,9 @@ class DeviceSelectType extends Component {
                   </CardActionArea>
                 </Card>
     
-            {/*Single Head Device Card*/}
+              {/*Single Head Device Card*/}
               <Card className={classes.card}>
-                <CardActionArea onClick={()=>{this.setTypeReducer(2,'./singleheadped.jpg','Single Head Pedestal Charger')}}
+                <CardActionArea onClick={()=>{this.setTypeReducer(2,'./Images/singleheadped.jpg','Single Head Pedestal Charger')}}
                   component = {Link} to ="/deviceSerial">
                   <CardMedia
                   image={single}
@@ -82,7 +76,7 @@ class DeviceSelectType extends Component {
     
               {/*Dual Head Device Card*/}
               <Card className={classes.card}>
-                <CardActionArea onClick={()=>{this.setTypeReducer(3,'./dualheadped.jpg','Dual Head Pedestal Charger')}} 
+                <CardActionArea onClick={()=>{this.setTypeReducer(3,'./Images/dualheadped.jpg','Dual Head Pedestal Charger')}} 
                   component = {Link} to ="/deviceSerial">
                     <CardMedia
                       image={double}
@@ -94,9 +88,9 @@ class DeviceSelectType extends Component {
                   </CardActionArea>
               </Card>
             
-            {/*ZEFNET Pro Device Card*/}
+                {/*ZEFNET Pro Device Card*/}
                 <Card className={classes.card}>
-                  <CardActionArea onClick={()=>{this.setTypeReducer(4,'./zefpro.png','ZEFNET Pro Charger')}}
+                  <CardActionArea onClick={()=>{this.setTypeReducer(4,'./Images/zefpro.png','ZEFNET Pro Charger')}}
                     component = {Link} to ="/deviceSerial">
                     <CardMedia
                     image={zefNetPro}
@@ -111,17 +105,7 @@ class DeviceSelectType extends Component {
 
         {/*Previous Button*/}
         <Grid item align='center' xs={12}>
-          <div style={{ align: 'center' }}>
-            <Button
-              variant="contained"
-              style={{ margin: "20px" }}
-              color="default"
-              component = {Link} to ="/breakerSelect"
-              className={classes.previousButton}
-             >
-              <ChevronLeft/>Previous
-            </Button>
-          </div>
+          <DynamicButton type='previous' text='Previous' linkURL='/breakerSelect'/>
         </Grid>
 
       </Grid>

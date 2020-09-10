@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import{Grid, Button, Paper} from '@material-ui/core';
+import{Grid, Paper} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import EditIcon from '@material-ui/icons/Edit';
-import HomeIcon from '@material-ui/icons/Home';
-import { Link } from 'react-router-dom';
-
+import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
   resetMargin:{
@@ -41,9 +38,7 @@ componentDidMount(){
             <Grid item align='center' style={{minWidth: '100%'}}>
                 <div className = {classes.headerZone}>
                     <span style={{position: 'absolute', right: '10px', top: '8px'}}>
-                      <Button variant='outlined' component={Link} to ="/editOrganization" size='small'>
-                          <EditIcon/> Edit
-                      </Button>
+                      <DynamicButton type='edit' text='Edit' linkURL='/editOrganization'/>
                     </span>
                     <h1 className={classes.resetMargin}>
                       {this.props.reduxState.organization.name}
@@ -71,12 +66,7 @@ componentDidMount(){
                 </div>
             </Grid>
             <center style={{marginTop: '20px'}}>
-                <Button variant = 'contained'
-                    component = {Link} to ="/organizationHome"
-                    >
-                    <HomeIcon/>
-                    Home
-                </Button>
+                <DynamicButton type='home' text='Home' linkURL='/organizationHome'/>
             </center>
             </Grid>
         </Paper>

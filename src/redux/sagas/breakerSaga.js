@@ -19,9 +19,11 @@ function* addBreaker(action){
     //post new breaker to breaker table
     const response = yield axios.post('/api/breaker', action.payload);
     //log the response for testing
-    console.log('back from site POST with', response);
+    console.log('back from site POST with', response.data[0].id);
     //call the GET saga to retrieve updated info
-    yield put({ type: 'FETCH_SITE_BREAKERS', payload: action.payload.site_id})
+    yield put({ type: 'FETCH_SITE_BREAKERS', payload: action.payload.site_id});
+    action.payload.id = response.data[0].id;
+    yield put({type: 'SET_BREAKER', payload: action.payload});
     } catch (error) {
         console.log('error with breaker post:', error);
     }

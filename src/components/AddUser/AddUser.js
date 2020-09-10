@@ -9,11 +9,16 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
   withStyles,
 } from "@material-ui/core";
-import { ChevronLeft } from "@material-ui/icons";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import UserTableRow from './UserTableRow'
+import DynamicButton from '../Buttons/DynamicButton'
 
 const styles = (theme) => ({
   paper: {
@@ -21,17 +26,37 @@ const styles = (theme) => ({
     borderRadius: "5px",
     height: "fit-content",
     width: "fit-content",
+    maxWidth: '1000px'
   },
+  reviewTable:{
+      overflowX: 'auto',
+      whiteSpace:'nowrap',
+  },
+  textFields:{
+    maxWidth: '175px',
+    margin: '5px'
+  }
 });
 
 class AddUser extends Component {
   state = {
-    fname: "",
-    lname: "",
+    first_name: "",
+    last_name: "",
     email: "",
     phone: "",
-    privileges: "",
+    editor: "",
+    toggle: false,
+    tableRows: this.props.reduxState.zefUser
   };
+
+  componentDidUpdate(previousProps){
+    if(previousProps.reduxState.zefUser !== this.props.reduxState.zefUser){
+      this.setState({
+        ...this.state,
+        tableRows: this.props.reduxState.zefUser
+      })
+    }
+  }
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
@@ -41,23 +66,29 @@ class AddUser extends Component {
 
   handleAddUser = () => {
     if (
-      this.state.fname &&
-      this.state.lname &&
+      this.state.first_name &&
+      this.state.last_name &&
       this.state.email &&
       this.state.phone &&
-      this.state.privileges !== ""
+      this.state.editor !== ""
     ) {
       const actionObject = {
-        fname: this.state.fname,
-        lname: this.state.lname,
+        first_name: this.state.first_name,
+        last_name: this.state.last_name,
         email: this.state.email,
         phone: this.state.phone,
-        privileges: this.state.privileges,
-        orgId: this.props.reduxState.organization.id,
+        editor: this.state.editor,
+        organization_id: this.props.reduxState.organization.id,
       };
       console.log(actionObject);
-      // Double check the type
       this.props.dispatch({ type: "ADD_USER", payload: actionObject });
+      this.setState({
+        first_name: "",
+        last_name: "",
+        email: "",
+        phone: "",
+        editor: "",
+      });
     } else {
       alert("enter required information");
     }
@@ -65,9 +96,7 @@ class AddUser extends Component {
 
   render() {
     const { classes } = this.props;
-
     let centerText = {
-      // paddingLeft: "15px",
       textAlign: "center",
       color: "black",
       fontFamily: "Crimson Text, Open Sans, sans-serif",
@@ -92,8 +121,7 @@ class AddUser extends Component {
     };
 
     let textFields = {
-      fontFamily: "Crimson Text",
-      minWidth: "100px",
+      width: "180px",
       margin: "5px",
     };
 
@@ -108,123 +136,101 @@ class AddUser extends Component {
           minWidth: "100vw",
         }}
       >
-        <Grid item xs={8} style={{ maxWidth: "1000px" }} align="center">
+        <Grid item xs={8} align="center">
           <Paper className={classes.paper} elevation={3}>
             <div style={header}>
               <div style={centerText}>
-                <div>
                   <h1>New Users</h1>
-                </div>
-                <div>
                   <h3>
+                    {/* {JSON.stringify(this.props.reduxState.zefUser)} */}
                     Users can view or edit device information on ZEFNET Portal
                   </h3>
-                </div>
               </div>
             </div>
-            <form
-              style={{
-                background: "transparent",
-                display: "flex",
-                flexDirection: "row",
-                flexWrap: "wrap",
-                width: "inherit",
-                padding: "0px",
-                height: "fit-content",
-              }}
-            >
-              <div>
-                <TextField
-                  required
-                  color="secondary"
-                  style={textFields}
-                  label="First Name:"
-                  margin="normal"
-                  variant="outlined"
-                  value={this.state.fname || ""}
-                  onChange={this.handleInputChangeFor("fname")}
-                />
-              </div>
-              <div>
-                <TextField
-                  color="secondary"
-                  required
-                  style={textFields}
-                  label="Last Name"
-                  margin="normal"
-                  variant="outlined"
-                  value={this.state.lname || ""}
-                  onChange={this.handleInputChangeFor("lname")}
-                />
-              </div>
-              <div>
-                <TextField
-                  color="secondary"
-                  required
-                  style={textFields}
-                  label="Email"
-                  margin="normal"
-                  variant="outlined"
-                  value={this.state.email || ""}
-                  onChange={this.handleInputChangeFor("email")}
-                />
-              </div>
-              <div>
-                <TextField
-                  color="secondary"
-                  required
-                  style={textFields}
-                  label="Phone"
-                  margin="normal"
-                  variant="outlined"
-                  value={this.state.phone || ""}
-                  onChange={this.handleInputChangeFor("phone")}
-                />
-              </div>
-              <div>
-                {/* <Select
-                  color="secondary"
-                  required
-                  style={textFields}
-                  label="Privileges"
-                  margin="normal"
-                  variant="outlined"
-                  value={this.state.privileges}
-                  onChange={this.handleInputChangeFor("privileges")}
-                /> */}
-                <FormControl variant="outlined">
-                  <InputLabel>Choose From Existing</InputLabel>
-                  <Select
-                    value={this.state.selectedPrivileges || ""}
-                    onChange={this.handleChange}
-                    label="Breaker"
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    {/*Map out all breakers stored in reducer*/}
-
-                    {/* {
-                                    this.state.breakers.map((breaker, index)=>
-                                    <MenuItem value={breaker} key={breaker.id}>
-                                        <span style={{backgroundColor: '#b2ff59'}}>Amps:{breaker.limit} </span> {breaker.name}</MenuItem>
-                                )} */}
-                  </Select>
-                </FormControl>
-              </div>
+              <Table className={classes.reviewTable}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell></TableCell>
+                    <TableCell>First Name</TableCell>
+                    <TableCell>Last Name</TableCell>
+                    <TableCell>Email</TableCell>
+                    <TableCell>Phone</TableCell>
+                    <TableCell>Privileges</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.props.reduxState.zefUser.map( user => 
+                      <UserTableRow key={user.id} first_name={user.first_name} last_name={user.last_name} email={user.email}
+                        phone={user.phone} editor={user.editor} user_id={user.id}/>
+                  )}
+                </TableBody>
+              </Table>
+              <br/>
+              <h2>Add a New User</h2>
+                
+                <form
+                  style={{
+                    background: "transparent",
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    width: "inherit",
+                    padding: "0px",
+                    height: "fit-content",
+                  }}
+                >
+                  <Grid container dircetion = 'row' justify =  'center' alignItems = 'center' spacing ={1}>
+                    <TextField
+                      required
+                      color="secondary"
+                      className = {classes.textFields}
+                      label="First Name:"
+                      variant="outlined"
+                      value={this.state.first_name}
+                      onChange={this.handleInputChangeFor("first_name")}
+                    />
+                    <TextField
+                      required
+                      color="secondary"
+                      className = {classes.textFields}
+                      label="Last Name:"
+                      variant="outlined"
+                      value={this.state.last_name}
+                      onChange={this.handleInputChangeFor("last_name")}
+                    />
+                    <TextField
+                      required
+                      color="secondary"
+                      className = {classes.textFields}
+                      label="Email:"
+                      variant="outlined"
+                      value={this.state.email}
+                      onChange={this.handleInputChangeFor("email")}
+                    />
+                    <TextField
+                      color="secondary"
+                      className = {classes.textFields}
+                      label="Phone:"
+                      variant="outlined"
+                      value={this.state.phone || ""}
+                      onChange={this.handleInputChangeFor("phone")}
+                    />
+                    <FormControl variant="outlined">
+                      <InputLabel>Privileges:</InputLabel>
+                      <Select
+                        required
+                        onChange={this.handleInputChangeFor("editor")}
+                        style={textFields}
+                        value={this.state.editor || ""}
+                      >
+                        <MenuItem value="False">View</MenuItem>
+                        <MenuItem value="True">Edit</MenuItem>
+                      </Select>
+                    </FormControl>
+                </Grid>
+                <br/>
               <div style={buttons}>
-                <div>
-                  <Button
-                    variant="contained"
-                    color="default"
-                    component={Link}
-                    to="/organizationHome"
-                  >
-                    <ChevronLeft /> Home
-                  </Button>
-                </div>
-
-                <div>
+                  <DynamicButton  type='home' text='Home' linkURL='/organizationHome'/>
                   <Button
                     variant="contained"
                     color="default"
@@ -233,7 +239,6 @@ class AddUser extends Component {
                   >
                     Add User
                   </Button>
-                </div>
               </div>
             </form>
           </Paper>

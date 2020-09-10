@@ -17,7 +17,7 @@ class AddBreaker extends Component {
   state = {
     name: '',
     description: '',
-    limit: 0,
+    limit: '',
   };
   handleChange = (event) => {
     this.setState({ 
@@ -27,7 +27,7 @@ class AddBreaker extends Component {
 
   addSite = () => {
       //post new site to site table
-      if (this.props.state.device.site){
+      if (this.props.state.device.site.id){
         const postObject = {
             name: this.state.name,
             description: this.state.description,
@@ -73,7 +73,6 @@ class AddBreaker extends Component {
               onChange = {this.handleChange}
             />
             <TextField
-              autoFocus
               required
               variant = 'outlined'
               margin="dense"
@@ -91,7 +90,6 @@ class AddBreaker extends Component {
               If additional information is beneficial, please fill in the description field.
             </h3>
             <TextField
-              autoFocus
               fullWidth
               variant = 'outlined'
               margin="dense"

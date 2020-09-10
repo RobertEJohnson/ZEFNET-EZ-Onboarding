@@ -1,16 +1,57 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Paper, withStyles, TextField, Button } from "@material-ui/core";
-import {ChevronLeft, EvStation} from '@material-ui/icons';
+import { Grid, Paper, withStyles, TextField, } from "@material-ui/core";
 import PropTypes from "prop-types";
-import user from "../Organization/zefUser.jpeg";
-import { Link } from "react-router-dom";
+import zefNetPro from './Images/zefpro.png';
+import wallMount from './Images/wallMountStylized.jpg';
+import singleHead from './Images/singleHeadStylized.jpg';
+import dualHead from './Images/dualHeadStylized.jpg';
+import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = (theme) => ({
   paper: {
     padding: theme.spacing(2),
     borderRadius: "5px",
   },
+  reviewButton: { 
+    width: "162px" 
+  },
+  borderedBox: {
+    border: "solid #e3e3e3 3px",
+    maxWidth: "515px",
+    height: "150px",
+    display: "flex",
+    borderRadius: '5px'
+  },
+  image: {
+    maxHeight: "145px",
+    maxWidth: "145px",
+  },
+  centerFont: {
+    paddingLeft: "15px",
+    textAlign: "center",
+    color: "black",
+    fontFamily: "Crimson Text, Open Sans, sans-serif",
+    maxWidth: "inherit",
+  },
+  form:{
+    background: "transparent",
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    padding: "0px",
+  },
+  buttonDiv: {
+      display: "flex",
+      width: "515px",
+      justifyContent: "space-between",
+      align: "center",
+      marginTop: "20px",
+  },
+  textField: {
+    fontFamily: "Crimson Text, Open Sans, sans-serif",
+    width: "400px",
+  }
 });
 
 class DeviceName extends Component {
@@ -28,6 +69,27 @@ class DeviceName extends Component {
         })
     }
   } 
+
+  chooseDeviceImage = ()=>{
+    let deviceImage;
+    switch(this.props.reduxState.device.type.id){
+      case 1:
+        deviceImage = wallMount;
+        break;
+      case 2:
+        deviceImage = singleHead;
+        break;
+      case 3:
+        deviceImage = dualHead;
+        break;
+      case 4:
+        deviceImage = zefNetPro;
+        break;
+      default:
+        deviceImage = dualHead;
+    }
+    return deviceImage;
+  }
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
@@ -58,54 +120,15 @@ class DeviceName extends Component {
 
   render() {
     const { classes } = this.props;
-
-    let centerText = {
-      paddingLeft: "15px",
-      textAlign: "center",
-      color: "black",
-      fontFamily: "Crimson Text, Open Sans, sans-serif",
-      maxWidth: "inherit",
-    };
-
-    let header = {
-      border: "solid #e3e3e3 2px",
-      maxWidth: "515px",
-      height: "150px",
-      display: "flex",
-      borderRadius: "5px",
-    };
-
-    let buttons = {
-      display: "flex",
-      width: "515px",
-      justifyContent: "space-between",
-      align: "center",
-      marginTop: "20px",
-    };
-
     return (
-      <Grid
-        container
-        justify="center"
-        alignContent="center"
-        alignItems="center"
-        style={{
-          minHeight: "75vh",
-          minWidth: "100vw",
-          // background: "linear-gradient(360deg, #041E41, #004e92 70%)",
-        }}
-      >
-        <Grid item xs={8} style={{ maxWidth: "1000px" }} align="center">
+        <Grid item xs={12} style={{ maxWidth: "1000px" }} align="center">
           <Paper className={classes.paper} elevation={3}>
-            <div style={header}>
+            <div className={classes.borderedBox}>
               
               <div>
                 <img
-                  src={user}
-                  style={{
-                    maxHeight: "146px",
-                    maxWidth: "150px",
-                  }}
+                  src={this.chooseDeviceImage()}
+                  className={classes.image}
                   alt = {this.props.reduxState.device.type.name}
                 />
                 {/* Image should be changed */}
@@ -113,33 +136,21 @@ class DeviceName extends Component {
 
               <div>
                 <div>
-                  <h1 style={centerText}>Name your Device</h1>
+                  <h1 className={classes.centerFont}>Name your Device</h1>
                 </div>
                 <div>
-                  <h3 style={centerText}>
-                    Good names should be short and memorable and descriptive..
-                  </h3>
+                  <h3 className={classes.centerFont}>Good names should be short and memorable and descriptive..</h3>
                 </div>
               </div>
             </div>
             <form
-              style={{
-                background: "transparent",
-                display: "flex",
-                flexDirection: "column",
-                width: "100%",
-                padding: "0px",
-              }}
+            className={classes.form}
             >
               <div>
                 <TextField
                   required
-                  color="secondary"
-                  style={{
-                    fontFamily: "Crimson Text",
-                    maxWidth: "inherit",
-                    minWidth: "400px",
-                  }}
+                  style={{margin:'25px auto 0px auto'}}
+                  className={classes.textField}
                   label="Charger Name:"
                   margin="normal"
                   variant="outlined"
@@ -149,10 +160,10 @@ class DeviceName extends Component {
               </div>
               <div>
                 <TextField
-                  color="secondary"
                   required
                   type="Date"
-                  style={{ fontFamily: "Crimson Text", minWidth: "400px" }}
+                  style={{margin:'10px auto 0px auto' }}
+                  className={classes.textField}
                   label=""
                   margin="normal"
                   variant="outlined"
@@ -160,43 +171,18 @@ class DeviceName extends Component {
                   onChange={this.handleInputChangeFor("installationDate")}
                 />
               </div>
-              <div style={buttons}>
-                <div>
-                  <Button
-                    variant="contained"
-                    color="default"
-                    component={Link}
-                    to="/deviceSerial"
-                  >
-                    <ChevronLeft /> Previous
-                  </Button>
-                </div>
-                <div>
+              <div className={classes.buttonDiv}>
+                <DynamicButton type='previous' text='Previous' linkURL='/deviceSerial'/>
+                
                 {this.state.chargerName && this.state.installationDate ?
-                    <Button
-                      variant="contained"
-                      color = 'primary'
-                      onClick={this.handleNext}
-                      style={{ width: "131px" }}
-                    >
-                      Review Device<EvStation/>
-                    </Button>
-                  :
-                    <Button
-                      variant="contained"
-                      disabled
-                      onClick={this.handleNext}
-                      style={{ width: "131px" }}
-                    >
-                      Review Device <EvStation/>
-                    </Button>
+                    <DynamicButton key={'name-enabled-next'} type='review' text='Review Device' handleClick={this.handleNext}/>
+                        :
+                    <DynamicButton key={'name-disabled-next'} type='review' text='Review Device' isDisabled={true}/>
                   }
-                </div>
               </div>
             </form>
           </Paper>
         </Grid>
-      </Grid>
     );
   }
 }
