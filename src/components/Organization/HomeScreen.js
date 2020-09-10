@@ -61,6 +61,7 @@ class HomeScreen extends Component {
           </Grid>
 
         </Grid>
+        
         <div style={{maxWidth: '1200px'}}>             
             <GridList cellHeight={450}>
                 <GridListTile className={classes.gridListTile} component={Link} to='/devicePrep'>
