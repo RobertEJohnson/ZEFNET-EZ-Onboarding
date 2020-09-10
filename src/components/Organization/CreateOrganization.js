@@ -66,6 +66,12 @@ class CreateOrganization extends Component {
       email: this.state.email,
       organizationAddress: this.state.organizationAddress,
       user_id: this.props.reduxState.user.id,
+      fname: this.props.reduxState.user.first_name,
+      lname: this.props.reduxState.user.last_name,
+      email: this.props.reduxState.user.email,
+      phone: this.props.reduxState.user.phone,
+      editor: 'true',
+      primary: 'true',
     };
     this.props.dispatch({ type: "ADD_ORGANIZATION", payload: actionObject });
     this.props.history.push("/organizationHome");
