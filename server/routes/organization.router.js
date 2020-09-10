@@ -42,7 +42,7 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
 
     const result = await connection.query(createOrganization, [
       req.body.organizationName,
-      req.body.email,
+      req.body.organizationEmail,
       req.body.primaryNumber,
       req.body.organizationAddress,
     ]);
@@ -51,9 +51,9 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
       req.body.user_id,
     ]);
     const zefUserValues = [
-      req.body.fname,
-      req.body.lname,
-      req.body.email,
+      req.body.first_name,
+      req.body.last_name,
+      req.body.userEmail,
       req.body.phone,
       req.body.editor,
       req.body.primary,
