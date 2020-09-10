@@ -14,7 +14,7 @@ import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
   card: {
-    transition: 'all .2s ease-in-out',
+    transition: 'transform .2s ease-in-out',
     maxWidth: '2500px',
     width: '250px',
     border: '1px solid black',
