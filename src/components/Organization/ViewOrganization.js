@@ -10,7 +10,7 @@ const styles = theme => ({
       margin: '0'
   },
   headerZone: {
-      fontFamily: 'iter, Open Sans, sans-serif',
+      fontFamily: 'inter, Open Sans, sans-serif',
       minWidth: '100%',
       position: 'relative'
   },

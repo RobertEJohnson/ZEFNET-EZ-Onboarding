@@ -99,7 +99,7 @@ class AddUser extends Component {
     let centerText = {
       textAlign: "center",
       color: "black",
-      fontFamily: "iter, Open Sans, sans-serif",
+      fontFamily: "inter, Open Sans, sans-serif",
       width: "515px",
     };
 

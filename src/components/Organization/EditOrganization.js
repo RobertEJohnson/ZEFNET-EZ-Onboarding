@@ -15,14 +15,14 @@ const styles = theme => ({
     h1Reset: {
       textAlign: "center",
       color: "white",
-      fontFamily: "iter, Open Sans, sans-serif",
+      fontFamily: "inter, Open Sans, sans-serif",
       padding: '0px',
       margin: '0px'
     },
     h3Reset: {
       textAlign: "center",
       color: "white",
-      fontFamily: "iter, Open Sans, sans-serif",
+      fontFamily: "inter, Open Sans, sans-serif",
       padding: '0px',
       margin: '0px 0px 0px 0px'
     },
@@ -68,7 +68,7 @@ class EditOrganization extends Component {
     let centerText = {
       textAlign: "center",
       color: "white",
-      fontFamily: "Crimson Text, Open Sans, sans-serif",
+      fontFamily: "inter, Open Sans, sans-serif",
       margin: '0px',
       padding: '0px'
     };
@@ -86,7 +86,7 @@ class EditOrganization extends Component {
               variant="outlined"
               value={this.state.organizationName}
               onChange={this.handleInputChangeFor("organizationName")}
-              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'  }}
+              style={{ minWidth: "380px", fontFamily: "inter", padding: '0px', margin: '15px 0px 0px 0px'  }}
               InputProps={{
                 classes: {
                   root: classes.input,
@@ -121,7 +121,7 @@ class EditOrganization extends Component {
               variant="outlined"
               value={this.state.primaryNumber}
               onChange={this.handleInputChangeFor("primaryNumber")}
-              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'  }}
+              style={{ minWidth: "380px", fontFamily: "inter", padding: '0px', margin: '15px 0px 0px 0px'  }}
               InputProps={{
                 classes: {
                   root: classes.input,
@@ -140,7 +140,7 @@ class EditOrganization extends Component {
               multiline
               value={this.state.organizationAddress}
               onChange={this.handleInputChangeFor("organizationAddress")}
-              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'  }}
+              style={{ minWidth: "380px", fontFamily: "inter", padding: '0px', margin: '15px 0px 0px 0px'  }}
               InputProps={{
                 classes: {
                   root: classes.input,

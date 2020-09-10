@@ -11,7 +11,7 @@ import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
   root: {
-    fontFamily: 'iter, sans-serif' ,
+    fontFamily: 'inter, sans-serif' ,
         
   },
   gridListTile: {
