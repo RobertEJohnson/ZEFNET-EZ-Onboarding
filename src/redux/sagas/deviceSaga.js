@@ -31,10 +31,23 @@ function* putDevice(action) {
     }
   }
 
+  function* deleteDevice(action) {
+    try {
+      console.log('in delete device', action.payload)
+      yield axios.delete("/api/device/" + action.payload.id );
+      //console.log('back from server with', response)
+      yield put({ type: 'GET_ALL_DEVICE', payload: action.payload.org_id });
+    } catch (error) {
+      console.log("Trouble deleting device", error);
+    }
+  }
+
+
 function* deviceSaga() {
   yield takeLatest("ADD_DEVICE", addDevice);
   yield takeLatest("GET_ALL_DEVICE", getDevice);
   yield takeLatest("UPDATE_DEVICE", putDevice);
+  yield takeLatest("DELETE_DEVICE", deleteDevice)
 }
 
 export default deviceSaga;

@@ -12,7 +12,7 @@ const styles = theme => ({
     alignItems: 'center',
     justify: 'center',
     color: theme.palette.text.secondary,
-    fontFamily: 'Crimson Text, Open Sans, sans-serif',
+    fontFamily: 'inter, Open Sans, sans-serif',
     minHeight: '100vh', 
     minWidth: '100vw', 
     background: 'white',
