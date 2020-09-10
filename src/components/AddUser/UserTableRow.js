@@ -6,6 +6,10 @@ import {
     IconButton,
     TableRow,
     TableCell,
+    Select,
+    FormControl,
+    MenuItem,
+    InputLabel,
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Delete, Edit, SaveAlt} from "@material-ui/icons";
@@ -126,11 +130,14 @@ class UserTableRow extends Component{
                                         required/>
                                 </TableCell>
                                 <TableCell className={classes.ViewCell}>
-                                    <TextField 
+                                    <Select
                                         value={this.state.editor}
                                         name='editor'
                                         onChange={this.handleChange}
-                                        required/>
+                                       >
+                                           <MenuItem value = 'true'>Edit</MenuItem>
+                                           <MenuItem value = 'false'>View</MenuItem>
+                                       </Select>
                                 </TableCell>
                             </>
                         }
