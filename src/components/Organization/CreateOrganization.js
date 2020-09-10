@@ -15,14 +15,14 @@ const styles = theme => ({
       title: {
         textAlign: "center",
         color: "white",
-        fontFamily: "Crimson Text, Open Sans, sans-serif",
+        fontFamily: "iter, Open Sans, sans-serif",
         padding: '0px',
         margin: '0px'
       },
       subTitle: {
         textAlign: "center",
         color: "white",
-        fontFamily: "Crimson Text, Open Sans, sans-serif",
+        fontFamily: "iter, Open Sans, sans-serif",
         padding: '0px',
         margin: '0px 0px 0px 0px',
         fontSize: '17px'

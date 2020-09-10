@@ -15,14 +15,14 @@ const styles = theme => ({
     h1Reset: {
       textAlign: "center",
       color: "white",
-      fontFamily: "Crimson Text, Open Sans, sans-serif",
+      fontFamily: "iter, Open Sans, sans-serif",
       padding: '0px',
       margin: '0px'
     },
     h3Reset: {
       textAlign: "center",
       color: "white",
-      fontFamily: "Crimson Text, Open Sans, sans-serif",
+      fontFamily: "iter, Open Sans, sans-serif",
       padding: '0px',
       margin: '0px 0px 0px 0px'
     },

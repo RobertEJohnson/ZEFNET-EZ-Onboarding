@@ -15,7 +15,7 @@ const styles = theme => ({
     title: {
       textAlign: 'center',
       color: 'white',
-      fontFamily: 'Crimson Text, Open Sans, sans-serif'
+      fontFamily: 'iter Open Sans, sans-serif'
     },
     pStyle: {
       textAlign:'center',

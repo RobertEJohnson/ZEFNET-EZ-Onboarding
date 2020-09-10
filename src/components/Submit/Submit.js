@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Grid, Paper, Button, withStyles, Divider, Accordion, TableHead, TableRow} from '@material-ui/core';
-import {AccordionSummary, AccordionDetails, Table, TableCell, TableBody, Switch} from '@material-ui/core';
+import {AccordionSummary, AccordionDetails, Table, TableCell, TableBody, Switch, AccordionActions} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import SaveIcon from '@material-ui/icons/SaveAlt';
+import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -15,7 +16,7 @@ const styles = theme => ({
     alignItems: 'center',
     justify: 'center',
     color: theme.palette.text.secondary,
-    fontFamily: 'Crimson Text, Open Sans, sans-serif',
+    fontFamily: 'iter, Open Sans, sans-serif',
     minHeight: '80vh', 
     background: 'white',
     textAlign: 'center',
@@ -55,11 +56,11 @@ class Submit extends Component {
         //console.log(this.state);
       };
 
-    handleEditFor = (index) => {
+    handleEditFor = (data) => {
         //console.log('in handleEditFor', index)
         //console.log('selected device:', this.props.state.allDevice[index.index]);
         //supply newdevice reducer with info for this device
-        const device = this.props.state.allDevice[index.index];
+        const device = this.props.state.allDevice[data.index];
         this.props.dispatch({ type: "SET_NAME", payload: device.name });
         this.props.dispatch({ type: "SET_ID", payload: device.id });
         const date = device.install_date.substring(0,10)
@@ -183,6 +184,7 @@ class Submit extends Component {
                     <Table >
                         <TableHead>
                             <TableRow>
+                                <TableCell></TableCell>
                                 <TableCell>Device Name</TableCell>
                                 <TableCell align="right">Device Type</TableCell>
                                 <TableCell align="right">Serial Number</TableCell>
@@ -202,8 +204,11 @@ class Submit extends Component {
                             (
                             <TableRow key = {index} >
                                  <TableCell component="th" scope="row">
-                                    {device.name}
+                                    <Button variant = 'outlined'>
+                                            Delete<DeleteIcon/>
+                                    </Button> 
                                 </TableCell>
+                                <TableCell align="right">{device.name}</TableCell>
                                 <TableCell align="right">{device.type_name}</TableCell>
                                 <TableCell align="right">{device.serial_number}</TableCell>
                                 <TableCell align="right"> {device.install_date.substring(0,10)}</TableCell>
@@ -228,7 +233,11 @@ class Submit extends Component {
                         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
                     <h2>{device.name}</h2>
                     </AccordionSummary>
-                    
+                    <AccordionActions>
+                        <Button variant = 'outlined'>
+                            Delete Device<DeleteIcon/>
+                        </Button>
+                    </AccordionActions>
                     <AccordionDetails>
                         <Grid container direction='row' justify='center' alignContent='center' alignItems='center' >
                                 <Grid item align='center' xs={12}>

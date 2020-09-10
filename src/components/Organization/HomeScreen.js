@@ -11,11 +11,8 @@ import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
   root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
+    fontFamily: 'iter, sans-serif' ,
+        
   },
   gridListTile: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -62,7 +59,7 @@ class HomeScreen extends Component {
 
         </Grid>
         
-        <div style={{maxWidth: '1200px'}}>             
+        <div style={{maxWidth: '1200px'}} className = {classes.root}>             
             <GridList cellHeight={450}>
                 <GridListTile className={classes.gridListTile} component={Link} to='/devicePrep'>
                     <img src={zefNetPro} alt="ZEFNET Pro Charger" className={classes.image} />
