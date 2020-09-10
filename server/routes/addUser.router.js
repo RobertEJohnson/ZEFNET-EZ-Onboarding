@@ -6,7 +6,6 @@ const {
 } = require("../modules/authentication-middleware");
 
 router.get("/:id", rejectUnauthenticated, (req, res) => {
-
     //console.log('in /api/add-user req.params.id:',req.params.id);
     const queryString = `SELECT * FROM "zefnet_user" WHERE "organization_id" = $1;`;
     const postValues = [
@@ -16,7 +15,6 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
       .query(queryString, postValues)
       .then((result) => {
         res.send(result.rows);
-        //console.log(result.rows);
       })
       .catch((error) => {
         res.sendStatus(500);
@@ -30,12 +28,12 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     ("first_name", "last_name", "email", "phone", "editor", "organization_id")
     VALUES($1, $2, $3, $4, $5, $6);`;
   const postValues = [
-    req.body.fname,
-    req.body.lname,
+    req.body.first_name,
+    req.body.last_name,
     req.body.email,
     req.body.phone,
     req.body.editor,
-    req.body.orgId,
+    req.body.organization_id,
   ];
   pool.query(queryString, postValues)
     .then(() => {
@@ -63,24 +61,28 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 });
 
 router.put("/:id", rejectUnauthenticated, (req, res) => {
-  console.log(`====> In update req.body ${req.params.zefUser_id}`)
+  console.log(`====> In update req.body ${req.params.id}`)
+  console.log(req.body);
   const queryString = `UPDATE "zefnet_user"
     SET
     "first_name" = $1, 
     "last_name" = $2, 
-    "email" $3, 
-    "phone" $4, 
-    "editor"$5 
+    "email" = $3, 
+    "phone" = $4, 
+    "editor" = $5 
     WHERE
     "id" = $6;`;
+
   const postValues = [
-    req.body.fname,
-    req.body.lname,
+    req.body.first_name,
+    req.body.last_name,
     req.body.email,
     req.body.phone,
     req.body.editor,
-    req.body.id,
+    req.params.id,
   ];
+
+  console.log(queryString, postValues)
   pool
     .query(queryString, postValues)
     .then(() => {
