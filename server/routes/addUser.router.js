@@ -1,12 +1,12 @@
 const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
-const {
-  rejectUnauthenticated,
-} = require("../modules/authentication-middleware");
+const {rejectUnauthenticated} = require("../modules/authentication-middleware");
 
 router.get("/:id", rejectUnauthenticated, (req, res) => {
-    const queryString = `SELECT * FROM "zefnet_user" WHERE "organization_id" = $1;`;
+    //console.log('in /api/add-user req.params.id:',req.params.id);
+    const queryString = `SELECT * FROM "zefnet_user" WHERE "organization_id" = $1
+      ORDER BY "last_name" ASC;`;
     const postValues = [
       req.params.id,
     ];

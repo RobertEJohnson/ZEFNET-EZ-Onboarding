@@ -17,7 +17,6 @@ import {
   withStyles,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import UserTableRow from './UserTableRow'
 import DynamicButton from '../Buttons/DynamicButton'
 
@@ -34,7 +33,8 @@ const styles = (theme) => ({
       whiteSpace:'nowrap',
   },
   textFields:{
-    maxWidth: '200px'
+    maxWidth: '175px',
+    margin: '5px'
   }
 });
 
@@ -121,7 +121,7 @@ class AddUser extends Component {
     };
 
     let textFields = {
-      width: "200px",
+      width: "180px",
       margin: "5px",
     };
 
@@ -161,10 +161,13 @@ class AddUser extends Component {
                 <TableBody>
                   {this.props.reduxState.zefUser.map( user => 
                       <UserTableRow key={user.id} first_name={user.first_name} last_name={user.last_name} email={user.email}
-                        phone={user.phone} editor={user.editor} user_id={user.id} editor={false}/>
+                        phone={user.phone} editor={user.editor} user_id={user.id}/>
                   )}
                 </TableBody>
               </Table>
+              <br/>
+              <h2>Add a New User</h2>
+                
                 <form
                   style={{
                     background: "transparent",
@@ -176,54 +179,56 @@ class AddUser extends Component {
                     height: "fit-content",
                   }}
                 >
-                <TextField
-                  required
-                  color="secondary"
-                  style={textFields}
-                  label="First Name:"
-                  variant="outlined"
-                  value={this.state.first_name}
-                  onChange={this.handleInputChangeFor("first_name")}
-                />
-                <TextField
-                  required
-                  color="secondary"
-                  style={textFields}
-                  label="Last Name:"
-                  variant="outlined"
-                  value={this.state.last_name}
-                  onChange={this.handleInputChangeFor("last_name")}
-                />
-                <TextField
-                  required
-                  color="secondary"
-                  style={textFields}
-                  label="Email:"
-                  variant="outlined"
-                  value={this.state.email}
-                  onChange={this.handleInputChangeFor("email")}
-                />
-                <TextField
-                  required
-                  color="secondary"
-                  style={textFields}
-                  label="Phone:"
-                  variant="outlined"
-                  value={this.state.phone || ""}
-                  onChange={this.handleInputChangeFor("phone")}
-                />
-                <FormControl variant="outlined">
-                  <InputLabel>Privileges:</InputLabel>
-                  <Select
-                    required
-                    onChange={this.handleInputChangeFor("editor")}
-                    style={textFields}
-                    value={this.state.editor || ""}
-                  >
-                    <MenuItem value="False">View</MenuItem>
-                    <MenuItem value="True">Edit</MenuItem>
-                  </Select>
-                </FormControl>
+                  <Grid container dircetion = 'row' justify =  'center' alignItems = 'center' spacing ={1}>
+                    <TextField
+                      required
+                      color="secondary"
+                      className = {classes.textFields}
+                      label="First Name:"
+                      variant="outlined"
+                      value={this.state.first_name}
+                      onChange={this.handleInputChangeFor("first_name")}
+                    />
+                    <TextField
+                      required
+                      color="secondary"
+                      className = {classes.textFields}
+                      label="Last Name:"
+                      variant="outlined"
+                      value={this.state.last_name}
+                      onChange={this.handleInputChangeFor("last_name")}
+                    />
+                    <TextField
+                      required
+                      color="secondary"
+                      className = {classes.textFields}
+                      label="Email:"
+                      variant="outlined"
+                      value={this.state.email}
+                      onChange={this.handleInputChangeFor("email")}
+                    />
+                    <TextField
+                      color="secondary"
+                      className = {classes.textFields}
+                      label="Phone:"
+                      variant="outlined"
+                      value={this.state.phone || ""}
+                      onChange={this.handleInputChangeFor("phone")}
+                    />
+                    <FormControl variant="outlined">
+                      <InputLabel>Privileges:</InputLabel>
+                      <Select
+                        required
+                        onChange={this.handleInputChangeFor("editor")}
+                        style={textFields}
+                        value={this.state.editor || ""}
+                      >
+                        <MenuItem value="False">View</MenuItem>
+                        <MenuItem value="True">Edit</MenuItem>
+                      </Select>
+                    </FormControl>
+                </Grid>
+                <br/>
               <div style={buttons}>
                   <DynamicButton  type='home' text='Home' linkURL='/organizationHome'/>
                   <Button

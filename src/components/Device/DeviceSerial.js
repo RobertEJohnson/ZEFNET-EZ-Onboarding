@@ -110,6 +110,7 @@ class DeviceSerial extends Component {
             </div>
           </div>
           <form className={classes.form}>
+            {JSON.stringify(this.props.reduxState.user)}
             <TextField
               required
               style={{ margin: "25px auto 0px auto" }}
