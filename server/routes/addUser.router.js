@@ -7,7 +7,6 @@ const {
 
 router.get("/:id", rejectUnauthenticated, (req, res) => {
 
-
     const queryString = `SELECT * FROM "zefnet_user" WHERE "organization_id" = $1;`;
     const postValues = [
       req.params.id,
@@ -36,8 +35,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     req.body.editor,
     req.body.orgId,
   ];
-  pool
-    .query(queryString, postValues)
+  pool.query(queryString, postValues)
     .then(() => {
       res.sendStatus(201);
     })
