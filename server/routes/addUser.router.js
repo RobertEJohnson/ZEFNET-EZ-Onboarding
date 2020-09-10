@@ -7,21 +7,6 @@ const {
 
 router.get("/:id", rejectUnauthenticated, (req, res) => {
 
-  console.log("in /api/add-user req.params.id:", req.params.id);
-  const queryString = `SELECT * FROM "zefnet_user" WHERE "organization_id" = $1;`;
-  const postValues = [req.params.id];
-  pool
-    .query(queryString, postValues)
-    .then((result) => {
-      res.send(result.rows);
-      console.log(result.rows);
-    })
-    .catch((error) => {
-      res.sendStatus(500);
-      console.log("error on POST /api/add-user/", error);
-    });
-});
-
     //console.log('in /api/add-user req.params.id:',req.params.id);
     const queryString = `SELECT * FROM "zefnet_user" WHERE "organization_id" = $1;`;
     const postValues = [
@@ -52,8 +37,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
     req.body.editor,
     req.body.orgId,
   ];
-  pool
-    .query(queryString, postValues)
+  pool.query(queryString, postValues)
     .then(() => {
       res.sendStatus(201);
     })
