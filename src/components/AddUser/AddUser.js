@@ -15,6 +15,10 @@ import {
   TableCell,
   TableBody,
   withStyles,
+  Dialog,
+  DialogContent,
+  DialogActions,
+  DialogContentText,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import UserTableRow from './UserTableRow'
@@ -46,7 +50,8 @@ class AddUser extends Component {
     phone: "",
     editor: "",
     toggle: false,
-    tableRows: this.props.reduxState.zefUser
+    tableRows: this.props.reduxState.zefUser,
+    open:false,
   };
 
   componentDidUpdate(previousProps){
@@ -90,8 +95,17 @@ class AddUser extends Component {
         editor: "",
       });
     } else {
-      alert("enter required information");
+    //open alert dialog
+      this.handleOpen();
     }
+  };
+
+  handleOpen = () => {
+    this.setState({ ...this.state, open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ ...this.state, open: false });
   };
 
   render() {
@@ -136,6 +150,23 @@ class AddUser extends Component {
           minWidth: "100vw",
         }}
       >
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          >
+            <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                    Oops!  Please ensure all required information is entered.
+                </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick = {this.handleClose}>
+                  OK
+              </Button>
+            </DialogActions>
+          </Dialog>
         <Grid item xs={8} align="center">
           <Paper className={classes.paper} elevation={3}>
             <div style={header}>
