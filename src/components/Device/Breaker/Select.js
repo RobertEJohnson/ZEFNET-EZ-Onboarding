@@ -70,9 +70,6 @@ class BreakerSelect extends Component {
       } 
 
       componentDidUpdate(previousProps){
-          //console.log('previous siteBreakers', previousProps.state.breaker.siteBreakerReducer);
-          //console.log('current siteBreakers', this.props.state.breaker.siteBreakerReducer);
-          //check if currently selected breaker is part of the site breaker array
           if(previousProps.state.breaker.siteBreakerReducer !== this.props.state.breaker.siteBreakerReducer){
              for (let i = 0; i <this.props.state.breaker.siteBreakerReducer.length; i++)
                 {  
@@ -80,7 +77,6 @@ class BreakerSelect extends Component {
                         this.setState({
                             ...this.state,
                             selectedBreaker: this.props.state.device.breaker.id,
-                            //breakers: this.props.state.breaker.siteBreakerReducer
                         })
                     }
                 }
@@ -108,13 +104,11 @@ class BreakerSelect extends Component {
       }
     
       assignBreaker = () => {
-        let allBreaker = this.props.state.breaker.siteBreakerReducer
-        console.log('in assignBreaker with breakers:', allBreaker)
+        let allBreaker = this.props.state.breaker.siteBreakerReducer;
         let myBreaker = []
         if(this.state.selectedBreaker){
             for (let i = 0; i < allBreaker.length; i++ ){
                 if (allBreaker[i].id === this.state.selectedBreaker){
-                console.log('match found!', allBreaker[i])
                 myBreaker.push(allBreaker[i]);
                 }
             }
