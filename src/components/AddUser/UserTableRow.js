@@ -58,7 +58,7 @@ class UserTableRow extends Component{
 
       handleDelete = () => {
         this.props.dispatch({ type: "DELETE_ZEFUSER", payload: {id:this.props.user_id, organization_id: this.state.organization_id}});
-        this.handeClose();
+        this.handleClose();
       };
 
       handleClickOpen = () => {

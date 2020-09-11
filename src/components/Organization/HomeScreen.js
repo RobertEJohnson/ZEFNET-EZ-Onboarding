@@ -66,8 +66,8 @@ class HomeScreen extends Component {
         </Grid>
         <h1 className={classes.titleHeader}>Please add your device(s) and adminstrative users</h1>
         <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center',}}>
-              {/*Add Device Card*/}
               
+              {/*Add Device Card*/}
               <Card className={classes.card}>
                 <CardActionArea component={Link} to="/devicePrep" >
                   <CardMedia

@@ -25,7 +25,7 @@ const styles = (theme) => ({
     paddingLeft: "15px",
     textAlign: "center",
     color: "black",
-    fontFamily: "Crimson Text, Open Sans, sans-serif",
+    fontFamily: "inter, Open Sans, sans-serif",
     maxWidth: "inherit",
   },
   form: {
@@ -43,7 +43,7 @@ const styles = (theme) => ({
     marginTop: "20px",
   },
   textField: {
-    fontFamily: "Crimson Text, Open Sans, sans-serif",
+    fontFamily: "inter, Open Sans, sans-serif",
     width: "400px",
   },
 });

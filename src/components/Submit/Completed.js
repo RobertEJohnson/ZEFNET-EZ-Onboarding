@@ -6,7 +6,7 @@ class Completed extends Component {
 
   // this component doesn't do much to start, just renders some user info to the DOM
   render() {
-    let centerText = {textAlign: 'center', color: 'white', fontFamily: 'Crimson Text, Open Sans, sans-serif'}
+    let centerText = {textAlign: 'center', color: 'white', fontFamily: 'inter, Open Sans, sans-serif'}
     return (
             <Grid item xs={8} style={{ maxWidth: '1000px', marginBottom: '100px'}} align='center' >
                     <h1 style={centerText}>Your onboarding package has been submitted</h1>
