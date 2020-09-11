@@ -202,13 +202,17 @@ class AddUser extends Component {
                       required
                       color="secondary"
                       className = {classes.textFields}
+                      inputProps= {{type: "email"}}
                       label="Email:"
                       variant="outlined"
                       value={this.state.email}
                       onChange={this.handleInputChangeFor("email")}
                     />
                     <TextField
+                      required
+                      type="tel" 
                       color="secondary"
+                      inputProps={{minLength: 10, pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}", }}
                       className = {classes.textFields}
                       label="Phone:"
                       variant="outlined"
