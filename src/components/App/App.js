@@ -32,6 +32,7 @@ import { indigo, yellow, green } from "@material-ui/core/colors";
 import "./App.css";
 import Submit from "../Submit/Submit";
 import Completed from "../Submit/Completed";
+import 'typeface-inter';
 
 const theme = createMuiTheme({
   palette: {
@@ -39,7 +40,12 @@ const theme = createMuiTheme({
     secondary: yellow,
     success: green,
   },
+  typography: {
+    fontFamily: 
+      '"Inter", sans-serif',
+  },
 });
+
 
 class App extends Component {
   componentDidMount() {

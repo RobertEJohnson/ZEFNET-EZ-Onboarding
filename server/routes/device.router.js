@@ -102,4 +102,23 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
  })
 });
 
+
+/**
+ * DELETE existing device
+ */
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  const queryString = `DELETE FROM "device"
+  WHERE id = $1;`;
+  const queryValue = [
+      req.params.id
+  ]
+  pool.query(queryString, queryValue)
+  .then(()=>{res.sendStatus(200)})
+  .catch((error)=>{
+   res.sendStatus(500)
+   console.log( 'error on POST /api/device/', error);
+ })
+});
+
+
 module.exports = router;
