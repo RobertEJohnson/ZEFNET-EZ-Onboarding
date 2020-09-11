@@ -39,6 +39,11 @@ const styles = theme => ({
     height: '300px',
     width: '300px'
   },
+  titleHeader: {
+    paddingTop: '40px',
+    color: 'white',
+    textAlign: 'center'
+  }
 })
 
 
@@ -59,9 +64,10 @@ class HomeScreen extends Component {
             </span>
           </Grid>
         </Grid>
-        
-        <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
+        <h1 className={classes.titleHeader}>Please add your device(s) and adminstrative users</h1>
+        <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center',}}>
               {/*Add Device Card*/}
+              
               <Card className={classes.card}>
                 <CardActionArea component={Link} to="/devicePrep" >
                   <CardMedia
@@ -102,8 +108,8 @@ class HomeScreen extends Component {
                         title="Add a Device" 
                         className={classes.media} />
                         <GridListTileBar
-                          title="Review and Submit Onboarding Package"
-                          subtitle='Ensure all Users and Devices Added before Clicking'
+                          title="Review/Submit Onboarding Package"
+                          subtitle='Please add a device first!'
                         />
                         </CardActionArea>
                       </Card>
@@ -116,8 +122,8 @@ class HomeScreen extends Component {
                           title="Add a Device" 
                           className={classes.media} />
                           <GridListTileBar
-                            title="Please add a device before submitting"
-                            subtitle='click left tile to add a device'
+                            title="Review/Submit Onboarding Package"
+                            subtitle='No devices are currently added'
                           />
                           </CardActionArea>
                       </Card>
