@@ -123,7 +123,6 @@ class DeviceSerial extends Component {
               onCopy={this.handleCopynPaste}
               onPaste={this.handleCopynPaste}
             />
-
             <TextField
               required
               style={{ margin: "10px auto 0px auto" }}

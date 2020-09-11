@@ -24,7 +24,7 @@ import {ChevronLeft, ChevronRight, Home as HomeIcon, Edit as EditIcon, EvStation
 
 const styles = {
     Button:{
-        transition: 'all .2s ease-in-out',
+        transition: 'transform .2s ease-in-out',
         height: '36px'
     },
     'Button--glow':{
