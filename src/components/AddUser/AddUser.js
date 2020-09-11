@@ -213,7 +213,7 @@ class AddUser extends Component {
                   <Grid container dircetion = 'row' justify =  'center' alignItems = 'center' spacing ={1}>
                     <TextField
                       required
-                      color="secondary"
+                      color="primary"
                       className = {classes.textFields}
                       label="First Name:"
                       variant="outlined"
@@ -222,7 +222,7 @@ class AddUser extends Component {
                     />
                     <TextField
                       required
-                      color="secondary"
+                      color="primary"
                       className = {classes.textFields}
                       label="Last Name:"
                       variant="outlined"
@@ -231,7 +231,7 @@ class AddUser extends Component {
                     />
                     <TextField
                       required
-                      color="secondary"
+                      color="primary"
                       className = {classes.textFields}
                       label="Email:"
                       variant="outlined"
@@ -239,7 +239,7 @@ class AddUser extends Component {
                       onChange={this.handleInputChangeFor("email")}
                     />
                     <TextField
-                      color="secondary"
+                      color="primary"
                       className = {classes.textFields}
                       label="Phone:"
                       variant="outlined"
