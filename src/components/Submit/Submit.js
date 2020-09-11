@@ -117,7 +117,7 @@ class Submit extends Component {
         const onboardPackage = {
             name: 'Zef EZ Onboard',
             //change to the email that we want to send emails to
-            email: 'zef.ezonboard@gmail.com',
+            email: 'support@zefenergy.com',
             message: JSON.stringify(sendObject),
         }
         this.props.dispatch({ type: "SUBMIT_ORGANIZATION", payload:this.props.state.organization.id });
