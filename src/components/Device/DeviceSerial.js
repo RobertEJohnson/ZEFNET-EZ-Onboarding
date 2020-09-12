@@ -190,7 +190,8 @@ class DeviceSerial extends Component {
             <div className={classes.buttonDiv}>
                 <DynamicButton type='previous' text='Previous' linkURL='/deviceType'/>
                 {
-                  this.state.serialNumber 
+                  this.state.serialNumber
+                  &&this.state.serialNumber !== this.state.serialNumber2 
                   && this.state.serialNumber === this.state.confirmSerialNumber 
                   &&((this.state.serialNumber2 === this.state.confirmSerialNumber2 && this.state.serialNumber2)
                   || this.props.reduxState.device.type.id !==3
