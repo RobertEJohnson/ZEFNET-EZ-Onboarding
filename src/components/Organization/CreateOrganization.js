@@ -40,8 +40,8 @@ const styles = theme => ({
 class CreateOrganization extends Component {
 
   componentDidMount() {
-    this.props.dispatch({ type: 'FETCH_ORGANIZATION', payload: this.props.reduxState.user.id})
     if (this.props.reduxState.organization.id) {
+      this.props.dispatch({ type: 'FETCH_ORGANIZATION', payload: this.props.reduxState.organization.id})
       this.props.history.push("/organizationHome");
   } 
 }
@@ -92,7 +92,7 @@ class CreateOrganization extends Component {
           <form className="form">
             <TextField
               required
-              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'  }}
+              style={{ minWidth: "380px", fontFamily: "Inter", padding: '0px', margin: '15px 0px 0px 0px'  }}
               label="Organization / Company Name"
               margin="normal"
               variant="outlined"
@@ -109,7 +109,7 @@ class CreateOrganization extends Component {
             />
             <br/>
             <TextField
-              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px' }}
+              style={{ minWidth: "380px", fontFamily: "Inter", padding: '0px', margin: '15px 0px 0px 0px' }}
               label="Phone Number"
               margin="normal"
               variant="outlined"
@@ -128,7 +128,7 @@ class CreateOrganization extends Component {
             <br/>
             <TextField
               required
-              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'}}
+              style={{ minWidth: "380px", fontFamily: "Inter", padding: '0px', margin: '15px 0px 0px 0px'}}
               label="Email"
               margin="normal"
               variant="outlined"
@@ -146,7 +146,7 @@ class CreateOrganization extends Component {
             <br/>
             <TextField
               required
-              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'}}
+              style={{ minWidth: "380px", fontFamily: "Inter", padding: '0px', margin: '15px 0px 0px 0px'}}
               label="Organization Address"
               variant="outlined"
               value={this.state.organizationAddress}
