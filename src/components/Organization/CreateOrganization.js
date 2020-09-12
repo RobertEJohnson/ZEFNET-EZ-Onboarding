@@ -40,10 +40,18 @@ const styles = theme => ({
 class CreateOrganization extends Component {
 
   componentDidMount() {
+     //push user to organizationHome instead if the've already added org info
     if (this.props.reduxState.organization.id) {
-      this.props.dispatch({ type: 'FETCH_ORGANIZATION', payload: this.props.reduxState.organization.id})
       this.props.history.push("/organizationHome");
   } 
+}
+
+componentDidUpdate(previousProps){
+  if (previousProps.reduxState.organization.id !== this.props.reduxState.organization.id){
+    if (this.props.reduxState.organization.id) {
+      this.props.history.push("/organizationHome");
+  } 
+  }
 }
 
   state = {
@@ -169,7 +177,7 @@ class CreateOrganization extends Component {
   }
 }
 
-// Instead of taking everything from state, we just want the user info.
+
 const mapStateToProps = (reduxState) => ({
   reduxState,
 });
