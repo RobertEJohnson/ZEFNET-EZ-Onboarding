@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import {Grid, Paper, withStyles} from '@material-ui/core';
+import {Grid, Paper, withStyles, Dialog, DialogActions, DialogContent, DialogContentText, Button} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import DynamicButton from '../Buttons/DynamicButton';
 
@@ -34,6 +34,9 @@ const styles = theme => ({
 })
 
 class DeviceReview extends Component {
+    state =  {
+        open: false
+    }
 
     saveDevice = () => {
         const postObject = {
@@ -60,13 +63,37 @@ class DeviceReview extends Component {
             }
             this.props.dispatch({ type: "CLEAR_DEVICE" });
             this.props.history.push("/OrganizationHome");
-        } else { alert('Oops: please make sure all fields are filled!') }
+        } else { this.setState({open: true}) }
     }
+
+    handleClose = () => {
+        this.setState({open: false});
+      };
 
     render() {
       const {classes} = this.props;
       return (
           <Grid container direction='row' justify='center' alignContent='center' alignItems='center' >
+              {/* Dialog runs if adding/saving device without all required info */}
+                <Dialog
+                open={this.state.open}
+                onClose={this.handleClose}
+                aria-labelledby="missing-information"
+                aria-describedby="missing-information-required-for-device"
+                >
+                    <DialogContent>
+                        <DialogContentText id="missing-required-information-use-edit-buttons-to-add">
+                            Oops, you have not filled all required fields for this device. 
+                            Please click "edit" next to the empty field to go back and add
+                            required information before saving this device.
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={this.handleClose} color="primary">
+                        OK
+                    </Button>
+                    </DialogActions>
+                </Dialog>
           <div className = {classes.root} style={{maxWidth: '1000px'}}>
             <Paper className = {classes.paper}>
                 <Grid item align='center'>

@@ -131,7 +131,7 @@ class DeviceSerial extends Component {
         this.props.dispatch({ type: "SET_SERIAL", payload: actionObject });
         this.props.history.push("/deviceName");
       } else {
-        alert("Serial input incorrect");
+        this.setState({...this.state, open: true});
       }}
     
   };
