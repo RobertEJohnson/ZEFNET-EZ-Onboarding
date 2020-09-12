@@ -145,28 +145,29 @@ class DeviceSerial extends Component {
 
     return (
       <Grid item xs={12} style={{ maxWidth: "1000px" }} align="center">
+        {/* Dialog runs if adding new device with existing serial number */}
         <Dialog
-                open={this.state.open}
-                onClose={this.handleClose}
-                aria-labelledby="existing-serial"
-                aria-describedby="serial-number-already-created"
-                >
-                    <DialogContent>
-                        <DialogContentText id="serial-number-already-created">
-                            Oops, a device with that serial has already been added to your list of devices.
-                            Do you want to go back and change the serial number(s) on this device or discard
-                            your current changes and view/edit your existing devices?
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                    <Button onClick={this.handleClose} color="primary">
-                        Change Serial Number
-                    </Button>
-                    <Button component = {Link} to = '/submit'>
-                        Discard changes and review devices.
-                    </Button>
-                    </DialogActions>
-                </Dialog>
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="existing-serial"
+          aria-describedby="serial-number-already-created"
+          >
+              <DialogContent>
+                  <DialogContentText id="serial-number-already-created">
+                      Oops, a device with that serial has already been added to your list of devices!
+                      Do you want to go back and change the serial number(s) on this device or discard
+                      your current changes and review your existing devices?
+                  </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+              <Button onClick={this.handleClose} color="primary">
+                  Change Serial Number
+              </Button>
+              <Button component = {Link} to = '/submit'>
+                  Discard changes and review devices.
+              </Button>
+              </DialogActions>
+          </Dialog>
         <Paper className={classes.paper} elevation={3}>
           <div className={classes.borderedBox}>
             {this.props.reduxState.device.type.id === 4?
