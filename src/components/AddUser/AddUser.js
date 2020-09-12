@@ -150,6 +150,7 @@ class AddUser extends Component {
           minWidth: "100vw",
         }}
       >
+        {/* This dialog will run if add user is clicked without required fields filled */}
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -173,7 +174,6 @@ class AddUser extends Component {
               <div style={centerText}>
                   <h1>New Users</h1>
                   <h3>
-                    {/* {JSON.stringify(this.props.reduxState.zefUser)} */}
                     Users can view or edit device information on ZEFNET Portal
                   </h3>
               </div>
