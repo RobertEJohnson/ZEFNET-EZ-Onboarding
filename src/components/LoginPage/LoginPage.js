@@ -1,30 +1,50 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, TextField } from "@material-ui/core";
+import { Grid, TextField} from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import DynamicButton from "../Buttons/DynamicButton";
 
 const styles = (theme) => ({
-    input: {
+    BottomBuffer: {
+      marginBottom: '1rem'
+    },
+    ButtonContainer:{
+      marginBottom: "150px",
+      position: 'relative',
+      maxWidth: '400px',
+    },
+    LoginPage: {
+      color: 'white'
+    },
+    Title: {
+      fontSize: "30px"
+    },
+    SubTitle:{
+      fontSize: "20px",
+      marginBottom: '2rem',
+    },
+    TextField: {
+      '--text-color':'#fff',
       '--dark-background':'#1c2447',
       '--focus-background':'#244d6e',
-      color: 'white',
-      border: '1px solid white',
-      backgroundColor: 'var(--dark-background)',
-      caretColor:'white',
       width: '400px',
+      color: 'var(--text-color)',
+      border: '1px solid var(--text-color)',
+      backgroundColor: 'var(--dark-background)',
+      caretColor:'var(--text-color)',
       '&:focus':{
         backgroundColor: 'var(--focus-background)'
       },
       '&:-webkit-autofill': {
         WebkitBoxShadow: '0 0 0 40px var(--dark-background) inset',
-        '-webkit-text-fill-color': 'white',
+        '-webkit-text-fill-color': 'var(--text-color)',
         '&:focus':{
           WebkitBoxShadow: '0 0 0 30px var(--focus-background) inset',
         }
       },
     },
+
   });
 
 class LoginPage extends Component {
@@ -64,75 +84,54 @@ class LoginPage extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid item style={{ marginBottom: "150px", position: 'relative'}} align='center'>
-        {this.props.errors.loginMessage && (
-          <h2 className="alert" role="alert">
-            {this.props.errors.loginMessage}
-          </h2>
-        )}
-        <div style={{ color: "white" }}>
-          <h2 style={{ margin: "0px" }}>Welcome to ZEFNET EZ Onboarding! </h2>
-          <h3 style={{ margin: "0px" }}>
-            The first stop for a new ZEF Energy customer
-          </h3>
-        </div>
-        <br />
-          <TextField
-            required
-            variant="filled"
-            label="Email Address"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleInputChangeFor("email")}
-            InputProps={{
-              classes: {
-                root: classes.input,
-              },
-            }}
-            inputProps={{
-              className: classes.input, 
-            }}
-            InputLabelProps={{
-              style:{color: 'white'}
-            }}
-          />
-        <br/>
-        <br/>
-          <TextField
-            required
-            variant="filled"
-            type="password"
-            label="Password"
-            name="password"
-            value={this.state.password}
-            onChange={this.handleInputChangeFor("password")}
-            InputProps={{
-              classes: {
-                root: classes.input,
-              },
-            }}
-            inputProps={{
-              className: classes.input, 
-            }}
-            InputLabelProps={{
-              style:{color: 'white'}
-            }}
-            onKeyDown={this.handleKeyDown}
-          />
-        <br/>
-        <br/>
-        <DynamicButton type='glow' text='Sign in' handleClick={this.login}/>
-        <DynamicButton type='dark' text='New User?' 
-          handleClick={()=>this.props.dispatch({ type: "SET_TO_REGISTER_MODE" })}
-          />
-      </Grid>
+      <Grid container justify="center" alignItems="center">
+        <Grid item xs={12} className={classes.LoginPage} align='center'>
+          {this.props.errors.loginMessage && (
+            <h2 role="alert">
+              {this.props.errors.loginMessage}
+            </h2>
+          )}
+            <h2 className={classes.Title}>Welcome to ZEFNET EZ Onboarding! </h2>
+            <p className={classes.SubTitle}>The first stop for a new ZEF Energy customer</p>
+              <TextField
+                  className={classes.BottomBuffer}
+                  required
+                  variant="filled"
+                  label="Email Address"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.handleInputChangeFor("email")}
+                  InputProps={{classes: {root: classes.TextField}}}
+                  inputProps={{className: classes.TextField}}
+                  InputLabelProps={{style:{color: 'white'}}}
+                />
+                <br/>
+                <TextField
+                  className={classes.BottomBuffer}
+                  required
+                  variant="filled"
+                  type="password"
+                  label="Password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleInputChangeFor("password")}
+                  InputProps={{classes: {root: classes.TextField}}}
+                  inputProps={{className: classes.TextField}}
+                  InputLabelProps={{style:{color: 'white'}}}
+                  onKeyDown={this.handleKeyDown}
+                />
+              <Grid item align='center' justify='center' className={classes.ButtonContainer}>
+                <DynamicButton type='glow' text='Sign in' handleClick={this.login}/>
+                <DynamicButton type='dark' text='New User?' 
+                  handleClick={()=>this.props.dispatch({ type: "SET_TO_REGISTER_MODE" })}
+                  />
+              </Grid>
+          </Grid>
+        </Grid>
     );
   }
 }
 
-// Instead of taking everything from state, we just want the error messages.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({errors}) => ({ errors });
 const mapStateToProps = (state) => ({
   errors: state.errors,
 });
