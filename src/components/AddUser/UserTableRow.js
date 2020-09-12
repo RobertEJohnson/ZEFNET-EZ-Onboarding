@@ -113,11 +113,11 @@ class UserTableRow extends Component{
                 <Dialog
                 open={this.state.open}
                 onClose={this.handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
+                aria-labelledby="confirm-delete"
+                aria-describedby="confirm-delete-user"
                 >
                     <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
+                        <DialogContentText id="are-you-sure-delete-user">
                             Are you sure you want to delete {this.state.first_name} from the user table?
                         </DialogContentText>
                     </DialogContent>

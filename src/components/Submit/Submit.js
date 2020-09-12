@@ -155,11 +155,11 @@ class Submit extends Component {
               <Dialog
                 open={this.state.open}
                 onClose={this.handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
+                aria-labelledby="confirm-delete"
+                aria-describedby="confirm-device-delete"
                 >
                     <DialogContent>
-                        <DialogContentText id="alert-dialog-description">
+                        <DialogContentText id="confirm-device-delete">
                             Are you sure you want to delete this device - {this.state.deletedName}?
                         </DialogContentText>
                     </DialogContent>
