@@ -40,10 +40,11 @@ class DeviceReview extends Component {
             name: this.props.state.device.name,
             installation_date: this.props.state.device.date,
             serial_number: this.props.state.device.serial.number,
+            serial_number2: this.props.state.device.serial2,
             type_id: this.props.state.device.type.id,
             breaker_id:this.props.state.device.breaker.id,
             org_id:this.props.state.organization.id,
-            id: this.props.state.device.id,
+            id: this.props.state.device.id,     
         };
         console.log('saving device:', postObject)
         // call saga that posts the new device if required fields filled
@@ -179,6 +180,14 @@ class DeviceReview extends Component {
                             {this.props.state.device.serial.number}
                         </p>
                     </div>
+                   {this.props.state.device.serial2 && 
+                    <div>
+                        <h3 className={classes.reviewItem} style={{margin: '10px 0px'}}> Second Serial Number:{'\u00A0'}{'\u00A0'}</h3>
+                        <p className={classes.reviewItem}>
+                            {this.props.state.device.serial2}
+                        </p>
+                    </div>
+                     }
                 </Grid>
 
                 <Grid item align='center' xs={12}>

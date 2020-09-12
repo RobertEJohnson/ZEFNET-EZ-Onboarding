@@ -3,14 +3,17 @@ import {connect} from 'react-redux';
 import{ Button, TextField, InputAdornment } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
-import { Dialog, DialogActions, DialogContent, DialogContentText }from '@material-ui/core/';
+import { Dialog, DialogActions, DialogContent, DialogContentText, Grid }from '@material-ui/core/';
 
 const styles = theme => ({ 
     formControl: {
       margin: theme.spacing(1),
       minWidth: 220,
+    },
+    error:{
+      backgroundColor: '#ef9a9a',
     }
-  })
+})
   
 
 class AddBreaker extends Component {
@@ -18,12 +21,29 @@ class AddBreaker extends Component {
     name: '',
     description: '',
     limit: '',
+    alert1: false,
+    alert2: false,
   };
+
   handleChange = (event) => {
     this.setState({ 
         ...this.state,
         [event.target.name]: event.target.value });
   };
+
+  handleClose1 = () =>{
+    this.setState({
+      ...this.state,
+      alert1:false
+    })
+  }
+
+  handleClose2 = () =>{
+    this.setState({
+      ...this.state,
+      alert2:false
+    })
+  }
 
   addSite = () => {
       //post new site to site table
@@ -34,26 +54,41 @@ class AddBreaker extends Component {
             limit: this.state.limit,
             site_id: this.props.state.device.site.id,
         }
-        console.log('posting new breaker:', postObject)
+        //console.log('posting new breaker:', postObject)
         if (postObject.site_id && postObject.name && postObject.limit)
             {this.props.dispatch({ type: "POST_BREAKER", payload: postObject });
             this.props.handleClose()
             } else {
-                alert('Unable to add breaker. Have you filled all required fields?')
+              this.setState({...this.state, alert1: true});
             }
       } else {
-          alert('Oops! no site is currently selected. Please exit this field and select a site from the previous page!')
+         this.setState({...this.state, alert2: true});
       }
   }
 
+
   render() {
-     //const {classes} = this.props;
+     const {classes} = this.props;
     return (
       <div>
         <Dialog style={{textAlign: 'center'}}
-          title='Add a New Breakerf'
+          title='Add a New Breaker'
           open={this.props.open} 
           onClose={this.props.handleClose}>
+          {this.state.alert1&&
+            <Grid container direction = 'row' justify='center' alignContent='center'>
+              <h2 className = {classes.error}>
+              Unable to add breaker. Please pick a name and limit for your breaker.
+                <Button onClick = {this.handleClose1}>OK</Button>
+              </h2>
+            </Grid>}
+            {this.state.alert2&&
+            <Grid container direction = 'row' justify='center' alignContent='center'>
+              <h2 className = {classes.error}>
+              Oops! no site is currently selected. Please exit this field and select a site from the previous page!
+                <Button onClick = {this.handleClose2}>OK</Button>
+              </h2>
+            </Grid>}
           <h1 style={{padding: '15px 0px 0px 0px', margin: '0px'}}>Add a New Breaker</h1>
           <DialogContent style={{padding: '0px auto'}}>
             <DialogContentText>

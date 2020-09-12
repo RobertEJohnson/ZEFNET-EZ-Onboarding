@@ -2,6 +2,7 @@ const newDeviceReducer = (state = {
   site:{},
   breaker:{},
   serial: {},
+  serial2:'',
   type: {},
   name: '',
   date: '',
@@ -17,6 +18,9 @@ const newDeviceReducer = (state = {
       case 'SET_SERIAL':
         state.serial = action.payload;
         return state;
+      case 'SET_SERIAL2':
+          state.serial2 = action.payload;
+          return state;
       case 'SET_TYPE':
         state.type = action.payload;
         return state;
@@ -34,6 +38,7 @@ const newDeviceReducer = (state = {
             site:{},
             breaker:{},
             serial: {},
+            serial2: '',
             type: {},
             name: '',
             date: '',
