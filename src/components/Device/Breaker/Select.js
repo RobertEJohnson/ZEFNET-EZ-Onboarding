@@ -136,7 +136,7 @@ class BreakerSelect extends Component {
                             label="Breaker"
                         >
                         <MenuItem value="">
-                            <em>None</em>
+                            <em>None of these</em>
                         </MenuItem>
                         {/*Map out all breakers stored in reducer*/}
             

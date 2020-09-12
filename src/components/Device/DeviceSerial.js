@@ -4,6 +4,7 @@ import { Grid, Paper, TextField, withStyles, Divider } from "@material-ui/core";
 import PropTypes from "prop-types";
 import user from "./Images/serial.png";
 import DynamicButton from '../Buttons/DynamicButton';
+import zefpro from "./Images/zefproArrow.png";
 
 const styles = (theme) => ({
   paper: {
@@ -22,7 +23,7 @@ const styles = (theme) => ({
     maxWidth: "145px",
   },
   centerFont: {
-    paddingLeft: "15px",
+    paddingLeft: "10px",
     textAlign: "center",
     color: "black",
     fontFamily: "inter, Open Sans, sans-serif",
@@ -114,18 +115,36 @@ class DeviceSerial extends Component {
       <Grid item xs={12} style={{ maxWidth: "1000px" }} align="center">
         <Paper className={classes.paper} elevation={3}>
           <div className={classes.borderedBox}>
-            <img
-              src={user}
-              alt={this.props.reduxState.device.type.name}
-              className={classes.image}
-            />
-            <div>
-              <h1 className={classes.centerFont}>Input your Serial Number</h1>
-              <h3 className={classes.centerFont}>
-                Serial Number can be found on the sticker on the left-hand side
-                of the unit. It begins with 'HC1C'
-              </h3>
-            </div>
+            {this.props.reduxState.device.type.id === 4?
+            <>
+              <img
+                src={zefpro}
+                alt={this.props.reduxState.device.type.name}
+                className={classes.image}
+              />
+              <div>
+                <h1 className={classes.centerFont}>ZEFNET Pro Serial</h1>
+                <h3 className={classes.centerFont}>
+                Serial number can be found on the name plate on the bottom left hand corner of the ZEFNET Pro.
+                </h3>
+              </div>
+            </>
+            :
+            <>
+              <img
+                src={user}
+                alt={this.props.reduxState.device.type.name}
+                className={classes.image}
+              />
+              <div>
+                <h1 className={classes.centerFont}>Input your Serial Number</h1>
+                <h3 className={classes.centerFont}>
+                  Serial Number can be found on the sticker on the left-hand side
+                  of the unit. It begins with 'HC1C'
+                </h3>
+              </div>
+          </>
+          }
           </div>
           <form className={classes.form}>
             <TextField
