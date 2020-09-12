@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Paper, TextField, withStyles } from "@material-ui/core";
+import { Grid, Paper, TextField, withStyles, Divider } from "@material-ui/core";
 import PropTypes from "prop-types";
 import user from "./Images/serial.png";
 import DynamicButton from '../Buttons/DynamicButton';
+import zefpro from "./Images/zefproArrow.png";
 
 const styles = (theme) => ({
   paper: {
@@ -22,7 +23,7 @@ const styles = (theme) => ({
     maxWidth: "145px",
   },
   centerFont: {
-    paddingLeft: "15px",
+    paddingLeft: "10px",
     textAlign: "center",
     color: "black",
     fontFamily: "inter, Open Sans, sans-serif",
@@ -52,6 +53,8 @@ class DeviceSerial extends Component {
   state = {
     serialNumber: "",
     confirmSerialNumber: "",
+    serialNumber2: "",
+    confirmSerialNumber2: "",
   };
 
   componentDidMount = () => {
@@ -59,8 +62,16 @@ class DeviceSerial extends Component {
       this.setState({
         serialNumber: this.props.reduxState.device.serial.number,
         confirmSerialNumber: this.props.reduxState.device.serial.number,
+        serialNumber2: this.props.reduxState.device.serial2,
+        confirmSerialNumber2: this.props.reduxState.device.serial2,
       });
     }
+    // if(this.props.reduxState.device.type.id === 3){
+    //   this.setState({
+    //     ...this.state,
+    //     serialNumber2: 'x'
+    //   })
+    // }
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -77,12 +88,20 @@ class DeviceSerial extends Component {
       const actionObject = {
         number: this.state.serialNumber,
         user_id: this.props.reduxState.user.id,
-      };
+      };  
+        if (
+          this.state.serialNumber2 === this.state.confirmSerialNumber2 &&
+          this.state.serialNumber2 !== ""
+        ) {
+          
+          this.props.dispatch({ type: "SET_SERIAL2", payload: this.state.serialNumber2 });
+        } 
       this.props.dispatch({ type: "SET_SERIAL", payload: actionObject });
       this.props.history.push("/deviceName");
     } else {
       alert("Serial input incorrect");
     }
+    
   };
 
   handleCopynPaste = (e) => {
@@ -96,18 +115,36 @@ class DeviceSerial extends Component {
       <Grid item xs={12} style={{ maxWidth: "1000px" }} align="center">
         <Paper className={classes.paper} elevation={3}>
           <div className={classes.borderedBox}>
-            <img
-              src={user}
-              alt={this.props.reduxState.device.type.name}
-              className={classes.image}
-            />
-            <div>
-              <h1 className={classes.centerFont}>Input your Serial Number</h1>
-              <h3 className={classes.centerFont}>
-                Serial Number can be found on the sticker on the left-hand side
-                of the unit. It begins with 'HC1C'
-              </h3>
-            </div>
+            {this.props.reduxState.device.type.id === 4?
+            <>
+              <img
+                src={zefpro}
+                alt={this.props.reduxState.device.type.name}
+                className={classes.image}
+              />
+              <div>
+                <h1 className={classes.centerFont}>ZEFNET Pro Serial</h1>
+                <h3 className={classes.centerFont}>
+                Serial number can be found on the name plate on the bottom left hand corner of the ZEFNET Pro.
+                </h3>
+              </div>
+            </>
+            :
+            <>
+              <img
+                src={user}
+                alt={this.props.reduxState.device.type.name}
+                className={classes.image}
+              />
+              <div>
+                <h1 className={classes.centerFont}>Input your Serial Number</h1>
+                <h3 className={classes.centerFont}>
+                  Serial Number can be found on the sticker on the left-hand side
+                  of the unit. It begins with 'HC1C'
+                </h3>
+              </div>
+          </>
+          }
           </div>
           <form className={classes.form}>
             <TextField
@@ -135,11 +172,49 @@ class DeviceSerial extends Component {
               onCopy={this.handleCopynPaste}
               onPaste={this.handleCopynPaste}
             />
-
+            <br/>
+            {/* conditionally render second serial number inputs if
+            device is dual head pedestal model */}
+            {this.props.reduxState.device.type.id === 3&&
+            <>
+              <Divider/>
+              <h2>Input Second Serial Number</h2>
+              <h4>Dual Head Pedestal models have a serial number in the same location on each head</h4>
+              <TextField
+                required
+                style={{ margin: "25px auto 0px auto" }}
+                className={classes.textField}
+                label="Second Serial Number:"
+                margin="normal"
+                variant="outlined"
+                value={this.state.serialNumber2 || ""}
+                onChange={this.handleInputChangeFor("serialNumber2")}
+                onCopy={this.handleCopynPaste}
+                onPaste={this.handleCopynPaste}
+              />
+              <TextField
+                required
+                style={{ margin: "10px auto 0px auto" }}
+                className={classes.textField}
+                label="Confirm Second Serial Number:"
+                margin="normal"
+                variant="outlined"
+                value={this.state.confirmSerialNumber2 || ""}
+                onChange={this.handleInputChangeFor("confirmSerialNumber2")}
+                onCopy={this.handleCopynPaste}
+                onPaste={this.handleCopynPaste}
+              />
+              <br/>
+            </>}
             <div className={classes.buttonDiv}>
                 <DynamicButton type='previous' text='Previous' linkURL='/deviceType'/>
                 {
-                  this.state.serialNumber && this.state.serialNumber === this.state.confirmSerialNumber ? 
+                  this.state.serialNumber
+                  &&this.state.serialNumber !== this.state.serialNumber2 
+                  && this.state.serialNumber === this.state.confirmSerialNumber 
+                  &&((this.state.serialNumber2 === this.state.confirmSerialNumber2 && this.state.serialNumber2)
+                  || this.props.reduxState.device.type.id !==3
+                  )? 
                   <DynamicButton key='serial-enabled-next' type='next' text='Next' handleClick={this.handleNext}/>
                   : 
                   <DynamicButton key='serial-disabled-next' type='next' text='Next' isDisabled={true}/>

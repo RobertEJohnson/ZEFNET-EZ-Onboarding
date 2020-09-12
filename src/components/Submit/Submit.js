@@ -117,7 +117,7 @@ class Submit extends Component {
         const onboardPackage = {
             name: 'Zef EZ Onboard',
             //change to the email that we want to send emails to
-            email: 'zef.ezonboard@gmail.com',
+            email: 'support@zefenergy.com',
             message: JSON.stringify(sendObject),
         }
         this.props.dispatch({ type: "SUBMIT_ORGANIZATION", payload:this.props.state.organization.id });
@@ -243,6 +243,7 @@ class Submit extends Component {
                                 <TableCell>Device Name</TableCell>
                                 <TableCell align="right">Device Type</TableCell>
                                 <TableCell align="right">Serial Number</TableCell>
+                                <TableCell align="right">Second Serial</TableCell>
                                 <TableCell align="right">Installation Date</TableCell>
                                 <TableCell align="right">Hosting Site Address</TableCell>
                                 <TableCell align="right">Contact First Name</TableCell>
@@ -267,6 +268,7 @@ class Submit extends Component {
                                 <TableCell align="right">{device.name}</TableCell>
                                 <TableCell align="right">{device.type_name}</TableCell>
                                 <TableCell align="right">{device.serial_number}</TableCell>
+                                <TableCell align="right">{device.serial_number2}</TableCell>
                                 <TableCell align="right"> {device.install_date.substring(0,10)}</TableCell>
                                 <TableCell align="right">{device.address}</TableCell>
                                 <TableCell align="right">{device.first_name}</TableCell>
@@ -421,6 +423,14 @@ class Submit extends Component {
                                         {device.serial_number}
                                         </p>
                                     </div>
+                                    {device.serial_number2 &&
+                                        <div>
+                                            <h3 className={classes.reviewItem} style={{margin: '10px 0px'}}>Second Serial Number:{'\u00A0'}{'\u00A0'}</h3>
+                                            <p className={classes.reviewItem}>
+                                            {device.serial_number2}
+                                            </p>
+                                        </div>
+                                    }
                                 </Grid>
 
                                 <Grid item align='center' xs={12}>
