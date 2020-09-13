@@ -152,7 +152,7 @@ class DeviceReview extends Component {
                         <div>
                             <p className={classes.ReviewPage__flexContainer__information}>
                                 {this.props.state.device.site.first_name}
-                                <br/>{this.props.state.device.site.second_name}
+                                <br/>{this.props.state.device.site.last_name}
                                 <br/>{this.props.state.device.site.phone}
                                 <br/>{this.props.state.device.site.email}
                             </p>
