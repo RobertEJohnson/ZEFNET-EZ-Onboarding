@@ -33,19 +33,17 @@ class EditSite extends Component {
   componentDidUpdate(previousProps) {
     // this will run every time the props change - 
     //and possibly in addition to this, so we need to check for prop changes
-    if (this.props.selected_id !== previousProps.selected_id) {
+    if (this.props.site !== previousProps.site) {
         for (let i = 0; i <this.props.state.site.length; i++)
-        {  
-          if (this.props.state.site[i].id === this.props.selected_id ){
-              this.setState({
-                first_name: this.props.state.site[i].first_name,
-                last_name: this.props.state.site[i].second_name,
-                email:this.props.state.site[i].email,
-                phone: this.props.state.site[i].phone,
-                address:this.props.state.site[i].address,
-                error:false,
-              })
-          }
+        {    
+            this.setState({
+            first_name: this.props.site.first_name,
+            last_name: this.props.site.second_name,
+            email:this.props.site.email,
+            phone: this.props.site.phone,
+            address:this.props.site.address,
+            error:false,
+            })   
         }
     }
 }
@@ -65,10 +63,10 @@ class EditSite extends Component {
           email: this.state.email,
           phone: this.state.phone,
           address: this.state.address,
-          id:this.props.selected_id,
+          id:this.props.site.id,
           organization_id: this.props.state.organization.id,
       }
-      console.log('updatingsite:',editObject)
+      // run the edit saga if required fields filled
       if (editObject.id && editObject.first_name && editObject.address && editObject.email)
         {this.props.dispatch({ type: "EDIT_SITE", payload: editObject });
         this.props.handleClose()
@@ -173,7 +171,7 @@ class EditSite extends Component {
               onChange={this.handleChange}
             />
             <DialogContentText style={{marginTop: '5px'}}>
-              You may repeat this process if you have multiple sites.
+              Updated site information will appear with all associated devices
             </DialogContentText>
           </DialogContent>
           <DialogActions style={{textAlign: 'left'}}>

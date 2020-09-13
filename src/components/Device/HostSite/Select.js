@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import{Grid, Button, Select, Paper, InputLabel, FormControl, IconButton, MenuItem} from '@material-ui/core';
+import{Grid, Select, Paper, InputLabel, FormControl, IconButton, MenuItem} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
 import AddSite from './Add';
@@ -61,6 +61,7 @@ class HostSelect extends Component {
     selectedSite: '',
     open: false,
     edit: false,
+    fullSiteInfo:{},
   };
 
   componentDidMount = ()=> {
@@ -89,10 +90,19 @@ class HostSelect extends Component {
 }
 
   editSite = () => {
-    this.setState({
-      ...this.state,
-      edit: true,
-    })
+    let allSite = this.props.state.site
+      //console.log('in assignSite with sites:', allSite)
+      for (let i = 0; i < allSite.length; i++ ){
+        if (allSite[i].id === this.state.selectedSite){
+          //console.log('match found!', allSite[i])
+          this.setState({
+            ...this.state,
+            edit: true,
+            fullSiteInfo: allSite[i],
+          })
+        }
+      }
+  
   }
 
   handleChange =  (event) => {
@@ -145,7 +155,7 @@ class HostSelect extends Component {
       
           <Grid item style={{maxWidth: '800px'}} align='center'>
           <AddSite handleClose = {this.handleClose} open = {this.state.open}/>
-          <EditSite handleClose = {this.handleClose} open = {this.state.edit} selected_id={this.state.selectedSite}/>
+          <EditSite handleClose = {this.handleClose} open = {this.state.edit} site={this.state.fullSiteInfo}/>
             <Paper className = {classes.paper} elevation = {3}>
                 <h1>Select Your Host Site</h1>
                 <div style={{marginBottom: '20px'}}> 
@@ -175,11 +185,7 @@ class HostSelect extends Component {
                 <br/>
                 <br/>
                 <h2 className={classes.hrWordDivder}><span className={classes.hrWord}>Or</span></h2>    
-                {this.state.selectedSite ? 
-                    <DynamicButton key='addSite-button-disabled' type='add' text='Add Site' isDisabled={true}/>
-                  :
-                    <DynamicButton key='addSite-button-enabled' type='add' text='Add Site' handleClick={this.addSite}/>
-                }     
+                    <DynamicButton key='addSite-button-enabled' type='add' text='Add Site' handleClick={this.addSite}/>     
                 <br/>
                 <br/>
                 <Grid container direction = 'row'>

@@ -61,7 +61,7 @@ router.put('/', rejectUnauthenticated, (req, res) => {
     "first_name" = $2,
     "second_name" = $3,
     "email" = $4,
-    "phone" = $5, 
+    "phone" = $5 
     WHERE "id" = $6;`;
   const editValues = [
       req.body.address,
@@ -75,7 +75,7 @@ router.put('/', rejectUnauthenticated, (req, res) => {
   .then(()=>{res.sendStatus(200)})
   .catch((error)=>{
    res.sendStatus(500)
-   console.log( 'error on POST /api/site/', error);
+   console.log( 'error on PUT /api/site/', error);
  })
 });
 
