@@ -71,7 +71,6 @@ class HostSelect extends Component {
         selectedSite: this.props.state.device.site.id
       })
     } 
-    console.log('stored site:', this.props.state.device.site)
   } 
 
   addSite = () => {
@@ -91,10 +90,8 @@ class HostSelect extends Component {
 
   editSite = () => {
     let allSite = this.props.state.site
-      //console.log('in assignSite with sites:', allSite)
       for (let i = 0; i < allSite.length; i++ ){
         if (allSite[i].id === this.state.selectedSite){
-          //console.log('match found!', allSite[i])
           this.setState({
             ...this.state,
             edit: true,

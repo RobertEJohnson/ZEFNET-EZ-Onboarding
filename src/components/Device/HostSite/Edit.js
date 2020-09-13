@@ -30,12 +30,10 @@ class EditSite extends Component {
     error: false,
   };
 
-  componentDidUpdate(previousProps) {
+    componentDidUpdate(previousProps) {
     // this will run every time the props change - 
     //and possibly in addition to this, so we need to check for prop changes
-    if (this.props.site !== previousProps.site) {
-        for (let i = 0; i <this.props.state.site.length; i++)
-        {    
+        if (this.props.site !== previousProps.site) {
             this.setState({
             first_name: this.props.site.first_name,
             last_name: this.props.site.second_name,
@@ -44,9 +42,8 @@ class EditSite extends Component {
             address:this.props.site.address,
             error:false,
             })   
-        }
+        }  
     }
-}
 
 
   handleChange = (event) => {
@@ -180,7 +177,7 @@ class EditSite extends Component {
             </Button>
             <Button color="primary"
                 onClick = {this.editSite}>
-             Save Site
+             Save Changes
             </Button>
           </DialogActions>
         </Dialog>
