@@ -6,34 +6,54 @@ import PropTypes from 'prop-types'
 import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
-    input: {
-      color: 'white',
-      border: `1px solid white`,
-      backgroundColor: '#243353',
-      outline: `1px solid transparent`,// we use a transparent outline here so the component doesn't move when focused
+    CreateOrganizationPage:{
+       paddingBottom: '75px',
+       color: 'white'
+    },
+    TextField: {
+      width: '400px',
+      '--text-color':'#fff',
+      '--dark-background':'#1c2447',
+      '--focus-background':'#244d6e',
+      color: 'var(--text-color)',
+      border: '1px solid var(--text-color)',
+      backgroundColor: 'var(--dark-background)',
+      caretColor:'var(--text-color)',
+      '&:focus':{
+        backgroundColor: 'var(--focus-background)'
       },
-      title: {
-        textAlign: "center",
-        color: "white",
-        fontFamily: "inter, Open Sans, sans-serif",
-        padding: '0px',
-        margin: '0px'
+      '&:-webkit-autofill': {
+        WebkitBoxShadow: '0 0 0 40px var(--dark-background) inset',
+        '-webkit-text-fill-color': 'var(--text-color)',
+        '&:focus':{
+          WebkitBoxShadow: '0 0 0 30px var(--focus-background) inset',
+        }
       },
-      subTitle: {
-        textAlign: "center",
-        color: "white",
-        fontFamily: "inter, Open Sans, sans-serif",
-        padding: '0px',
-        margin: '0px 0px 0px 0px',
-        fontSize: '17px'
-      },
-      form:{
-       minWidth: "400px",
-       minHeight: "400px",
-       margin: '0px',
-       padding:'0px',
-       background: "transparent"
-      }
+    },
+    Title: {
+      textAlign: "center",
+      color: "white",
+      fontFamily: "inter, Open Sans, sans-serif",
+      padding: '0px',
+      margin: '0px'
+    },
+    SubTitle: {
+      textAlign: "center",
+      color: "white",
+      fontFamily: "inter, Open Sans, sans-serif",
+      padding: '0px',
+      margin: '0px 0px .5rem 0px',
+      fontSize: '17px'
+    },
+    BottomBuffer: {
+      marginBottom: '.5rem'
+    },
+    LargeBottomBuffer: {
+      marginBottom: '1rem'
+    },
+    TopBottomBuffer: {
+      margin: '.5rem 0'
+    },
 })
 
 
@@ -82,88 +102,60 @@ class CreateOrganization extends Component {
     const {classes} = this.props;
 
     return (
-        <Grid item xs={8} style={{ maxWidth: "1000px", paddingBottom: '50px' }} align="center">
-          <div>
-            <h1 className={classes.title}>Organization Information</h1>
-            <p className={classes.subTitle}>
-              This will help us associate the chargers with your organization.
-            </p>
-          </div>
-          <form className="form">
+        <Grid item className={classes.CreateOrganizationPage} align="center">
+          <h1 className={classes.Title}>Organization Information</h1>
+          <p className={classes.SubTitle}>
+            This will help us associate the chargers with your organization.
+          </p>
             <TextField
+              className={classes.TopBottomBuffer}
               required
-              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'  }}
               label="Organization / Company Name"
-              margin="normal"
-              variant="outlined"
+              variant="filled"
               value={this.state.organizationName}
               onChange={this.handleInputChangeFor("organizationName")}
-              InputProps={{
-                classes: {
-                  root: classes.input,
-                }
-              }}
-              InputLabelProps={{
-                style: { color: '#fff' }
-              }}
+              InputProps={{classes: {root: classes.TextField}}}
+              inputProps={{className: classes.TextField}}
+              InputLabelProps={{style:{color: 'white'}}}
             />
             <br/>
             <TextField
-              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px' }}
+              className={classes.BottomBuffer}
               label="Phone Number"
-              margin="normal"
-              variant="outlined"
+              variant="filled"
               type="tel"
               value={this.state.primaryNumber}
               onChange={this.handleInputChangeFor("primaryNumber")}
-              InputProps={{
-                classes: {
-                  root: classes.input,
-                }
-              }}
-              InputLabelProps={{
-                style: { color: '#fff' },
-              }}
+              InputProps={{classes: {root: classes.TextField}}}
+              inputProps={{className: classes.TextField}}
+              InputLabelProps={{style:{color: 'white'}}}
             />
             <br/>
             <TextField
+              className={classes.BottomBuffer}
               required
-              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'}}
               label="Email"
-              margin="normal"
-              variant="outlined"
+              variant="filled"
               value={this.state.email}
               onChange={this.handleInputChangeFor("email")}
-              InputProps={{
-                classes: {
-                  root: classes.input,
-                }
-              }}
-              InputLabelProps={{
-                style: { color: '#fff' },
-              }}
+              InputProps={{classes: {root: classes.TextField}}}
+              inputProps={{className: classes.TextField}}
+              InputLabelProps={{style:{color: 'white'}}}
             />
             <br/>
             <TextField
+              className={classes.LargeBottomBuffer}
               required
-              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'}}
               label="Organization Address"
-              variant="outlined"
+              variant="filled"
               value={this.state.organizationAddress}
               onChange={this.handleInputChangeFor("organizationAddress")}
-              InputProps={{
-                classes: {
-                  root: classes.input,
-                }
-              }}
-              InputLabelProps={{
-                style: { color: '#fff' },
-              }}
+              InputProps={{classes: {root: classes.TextField}}}
+              inputProps={{className: classes.TextField}}
+              InputLabelProps={{style:{color: 'white'}}}
             />
             <br/>
-            <br/>
             <DynamicButton type='glow' text='Create Organization' handleClick={this.handleAddOrg}/>
-          </form>
         </Grid>
     );
   }
