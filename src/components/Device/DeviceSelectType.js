@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Grid, withStyles, GridListTileBar} from '@material-ui/core';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import zefNetPro from './Images/zefpro.png';
 import wallmount from './Images/wallMount.jpg';
@@ -13,7 +14,7 @@ import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
   card: {
-    transition: 'transform .2s ease-in-out',
+    transition: 'all .2s ease-in-out',
     maxWidth: '2500px',
     width: '250px',
     border: '1px solid black',
@@ -29,8 +30,8 @@ const styles = theme => ({
 
 class DeviceSelectType extends Component {
 
- setTypeReducer = (id,name) => {
-  this.props.dispatch({ type: "SET_TYPE", payload: {id, name} });
+ setTypeReducer = (id, img, name) => {
+  this.props.dispatch({ type: "SET_TYPE", payload: {id,img,name} });
   this.props.history.push('/deviceSerial')
 }
 
@@ -46,7 +47,9 @@ class DeviceSelectType extends Component {
         <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center'}}>
               {/*Wall Mount Device Card*/}
               <Card className={classes.card}>
-                <CardActionArea onClick={()=>{this.setTypeReducer(1,'Wall Mount Charger')}}>
+                <CardActionArea onClick={()=>{this.setTypeReducer(1,'./Images/wallMount.jpg','Wall Mount Charger')}}
+                   component = {Link} to ="/deviceSerial"
+                >
                   <CardMedia
                   image={wallmount}
                   title="Wall Mount Charger" 
@@ -59,7 +62,8 @@ class DeviceSelectType extends Component {
     
               {/*Single Head Device Card*/}
               <Card className={classes.card}>
-                <CardActionArea onClick={()=>{this.setTypeReducer(2,'Single Head Pedestal Charger')}}>
+                <CardActionArea onClick={()=>{this.setTypeReducer(2,'./Images/singleheadped.jpg','Single Head Pedestal Charger')}}
+                  component = {Link} to ="/deviceSerial">
                   <CardMedia
                   image={single}
                   title="Single Head Pedestal Charger" 
@@ -72,7 +76,8 @@ class DeviceSelectType extends Component {
     
               {/*Dual Head Device Card*/}
               <Card className={classes.card}>
-                <CardActionArea onClick={()=>{this.setTypeReducer(3,'Dual Head Pedestal Charger')}}>
+                <CardActionArea onClick={()=>{this.setTypeReducer(3,'./Images/dualheadped.jpg','Dual Head Pedestal Charger')}} 
+                  component = {Link} to ="/deviceSerial">
                     <CardMedia
                       image={double}
                       title="Double Head Pedestal Charger" 
@@ -85,7 +90,8 @@ class DeviceSelectType extends Component {
             
                 {/*ZEFNET Pro Device Card*/}
                 <Card className={classes.card}>
-                  <CardActionArea onClick={()=>{this.setTypeReducer(4,'ZEFNET Pro Charger')}}>
+                  <CardActionArea onClick={()=>{this.setTypeReducer(4,'./Images/zefpro.png','ZEFNET Pro Charger')}}
+                    component = {Link} to ="/deviceSerial">
                     <CardMedia
                     image={zefNetPro}
                     title="ZEFNET Pro Charger" 

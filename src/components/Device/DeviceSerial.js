@@ -1,10 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Paper, TextField, withStyles, Divider } from "@material-ui/core";
+import { 
+   Grid,
+   Paper, 
+   TextField, 
+   withStyles, 
+   Divider,
+   Dialog,
+   DialogActions,
+   DialogContent,
+   DialogContentText,
+   Button,
+} from "@material-ui/core";
 import PropTypes from "prop-types";
 import user from "./Images/serial.png";
 import DynamicButton from '../Buttons/DynamicButton';
 import zefpro from "./Images/zefproArrow.png";
+import {Link} from 'react-router-dom';
 
 const styles = (theme) => ({
   paper: {
@@ -55,6 +67,7 @@ class DeviceSerial extends Component {
     confirmSerialNumber: "",
     serialNumber2: "",
     confirmSerialNumber2: "",
+    open: false,
   };
 
   componentDidMount = () => {
@@ -64,14 +77,9 @@ class DeviceSerial extends Component {
         confirmSerialNumber: this.props.reduxState.device.serial.number,
         serialNumber2: this.props.reduxState.device.serial2,
         confirmSerialNumber2: this.props.reduxState.device.serial2,
+        open: false,
       });
     }
-    // if(this.props.reduxState.device.type.id === 3){
-    //   this.setState({
-    //     ...this.state,
-    //     serialNumber2: 'x'
-    //   })
-    // }
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -80,27 +88,51 @@ class DeviceSerial extends Component {
     });
   };
 
+  handleClose = () => {
+    this.setState({ ...this.state, open: false });
+  };
+
   handleNext = () => {
-    if (
-      this.state.serialNumber === this.state.confirmSerialNumber &&
-      this.state.serialNumber !== ""
-    ) {
-      const actionObject = {
-        number: this.state.serialNumber,
-        user_id: this.props.reduxState.user.id,
-      };  
-        if (
-          this.state.serialNumber2 === this.state.confirmSerialNumber2 &&
-          this.state.serialNumber2 !== ""
-        ) {
-          
-          this.props.dispatch({ type: "SET_SERIAL2", payload: this.state.serialNumber2 });
-        } 
-      this.props.dispatch({ type: "SET_SERIAL", payload: actionObject });
-      this.props.history.push("/deviceName");
-    } else {
-      alert("Serial input incorrect");
-    }
+    // open dialog if the user is creating a new device and adding a serial that already exists
+    const allDevice = this.props.reduxState.allDevice;
+    let match = 0
+    if (this.props.reduxState.device.id === "" ){
+        for (let i = 0; i <allDevice.length; i++){
+          if ((allDevice[i].serial_number === (this.state.serialNumber ||this.state.serialNumber2))
+          ||(allDevice[i].serial_number2 === (this.state.serialNumber ||this.state.serialNumber2))){
+            this.setState({
+              ...this.state,
+              open: true
+            })
+            match++;
+          }
+        }
+      }
+    //if user is editing an existing device and trying to set the serial number to one that 
+    //isnt associated with this device throw the same error
+    // if serial number(s) match their confirmation number(s), set the number to 
+    //redux state.device.serial and advance to device name
+  if(match === 0)
+    { if (
+        this.state.serialNumber === this.state.confirmSerialNumber &&
+        this.state.serialNumber !== ""
+      ) {
+        const actionObject = {
+          number: this.state.serialNumber,
+          user_id: this.props.reduxState.user.id,
+        };  
+          if (
+            this.state.serialNumber2 === this.state.confirmSerialNumber2 &&
+            this.state.serialNumber2 !== ""
+          ) {
+            
+            this.props.dispatch({ type: "SET_SERIAL2", payload: this.state.serialNumber2 });
+          } 
+        this.props.dispatch({ type: "SET_SERIAL", payload: actionObject });
+        this.props.history.push("/deviceName");
+      } else {
+        this.setState({...this.state, open: true});
+      }}
     
   };
 
@@ -113,6 +145,29 @@ class DeviceSerial extends Component {
 
     return (
       <Grid item xs={12} style={{ maxWidth: "1000px" }} align="center">
+        {/* Dialog runs if adding new device with existing serial number */}
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="existing-serial"
+          aria-describedby="serial-number-already-created"
+          >
+              <DialogContent>
+                  <DialogContentText id="serial-number-already-created">
+                      Oops, a device with that serial has already been added to your list of devices!
+                      Do you want to go back and change the serial number(s) on this device or discard
+                      your current changes and review your existing devices?
+                  </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+              <Button onClick={this.handleClose} color="primary">
+                  Change Serial Number
+              </Button>
+              <Button component = {Link} to = '/submit'>
+                  Discard changes and review devices.
+              </Button>
+              </DialogActions>
+          </Dialog>
         <Paper className={classes.paper} elevation={3}>
           <div className={classes.borderedBox}>
             {this.props.reduxState.device.type.id === 4?

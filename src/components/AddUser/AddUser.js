@@ -143,14 +143,15 @@ class AddUser extends Component {
           minWidth: "100vw",
         }}
       >
+        {/* This dialog will run if add user is clicked without required fields filled */}
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
+          aria-labelledby="missing-fields"
+          aria-describedby="enter-all-user-info-before-add"
           >
             <DialogContent>
-                <DialogContentText id="alert-dialog-description">
+                <DialogContentText id="enter-all-user-info-before-add">
                     Oops!  Please ensure all required information is entered.
                 </DialogContentText>
             </DialogContent>

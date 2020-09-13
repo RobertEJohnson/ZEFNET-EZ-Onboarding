@@ -3,6 +3,7 @@ import {Grid, withStyles} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import DynamicButton from '../Buttons/DynamicButton';
 import {HomeWorkTwoTone, EvStationTwoTone, RoomTwoTone, MapTwoTone, AccountCircleTwoTone} from '@material-ui/icons'
+import { connect } from "react-redux";
 
 const styles = theme => ({
     container: {
@@ -36,7 +37,21 @@ const styles = theme => ({
 
 class WelcomeScreen extends Component {
 
-  
+  componentDidMount(){
+    //push user to organizationHome instead if the've already added org info
+    if (this.props.reduxState.organization.id) {
+      this.props.history.push("/organizationHome");
+    } 
+  }
+
+  componentDidUpdate(previousProps){
+    if (previousProps.reduxState.organization.id !== this.props.reduxState.organization.id){
+      if (this.props.reduxState.organization.id) {
+        this.props.history.push("/organizationHome");
+       } 
+    }
+  }
+
   // this component doesn't do much to start, just renders some user info to the DOM
   render() {
     const {classes} = this.props;
@@ -71,10 +86,13 @@ class WelcomeScreen extends Component {
     );
   }
 }
+const mapStateToProps = (reduxState) => ({
+  reduxState,
+});
 
 WelcomeScreen.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
 // this allows us to use <App /> in index.js
-export default withStyles(styles)(WelcomeScreen);
+export default withStyles(styles)(connect(mapStateToProps)(WelcomeScreen));
