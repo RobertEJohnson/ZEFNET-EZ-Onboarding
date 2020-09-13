@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import{Grid, 
-  TextField, 
-  Paper, 
+  TextField,  
   Dialog,
   DialogContent, 
   DialogActions, 

@@ -12,7 +12,6 @@ import {AccordionSummary,
         DialogContent,
         DialogContentText,
         DialogActions,
-        Tooltip
     } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -473,6 +472,7 @@ class Submit extends Component {
                                 <ChevronLeftIcon/> Home
                             </Button>
                             <div className = {classes.grow}>{'\u00A0'}</div>
+                            {this.props.state.allDevice.length >0?
                             <Button variant = 'contained' color = 'primary'
                             size = 'large'
                             component = {Link} to ="/completed"
@@ -480,7 +480,13 @@ class Submit extends Component {
                             >
                                 <SaveIcon/> Submit Onboarding Package for Review
                             </Button>
-                        
+                            :
+                            <Button variant = 'contained' disabled
+                            size = 'large'
+                            >
+                                <SaveIcon/> Please Add a Device before Submitting
+                            </Button>
+                            }
                         </Grid> 
                     
             </Paper>
