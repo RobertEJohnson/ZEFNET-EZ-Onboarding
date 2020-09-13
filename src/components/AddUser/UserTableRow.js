@@ -13,6 +13,7 @@ import {
     DialogContent,
     Button,
     DialogContentText,
+    Tooltip
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Delete, Edit, SaveAlt, Close} from "@material-ui/icons";
@@ -69,7 +70,7 @@ class UserTableRow extends Component{
         this.setState({ ...this.state, open: false });
       };
 
-      dontSave = () => {
+      cancelEdit = () => {
           this.setState({ 
             first_name: this.props.first_name,
             last_name: this.props.last_name,
@@ -132,21 +133,33 @@ class UserTableRow extends Component{
                 </Dialog>
                     <TableRow hover className={classes.TableRow}>
                         <TableCell>
-                            <IconButton onClick={this.handleEdit}>
-                                {!this.state.edit_mode?
-                                   <Edit /> 
-                                   :
-                                   <SaveAlt/>
-                                }
-                            </IconButton>
-                            {this.state.edit_mode?
-                             <IconButton onClick={this.dontSave}>
-                             <Close />
-                         </IconButton>
-                            :
-                            <IconButton onClick={this.handleClickOpen}>
-                                <Delete />
-                            </IconButton>
+                            {
+                                this.state.edit_mode ?
+                                <>
+                                <Tooltip title='Save'>
+                                    <IconButton onClick={this.handleEdit}>
+                                        <SaveAlt/>
+                                    </IconButton>
+                                </Tooltip>
+                                <Tooltip title='Cancel'>
+                                    <IconButton onClick={this.cancelEdit}>
+                                        <Close />
+                                    </IconButton>
+                                </Tooltip>
+                                </>
+                                :
+                                <>
+                                <Tooltip title='Edit'>
+                                    <IconButton onClick={this.handleEdit}>
+                                        <Edit/>
+                                    </IconButton>
+                                </Tooltip>
+                                <Tooltip title='Delete'>
+                                    <IconButton onClick={this.handleClickOpen}>
+                                        <Delete />
+                                    </IconButton>
+                                </Tooltip>
+                                </>
                             }
                         </TableCell>
                         {!this.state.edit_mode ?
@@ -161,6 +174,7 @@ class UserTableRow extends Component{
                             <>
                                 <TableCell className={classes.ViewCell}>
                                     <TextField className={classes.EditCell}
+                                        autoFocus
                                         variant = 'filled'
                                         value={this.state.first_name}
                                         name='first_name'
