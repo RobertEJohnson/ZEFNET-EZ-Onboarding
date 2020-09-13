@@ -44,6 +44,9 @@ const styles = theme => ({
       hrWord: { 
          background: '#fff',
          padding:'0px 10px',
+     },
+     BottomBuffer: {
+         marginBottom: '1rem'
      }
 })
 
@@ -123,12 +126,12 @@ class BreakerSelect extends Component {
             <AddBreaker handleClose = {this.handleClose} open = {this.state.open}/>
                 <Paper className={classes.paper} elevation={3}>
                     <h1>Select Your Breaker for the Device</h1>
-                    <div>
+                    <div className={classes.BottomBuffer}>
                         <p style={{margin: 'auto 40px'}}>
-                            Please choose from existing below or press the 'Add New Breaker' button.
+                            Please choose from existing below or press the 'Add Breaker' button.
                         </p>   
                     </div>
-                    <FormControl variant="outlined" className={classes.formControl}>
+                    <FormControl variant="filled" className={classes.formControl}>
                         <InputLabel>Choose From Existing</InputLabel>
                         <Select
                             value={this.state.selectedBreaker}
@@ -155,13 +158,9 @@ class BreakerSelect extends Component {
                     {/*Conditionally render the Add Breaker button as clickable/disabled based on if a breaker is selected*/}
                     {
                         this.state.selectedBreaker ? 
-                        <Button variant='contained' disabled>
-                            Add New Breaker
-                        </Button>
-                    :
-                    <Button variant='contained' color='primary' onClick={this.addBreaker}>
-                        Add New Breaker
-                    </Button>
+                        <DynamicButton key='addBreaker-button-disabled' type='add' text='Add Breaker' isDisabled={true}/>
+                        :
+                            <DynamicButton key='addBreaker-button-enabled' type='add' text='Add Breaker' handleClick={this.addBreaker}/>
                     }     
                     <br/>
                     <br/>
