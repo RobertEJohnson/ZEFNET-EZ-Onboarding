@@ -1,35 +1,37 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, 
+import {
+  Grid,
   Paper,
-  withStyles, 
+  withStyles,
   TextField,
-  Dialog, 
-  DialogActions, 
+  Dialog,
+  DialogActions,
   DialogContent,
   DialogContentText,
-  Button} from "@material-ui/core";
+  Button,
+} from "@material-ui/core";
 import PropTypes from "prop-types";
-import zefNetPro from './Images/zefpro.png';
-import wallMount from './Images/wallMountStylized.jpg';
-import singleHead from './Images/singleHeadStylized.jpg';
-import dualHead from './Images/dualHeadStylized.jpg';
-import DynamicButton from '../Buttons/DynamicButton';
+import zefNetPro from "./Images/zefpro.png";
+import wallMount from "./Images/wallMountStylized.jpg";
+import singleHead from "./Images/singleHeadStylized.jpg";
+import dualHead from "./Images/dualHeadStylized.jpg";
+import DynamicButton from "../Buttons/DynamicButton";
 
 const styles = (theme) => ({
   paper: {
     padding: theme.spacing(2),
     borderRadius: "5px",
   },
-  reviewButton: { 
-    width: "162px" 
+  reviewButton: {
+    width: "162px",
   },
   borderedBox: {
     border: "solid #e3e3e3 3px",
     maxWidth: "515px",
     height: "150px",
     display: "flex",
-    borderRadius: '5px'
+    borderRadius: "5px",
   },
   image: {
     maxHeight: "145px",
@@ -42,7 +44,7 @@ const styles = (theme) => ({
     fontFamily: "inter, Open Sans, sans-serif",
     maxWidth: "inherit",
   },
-  form:{
+  form: {
     background: "transparent",
     display: "flex",
     flexDirection: "column",
@@ -50,16 +52,16 @@ const styles = (theme) => ({
     padding: "0px",
   },
   buttonDiv: {
-      display: "flex",
-      width: "515px",
-      justifyContent: "space-between",
-      align: "center",
-      marginTop: "20px",
+    display: "flex",
+    width: "515px",
+    justifyContent: "space-between",
+    align: "center",
+    marginTop: "20px",
   },
   textField: {
     fontFamily: "Inter, Open Sans, sans-serif",
     width: "400px",
-  }
+  },
 });
 
 class DeviceName extends Component {
@@ -69,19 +71,19 @@ class DeviceName extends Component {
     open: false,
   };
 
-  componentDidMount = ()=> {
-    if( this.props.reduxState.device.name !== '' ){
-        this.setState({
-            ...this.state,
-            chargerName: this.props.reduxState.device.name,
-            installationDate: this.props.reduxState.device.date,
-        })
+  componentDidMount = () => {
+    if (this.props.reduxState.device.name !== "") {
+      this.setState({
+        ...this.state,
+        chargerName: this.props.reduxState.device.name,
+        installationDate: this.props.reduxState.device.date,
+      });
     }
-  } 
+  };
 
-  chooseDeviceImage = ()=>{
+  chooseDeviceImage = () => {
     let deviceImage;
-    switch(this.props.reduxState.device.type.id){
+    switch (this.props.reduxState.device.type.id) {
       case 1:
         deviceImage = wallMount;
         break;
@@ -98,7 +100,7 @@ class DeviceName extends Component {
         deviceImage = dualHead;
     }
     return deviceImage;
-  }
+  };
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
@@ -134,86 +136,102 @@ class DeviceName extends Component {
   render() {
     const { classes } = this.props;
     return (
-        <Grid item xs={12} style={{ maxWidth: "1000px" }} align="center">
-          {/* Dialog runs if clicked review Device without name and date filled */}
-          <Dialog
+      <Grid item xs={12} style={{ maxWidth: "1000px" }} align="center">
+        {/* Dialog runs if clicked review Device without name and date filled */}
+        <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="missing-info"
           aria-describedby="device-name-and-date-required"
-          >
-            <DialogContent>
-              <DialogContentText id="device-name-and-date-required">
-                Oops! Please enter both a name and installation date for your device
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
+        >
+          <DialogContent>
+            <DialogContentText id="device-name-and-date-required">
+              Oops! Please enter both a name and installation date for your
+              device
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
             <Button onClick={this.handleClose} color="primary">
-                OK
+              OK
             </Button>
-            </DialogActions>
-          </Dialog>
-          <Paper className={classes.paper} elevation={3}>
-            <div className={classes.borderedBox}>
-              
-              <div>
-                <img
-                  src={this.chooseDeviceImage()}
-                  className={classes.image}
-                  alt = {this.props.reduxState.device.type.name}
-                />
-                {/* Image changes based on device type */}
-              </div>
+          </DialogActions>
+        </Dialog>
+        <Paper className={classes.paper} elevation={3}>
+          <div className={classes.borderedBox}>
+            <div>
+              <img
+                src={this.chooseDeviceImage()}
+                className={classes.image}
+                alt={this.props.reduxState.device.type.name}
+              />
+              {/* Image changes based on device type */}
+            </div>
 
+            <div>
               <div>
-                <div>
-                  <h1 className={classes.centerFont}>Name your Device</h1>
-                </div>
-                <div>
-                  <h3 className={classes.centerFont}>Good names should be short and memorable and descriptive..</h3>
-                </div>
+                <h1 className={classes.centerFont}>Name your Device</h1>
+              </div>
+              <div>
+                <h3 className={classes.centerFont}>
+                  Good names should be short and memorable and descriptive..
+                </h3>
               </div>
             </div>
-            <form
-            className={classes.form}
-            >
-              <div>
-                <TextField
-                  required
-                  style={{margin:'25px auto 0px auto'}}
-                  className={classes.textField}
-                  label="Charger Name:"
-                  margin="normal"
-                  variant="outlined"
-                  value={this.state.chargerName || "" }
-                  onChange={this.handleInputChangeFor("chargerName")}
+          </div>
+          <form className={classes.form}>
+            <div>
+              <TextField
+                required
+                style={{ margin: "25px auto 0px auto" }}
+                className={classes.textField}
+                label="Charger Name:"
+                margin="normal"
+                variant="outlined"
+                value={this.state.chargerName || ""}
+                onChange={this.handleInputChangeFor("chargerName")}
+              />
+            </div>
+
+            <div>
+              <p style={{margin:"5px 0px 0px 0px"}}>Installation Date:</p>
+              <TextField
+                required
+                defaultValue={"Installation Date"}
+                type="Date"
+                style={{ margin: "10px auto 0px auto" }}
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                value={this.state.installationDate || ""}
+                onChange={this.handleInputChangeFor("installationDate")}
+              />
+            </div>
+            <div className={classes.buttonDiv}>
+              <DynamicButton
+                type="previous"
+                text="Previous"
+                linkURL="/deviceSerial"
+              />
+
+              {this.state.chargerName && this.state.installationDate ? (
+                <DynamicButton
+                  key={"name-enabled-next"}
+                  type="review"
+                  text="Review Device"
+                  handleClick={this.handleNext}
                 />
-              </div>
-              <div>
-                <TextField
-                  required
-                  type="Date"
-                  style={{margin:'10px auto 0px auto' }}
-                  className={classes.textField}
-                  label=""
-                  margin="normal"
-                  variant="outlined"
-                  value={this.state.installationDate || ""}
-                  onChange={this.handleInputChangeFor("installationDate")}
+              ) : (
+                <DynamicButton
+                  key={"name-disabled-next"}
+                  type="review"
+                  text="Review Device"
+                  isDisabled={true}
                 />
-              </div>
-              <div className={classes.buttonDiv}>
-                <DynamicButton type='previous' text='Previous' linkURL='/deviceSerial'/>
-                
-                {this.state.chargerName && this.state.installationDate ?
-                    <DynamicButton key={'name-enabled-next'} type='review' text='Review Device' handleClick={this.handleNext}/>
-                        :
-                    <DynamicButton key={'name-disabled-next'} type='review' text='Review Device' isDisabled={true}/>
-                  }
-              </div>
-            </form>
-          </Paper>
-        </Grid>
+              )}
+            </div>
+          </form>
+        </Paper>
+      </Grid>
     );
   }
 }

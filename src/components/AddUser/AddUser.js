@@ -20,6 +20,7 @@ import {
   DialogActions,
   DialogContentText,
 } from "@material-ui/core";
+import MuiPhoneNumber from "material-ui-phone-number";
 import PropTypes from "prop-types";
 import UserTableRow from "./UserTableRow";
 import DynamicButton from "../Buttons/DynamicButton";
@@ -98,6 +99,12 @@ class AddUser extends Component {
       //open alert dialog
       this.handleOpen();
     }
+  };
+
+  handlePhoneNumberChange = (value) => {
+    this.setState({
+      phone: value,
+    });
   };
 
   handleOpen = () => {
@@ -250,20 +257,18 @@ class AddUser extends Component {
                   value={this.state.email}
                   onChange={this.handleInputChangeFor("email")}
                 />
-                <TextField
+                <MuiPhoneNumber
                   required
+                  defaultCountry={"us"}
+                  variant="outlined"
+                  disableAreaCodes="true"
                   type="tel"
-                  inputProps={{
-                    minLength: 10,
-                    pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}",
-                  }}
                   color="primary"
                   className={classes.textFields}
                   label="Phone:"
-                  variant="outlined"
                   value={this.state.phone || ""}
-                  onChange={this.handleInputChangeFor("phone")}
-                />
+                  onChange={this.handlePhoneNumberChange}
+                  />
                 <FormControl variant="outlined">
                   <InputLabel>Privileges:</InputLabel>
                   <Select
