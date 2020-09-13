@@ -11,9 +11,11 @@ import {ChevronLeft, ChevronRight, Home as HomeIcon, Edit as EditIcon, EvStation
         text            string                          will be the text inside of the button
         type            'glow'                          Sets styling type and icon of button
                         | 'home'
+                        | 'home-glow'                   A glow button with home icon
                         | 'previous'
                         | 'next'
                         | 'edit'
+                        | 'edit-glow'                   A glow button with edit icon
                         | 'save'
                         | 'review'
                         | 'organization'
@@ -25,13 +27,15 @@ import {ChevronLeft, ChevronRight, Home as HomeIcon, Edit as EditIcon, EvStation
 const styles = {
     Button:{
         transition: 'transform .2s ease-in-out',
-        height: '36px'
+        height: '36px',
+        '&:hover': {
+            transform: 'scale(1.03)',
+        }
     },
     'Button--glow':{
         color: '#006dcc',
         backgroundColor: '#f1f1f1',
         '&:hover':{
-          transform: 'scale(1.03)',
           color: '#006dcc',
           backgroundColor: 'white', 
           boxShadow: '0 0 5px #c8ffff,-5px 0 10px #66fbfb, 5px 0 15px #049494'
@@ -45,78 +49,64 @@ const styles = {
         position: 'absolute',
         right: '0px',
         '&:hover': {
-            transform: 'scale(1.03)',
             backgroundColor: '#243953',
         }
       },
-    'Button--previous':{
-        paddingLeft: '8px',
-        '&:hover': {
-            transform: 'scale(1.03)',
-        }
-    },
-    'Button--edit':{
+
+    'Button--editIconTransparent':{
         padding: '0px 6px',
         background: 'transparent',
         border: '1px solid grey',
-        '&:hover': {
-            transform: 'scale(1.03)',
-        }
     },
-    'Button--home':{
+    'Button--previousIcon':{
         paddingLeft: '8px',
-        '&:hover': {
-            transform: 'scale(1.03)',
+    }, 
+    'Button--editIconGlow':{
+        padding: '0px 6px',
+        color: '#006dcc',
+        backgroundColor: '#f1f1f1',
+        '&:hover':{
+          color: '#006dcc',
+          backgroundColor: 'white', 
+          boxShadow: '0 0 5px #c8ffff,-5px 0 10px #66fbfb, 5px 0 15px #049494'
         }
     },
-    'Button--next':{
+    'Button--homeIcon':{
+        paddingLeft: '8px',
+    },
+    'Button--homeIconGlow':{
+        paddingLeft: '8px',
+        color: '#006dcc',
+        backgroundColor: '#f1f1f1',
+        '&:hover':{
+          color: '#006dcc',
+          backgroundColor: 'white', 
+          boxShadow: '0 0 5px #c8ffff,-5px 0 10px #66fbfb, 5px 0 15px #049494'
+        }
+    },
+    'Button--primary':{
         paddingRight: "8px",
         backgroundColor: "#3f51b5",
         color: "white",
         '&:hover': {
-            transform: 'scale(1.03)',
             backgroundColor: '#757de8',
         }
     },
-    'Button--review':{
-        paddingRight: "8px",
-        backgroundColor: "#3f51b5",
-        color: "white",
-        '&:hover': {
-            transform: 'scale(1.03)',
-            backgroundColor: '#757de8',
-        }
-    },
-    'Button--save':{
-        paddingRight: "8px",
-        backgroundColor: "#3f51b5",
-        color: "white",
-        '&:hover': {
-            transform: 'scale(1.03)',
-            backgroundColor: '#757de8',
-        }
-    },
-    'Button--logOut':{
-        color:'white',
-        border: '1px solid white',
-        backgroundColor: 'transparent',
-        '&:hover': {
-            transform: 'scale(1.03)',
-            backgroundColor: 'white',
-            color: 'black'
-        }
-    },
-    'Button--organization':{
+    'Button--outlined':{
         color:'white',
         border: '1px solid white',
         backgroundColor: 'transparent',
         height: '40px',
+        '&:hover': {
+            backgroundColor: 'white',
+            color: 'black',
+        }
+    },
+    'Button--outlined--large':{
         fontSize: '26px',
         paddingBottom: '6px',
         '&:hover': {
             transform: 'scale(1.02)',
-            backgroundColor: 'white',
-            color: 'black',
         }
     },
     'Button__textContainer':{
@@ -162,10 +152,6 @@ class DynamicButton extends Component{
             inputProps.component = Link
             inputProps.to= this.props.linkURL
         }
-        else{
-            inputProps.variant='contained'
-            inputProps.size='medium' 
-        }
         
         //set starting values of icons to React Fragment
         let startIcon = <></>;
@@ -186,9 +172,11 @@ class DynamicButton extends Component{
                 endIcon = <Save/>
                 break;
             case 'edit':
+            case 'edit-glow':
                 startIcon = <EditIcon/>;
                 break;
             case 'home':
+            case 'home-glow':
                 startIcon = <HomeIcon/>;
                 break;
             default:
@@ -212,14 +200,17 @@ class DynamicButton extends Component{
             classes.Button, 
             {[classes['Button--glow']]: (this.props.type === 'glow')},
             {[classes['Button--dark']]: (this.props.type === 'dark')},
-            {[classes['Button--previous']]: (this.props.type === 'previous')},
-            {[classes['Button--next']]: (this.props.type === 'next')},
-            {[classes['Button--review']]: (this.props.type === 'review')},
-            {[classes['Button--save']]: (this.props.type === 'save')},
-            {[classes['Button--logOut']]: (this.props.type === 'logOut')},
-            {[classes['Button--home']]: (this.props.type === 'home')},
-            {[classes['Button--edit']]: (this.props.type === 'edit')},
-            {[classes['Button--organization']]: (this.props.type === 'organization')},
+            {[classes['Button--previousIcon']]: (this.props.type === 'previous')},
+            {[classes['Button--primary']]: (this.props.type === 'next')},
+            {[classes['Button--primary']]: (this.props.type === 'review')},
+            {[classes['Button--primary']]: (this.props.type === 'save')},
+            {[classes['Button--outlined']]: (this.props.type === 'logOut')},
+            {[classes['Button--homeIcon']]: (this.props.type === 'home')},
+            {[classes['Button--homeIconGlow']]: (this.props.type === 'home-glow')},
+            {[classes['Button--editIconTransparent']]: (this.props.type === 'edit')},
+            {[classes['Button--editIconGlow']]: (this.props.type === 'edit-glow')},
+            {[classes['Button--outlined']]: (this.props.type === 'organization')},
+            {[classes['Button--outlined--large']]: (this.props.type === 'organization')},
             );
         return(
             <>
