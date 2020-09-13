@@ -9,7 +9,7 @@ const styles = (theme) => ({
     BottomBuffer: {
       marginBottom: '1rem'
     },
-    ButtonContainer:{
+    LoginPage__buttonContainer:{
       marginBottom: "150px",
       position: 'relative',
       maxWidth: '400px',
@@ -17,10 +17,10 @@ const styles = (theme) => ({
     LoginPage: {
       color: 'white'
     },
-    Title: {
+    LoginPage__title: {
       fontSize: "30px"
     },
-    SubTitle:{
+    LoginPage__subTitle:{
       fontSize: "20px",
       marginBottom: '2rem',
     },
@@ -91,8 +91,8 @@ class LoginPage extends Component {
               {this.props.errors.loginMessage}
             </h2>
           )}
-            <h2 className={classes.Title}>Welcome to ZEFNET EZ Onboarding! </h2>
-            <p className={classes.SubTitle}>The first stop for a new ZEF Energy customer</p>
+            <h2 className={classes.LoginPage__title}>Welcome to ZEFNET EZ Onboarding! </h2>
+            <p className={classes.LoginPage__subTitle}>The first stop for a new ZEF Energy customer</p>
               <TextField
                   className={classes.BottomBuffer}
                   required
@@ -120,7 +120,7 @@ class LoginPage extends Component {
                   InputLabelProps={{style:{color: 'white'}}}
                   onKeyDown={this.handleKeyDown}
                 />
-              <Grid item align='center' justify='center' className={classes.ButtonContainer}>
+              <Grid item align='center' justify='center' className={classes.LoginPage__buttonContainer}>
                 <DynamicButton type='glow' text='Sign in' handleClick={this.login}/>
                 <DynamicButton type='dark' text='New User?' 
                   handleClick={()=>this.props.dispatch({ type: "SET_TO_REGISTER_MODE" })}
