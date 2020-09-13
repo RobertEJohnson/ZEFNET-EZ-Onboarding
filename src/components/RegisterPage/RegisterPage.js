@@ -229,7 +229,7 @@ class RegisterPage extends Component {
               InputLabelProps={{style:{color: 'white'}}}
             />
             <br/>
-            <Grid item align='center' justify='center' className={classes.ButtonContainer}>
+            <Grid item className={classes.ButtonContainer}>
             <DynamicButton type='glow' handleClick={this.registerUser} 
                 text='Create Account!'/>
               <DynamicButton type='dark' handleClick={()=>this.props.dispatch({type:"SET_TO_LOGIN_MODE"})}

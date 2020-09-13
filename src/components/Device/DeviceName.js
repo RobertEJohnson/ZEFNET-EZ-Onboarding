@@ -117,7 +117,7 @@ class DeviceName extends Component {
         payload: this.state.installationDate,
       });
 
-      this.props.history.push("/deviceReview"); //change this
+      this.props.history.push("/deviceReview");
     } else {
       this.setState({ ...this.state, open: true });
     }

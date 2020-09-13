@@ -165,10 +165,9 @@ class AddUser extends Component {
           <Paper className={classes.paper} elevation={3}>
             <h1>Administrative Users</h1>
             <h3>
-              {/* {JSON.stringify(this.props.reduxState.zefUser)} */}
-              These are who have access to information on the ZEFNET Portal
+              These employees will have access to information on the ZEFNET Portal
             </h3>
-              <Table className={classes.reviewTable} inputProps={{className: classes.TableRow}}>
+              <Table className={classes.reviewTable} inputprops={{className: classes.TableRow}}>
                 <TableHead>
                   <TableRow>
                     <TableCell></TableCell>
