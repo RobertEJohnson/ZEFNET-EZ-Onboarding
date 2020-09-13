@@ -6,7 +6,15 @@ import PropTypes from 'prop-types';
 import DynamicButton from '../Buttons/DynamicButton'
 
 const styles = theme => ({ 
-  BottomBuffer: {
+  EditOrgPage:{
+    color:'white',
+    textAlign: "center",
+    marginBottom: '100px'
+  },
+  EditOrgPage__title: {
+    marginBottom: '1rem',
+  },
+  SmallBottomBuffer: {
     marginBottom: '.5rem'
   },
   LargeBottomBuffer: {
@@ -34,14 +42,6 @@ const styles = theme => ({
         WebkitBoxShadow: '0 0 0 30px var(--focus-background) inset',
       }
     },
-  },
-  Title: {
-    marginBottom: '1rem',
-    textAlign: "center",
-    color: "white",
-    fontFamily: "inter, Open Sans, sans-serif",
-    margin: '0px',
-    padding: '0px'
   },
 })
 
@@ -83,14 +83,14 @@ class EditOrganization extends Component {
     const {classes} = this.props;
 
     return (
-        <Grid item align="center">
-            <h1 className={classes.Title}>Edit Organization Information</h1>
+        <Grid item align="center" className={classes.EditOrgPage}>
+            <h1 className={classes.EditOrgPage__title}>Edit Organization Information</h1>
             <TextField
               autoFocus
               label='Organization Name'
               required
               variant="filled"
-              className={classes.BottomBuffer}
+              className={classes.SmallBottomBuffer}
               value={this.state.organizationName}
               onChange={this.handleInputChangeFor("organizationName")}
               InputProps={{classes: {root: classes.TextField}}}
@@ -103,7 +103,7 @@ class EditOrganization extends Component {
               label = 'Primary Email'
               variant="filled"
               value={this.state.email}
-              className={classes.BottomBuffer}
+              className={classes.SmallBottomBuffer}
               onChange={this.handleInputChangeFor("email")}
               InputProps={{classes: {root: classes.TextField}}}
               inputProps={{className: classes.TextField}}
@@ -114,7 +114,7 @@ class EditOrganization extends Component {
               label = 'Primary Phone Number'
               variant="filled"
               value={this.state.primaryNumber}
-              className={classes.BottomBuffer}
+              className={classes.SmallBottomBuffer}
               onChange={this.handleInputChangeFor("primaryNumber")}
               InputProps={{classes: {root: classes.TextField}}}
               inputProps={{className: classes.TextField}}
