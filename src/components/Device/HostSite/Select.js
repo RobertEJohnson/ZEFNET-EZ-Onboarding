@@ -139,10 +139,10 @@ class HostSelect extends Component {
                 <h1>Select Your Host Site</h1>
                 <div style={{marginBottom: '20px'}}> 
                 <p style={{margin: 'auto 40px'}}>
-                    Please choose from existing below or press the 'Add New Site' button.
+                    Please choose from existing below or press the 'Add Site' button.
                     </p>   
                 </div>
-                <FormControl variant="outlined" className={classes.formControl}>
+                <FormControl variant="filled" className={classes.formControl}>
                     <InputLabel>Choose From Existing Sites</InputLabel>
                     <Select
                     id = 'siteSelect'
@@ -165,13 +165,9 @@ class HostSelect extends Component {
                 <h2 className={classes.hrWordDivder}><span className={classes.hrWord}>Or</span></h2>
                 
                 {this.state.selectedSite ? 
-                    <Button variant = 'contained' disabled>
-                        Add New Site
-                    </Button>
-                :
-                <Button variant = 'contained' color = 'primary' onClick = {this.addSite}>
-                    Add New Site
-                </Button>
+                    <DynamicButton key='addSite-button-disabled' type='add' text='Add Site' isDisabled={true}/>
+                  :
+                    <DynamicButton key='addSite-button-enabled' type='add' text='Add Site' handleClick={this.addSite}/>
                 }     
                 <br/>
                 <br/>
@@ -180,7 +176,7 @@ class HostSelect extends Component {
                     <div className = {classes.grow}></div>
                     {this.state.selectedSite ?
                         <DynamicButton key={'enabled-site-next'} type='next' text='Next' handleClick={this.assignSite} linkURL='/breakerSelect'/>
-                        :
+                      :
                         <DynamicButton key={'disabled-site-next'} type='next' text='Next' isDisabled={true}/>
                     }
                 </Grid>

@@ -99,7 +99,7 @@ class AddBreaker extends Component {
               autoFocus
               required
               fullWidth
-              variant = 'outlined'
+              variant = 'filled'
               margin="dense"
               label="Breaker Name"
               name = 'name'
@@ -109,7 +109,7 @@ class AddBreaker extends Component {
             />
             <TextField
               required
-              variant = 'outlined'
+              variant = 'filled'
               margin="dense"
               label="Breaker Limit"
               type="number"
@@ -122,11 +122,12 @@ class AddBreaker extends Component {
               }}
             />
             <h3 style={{margin:'10px 0px 5px 0px', padding: '0px'}}>
-              If additional information is beneficial, please fill in the description field.
+              If additional information is beneficial,
+               <br/>please fill in the description field below.
             </h3>
             <TextField
               fullWidth
-              variant = 'outlined'
+              variant = 'filled'
               margin="dense"
               label="Breaker Description"
               rows="4"

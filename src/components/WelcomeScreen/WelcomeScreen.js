@@ -2,33 +2,37 @@ import React, { Component } from 'react';
 import {Grid, withStyles} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import DynamicButton from '../Buttons/DynamicButton';
+import {HomeWorkTwoTone, EvStationTwoTone, RoomTwoTone, MapTwoTone, AccountCircleTwoTone} from '@material-ui/icons'
 import { connect } from "react-redux";
 
-const styles = theme => ({ 
+const styles = theme => ({
     container: {
-      maxWidth: '550px', 
-      marginBottom: '100px'
+      maxWidth: '600px', 
+      marginBottom: '100px',
+      color: 'white',
     },
     informationContainer: {
+      padding: '.5rem 0',
+      maxWidth: '530px',
       backgroundColor: '#1c2447',
-      border: '1px solid white'
+      border: '1px solid white',
+      textAlign: 'center',
+      fontSize: '15px',
     },
     title: {
       textAlign: 'center',
-      color: 'white',
-      fontFamily: 'inter Open Sans, sans-serif'
-    },
-    pStyle: {
-      textAlign:'center',
-      color: 'white',
-      fontSize: '15px'
+      fontFamily: 'inter Open Sans, sans-serif',
+      marginBottom: '1rem'
     },
     requirementsUL:{
+      padding: '.5rem 0',
       textAlign: 'left', 
       display: 'inline-block',
-      color: 'white',
-      fontSize: '15px',
+      listStyle: 'none'
     },
+    SvgIcon:{
+      transform: 'translate(0px, 5px)',
+    }
   })
 
 class WelcomeScreen extends Component {
@@ -53,22 +57,28 @@ class WelcomeScreen extends Component {
     const {classes} = this.props;
     return (
             <Grid item className={classes.container} align='center' >
-              <h1 className={classes.title}>Welcome to the ZEFNET EZ onboarding site!</h1>
+              <h1 className={classes.title} classes='BottomBuffer'>Welcome to the ZEFNET EZ onboarding site!</h1>
               <div className={classes.informationContainer}>
-               <p className={classes.pStyle}>
-                        Congratulations on installing your new ZEF charging devices! 
-                        <br/>To fully onboard you into our system we will be collecting the following:</p>
-                        <div>
-                          <ul className={classes.requirementsUL}>
-                            <li>Organization information</li>
-                            <li>Device information</li>
-                            <li>Installation location(s)</li>
-                            <li>Device adminstrator information</li>
-                          </ul>
-                        </div>
-                      <p className={classes.pStyle}>
-                        We'll let you know what we need every step of the way. :)
-                    </p>
+                  Congratulations on installing your new ZEF charging devices! 
+                  <br/>
+                  To be fully entered into our system we will be collecting the following:
+                  <div style={{marginLeft: '30px'}}>
+                    <ul className={classes.requirementsUL}>
+                      <li>
+                        <HomeWorkTwoTone className={classes.SvgIcon}/> Organization information
+                      </li>
+                      <li>
+                        <EvStationTwoTone className={classes.SvgIcon}/> Device information
+                      </li>
+                      <li>
+                        <RoomTwoTone className={classes.SvgIcon}/> Installation location(s)
+                      </li>
+                      <li>
+                        <AccountCircleTwoTone className={classes.SvgIcon}/> Device adminstrator information
+                      </li>
+                    </ul>
+                  </div> 
+                  We'll let you know what we need every step of the way. :)
               </div>
               <br/>
               <DynamicButton type='glow' linkURL="/createOrganization" text="Let's Get Started"/>
