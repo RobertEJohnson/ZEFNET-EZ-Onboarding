@@ -11,7 +11,9 @@ import {AccordionSummary,
         Dialog,
         DialogContent,
         DialogContentText,
-        DialogActions,} from '@material-ui/core';
+        DialogActions,
+        Tooltip
+    } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import SaveIcon from '@material-ui/icons/SaveAlt';
@@ -196,7 +198,7 @@ class Submit extends Component {
                             <TableCell align="right">Privileges</TableCell>
                         </TableRow>
                         </TableHead>
-                        <TableBody> 
+                        <TableBody style={{border: '1px solid #e0e0e0'}}> 
                         {this.props.state.zefUser.map((user, index)=>(
                             <TableRow key = {index}>
                                 <TableCell component="th" scope="row">
@@ -236,8 +238,8 @@ class Submit extends Component {
             {this.state.tableMode
             ?
                 <div className={classes.reviewTable}>
-                    <Table >
-                        <TableHead>
+                    <Table>
+                        <TableHead style={{border: '1px solid #e0e0e0'}}>
                             <TableRow>
                                 <TableCell></TableCell>
                                 <TableCell>Device Name</TableCell>
@@ -255,7 +257,7 @@ class Submit extends Component {
                                 <TableCell align="right">Breaker Description</TableCell>
                             </TableRow>
                         </TableHead>
-                        <TableBody> 
+                        <TableBody style={{border: '1px solid #e0e0e0'}}> 
                         {this.props.state.allDevice.map((device, index) => 
                             (
                             <TableRow key = {index} >

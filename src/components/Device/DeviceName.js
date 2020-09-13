@@ -184,7 +184,7 @@ class DeviceName extends Component {
                   className={classes.textField}
                   label="Charger Name:"
                   margin="normal"
-                  variant="outlined"
+                  variant="filled"
                   value={this.state.chargerName || "" }
                   onChange={this.handleInputChangeFor("chargerName")}
                 />
@@ -197,7 +197,7 @@ class DeviceName extends Component {
                   className={classes.textField}
                   label=""
                   margin="normal"
-                  variant="outlined"
+                  variant="filled"
                   value={this.state.installationDate || ""}
                   onChange={this.handleInputChangeFor("installationDate")}
                 />

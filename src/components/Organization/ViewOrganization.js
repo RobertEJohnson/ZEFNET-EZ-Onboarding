@@ -5,19 +5,44 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import DynamicButton from '../Buttons/DynamicButton';
 
-const styles = theme => ({ 
-  resetMargin:{
-      margin: '0'
+const styles = theme => ({
+  ViewOrgPage:{
+    color:'white',
+    fontSize: '17px',
+    marginBottom: '100px'
   },
-  headerZone: {
-      fontFamily: 'inter, Open Sans, sans-serif',
-      minWidth: '100%',
-      position: 'relative'
+  ViewOrgPage__title: {
+    marginBottom: '0',
+    textAlign: "center",
+    fontFamily: "inter, Open Sans, sans-serif",
+    margin: '0',
+    padding: '0px'
   },
-  paper:{
-    padding: theme.spacing(2),
-    borderRadius: '5px',
+  ViewOrgPage__subTitle: {
+    fontWeight: 600,
   },
+  ViewOrgPage__flexContainer__titles: {
+    fontWeight: 600,
+  },
+  ViewOrgPage__flexContainer__information: {
+    fontWeight: 300,
+  },
+  ViewOrgPage__flexContainer: {
+    display: 'flex',
+    flexDirection: 'row', 
+    textAlign: 'left',
+    margin: '1rem 0'
+  },
+  LargeRightBuffer: {
+    marginRight: '1.5rem'
+  },
+  ViewOrgPage__buttonContainer: {
+    display: 'flex',
+    flexDirection:'row',
+    justifyContent:'space-between',
+    maxWidth: '180px',
+    marginTop: '1.5rem'
+  }
 })
 
 
@@ -31,45 +56,31 @@ componentDidMount(){
   render() {
     const {classes} = this.props;
     return (
-        
-        <Paper className = {classes.paper} elevation = {3} style={{minWidth: '425px'}}>
-          <Grid container direction = 'column' alignContent = 'center' justify = 'center' style={{minWidth: '100%'}}>
-          
-            <Grid item align='center' style={{minWidth: '100%'}}>
-                <div className = {classes.headerZone}>
-                    <span style={{position: 'absolute', right: '10px', top: '8px'}}>
-                      <DynamicButton type='edit' text='Edit' linkURL='/editOrganization'/>
-                    </span>
-                    <h1 className={classes.resetMargin}>
-                      {this.props.reduxState.organization.name}
-                    </h1>
-                    <h4 className={classes.resetMargin}>Organization Information</h4>
-                </div>
-                
-            </Grid>
-            <Grid item style={{minWidth: '100%'}}>
-                <div style={{display: 'flex', flexDirection: 'row', paddingTop:'12px'}}>
-                  <div style={{minWidth: '30%',  padding: '0px 0px 0px 50px'}}>
-                    <p>
+          <Grid item align='center' className={classes.ViewOrgPage}>
+            <h1 className={classes.ViewOrgPage__title}>{this.props.reduxState.organization.name}</h1>
+            <p className={classes.ViewOrgPage__subTitle}>Organization Information</p>
+              <div className={classes.ViewOrgPage__flexContainer}>
+                  <div className={classes.LargeRightBuffer}>
+                    <p className={classes.ViewOrgPage__flexContainer__titles}>
                       Email:
                       <br/>Phone:
                       <br/>Address:
                     </p>
                   </div>
-                  <div style={{minWidth: '70%'}}>
-                    <p>
+                  <div>
+                    <p className={classes.ViewOrgPage__flexContainer__information}>
                       {this.props.reduxState.organization.email}
                       <br/>{this.props.reduxState.organization.phone}
                       <br/>{this.props.reduxState.organization.address}
                     </p>
                   </div>
-                </div>
-            </Grid>
-            <center style={{marginTop: '20px'}}>
-                <DynamicButton type='home' text='Home' linkURL='/organizationHome'/>
-            </center>
-            </Grid>
-        </Paper>
+              </div>
+              <div className={classes.ViewOrgPage__buttonContainer}>
+                <DynamicButton type='edit-glow' text='Edit' linkURL='/editOrganization'/>
+                <DynamicButton type='home-glow' text='Home' linkURL='/organizationHome'/>
+              </div>
+            
+        </Grid>
     );
   }
 }

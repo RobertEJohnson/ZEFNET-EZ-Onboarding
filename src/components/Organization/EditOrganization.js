@@ -6,26 +6,43 @@ import PropTypes from 'prop-types';
 import DynamicButton from '../Buttons/DynamicButton'
 
 const styles = theme => ({ 
-  input: {
-    color: 'white',
-    border: `1px solid white`,
-    backgroundColor: '#243353',
-    outline: `1px solid transparent`,// we use a transparent outline here so the component doesn't move when focused
+  EditOrgPage:{
+    color:'white',
+    textAlign: "center",
+    marginBottom: '100px'
+  },
+  EditOrgPage__title: {
+    marginBottom: '1rem',
+  },
+  SmallBottomBuffer: {
+    marginBottom: '.5rem'
+  },
+  LargeBottomBuffer: {
+    marginBottom: '1.5rem'
+  },
+  TopBuffer: {
+    marginTop: '1rem'
+  },
+  TextField: {
+    width: '400px',
+    '--text-color':'#fff',
+    '--dark-background':'#1c2447',
+    '--focus-background':'#244d6e',
+    color: 'var(--text-color)',
+    border: '1px solid var(--text-color)',
+    backgroundColor: 'var(--dark-background)',
+    caretColor:'var(--text-color)',
+    '&:focus':{
+      backgroundColor: 'var(--focus-background)'
     },
-    h1Reset: {
-      textAlign: "center",
-      color: "white",
-      fontFamily: "inter, Open Sans, sans-serif",
-      padding: '0px',
-      margin: '0px'
+    '&:-webkit-autofill': {
+      WebkitBoxShadow: '0 0 0 40px var(--dark-background) inset',
+      '-webkit-text-fill-color': 'var(--text-color)',
+      '&:focus':{
+        WebkitBoxShadow: '0 0 0 30px var(--focus-background) inset',
+      }
     },
-    h3Reset: {
-      textAlign: "center",
-      color: "white",
-      fontFamily: "inter, Open Sans, sans-serif",
-      padding: '0px',
-      margin: '0px 0px 0px 0px'
-    },
+  },
 })
 
 class EditOrganization extends Component {
@@ -64,95 +81,58 @@ class EditOrganization extends Component {
   render() {
     const {classes} = this.props;
 
-    let centerText = {
-      textAlign: "center",
-      color: "white",
-      fontFamily: "inter, Open Sans, sans-serif",
-      margin: '0px',
-      padding: '0px'
-    };
-
     return (
-        <Grid item style={{ maxWidth: "1000px" }} align="center">
-          <div>
-            <h1 style={centerText}>Edit Organization Information</h1>
-          </div>
-          <form style={{ minWidth: "400px", background: "transparent" }}>
+        <Grid item align="center" className={classes.EditOrgPage}>
+            <h1 className={classes.EditOrgPage__title}>Edit Organization Information</h1>
             <TextField
-              label = 'Organization Name'
+              autoFocus
+              label='Organization Name'
               required
-              margin="normal"
-              variant="outlined"
+              variant="filled"
+              className={classes.SmallBottomBuffer}
               value={this.state.organizationName}
               onChange={this.handleInputChangeFor("organizationName")}
-              style={{ minWidth: "380px", fontFamily: "inter", padding: '0px', margin: '15px 0px 0px 0px'  }}
-              InputProps={{
-                classes: {
-                  root: classes.input,
-                }
-              }}
-              InputLabelProps={{
-                style: { color: '#fff' }
-              }}
-            ></TextField>
+              InputProps={{classes: {root: classes.TextField}}}
+              inputProps={{className: classes.TextField}}
+              InputLabelProps={{style:{color: 'white'}}}
+            />
             <br/>
             <TextField
               required
-              style={{ minWidth: "380px", fontFamily: "Crimson Text", padding: '0px', margin: '15px 0px 0px 0px'  }}
               label = 'Primary Email'
-              margin="normal"
-              variant="outlined"
+              variant="filled"
               value={this.state.email}
+              className={classes.SmallBottomBuffer}
               onChange={this.handleInputChangeFor("email")}
-              InputProps={{
-                classes: {
-                  root: classes.input,
-                }
-              }}
-              InputLabelProps={{
-                style: { color: '#fff' }
-              }}
-            ></TextField>
+              InputProps={{classes: {root: classes.TextField}}}
+              inputProps={{className: classes.TextField}}
+              InputLabelProps={{style:{color: 'white'}}}
+            />
             <br/>
             <TextField
               label = 'Primary Phone Number'
-              margin="normal"
-              variant="outlined"
+              variant="filled"
               value={this.state.primaryNumber}
+              className={classes.SmallBottomBuffer}
               onChange={this.handleInputChangeFor("primaryNumber")}
-              style={{ minWidth: "380px", fontFamily: "inter", padding: '0px', margin: '15px 0px 0px 0px'  }}
-              InputProps={{
-                classes: {
-                  root: classes.input,
-                }
-              }}
-              InputLabelProps={{
-                style: { color: '#fff' }
-              }}
-            ></TextField>
+              InputProps={{classes: {root: classes.TextField}}}
+              inputProps={{className: classes.TextField}}
+              InputLabelProps={{style:{color: 'white'}}}
+            />
             <br/>
             <TextField
               required
               label = 'Organization Address'
-              margin="normal"
-              variant="outlined"
-              multiline
+              variant="filled"
               value={this.state.organizationAddress}
+              className={classes.LargeBottomBuffer}
               onChange={this.handleInputChangeFor("organizationAddress")}
-              style={{ minWidth: "380px", fontFamily: "inter", padding: '0px', margin: '15px 0px 0px 0px'  }}
-              InputProps={{
-                classes: {
-                  root: classes.input,
-                }
-              }}
-              InputLabelProps={{
-                style: { color: '#fff' }
-              }}
-            ></TextField>
-            <br/>
+              InputProps={{classes: {root: classes.TextField}}}
+              inputProps={{className: classes.TextField}}
+              InputLabelProps={{style:{color: 'white'}}}
+            />
             <br/>
             <DynamicButton type='glow' text='Save Changes' linkURL='/viewOrganization' handleClick={this.handleEditOrg}/>
-          </form>
         </Grid>
     );
   }

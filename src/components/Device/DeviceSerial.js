@@ -209,7 +209,7 @@ class DeviceSerial extends Component {
               label="Serial Number:"
               margin="normal"
               placeholder="HC1C190987067"
-              variant="outlined"
+              variant="filled"
               value={this.state.serialNumber || ""}
               onChange={this.handleInputChangeFor("serialNumber")}
               onCopy={this.handleCopynPaste}
@@ -221,7 +221,7 @@ class DeviceSerial extends Component {
               className={classes.textField}
               label="Confirm Serial Number:"
               margin="normal"
-              variant="outlined"
+              variant="filled"
               value={this.state.confirmSerialNumber || ""}
               onChange={this.handleInputChangeFor("confirmSerialNumber")}
               onCopy={this.handleCopynPaste}
@@ -241,7 +241,7 @@ class DeviceSerial extends Component {
                 className={classes.textField}
                 label="Second Serial Number:"
                 margin="normal"
-                variant="outlined"
+                variant="filled"
                 value={this.state.serialNumber2 || ""}
                 onChange={this.handleInputChangeFor("serialNumber2")}
                 onCopy={this.handleCopynPaste}
@@ -253,7 +253,7 @@ class DeviceSerial extends Component {
                 className={classes.textField}
                 label="Confirm Second Serial Number:"
                 margin="normal"
-                variant="outlined"
+                variant="filled"
                 value={this.state.confirmSerialNumber2 || ""}
                 onChange={this.handleInputChangeFor("confirmSerialNumber2")}
                 onCopy={this.handleCopynPaste}

@@ -30,15 +30,36 @@ const styles = (theme) => ({
     borderRadius: "5px",
     height: "fit-content",
     width: "fit-content",
-    maxWidth: '1000px'
+    maxWidth: '1000px',
+    textAlign: 'center'
   },
   reviewTable:{
       overflowX: 'auto',
       whiteSpace:'nowrap',
   },
-  textFields:{
+  MiniTextFields:{
     maxWidth: '175px',
     margin: '5px'
+  },
+  Title: {
+    border: "solid #e3e3e3 2px",
+    maxWidth: "515px",
+    height: "125px",
+    display: "flex",
+    borderRadius: "5px",
+  },
+  TableRow: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: '#f5f5f5',
+    },
+  },
+  ButtonContainer: {
+    display: "flex",
+    width: "515px",
+    justifyContent: "space-between",
+    align: "center",
+    marginTop: "20px",
+    marginLeft: "30px",
   }
 });
 
@@ -110,34 +131,6 @@ class AddUser extends Component {
 
   render() {
     const { classes } = this.props;
-    let centerText = {
-      textAlign: "center",
-      color: "black",
-      fontFamily: "inter, Open Sans, sans-serif",
-      width: "515px",
-    };
-
-    let header = {
-      border: "solid #e3e3e3 2px",
-      maxWidth: "515px",
-      height: "125px",
-      display: "flex",
-      borderRadius: "5px",
-    };
-
-    let buttons = {
-      display: "flex",
-      width: "515px",
-      justifyContent: "space-between",
-      align: "center",
-      marginTop: "20px",
-      marginLeft: "30px",
-    };
-
-    let textFields = {
-      width: "180px",
-      margin: "5px",
-    };
 
     return (
       <Grid
@@ -170,15 +163,12 @@ class AddUser extends Component {
           </Dialog>
         <Grid item xs={8} align="center">
           <Paper className={classes.paper} elevation={3}>
-            <div style={header}>
-              <div style={centerText}>
-                  <h1>New Users</h1>
-                  <h3>
-                    Users can view or edit device information on ZEFNET Portal
-                  </h3>
-              </div>
-            </div>
-              <Table className={classes.reviewTable}>
+            <h1>Administrative Users</h1>
+            <h3>
+              {/* {JSON.stringify(this.props.reduxState.zefUser)} */}
+              These are who have access to information on the ZEFNET Portal
+            </h3>
+              <Table className={classes.reviewTable} inputProps={{className: classes.TableRow}}>
                 <TableHead>
                   <TableRow>
                     <TableCell></TableCell>
@@ -189,7 +179,7 @@ class AddUser extends Component {
                     <TableCell>Privileges</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
+                <TableBody style={{border: '1px solid #e0e0e0'}}>
                   {this.props.reduxState.zefUser.map( user => 
                       <UserTableRow key={user.id} first_name={user.first_name} last_name={user.last_name} email={user.email}
                         phone={user.phone} editor={user.editor} user_id={user.id}/>
@@ -214,44 +204,44 @@ class AddUser extends Component {
                     <TextField
                       required
                       color="primary"
-                      className = {classes.textFields}
+                      className = {classes.MiniTextFields}
                       label="First Name:"
-                      variant="outlined"
+                      variant="filled"
                       value={this.state.first_name}
                       onChange={this.handleInputChangeFor("first_name")}
                     />
                     <TextField
                       required
                       color="primary"
-                      className = {classes.textFields}
+                      className = {classes.MiniTextFields}
                       label="Last Name:"
-                      variant="outlined"
+                      variant="filled"
                       value={this.state.last_name}
                       onChange={this.handleInputChangeFor("last_name")}
                     />
                     <TextField
                       required
                       color="primary"
-                      className = {classes.textFields}
+                      className = {classes.MiniTextFields}
                       label="Email:"
-                      variant="outlined"
+                      variant="filled"
                       value={this.state.email}
                       onChange={this.handleInputChangeFor("email")}
                     />
                     <TextField
                       color="primary"
-                      className = {classes.textFields}
+                      className = {classes.MiniTextFields}
                       label="Phone:"
-                      variant="outlined"
+                      variant="filled"
                       value={this.state.phone || ""}
                       onChange={this.handleInputChangeFor("phone")}
                     />
-                    <FormControl variant="outlined">
+                    <FormControl variant="filled" style={{width:'140px'}}>
                       <InputLabel>Privileges:</InputLabel>
                       <Select
                         required
                         onChange={this.handleInputChangeFor("editor")}
-                        style={textFields}
+                        className={classes.MiniTextFields}
                         value={this.state.editor || ""}
                       >
                         <MenuItem value="False">View</MenuItem>
@@ -260,16 +250,11 @@ class AddUser extends Component {
                     </FormControl>
                 </Grid>
                 <br/>
-              <div style={buttons}>
+              <div className={classes.ButtonContainer}>
                   <DynamicButton  type='home' text='Home' linkURL='/organizationHome'/>
-                  <Button
-                    variant="contained"
-                    color="default"
-                    onClick={this.handleAddUser}
-                    style={{ width: "131px" }}
-                  >
-                    Add User
-                  </Button>
+
+                  <DynamicButton type='add' text='Add User' handleClick={this.handleAddUser}/>
+
               </div>
             </form>
           </Paper>
