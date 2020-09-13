@@ -83,6 +83,18 @@ class EditSite extends Component {
     })
   }
 
+  handleCloseWithoutSave = () =>{
+    this.setState({
+        first_name: this.props.site.first_name,
+        last_name: this.props.site.second_name,
+        email:this.props.site.email,
+        phone: this.props.site.phone,
+        address:this.props.site.address,
+        error:false,
+        })  
+    this.props.handleClose()
+}
+
   render() {
      const {classes} = this.props;
     return (
@@ -172,7 +184,7 @@ class EditSite extends Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions style={{textAlign: 'left'}}>
-            <Button onClick={this.props.handleClose} style={{float: 'left'}}>
+            <Button onClick={this.handleCloseWithoutSave} style={{float: 'left'}}>
                 Close Without Saving 
             </Button>
             <Button color="primary"

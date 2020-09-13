@@ -39,6 +39,17 @@ class EditBreaker extends Component {
         }  
     }
 
+    handleExit = () =>{
+        this.setState({
+            name: this.props.breaker.name,
+            limit: this.props.breaker.limit,
+            description:this.props.breaker.description,
+            alert1: false,
+            alert2: false,
+            })  
+        this.props.handleClose();
+    }
+
   handleChange = (event) => {
     this.setState({ 
         ...this.state,
@@ -157,11 +168,11 @@ class EditBreaker extends Component {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.props.handleClose}>
+            <Button onClick = {this.handleExit}>
                 Close Without Saving
             </Button>
             <Button color="primary"
-                onClick = {this.EditBreaker}>
+                onClick = {this.editBreaker}>
              Save Changes
             </Button>
           </DialogActions>
