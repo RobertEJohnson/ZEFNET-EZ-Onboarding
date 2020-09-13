@@ -3,7 +3,7 @@ import {Button, withStyles} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {ChevronLeft, ChevronRight, Home as HomeIcon, Edit as EditIcon, EvStation, Save} from '@material-ui/icons';
+import {ChevronLeft, ChevronRight, Home as HomeIcon, EditTwoTone as EditIcon, EvStationTwoTone, SaveTwoTone, AddBoxTwoTone, CheckBoxTwoTone} from '@material-ui/icons';
 
 /*
     DynamicButton API
@@ -19,6 +19,8 @@ import {ChevronLeft, ChevronRight, Home as HomeIcon, Edit as EditIcon, EvStation
                         | 'save'
                         | 'review'
                         | 'organization'
+                        | 'add'
+                        | 'submit'
         isDisabled      boolean             false       toggles the disabled attribute
         handleClick     function()                      passed in as onClick function
         linkURL         '/string'                       will add component={Link} and set $string as to='/$string'
@@ -92,6 +94,13 @@ const styles = {
             backgroundColor: '#757de8',
         }
     },
+    'Button--primary--basic':{
+        backgroundColor: "#3f51b5",
+        color: "white",
+        '&:hover': {
+            backgroundColor: '#757de8',
+        }
+    },
     'Button--outlined':{
         color:'white',
         border: '1px solid white',
@@ -159,6 +168,12 @@ class DynamicButton extends Component{
 
         //update values of icon depending on this.props.type
         switch(this.props.type){
+            case 'add':
+                startIcon = <AddBoxTwoTone/>;
+                break;
+            case 'confirm':
+                startIcon = <CheckBoxTwoTone/>
+                break;
             case 'previous':
                 startIcon = <ChevronLeft/>;
                 break;
@@ -166,10 +181,10 @@ class DynamicButton extends Component{
                 endIcon = <ChevronRight/>;
                 break;
             case 'review':
-                endIcon = <EvStation/>;
+                endIcon = <EvStationTwoTone/>;
                 break;
             case 'save':
-                endIcon = <Save/>
+                endIcon = <SaveTwoTone/>
                 break;
             case 'edit':
             case 'edit-glow':
@@ -201,6 +216,8 @@ class DynamicButton extends Component{
             {[classes['Button--glow']]: (this.props.type === 'glow')},
             {[classes['Button--dark']]: (this.props.type === 'dark')},
             {[classes['Button--previousIcon']]: (this.props.type === 'previous')},
+            {[classes['Button--primary--basic']]: (this.props.type === 'add')},
+            {[classes['Button--primary--basic']]: (this.props.type === 'confirm')},
             {[classes['Button--primary']]: (this.props.type === 'next')},
             {[classes['Button--primary']]: (this.props.type === 'review')},
             {[classes['Button--primary']]: (this.props.type === 'save')},
