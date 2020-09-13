@@ -64,6 +64,7 @@ CREATE TABLE "device" (
 	"type_id" INT REFERENCES "device_type",
 	"breaker_id" INT REFERENCES "breaker", 
 	"serial_number" VARCHAR(100) UNIQUE NOT NULL,
+	"serial_number2" VARCHAR(100),
 	"name" VARCHAR(100),
 	"install_date" DATE
 );

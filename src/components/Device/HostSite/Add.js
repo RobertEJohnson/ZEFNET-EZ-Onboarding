@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import{ Button, TextField } from '@material-ui/core';
+import{ Button, TextField, Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
 import { Dialog, DialogActions, DialogContent, DialogContentText}from '@material-ui/core/';
@@ -12,8 +12,12 @@ const styles = theme => ({
     },
     minorPadding: {
       padding: '0px 10px'
+    },
+    error:{
+      backgroundColor: '#ef9a9a',
     }
   })
+
   
 
 class AddSite extends Component {
@@ -23,6 +27,7 @@ class AddSite extends Component {
     email: '',
     phone: '',
     address: '',
+    error: false,
   };
   handleChange = (event) => {
     this.setState({ 
@@ -45,8 +50,19 @@ class AddSite extends Component {
         {this.props.dispatch({ type: "POST_SITE", payload: postObject });
         this.props.handleClose()
         } else {
-            alert('Unable to add site. Have you filled all required fields?')
+            //reveal error message
+            this.setState({
+              ...this.state,
+              error:true,
+            })
         }
+  }
+  
+  handleClose = () =>{
+    this.setState({
+      ...this.state,
+      error:false
+    })
   }
 
   render() {
@@ -57,6 +73,13 @@ class AddSite extends Component {
           open={this.props.open} 
           onClose={this.props.handleClose}
           title='Add A New Host Site'>
+          {this.state.error&&
+            <Grid container direction = 'row' justify='center' alignContent='center'>
+              <h2 className = {classes.error}>
+              Unable to add site. Please fill all required fields.
+                <Button onClick = {this.handleClose}>OK</Button>
+              </h2>
+            </Grid>}
          <h1 style={{padding: '15px 0px 10px 0px', margin: '0px'}}>New Host Site</h1>
          <p style={{padding: '0px', margin: '0px', fontWeight: '500', fontSize: '16px'}}>Enter the location of the organization's charging device.</p>
           <DialogContent style={{marginTop: '0px', paddingTop: '0px'}}>

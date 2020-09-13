@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import {Grid, Paper, withStyles} from '@material-ui/core';
+import {Grid, Paper, withStyles, Dialog, DialogActions, DialogContent, DialogContentText, Button} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import DynamicButton from '../Buttons/DynamicButton';
 
@@ -34,16 +34,20 @@ const styles = theme => ({
 })
 
 class DeviceReview extends Component {
+    state =  {
+        open: false
+    }
 
     saveDevice = () => {
         const postObject = {
             name: this.props.state.device.name,
             installation_date: this.props.state.device.date,
             serial_number: this.props.state.device.serial.number,
+            serial_number2: this.props.state.device.serial2,
             type_id: this.props.state.device.type.id,
             breaker_id:this.props.state.device.breaker.id,
             org_id:this.props.state.organization.id,
-            id: this.props.state.device.id,
+            id: this.props.state.device.id,     
         };
         console.log('saving device:', postObject)
         // call saga that posts the new device if required fields filled
@@ -59,13 +63,37 @@ class DeviceReview extends Component {
             }
             this.props.dispatch({ type: "CLEAR_DEVICE" });
             this.props.history.push("/OrganizationHome");
-        } else { alert('Oops: please make sure all fields are filled!') }
+        } else { this.setState({open: true}) }
     }
+
+    handleClose = () => {
+        this.setState({open: false});
+      };
 
     render() {
       const {classes} = this.props;
       return (
           <Grid container direction='row' justify='center' alignContent='center' alignItems='center' >
+              {/* Dialog runs if adding/saving device without all required info */}
+                <Dialog
+                open={this.state.open}
+                onClose={this.handleClose}
+                aria-labelledby="missing-information"
+                aria-describedby="missing-information-required-for-device"
+                >
+                    <DialogContent>
+                        <DialogContentText id="missing-required-information-use-edit-buttons-to-add">
+                            Oops, you have not filled all required fields for this device. 
+                            Please click "edit" next to the empty field to go back and add
+                            required information before saving this device.
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={this.handleClose} color="primary">
+                        OK
+                    </Button>
+                    </DialogActions>
+                </Dialog>
           <div className = {classes.root} style={{maxWidth: '1000px'}}>
             <Paper className = {classes.paper}>
                 <Grid item align='center'>
@@ -179,6 +207,14 @@ class DeviceReview extends Component {
                             {this.props.state.device.serial.number}
                         </p>
                     </div>
+                   {this.props.state.device.serial2 && 
+                    <div>
+                        <h3 className={classes.reviewItem} style={{margin: '10px 0px'}}> Second Serial Number:{'\u00A0'}{'\u00A0'}</h3>
+                        <p className={classes.reviewItem}>
+                            {this.props.state.device.serial2}
+                        </p>
+                    </div>
+                     }
                 </Grid>
 
                 <Grid item align='center' xs={12}>
