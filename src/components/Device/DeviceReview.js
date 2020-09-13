@@ -5,16 +5,6 @@ import PropTypes from 'prop-types';
 import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
-  root: {
-    flexGrow: 1,
-    alignItems: 'center',
-    justify: 'center',
-    color: theme.palette.text.secondary,
-    fontFamily: 'inter, Open Sans, sans-serif',
-    minHeight: '80vh', 
-    background: 'white',
-    textAlign: 'center',
-  },
   paper:{
     padding: theme.spacing(2),
     borderRadius: '5px',
@@ -30,7 +20,30 @@ const styles = theme => ({
     display: 'inline-block',
     padding: '0px',
     margin: '0px'
-  }
+  },
+  ReviewPage__buttonContainer:{
+    marginTop: '1rem',
+    position: 'relative',
+    minWidth: '95%'
+  },
+  ReviewPage__flexContainer__titles: {
+    fontWeight: 800,
+  },
+  ReviewPage__flexContainer__information: {
+    fontWeight: 300,
+  },
+  ReviewPage__flexContainer: {
+    display: 'flex',
+    flexDirection: 'row', 
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'left',
+    width: '350px'
+  },
+  ReviewBuffer: {
+    margin: '1rem 1.5rem 1rem 0',
+
+  },
 })
 
 class DeviceReview extends Component {
@@ -94,7 +107,6 @@ class DeviceReview extends Component {
                     </Button>
                     </DialogActions>
                 </Dialog>
-          <div className = {classes.root} style={{maxWidth: '1000px'}}>
             <Paper className = {classes.paper}>
                 <Grid item align='center'>
                     <h1>Let's make sure all this information is correct!</h1>
@@ -108,42 +120,44 @@ class DeviceReview extends Component {
                     </Grid>
                 </Grid>
 
-                <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                    <h3 style={{display: 'inline-block'}}>Address:{'\u00A0'}{'\u00A0'}</h3>
-                    <p style={{display: 'inline-block'}}>
-                        {this.props.state.device.site.address}
-                    </p>
+                <Grid item xs={12} align='center' style={{backgroundColor: 'lightgrey'}}>
+                        <div className={classes.ReviewPage__flexContainer}>
+                            <div className={classes.ReviewBuffer}>
+                                <p className={classes.ReviewPage__flexContainer__titles}>
+                                    Address:
+                                </p>
+                            </div>
+                            <div>
+                                <p className={classes.ReviewPage__flexContainer__information}>
+                                    {this.props.state.device.site.address}
+                                </p>
+                            </div>
+                        </div>                    
                 </Grid>
-
+                    
                 <Grid item align='center' xs={12}>
                     <h2>Local Contact for Location</h2>
                 </Grid>
 
                 <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                    <div>
-                        <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>First Name:{'\u00A0'}{'\u00A0'}</h3>
-                        <p className={classes.reviewItem}>
-                            {this.props.state.device.site.first_name}
-                        </p>
-                    </div>
-                    <div>
-                        <h3 className={classes.reviewItem}>Second Name:{'\u00A0'}{'\u00A0'}</h3>
-                        <p className={classes.reviewItem}>
-                            {this.props.state.device.site.second_name}
-                        </p>
-                    </div>
-                    <div>
-                        <h3 className={classes.reviewItem}>Phone Number:{'\u00A0'}{'\u00A0'}</h3>
-                        <p className={classes.reviewItem}>
-                            {this.props.state.device.site.phone}
-                        </p>
+                    <div className={classes.ReviewPage__flexContainer}>
+                        <div className={classes.ReviewBuffer}>
+                            <p className={classes.ReviewPage__flexContainer__titles}>
+                                First Name:
+                                <br/>Second Name:
+                                <br/>Phone Number:
+                                <br/>Email Address:
+                            </p>
+                        </div>
+                        <div>
+                            <p className={classes.ReviewPage__flexContainer__information}>
+                                {this.props.state.device.site.first_name}
+                                <br/>{this.props.state.device.site.last_name}
+                                <br/>{this.props.state.device.site.phone}
+                                <br/>{this.props.state.device.site.email}
+                            </p>
+                        </div>
                     </div> 
-                    <div>
-                        <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Email:{'\u00A0'}{'\u00A0'}</h3>
-                        <p className={classes.reviewItem}>
-                            {this.props.state.device.site.email}
-                        </p>
-                    </div>
                 </Grid>
                 
                 <Grid item align='center' xs={12}>
@@ -155,24 +169,22 @@ class DeviceReview extends Component {
                 </Grid>
 
                 <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                    <div>
-                        <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Breaker Name:{'\u00A0'}{'\u00A0'}</h3>
-                        <p className={classes.reviewItem}>
-                            {this.props.state.device.breaker.name}
-                        </p>
-                    </div>
-                    <div>
-                        <h3 className={classes.reviewItem}>Breaker Limit:{'\u00A0'}{'\u00A0'}</h3>
-                        <p className={classes.reviewItem}>
-                            {this.props.state.device.breaker.limit}Amps
-                        </p>
-                    </div>
-                    <div>
-                        <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Breaker Description:{'\u00A0'}{'\u00A0'}</h3>
-                        <p className={classes.reviewItem}>
-                            {this.props.state.device.breaker.description}
-                        </p>
-                    </div>
+                    <div className={classes.ReviewPage__flexContainer}>
+                        <div className={classes.ReviewBuffer}>
+                            <p className={classes.ReviewPage__flexContainer__titles}>
+                                Breaker Name:
+                                <br/>Breaker Limit:
+                                <br/>Breaker Description:
+                            </p>
+                        </div>
+                        <div>
+                            <p className={classes.ReviewPage__flexContainer__information}>
+                                {this.props.state.device.breaker.name}
+                                <br/>{this.props.state.device.breaker.limit}
+                                <br/>{this.props.state.device.breaker.description}
+                            </p>
+                        </div>
+                    </div> 
                 </Grid>
 
                 <Grid item align='center' xs={12}>
@@ -184,12 +196,18 @@ class DeviceReview extends Component {
                 </Grid>
 
                 <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                    <div>
-                        <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Device Type:{'\u00A0'}{'\u00A0'}</h3>
-                        <p className={classes.reviewItem}>
-                            {this.props.state.device.type.name}
-                        </p>
-                    </div>
+                    <div className={classes.ReviewPage__flexContainer}>
+                        <div className={classes.ReviewBuffer}>
+                            <p className={classes.ReviewPage__flexContainer__titles}>
+                                Device Type:
+                            </p>
+                        </div>
+                        <div>
+                            <p className={classes.ReviewPage__flexContainer__information}>
+                                {this.props.state.device.type.name}
+                            </p>
+                        </div>
+                    </div> 
                 </Grid>
 
                 <Grid item align='center' xs={12}>
@@ -201,20 +219,28 @@ class DeviceReview extends Component {
                 </Grid>
 
                 <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                    <div>
-                        <h3 className={classes.reviewItem} style={{margin: '10px 0px'}}>Serial Number:{'\u00A0'}{'\u00A0'}</h3>
-                        <p className={classes.reviewItem}>
-                            {this.props.state.device.serial.number}
-                        </p>
-                    </div>
-                   {this.props.state.device.serial2 && 
-                    <div>
-                        <h3 className={classes.reviewItem} style={{margin: '10px 0px'}}> Second Serial Number:{'\u00A0'}{'\u00A0'}</h3>
-                        <p className={classes.reviewItem}>
-                            {this.props.state.device.serial2}
-                        </p>
-                    </div>
-                     }
+                    
+                    <div className={classes.ReviewPage__flexContainer}>
+                        <div className={classes.ReviewBuffer}>
+                            <p className={classes.ReviewPage__flexContainer__titles}>
+                                {this.props.state.device.serial2 ?
+                                    <>Serial Number One:<br/>Serial Number Two:</>
+                                    :
+                                    <>Serial Number:</>
+                                }
+                            </p>
+                        </div>
+                        <div>
+                            <p className={classes.ReviewPage__flexContainer__information}>
+                                {this.props.state.device.serial.number}
+                                {this.props.state.device.serial2 ?
+                                    <><br/>{this.props.state.device.serial2}</>
+                                    :
+                                    <></>
+                                }
+                            </p>
+                        </div>
+                    </div> 
                 </Grid>
 
                 <Grid item align='center' xs={12}>
@@ -226,28 +252,29 @@ class DeviceReview extends Component {
                 </Grid>
 
                 <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                    <div>
-                        <h3 className={classes.reviewItem} style={{marginTop: '10px'}}>Charger Name:{'\u00A0'}{'\u00A0'}</h3>
-                        <p className={classes.reviewItem}>
-                            {this.props.state.device.name}
-                        </p>
-                    </div>
-                    <div>
-                        <h3 className={classes.reviewItem} style={{marginBottom: '10px'}}>Installation Date:{'\u00A0'}{'\u00A0'}</h3>
-                        <p className={classes.reviewItem} >
-                            {this.props.state.device.date}
-                        </p>
-                    </div>
+                    <div className={classes.ReviewPage__flexContainer}>
+                        <div className={classes.ReviewBuffer}>
+                            <p className={classes.ReviewPage__flexContainer__titles}>
+                                Charger Name:
+                                <br/>Installation Date:
+                            </p>
+                        </div>
+                        <div>
+                            <p className={classes.ReviewPage__flexContainer__information}>
+                                {this.props.state.device.name}
+                                <br/>{this.props.state.device.date}
+                            </p>
+                        </div>
+                    </div> 
                 </Grid>
 
-                
-                <Grid container direction = 'row' justify = 'center' alignContent = 'center' style={{marginTop: '35px'}}>
-                    <DynamicButton type='previous' text='Previous' linkURL='/deviceName'/>
-                    <div className = {classes.grow}>{'\u00A0'}</div>
-                    <DynamicButton type='save' text='Save Device' handleClick={this.saveDevice}/>
-                </Grid> 
-            </Paper>
-          </div>  
+                <Grid item align='center' justify='center' className={classes.ReviewPage__buttonContainer}>
+                    <div style={{position: 'absolute', float: 'left'}}>
+                        <DynamicButton type='previous' text='Previous' linkURL='/deviceName'/>
+                    </div>
+                    <DynamicButton type='confirm' text='Add This Device' handleClick={this.saveDevice}/>  
+                </Grid>
+            </Paper> 
           </Grid>
       );
     }

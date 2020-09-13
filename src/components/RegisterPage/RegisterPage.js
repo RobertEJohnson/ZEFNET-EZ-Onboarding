@@ -16,25 +16,65 @@ import { withStyles } from "@material-ui/core/styles";
 import DynamicButton from "../Buttons/DynamicButton";
 
 const styles = (theme) => ({
-  paper: {
-    width: "100%",
-    padding: theme.spacing(3),
-    textAlign: "center",
-    backgroundColor: "transparent",
-    justify: "center",
-    margin: "0px",
-    borderRadius: "5px",
-    border: "none",
-    color: "white",
+  BottomBuffer: {
+    marginBottom: "10px",
   },
-  input: {
-    color: "white",
-    border: `1px solid white`,
-    backgroundColor: "#1c2447",
-    outline: `1px solid transparent`, // we use a transparent outline here so the component doesn't move when focused
+  ButtonRightBuffer: {
+    marginRight: "14px",
   },
-  longField: {
-    width: "388px",
+  ButtonContainer: {
+    marginTop: ".5rem",
+    position: "relative",
+    maxWidth: "450px",
+  },
+  RegisterPage: {
+    color: "white",
+    marginBottom: "100px",
+    width: "450px",
+  },
+  Title: {
+    fontSize: "30px",
+    marginBottom: "1rem",
+  },
+  TextField: {
+    width: "400px",
+    "--text-color": "#fff",
+    "--dark-background": "#1c2447",
+    "--focus-background": "#244d6e",
+    color: "var(--text-color)",
+    border: "1px solid var(--text-color)",
+    backgroundColor: "var(--dark-background)",
+    caretColor: "var(--text-color)",
+    "&:focus": {
+      backgroundColor: "var(--focus-background)",
+    },
+    "&:-webkit-autofill": {
+      WebkitBoxShadow: "0 0 0 40px var(--dark-background) inset",
+      "-webkit-text-fill-color": "var(--text-color)",
+      "&:focus": {
+        WebkitBoxShadow: "0 0 0 30px var(--focus-background) inset",
+      },
+    },
+  },
+  ShortTextField: {
+    width: "193px",
+    "--text-color": "#fff",
+    "--dark-background": "#1c2447",
+    "--focus-background": "#244d6e",
+    color: "var(--text-color)",
+    border: "1px solid var(--text-color)",
+    backgroundColor: "var(--dark-background)",
+    caretColor: "var(--text-color)",
+    "&:focus": {
+      backgroundColor: "var(--focus-background)",
+    },
+    "&:-webkit-autofill": {
+      WebkitBoxShadow: "0 0 0 40px var(--dark-background) inset",
+      "-webkit-text-fill-color": "var(--text-color)",
+      "&:focus": {
+        WebkitBoxShadow: "0 0 0 30px var(--focus-background) inset",
+      },
+    },
   },
 });
 
@@ -115,11 +155,7 @@ class RegisterPage extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid
-        item
-        align="center"
-        style={{ marginBottom: "100px", position: "relative" }}
-      >
+      <Grid item align="center" className={classes.RegisterPage}>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -142,147 +178,111 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
-        <Paper className={classes.paper} elevation={0}>
-          <h1>Create User Account</h1>
-          <div>
-            <TextField
-              required
-              variant="outlined"
-              style={{ maxWidth: "185px", marginRight: "15px" }}
-              name="first_name"
-              label="First Name"
-              value={this.state.first_name}
-              onChange={this.handleInputChangeFor("first_name")}
-              InputProps={{
-                classes: {
-                  root: classes.input,
-                },
-              }}
-              InputLabelProps={{
-                style: { color: "#fff" },
-              }}
-            />
-            <TextField
-              required
-              variant="outlined"
-              label="Last Name"
-              name="last_name"
-              value={this.state.last_name}
-              onChange={this.handleInputChangeFor("last_name")}
-              InputProps={{
-                classes: {
-                  root: classes.input,
-                },
-              }}
-              InputLabelProps={{
-                style: { color: "#fff" },
-              }}
-            />
-          </div>
-          <br />
-          <div>
-            <TextField
-              required
-              variant="outlined"
-              label="Email"
-              name="email"
-              error={this.state.invalidEmail}
-              onBlur={this.checkEmail}
-              value={this.state.email}
-              onChange={this.handleInputChangeFor("email")}
-              style={{ minWidth: "398px" }}
-              InputProps={{
-                classes: {
-                  root: classes.input,
-                },
-              }}
-              InputLabelProps={{
-                style: { color: "#fff" },
-              }}
-            />
-          </div>
-          <br />
-          <div>
-            <TextField
-              required
-              variant="outlined"
-              type="password"
-              name="password"
-              label="Password"
-              value={this.state.password}
-              onChange={this.handleInputChangeFor("password")}
-              style={{ minWidth: "398px" }}
-              InputProps={{
-                classes: {
-                  root: classes.input,
-                },
-              }}
-              InputLabelProps={{
-                style: { color: "#fff" },
-              }}
-            />
-          </div>
-          <br />
-          <div>
-            <TextField
-              required
-              variant="outlined"
-              type="password"
-              name="confirm_password"
-              label="Confirm Password"
-              value={this.state.confirm_password}
-              onChange={this.handleInputChangeFor("confirm_password")}
-              style={{ minWidth: "398px" }}
-              InputProps={{
-                classes: {
-                  root: classes.input,
-                },
-              }}
-              InputLabelProps={{
-                style: { color: "#fff" },
-              }}
-            />
-          </div>
-          <br />
-          <div>
-            <MuiPhoneNumber
-              defaultCountry={"us"}
-              variant="outlined"
-              disableAreaCodes="true"
-              label="Primary Phone (optional)"
-              name="phone"
-              type="tel"
-              value={this.state.phone}
-              onChange={this.handlePhoneNumberChange}
-              style={{ minWidth: "398px" }}
-              InputProps={{
-                classes: {
-                  root: classes.input,
-                },
-              }}
-              InputLabelProps={{
-                style: { color: "#fff" },
-              }}
-            />
-          </div>
-          <br />
-          <div>
-            <DynamicButton
-              type="glow"
-              handleClick={this.registerUser}
-              text="Create Account!"
-              style={{ marginLeft: "105px" }}
-            />
-            <DynamicButton
-              type="dark"
-              handleClick={() =>
-                this.props.dispatch({ type: "SET_TO_LOGIN_MODE" })
-              }
-              text="Existing User?"
-            />
-            <br />
-          </div>
-        </Paper>
+        <h1 className={classes.Title}>Create User Account</h1>
+        <TextField
+          required
+          variant="filled"
+          className={classes.ButtonRightBuffer}
+          name="first_name"
+          label="First Name"
+          value={this.state.first_name}
+          onChange={this.handleInputChangeFor("first_name")}
+          InputProps={{ classes: { root: classes.ShortTextField } }}
+          inputProps={{ className: classes.ShortTextField }}
+          InputLabelProps={{ style: { color: "white" } }}
+        />
+        <TextField
+          required
+          variant="filled"
+          className={classes.BottomBuffer}
+          label="Last Name"
+          name="last_name"
+          value={this.state.last_name}
+          onChange={this.handleInputChangeFor("last_name")}
+          InputProps={{ classes: { root: classes.ShortTextField } }}
+          inputProps={{ className: classes.ShortTextField }}
+          InputLabelProps={{ style: { color: "white" } }}
+        />
+        <br />
+        <TextField
+          required
+          variant="filled"
+          error={this.state.invalidEmail}
+          onBlur={this.checkEmail}
+          className={classes.BottomBuffer}
+          label="Email"
+          name="email"
+          value={this.state.email}
+          onChange={this.handleInputChangeFor("email")}
+          InputProps={{ classes: { root: classes.TextField } }}
+          inputProps={{ className: classes.TextField }}
+          InputLabelProps={{ style: { color: "white" } }}
+        />
+        <br />
+        <TextField
+          required
+          variant="filled"
+          className={classes.BottomBuffer}
+          type="password"
+          name="password"
+          label="Password"
+          value={this.state.password}
+          onChange={this.handleInputChangeFor("password")}
+          InputProps={{ classes: { root: classes.TextField } }}
+          inputProps={{ className: classes.TextField }}
+          InputLabelProps={{ style: { color: "white" } }}
+        />
+        <br />
+        <TextField
+          required
+          variant="filled"
+          className={classes.BottomBuffer}
+          type="password"
+          name="confirm_password"
+          label="Confirm Password"
+          value={this.state.confirm_password}
+          onChange={this.handleInputChangeFor("confirm_password")}
+          InputProps={{ classes: { root: classes.TextField } }}
+          inputProps={{ className: classes.TextField }}
+          InputLabelProps={{ style: { color: "white" } }}
+        />
+        <br />
+        <div>
+          <MuiPhoneNumber
+            defaultCountry={"us"}
+            variant="filled"
+            disableAreaCodes="true"
+            label="Primary Phone (optional)"
+            className={classes.BottomBuffer}
+            name="phone"
+            type="tel"
+            value={this.state.phone}
+            onChange={this.handlePhoneNumberChange}
+            InputProps={{ classes: { root: classes.TextField } }}
+            inputProps={{ className: classes.TextField }}
+            InputLabelProps={{ style: { color: "white" } }}
+          />
+        </div>
+        <br />
+        <Grid
+          item
+          align="center"
+          justify="center"
+          className={classes.ButtonContainer}
+        >
+          <DynamicButton
+            type="glow"
+            handleClick={this.registerUser}
+            text="Create Account!"
+          />
+          <DynamicButton
+            type="dark"
+            handleClick={() =>
+              this.props.dispatch({ type: "SET_TO_LOGIN_MODE" })
+            }
+            text="Existing User?"
+          />
+        </Grid>
       </Grid>
     );
   }

@@ -7,25 +7,42 @@ import DynamicButton from "../Buttons/DynamicButton";
 import MuiPhoneNumber from "material-ui-phone-number";
 
 const styles = (theme) => ({
-  input: {
+  EditOrgPage: {
     color: "white",
-    border: `1px solid white`,
-    backgroundColor: "#243353",
-    outline: `1px solid transparent`, // we use a transparent outline here so the component doesn't move when focused
-  },
-  h1Reset: {
     textAlign: "center",
-    color: "white",
-    fontFamily: "inter, Open Sans, sans-serif",
-    padding: "0px",
-    margin: "0px",
+    marginBottom: "100px",
   },
-  h3Reset: {
-    textAlign: "center",
-    color: "white",
-    fontFamily: "inter, Open Sans, sans-serif",
-    padding: "0px",
-    margin: "0px 0px 0px 0px",
+  EditOrgPage__title: {
+    marginBottom: "1rem",
+  },
+  SmallBottomBuffer: {
+    marginBottom: ".5rem",
+  },
+  LargeBottomBuffer: {
+    marginBottom: "1.5rem",
+  },
+  TopBuffer: {
+    marginTop: "1rem",
+  },
+  TextField: {
+    width: "400px",
+    "--text-color": "#fff",
+    "--dark-background": "#1c2447",
+    "--focus-background": "#244d6e",
+    color: "var(--text-color)",
+    border: "1px solid var(--text-color)",
+    backgroundColor: "var(--dark-background)",
+    caretColor: "var(--text-color)",
+    "&:focus": {
+      backgroundColor: "var(--focus-background)",
+    },
+    "&:-webkit-autofill": {
+      WebkitBoxShadow: "0 0 0 40px var(--dark-background) inset",
+      "-webkit-text-fill-color": "var(--text-color)",
+      "&:focus": {
+        WebkitBoxShadow: "0 0 0 30px var(--focus-background) inset",
+      },
+    },
   },
 });
 
@@ -86,125 +103,71 @@ class EditOrganization extends Component {
   render() {
     const { classes } = this.props;
 
-    let centerText = {
-      textAlign: "center",
-      color: "white",
-      fontFamily: "inter, Open Sans, sans-serif",
-      margin: "0px",
-      padding: "0px",
-    };
-
     return (
-      <Grid item style={{ maxWidth: "1000px" }} align="center">
-        <div>
-          <h1 style={centerText}>Edit Organization Information</h1>
-        </div>
-        <form style={{ minWidth: "400px", background: "transparent" }}>
-          <TextField
-            label="Organization Name"
-            required
-            margin="normal"
-            variant="outlined"
-            value={this.state.organizationName || ""}
-            onChange={this.handleInputChangeFor("organizationName")}
-            style={{
-              minWidth: "380px",
-              fontFamily: "inter",
-              padding: "0px",
-              margin: "15px 0px 0px 0px",
-            }}
-            InputProps={{
-              classes: {
-                root: classes.input,
-              },
-            }}
-            InputLabelProps={{
-              style: { color: "#fff" },
-            }}
-          ></TextField>
-          <br />
-          <TextField
-            required
-            style={{
-              minWidth: "380px",
-              fontFamily: "Crimson Text",
-              padding: "0px",
-              margin: "15px 0px 0px 0px",
-            }}
-            label="Primary Email"
-            margin="normal"
-            variant="outlined"
-            error={this.state.invalidEmail}
-            onBlur={this.checkEmail}
-            value={this.state.email || ""}
-            onChange={this.handleInputChangeFor("email")}
-            InputProps={{
-              classes: {
-                root: classes.input,
-              },
-            }}
-            InputLabelProps={{
-              style: { color: "#fff" },
-            }}
-          ></TextField>
-          <br />
-          <MuiPhoneNumber
-            defaultCountry={"us"}
-            variant="outlined"
-            disableAreaCodes="true"
-            label="Primary Phone (optional)"
-            name="phone"
-            type="tel"
-            value={this.state.primaryNumber || ""}
-            onChange={this.handlePhoneNumberChange}
-            style={{
-              minWidth: "380px",
-              fontFamily: "inter",
-              padding: "0px",
-              margin: "15px 0px 0px 0px",
-            }}
-            InputProps={{
-              classes: {
-                root: classes.input,
-              },
-            }}
-            InputLabelProps={{
-              style: { color: "#fff" },
-            }}
-          />
-          <br />
-          <TextField
-            required
-            label="Organization Address"
-            margin="normal"
-            variant="outlined"
-            multiline
-            value={this.state.organizationAddress || ""}
-            onChange={this.handleInputChangeFor("organizationAddress")}
-            style={{
-              minWidth: "380px",
-              fontFamily: "inter",
-              padding: "0px",
-              margin: "15px 0px 0px 0px",
-            }}
-            InputProps={{
-              classes: {
-                root: classes.input,
-              },
-            }}
-            InputLabelProps={{
-              style: { color: "#fff" },
-            }}
-          ></TextField>
-          <br />
-          <br />
-          <DynamicButton
-            type="glow"
-            text="Save Changes"
-            linkURL="/viewOrganization"
-            handleClick={this.handleEditOrg}
-          />
-        </form>
+      <Grid item align="center" className={classes.EditOrgPage}>
+        <h1 className={classes.EditOrgPage__title}>
+          Edit Organization Information
+        </h1>
+        <TextField
+          autoFocus
+          label="Organization Name"
+          required
+          variant="filled"
+          className={classes.SmallBottomBuffer}
+          value={this.state.organizationName}
+          onChange={this.handleInputChangeFor("organizationName")}
+          InputProps={{ classes: { root: classes.TextField } }}
+          inputProps={{ className: classes.TextField }}
+          InputLabelProps={{ style: { color: "white" } }}
+        />
+        <br />
+        <TextField
+          required
+          label="Primary Email"
+          variant="filled"
+          error={this.state.invalidEmail}
+          onBlur={this.checkEmail}
+          value={this.state.email || ""}
+          className={classes.SmallBottomBuffer}
+          onChange={this.handleInputChangeFor("email")}
+          InputProps={{ classes: { root: classes.TextField } }}
+          inputProps={{ className: classes.TextField }}
+          InputLabelProps={{ style: { color: "white" } }}
+        />
+        <br />
+        <MuiPhoneNumber
+          defaultCountry={"us"}
+          variant="filled"
+          disableAreaCodes="true"
+          label="Primary Phone (optional)"
+          name="phone"
+          type="tel"
+          value={this.state.primaryNumber || ""}
+          className={classes.SmallBottomBuffer}
+          onChange={this.handlePhoneNumberChange}
+          InputProps={{ classes: { root: classes.TextField } }}
+          inputProps={{ className: classes.TextField }}
+          InputLabelProps={{ style: { color: "white" } }}
+        />
+        <br />
+        <TextField
+          required
+          label="Organization Address"
+          variant="filled"
+          value={this.state.organizationAddress}
+          className={classes.LargeBottomBuffer}
+          onChange={this.handleInputChangeFor("organizationAddress")}
+          InputProps={{ classes: { root: classes.TextField } }}
+          inputProps={{ className: classes.TextField }}
+          InputLabelProps={{ style: { color: "white" } }}
+        />
+        <br />
+        <DynamicButton
+          type="glow"
+          text="Save Changes"
+          linkURL="/viewOrganization"
+          handleClick={this.handleEditOrg}
+        />
       </Grid>
     );
   }
