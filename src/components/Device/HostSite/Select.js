@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import{Grid, Button, Select, Paper, InputLabel, FormControl, MenuItem} from '@material-ui/core';
+import{Grid, Select, Paper, InputLabel, FormControl, IconButton, MenuItem} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
 import AddSite from './Add';
 import DynamicButton from '../../Buttons/DynamicButton';
+import EditIcon from '@material-ui/icons/Edit';
+import EditSite from './Edit';
 
 const styles = theme => ({ 
   root: {
@@ -13,7 +15,7 @@ const styles = theme => ({
     justify: 'center',
     color: theme.palette.text.secondary,
     fontFamily: 'inter, Open Sans, sans-serif',
-    minHeight: '100vh', 
+    minHeight: '100vh',
     minWidth: '100vw', 
     background: 'white',
     textAlign: 'center',
@@ -57,7 +59,9 @@ const styles = theme => ({
 class HostSelect extends Component {
   state = {
     selectedSite: '',
-    open: false
+    open: false,
+    edit: false,
+    fullSiteInfo:{},
   };
 
   componentDidMount = ()=> {
@@ -67,7 +71,6 @@ class HostSelect extends Component {
         selectedSite: this.props.state.device.site.id
       })
     } 
-    console.log('stored site:', this.props.state.device.site)
   } 
 
   addSite = () => {
@@ -81,14 +84,28 @@ class HostSelect extends Component {
     this.setState ({
         ...this.state,
         open: false,
+        edit: false,
     })
 }
+
+  editSite = () => {
+    let allSite = this.props.state.site
+      for (let i = 0; i < allSite.length; i++ ){
+        if (allSite[i].id === this.state.selectedSite){
+          this.setState({
+            ...this.state,
+            edit: true,
+            fullSiteInfo: allSite[i],
+          })
+        }
+      }
+  
+  }
 
   handleChange =  (event) => {
     this.setState({
       selectedSite: event.target.value,
     });
-    console.log(event.target.value)
   }
 
   componentDidUpdate(previousProps){
@@ -135,6 +152,7 @@ class HostSelect extends Component {
       
           <Grid item style={{maxWidth: '800px'}} align='center'>
           <AddSite handleClose = {this.handleClose} open = {this.state.open}/>
+          <EditSite handleClose = {this.handleClose} open = {this.state.edit} site={this.state.fullSiteInfo}/>
             <Paper className = {classes.paper} elevation = {3}>
                 <h1>Select Your Host Site</h1>
                 <div style={{marginBottom: '20px'}}> 
@@ -157,18 +175,14 @@ class HostSelect extends Component {
                     )}
                     </Select>
                 </FormControl>
-
-                
+               {this.state.selectedSite&&
+                <IconButton color = 'primary' onClick = {this.editSite}>
+                  <EditIcon/>
+                </IconButton>}          
                 <br/>
                 <br/>
-
-                <h2 className={classes.hrWordDivder}><span className={classes.hrWord}>Or</span></h2>
-                
-                {this.state.selectedSite ? 
-                    <DynamicButton key='addSite-button-disabled' type='add' text='Add Site' isDisabled={true}/>
-                  :
-                    <DynamicButton key='addSite-button-enabled' type='add' text='Add Site' handleClick={this.addSite}/>
-                }     
+                <h2 className={classes.hrWordDivder}><span className={classes.hrWord}>Or</span></h2>    
+                    <DynamicButton key='addSite-button-enabled' type='add' text='Add Site' handleClick={this.addSite}/>     
                 <br/>
                 <br/>
                 <Grid container direction = 'row'>

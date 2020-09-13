@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Grid, Button, Select, Paper, InputLabel, FormControl, MenuItem} from '@material-ui/core';
+import {Grid, IconButton, Select, Paper, InputLabel, FormControl, MenuItem} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import AddBreaker from './Add';
 import DynamicButton from '../../Buttons/DynamicButton';
+import EditIcon from '@material-ui/icons/Edit';
+import EditBreaker from './Edit';
 
 
 const styles = theme => ({
@@ -55,7 +57,9 @@ class BreakerSelect extends Component {
     state = {
         breakers: this.props.state.breaker.siteBreakerReducer,
         selectedBreaker: '',
-        open: false
+        open: false,
+        edit: false,
+        fullBreakerInfo:{},
       };
       
       componentDidMount = ()=> {
@@ -69,7 +73,6 @@ class BreakerSelect extends Component {
                 })
             }
         }
-        console.log('stored breaker:', this.props.state.device.breaker)
       } 
 
       componentDidUpdate(previousProps){
@@ -85,6 +88,22 @@ class BreakerSelect extends Component {
                 }
           }
       }
+
+      editBreaker = () => {
+        let allBreaker = this.props.state.breaker.siteBreakerReducer
+          //console.log('in Edit Breaker with breakers:', allBreaker)
+          for (let i = 0; i < allBreaker.length; i++ ){
+            if (allBreaker[i].id === this.state.selectedBreaker){
+              //console.log('match found!', allBreaker[i])
+              this.setState({
+                ...this.state,
+                edit: true,
+                fullBreakerInfo: allBreaker[i],
+              })
+            }
+          }
+      
+      }
     
       addBreaker = () => {
           this.setState ({
@@ -97,6 +116,7 @@ class BreakerSelect extends Component {
         this.setState ({
             ...this.state,
             open: false,
+            edit: false,
         })
     }
     
@@ -124,6 +144,7 @@ class BreakerSelect extends Component {
         return(
             <Grid item style={{maxWidth: '800px'}} align='center'>
             <AddBreaker handleClose = {this.handleClose} open = {this.state.open}/>
+            <EditBreaker handleClose = {this.handleClose} open = {this.state.edit} breaker={this.state.fullBreakerInfo}/>
                 <Paper className={classes.paper} elevation={3}>
                     <h1>Select Your Breaker for the Device</h1>
                     <div className={classes.BottomBuffer}>
@@ -152,16 +173,14 @@ class BreakerSelect extends Component {
                         )}
                         </Select>
                     </FormControl>
+                    {this.state.selectedBreaker&&
+                        <IconButton color = 'primary' onClick = {this.editBreaker}>
+                            <EditIcon/>
+                        </IconButton>}
                     <br/>
                     <br/>
                     <h2 className={classes.hrWordDivder}><span className={classes.hrWord}>Or</span></h2>
-                    {/*Conditionally render the Add Breaker button as clickable/disabled based on if a breaker is selected*/}
-                    {
-                        this.state.selectedBreaker ? 
-                        <DynamicButton key='addBreaker-button-disabled' type='add' text='Add Breaker' isDisabled={true}/>
-                        :
-                            <DynamicButton key='addBreaker-button-enabled' type='add' text='Add Breaker' handleClick={this.addBreaker}/>
-                    }     
+                    <DynamicButton key='addBreaker-button-enabled' type='add' text='Add Breaker' handleClick={this.addBreaker}/>   
                     <br/>
                     <br/>
                     <Grid container direction='row'>
