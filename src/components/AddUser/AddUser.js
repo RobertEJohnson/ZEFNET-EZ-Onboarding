@@ -20,9 +20,10 @@ import {
   DialogActions,
   DialogContentText,
 } from "@material-ui/core";
+import MuiPhoneNumber from "material-ui-phone-number";
 import PropTypes from "prop-types";
-import UserTableRow from './UserTableRow'
-import DynamicButton from '../Buttons/DynamicButton'
+import UserTableRow from "./UserTableRow";
+import DynamicButton from "../Buttons/DynamicButton";
 
 const styles = (theme) => ({
   paper: {
@@ -30,17 +31,21 @@ const styles = (theme) => ({
     borderRadius: "5px",
     height: "fit-content",
     width: "fit-content",
-    maxWidth: '1000px',
-    textAlign: 'center'
+    maxWidth: "1000px",
+    textAlign: "center",
   },
   ReviewTable:{
       overflowX: 'auto',
       whiteSpace:'nowrap',
       border: '1px solid black'
   },
-  MiniTextFields:{
-    maxWidth: '175px',
-    margin: '5px'
+  textFields: {
+    maxWidth: "175px",
+    margin: "5px",
+  },
+  MiniTextFields: {
+    maxWidth: "175px",
+    margin: "5px",
   },
   ButtonContainer: {
     display: "flex",
@@ -72,15 +77,15 @@ class AddUser extends Component {
     editor: "",
     toggle: false,
     tableRows: this.props.reduxState.zefUser,
-    open:false,
+    open: false,
   };
 
-  componentDidUpdate(previousProps){
-    if(previousProps.reduxState.zefUser !== this.props.reduxState.zefUser){
+  componentDidUpdate(previousProps) {
+    if (previousProps.reduxState.zefUser !== this.props.reduxState.zefUser) {
       this.setState({
         ...this.state,
-        tableRows: this.props.reduxState.zefUser
-      })
+        tableRows: this.props.reduxState.zefUser,
+      });
     }
   }
 
@@ -116,9 +121,15 @@ class AddUser extends Component {
         editor: "",
       });
     } else {
-    //open alert dialog
+      //open alert dialog
       this.handleOpen();
     }
+  };
+
+  handlePhoneNumberChange = (value) => {
+    this.setState({
+      phone: value,
+    });
   };
 
   handleOpen = () => {
@@ -165,7 +176,6 @@ class AddUser extends Component {
           <Paper className={classes.paper} elevation={3}>
             <h1>Administrative Users</h1>
             <p className={classes.SubTitle}>
-              {/* {JSON.stringify(this.props.reduxState.zefUser)} */}
               These are who have access to information on the ZEFNET Portal
             </p>
               <Table className={classes.ReviewTable} inputProps={{className: classes.TableRow}}>
@@ -252,9 +262,7 @@ class AddUser extends Component {
                 <br/>
               <div className={classes.ButtonContainer}>
                   <DynamicButton  type='home' text='Home' linkURL='/organizationHome'/>
-
                   <DynamicButton type='add' text='Add User' handleClick={this.handleAddUser}/>
-
               </div>
             </form>
           </Paper>

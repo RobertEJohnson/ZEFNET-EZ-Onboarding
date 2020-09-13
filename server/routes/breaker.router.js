@@ -37,4 +37,27 @@ router.post('/', rejectUnauthenticated, (req, res) => {
    })
 });
 
+/**
+ * EDIT existing breaker
+ */
+router.put('/', rejectUnauthenticated, (req, res) => {
+    const queryString = `UPDATE "breaker"
+    SET "name" = $1,
+      "limit" = $2,
+      "description" = $3
+      WHERE "id" = $4;`;
+    const editValues = [
+        req.body.name,
+        req.body.limit,
+        req.body.description,
+        req.body.id,
+    ]
+    pool.query(queryString, editValues)
+    .then(()=>{res.sendStatus(200)})
+    .catch((error)=>{
+     res.sendStatus(500)
+     console.log( 'error on PUT /api/breaker/', error);
+   })
+  });
+
 module.exports = router;

@@ -1,49 +1,50 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, TextField} from "@material-ui/core";
-import { withStyles, } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import DynamicButton from '../Buttons/DynamicButton'
+import { Grid, TextField } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import DynamicButton from "../Buttons/DynamicButton";
+import MuiPhoneNumber from "material-ui-phone-number";
 
-const styles = theme => ({ 
-  EditOrgPage:{
-    color:'white',
+const styles = (theme) => ({
+  EditOrgPage: {
+    color: "white",
     textAlign: "center",
-    marginBottom: '100px'
+    marginBottom: "100px",
   },
   EditOrgPage__title: {
-    marginBottom: '1rem',
+    marginBottom: "1rem",
   },
   SmallBottomBuffer: {
-    marginBottom: '.5rem'
+    marginBottom: ".5rem",
   },
   LargeBottomBuffer: {
-    marginBottom: '1.5rem'
+    marginBottom: "1.5rem",
   },
   TopBuffer: {
-    marginTop: '1rem'
+    marginTop: "1rem",
   },
   TextField: {
-    width: '400px',
-    '--text-color':'#fff',
-    '--dark-background':'#1c2447',
-    '--focus-background':'#244d6e',
-    color: 'var(--text-color)',
-    border: '1px solid var(--text-color)',
-    backgroundColor: 'var(--dark-background)',
-    caretColor:'var(--text-color)',
-    '&:focus':{
-      backgroundColor: 'var(--focus-background)'
+    width: "400px",
+    "--text-color": "#fff",
+    "--dark-background": "#1c2447",
+    "--focus-background": "#244d6e",
+    color: "var(--text-color)",
+    border: "1px solid var(--text-color)",
+    backgroundColor: "var(--dark-background)",
+    caretColor: "var(--text-color)",
+    "&:focus": {
+      backgroundColor: "var(--focus-background)",
     },
-    '&:-webkit-autofill': {
-      WebkitBoxShadow: '0 0 0 40px var(--dark-background) inset',
-      '-webkit-text-fill-color': 'var(--text-color)',
-      '&:focus':{
-        WebkitBoxShadow: '0 0 0 30px var(--focus-background) inset',
-      }
+    "&:-webkit-autofill": {
+      WebkitBoxShadow: "0 0 0 40px var(--dark-background) inset",
+      "-webkit-text-fill-color": "var(--text-color)",
+      "&:focus": {
+        WebkitBoxShadow: "0 0 0 30px var(--focus-background) inset",
+      },
     },
   },
-})
+});
 
 class EditOrganization extends Component {
   state = {
@@ -51,6 +52,7 @@ class EditOrganization extends Component {
     primaryNumber: this.props.reduxState.organization.phone,
     email: this.props.reduxState.organization.email,
     organizationAddress: this.props.reduxState.organization.address,
+    invalidEmail: false,
   };
 
   handleInputChangeFor = (propertyName) => (event) => {
@@ -77,63 +79,96 @@ class EditOrganization extends Component {
     });
   };
 
-  
+  handlePhoneNumberChange = (value) => {
+    this.setState({
+      primaryNumber: value,
+    });
+  };
+
+  checkEmail = (e) => {
+    console.log("YAY");
+    const value = e.target.value;
+    if (value.includes("@") && value.includes(".")) {
+      this.setState({
+        invalidEmail: false,
+      });
+    } else {
+      this.setState({
+        invalidEmail: true,
+      });
+      console.log("Yup");
+    }
+  };
+
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     return (
-        <Grid item align="center" className={classes.EditOrgPage}>
-            <h1 className={classes.EditOrgPage__title}>Edit Organization Information</h1>
-            <TextField
-              autoFocus
-              label='Organization Name'
-              required
-              variant="filled"
-              className={classes.SmallBottomBuffer}
-              value={this.state.organizationName}
-              onChange={this.handleInputChangeFor("organizationName")}
-              InputProps={{classes: {root: classes.TextField}}}
-              inputProps={{className: classes.TextField}}
-              InputLabelProps={{style:{color: 'white'}}}
-            />
-            <br/>
-            <TextField
-              required
-              label = 'Primary Email'
-              variant="filled"
-              value={this.state.email}
-              className={classes.SmallBottomBuffer}
-              onChange={this.handleInputChangeFor("email")}
-              InputProps={{classes: {root: classes.TextField}}}
-              inputProps={{className: classes.TextField}}
-              InputLabelProps={{style:{color: 'white'}}}
-            />
-            <br/>
-            <TextField
-              label = 'Primary Phone Number'
-              variant="filled"
-              value={this.state.primaryNumber}
-              className={classes.SmallBottomBuffer}
-              onChange={this.handleInputChangeFor("primaryNumber")}
-              InputProps={{classes: {root: classes.TextField}}}
-              inputProps={{className: classes.TextField}}
-              InputLabelProps={{style:{color: 'white'}}}
-            />
-            <br/>
-            <TextField
-              required
-              label = 'Organization Address'
-              variant="filled"
-              value={this.state.organizationAddress}
-              className={classes.LargeBottomBuffer}
-              onChange={this.handleInputChangeFor("organizationAddress")}
-              InputProps={{classes: {root: classes.TextField}}}
-              inputProps={{className: classes.TextField}}
-              InputLabelProps={{style:{color: 'white'}}}
-            />
-            <br/>
-            <DynamicButton type='glow' text='Save Changes' linkURL='/viewOrganization' handleClick={this.handleEditOrg}/>
-        </Grid>
+      <Grid item align="center" className={classes.EditOrgPage}>
+        <h1 className={classes.EditOrgPage__title}>
+          Edit Organization Information
+        </h1>
+        <TextField
+          autoFocus
+          label="Organization Name"
+          required
+          variant="filled"
+          className={classes.SmallBottomBuffer}
+          value={this.state.organizationName}
+          onChange={this.handleInputChangeFor("organizationName")}
+          InputProps={{ classes: { root: classes.TextField } }}
+          inputProps={{ className: classes.TextField }}
+          InputLabelProps={{ style: { color: "white" } }}
+        />
+        <br />
+        <TextField
+          required
+          label="Primary Email"
+          variant="filled"
+          error={this.state.invalidEmail}
+          onBlur={this.checkEmail}
+          value={this.state.email || ""}
+          className={classes.SmallBottomBuffer}
+          onChange={this.handleInputChangeFor("email")}
+          InputProps={{ classes: { root: classes.TextField } }}
+          inputProps={{ className: classes.TextField }}
+          InputLabelProps={{ style: { color: "white" } }}
+        />
+        <br />
+        <MuiPhoneNumber
+          defaultCountry={"us"}
+          variant="filled"
+          disableAreaCodes="true"
+          label="Primary Phone (optional)"
+          name="phone"
+          type="tel"
+          value={this.state.primaryNumber || ""}
+          className={classes.SmallBottomBuffer}
+          onChange={this.handlePhoneNumberChange}
+          InputProps={{ classes: { root: classes.TextField } }}
+          inputProps={{ className: classes.TextField }}
+          InputLabelProps={{ style: { color: "white" } }}
+        />
+        <br />
+        <TextField
+          required
+          label="Organization Address"
+          variant="filled"
+          value={this.state.organizationAddress}
+          className={classes.LargeBottomBuffer}
+          onChange={this.handleInputChangeFor("organizationAddress")}
+          InputProps={{ classes: { root: classes.TextField } }}
+          inputProps={{ className: classes.TextField }}
+          InputLabelProps={{ style: { color: "white" } }}
+        />
+        <br />
+        <DynamicButton
+          type="glow"
+          text="Save Changes"
+          linkURL="/viewOrganization"
+          handleClick={this.handleEditOrg}
+        />
+      </Grid>
     );
   }
 }
@@ -144,7 +179,7 @@ const mapStateToProps = (reduxState) => ({
 });
 
 EditOrganization.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 // this allows us to use <App /> in index.js

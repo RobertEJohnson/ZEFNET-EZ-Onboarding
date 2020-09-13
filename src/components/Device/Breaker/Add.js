@@ -93,7 +93,7 @@ class AddBreaker extends Component {
           <DialogContent style={{padding: '0px auto'}}>
             <DialogContentText>
               Please name the breaker in a way to provide quick and easy identification. 
-              This should be indicating where an engineer would go to isolate or reboot the charger device manually.
+              This should indicate where an engineer would go to isolate or reboot the device manually.
             </DialogContentText>
             <TextField
               autoFocus
