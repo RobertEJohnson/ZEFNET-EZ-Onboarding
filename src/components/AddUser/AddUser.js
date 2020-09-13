@@ -33,33 +33,33 @@ const styles = (theme) => ({
     maxWidth: '1000px',
     textAlign: 'center'
   },
-  reviewTable:{
+  ReviewTable:{
       overflowX: 'auto',
       whiteSpace:'nowrap',
+      border: '1px solid black'
   },
   MiniTextFields:{
     maxWidth: '175px',
     margin: '5px'
   },
-  Title: {
-    border: "solid #e3e3e3 2px",
-    maxWidth: "515px",
-    height: "125px",
-    display: "flex",
-    borderRadius: "5px",
-  },
-  TableRow: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: '#f5f5f5',
-    },
-  },
   ButtonContainer: {
     display: "flex",
-    width: "515px",
+    width: "540px",
     justifyContent: "space-between",
     align: "center",
     marginTop: "20px",
-    marginLeft: "30px",
+    marginLeft: "5px",
+  },
+  SubTitle: {
+    fontSize: '18px',
+    marginBottom: '1rem'
+  },
+  ReviewTable__head:{
+    backgroundColor: '#C0C0C0'
+  },
+  ReviewTable__head__cell:{
+    border: '1px solid black',
+    padding: '8px',
   }
 });
 
@@ -161,26 +161,26 @@ class AddUser extends Component {
               </Button>
             </DialogActions>
           </Dialog>
-        <Grid item xs={8} align="center">
+        <Grid item xs={8} style={{minWidth: '1000px'}} align="center">
           <Paper className={classes.paper} elevation={3}>
             <h1>Administrative Users</h1>
-            <h3>
+            <p className={classes.SubTitle}>
               {/* {JSON.stringify(this.props.reduxState.zefUser)} */}
               These are who have access to information on the ZEFNET Portal
-            </h3>
-              <Table className={classes.reviewTable} inputProps={{className: classes.TableRow}}>
-                <TableHead>
+            </p>
+              <Table className={classes.ReviewTable} inputProps={{className: classes.TableRow}}>
+                <TableHead className={classes.ReviewTable__head}>
                   <TableRow>
-                    <TableCell></TableCell>
-                    <TableCell>First Name</TableCell>
-                    <TableCell>Last Name</TableCell>
-                    <TableCell>Email</TableCell>
-                    <TableCell>Phone</TableCell>
-                    <TableCell>Privileges</TableCell>
+                    <TableCell className={classes.ReviewTable__head__cell}/>
+                    <TableCell className={classes.ReviewTable__head__cell}>First Name</TableCell>
+                    <TableCell className={classes.ReviewTable__head__cell}>Last Name</TableCell>
+                    <TableCell className={classes.ReviewTable__head__cell}>Email</TableCell>
+                    <TableCell className={classes.ReviewTable__head__cell}>Phone</TableCell>
+                    <TableCell className={classes.ReviewTable__head__cell}>Privileges</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody style={{border: '1px solid #e0e0e0'}}>
-                  {this.props.reduxState.zefUser.map( user => 
+                <TableBody style={{border: '1px solid black'}}>
+                  {this.props.reduxState.zefUser.map( (user, index) => 
                       <UserTableRow key={user.id} first_name={user.first_name} last_name={user.last_name} email={user.email}
                         phone={user.phone} editor={user.editor} user_id={user.id}/>
                   )}
