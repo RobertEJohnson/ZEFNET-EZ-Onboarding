@@ -20,7 +20,7 @@ import {ChevronLeft, ChevronRight, Home as HomeIcon, EditTwoTone as EditIcon, Ev
                         | 'review'
                         | 'organization'
                         | 'add'
-                        | 'submit'
+                        | 'confirm'
         isDisabled      boolean             false       toggles the disabled attribute
         handleClick     function()                      passed in as onClick function
         linkURL         '/string'                       will add component={Link} and set $string as to='/$string'
