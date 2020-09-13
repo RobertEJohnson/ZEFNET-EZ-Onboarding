@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import{Grid, Button, Select, Paper, InputLabel, FormControl, MenuItem} from '@material-ui/core';
+import{Grid, Button, Select, Paper, InputLabel, FormControl, IconButton, MenuItem} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
 import AddSite from './Add';
 import DynamicButton from '../../Buttons/DynamicButton';
+import EditIcon from '@material-ui/icons/Edit';
+import EditSite from './Edit';
 
 const styles = theme => ({ 
   root: {
@@ -57,7 +59,8 @@ const styles = theme => ({
 class HostSelect extends Component {
   state = {
     selectedSite: '',
-    open: false
+    open: false,
+    edit: false,
   };
 
   componentDidMount = ()=> {
@@ -81,8 +84,16 @@ class HostSelect extends Component {
     this.setState ({
         ...this.state,
         open: false,
+        edit: false,
     })
 }
+
+  editSite = () => {
+    this.setState({
+      ...this.state,
+      edit: true,
+    })
+  }
 
   handleChange =  (event) => {
     this.setState({
@@ -135,11 +146,12 @@ class HostSelect extends Component {
       
           <Grid item style={{maxWidth: '800px'}} align='center'>
           <AddSite handleClose = {this.handleClose} open = {this.state.open}/>
+          <EditSite handleClose = {this.handleClose} open = {this.state.edit} selected_id={this.state.selectedSite}/>
             <Paper className = {classes.paper} elevation = {3}>
                 <h1>Select Your Host Site</h1>
                 <div style={{marginBottom: '20px'}}> 
                 <p style={{margin: 'auto 40px'}}>
-                    Please choose from existing below or press the 'Add New Site' button.
+                    Please choose from existing below or click the 'Add New Site' button.
                     </p>   
                 </div>
                 <FormControl variant="outlined" className={classes.formControl}>
@@ -157,13 +169,13 @@ class HostSelect extends Component {
                     )}
                     </Select>
                 </FormControl>
-
-                
+               {this.state.selectedSite&&
+                <IconButton color = 'primary' onClick = {this.editSite}>
+                  <EditIcon/>
+                </IconButton>}          
                 <br/>
                 <br/>
-
-                <h2 className={classes.hrWordDivder}><span className={classes.hrWord}>Or</span></h2>
-                
+                <h2 className={classes.hrWordDivder}><span className={classes.hrWord}>Or</span></h2>    
                 {this.state.selectedSite ? 
                     <Button variant = 'contained' disabled>
                         Add New Site
