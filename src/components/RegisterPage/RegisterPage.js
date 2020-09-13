@@ -96,7 +96,7 @@ class RegisterPage extends Component {
   checkEmail = (e) => {
     console.log("YAY");
     const value = e.target.value;
-    if (value.includes("@") && value.includes(".com")) {
+    if (value.includes("@") && value.includes(".")) {
       this.setState({
         invalidEmail: false,
       });
@@ -187,9 +187,9 @@ class RegisterPage extends Component {
               label="Email"
               name="email"
               error={this.state.invalidEmail}
+              onBlur={this.checkEmail}
               value={this.state.email}
               onChange={this.handleInputChangeFor("email")}
-              onBlur={this.checkEmail}
               style={{ minWidth: "398px" }}
               InputProps={{
                 classes: {
