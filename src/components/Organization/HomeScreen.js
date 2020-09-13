@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {Grid, withStyles, Card,CardActionArea,CardMedia, GridListTileBar,} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import zefNetPro from './zefnetpro.png';
-import user from './zefUser.jpeg';
-import review from './packageReview.jpeg';
-import greyScaleReview from './packageReviewGreyscale.jpeg';
+import zefNetPro from './Images/zefnetpro.png';
+import user from './Images/zefUser.jpeg';
+import review from './Images/packageReview.jpeg';
+import greyScaleReview from './Images/packageReviewGreyscale.jpeg';
 import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
