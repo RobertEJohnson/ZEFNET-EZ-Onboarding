@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Grid, Paper, withStyles, TextField, } from "@material-ui/core";
+import { Grid, 
+  Paper,
+  withStyles, 
+  TextField,
+  Dialog, 
+  DialogActions, 
+  DialogContent,
+  DialogContentText,
+  Button} from "@material-ui/core";
 import PropTypes from "prop-types";
 import zefNetPro from './Images/zefpro.png';
 import wallMount from './Images/wallMountStylized.jpg';
@@ -49,7 +57,7 @@ const styles = (theme) => ({
       marginTop: "20px",
   },
   textField: {
-    fontFamily: "Crimson Text, Open Sans, sans-serif",
+    fontFamily: "Inter, Open Sans, sans-serif",
     width: "400px",
   }
 });
@@ -58,6 +66,7 @@ class DeviceName extends Component {
   state = {
     chargerName: "",
     installationDate: "",
+    open: false,
   };
 
   componentDidMount = ()=> {
@@ -110,7 +119,7 @@ class DeviceName extends Component {
 
       this.props.history.push("/deviceReview"); //change this
     } else {
-      alert("Oops! Please enter both a name and installation date for your device");
+      this.setState({ ...this.state, open: true });
     }
   };
 
@@ -118,10 +127,32 @@ class DeviceName extends Component {
     this.props.history.push("/deviceSerial");
   };
 
+  handleClose = () => {
+    this.setState({ ...this.state, open: false });
+  };
+
   render() {
     const { classes } = this.props;
     return (
         <Grid item xs={12} style={{ maxWidth: "1000px" }} align="center">
+          {/* Dialog runs if clicked review Device without name and date filled */}
+          <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          aria-labelledby="missing-info"
+          aria-describedby="device-name-and-date-required"
+          >
+            <DialogContent>
+              <DialogContentText id="device-name-and-date-required">
+                Oops! Please enter both a name and installation date for your device
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+                OK
+            </Button>
+            </DialogActions>
+          </Dialog>
           <Paper className={classes.paper} elevation={3}>
             <div className={classes.borderedBox}>
               
@@ -131,7 +162,7 @@ class DeviceName extends Component {
                   className={classes.image}
                   alt = {this.props.reduxState.device.type.name}
                 />
-                {/* Image should be changed */}
+                {/* Image changes based on device type */}
               </div>
 
               <div>

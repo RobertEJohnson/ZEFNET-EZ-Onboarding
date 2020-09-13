@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import{Grid, TextField, Paper} from '@material-ui/core';
+import{Grid, 
+  TextField, 
+  Paper, 
+  Dialog,
+  DialogContent, 
+  DialogActions, 
+  DialogContentText,
+  Button} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles, } from '@material-ui/core/styles';
 import DynamicButton from '../Buttons/DynamicButton'
@@ -32,6 +39,7 @@ const styles = theme => ({
 
 class RegisterPage extends Component {
   state = {
+    open: false,
     email: '',
     password: '',
     first_name: '',
@@ -56,8 +64,10 @@ class RegisterPage extends Component {
               phone: this.state.phone,
             }
          });
+         this.props.history.push("/home");
      } else {
-        alert(`Oops! Passwords don't match!`)    
+       //open error dialog for password mismatch
+       this.setState({...this.state, open: true})  
       }
     } else {
       this.props.dispatch({type: 'REGISTRATION_INPUT_ERROR'});
@@ -70,10 +80,32 @@ class RegisterPage extends Component {
     });
   }
 
+  handleClose = () => {
+    this.setState({ ...this.state, open: false });
+  };
+
+
   render() {
     const {classes} = this.props;
     return (
           <Grid item align='center' style={{marginBottom: '100px', position: 'relative'}} >
+          <Dialog
+                open={this.state.open}
+                onClose={this.handleClose}
+                aria-labelledby="password-missmatch"
+                aria-describedby="make-sure-passwords-match"
+                >
+                    <DialogContent>
+                        <DialogContentText id="make-sure-passwords-match">
+                            Oops! Passwords don't match!
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={this.handleClose} color="primary">
+                        OK
+                    </Button>
+                    </DialogActions>
+              </Dialog>
             {this.props.errors.registrationMessage && (
               <h2 className="alert" role="alert">{this.props.errors.registrationMessage}</h2>
             )}

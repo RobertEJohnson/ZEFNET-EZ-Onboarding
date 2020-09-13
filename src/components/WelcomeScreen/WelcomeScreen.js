@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Grid, withStyles} from '@material-ui/core';
 import PropTypes from 'prop-types';
-import DynamicButton from '../Buttons/DynamicButton'
+import DynamicButton from '../Buttons/DynamicButton';
+import { connect } from "react-redux";
 
 const styles = theme => ({ 
     container: {
@@ -24,13 +25,29 @@ const styles = theme => ({
     },
     requirementsUL:{
       textAlign: 'left', 
-      display: 'inline-block'
+      display: 'inline-block',
+      color: 'white',
+      fontSize: '15px',
     },
   })
 
 class WelcomeScreen extends Component {
 
-  
+  componentDidMount(){
+    //push user to organizationHome instead if the've already added org info
+    if (this.props.reduxState.organization.id) {
+      this.props.history.push("/organizationHome");
+    } 
+  }
+
+  componentDidUpdate(previousProps){
+    if (previousProps.reduxState.organization.id !== this.props.reduxState.organization.id){
+      if (this.props.reduxState.organization.id) {
+        this.props.history.push("/organizationHome");
+       } 
+    }
+  }
+
   // this component doesn't do much to start, just renders some user info to the DOM
   render() {
     const {classes} = this.props;
@@ -40,7 +57,7 @@ class WelcomeScreen extends Component {
               <div className={classes.informationContainer}>
                <p className={classes.pStyle}>
                         Congratulations on installing your new ZEF charging devices! 
-                        <br/>To be fully entered into our system we will be collecting the following:
+                        <br/>To fully onboard you into our system we will be collecting the following:</p>
                         <div>
                           <ul className={classes.requirementsUL}>
                             <li>Organization information</li>
@@ -49,7 +66,7 @@ class WelcomeScreen extends Component {
                             <li>Device adminstrator information</li>
                           </ul>
                         </div>
-                        
+                      <p className={classes.pStyle}>
                         We'll let you know what we need every step of the way. :)
                     </p>
               </div>
@@ -59,10 +76,13 @@ class WelcomeScreen extends Component {
     );
   }
 }
+const mapStateToProps = (reduxState) => ({
+  reduxState,
+});
 
 WelcomeScreen.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
 // this allows us to use <App /> in index.js
-export default withStyles(styles)(WelcomeScreen);
+export default withStyles(styles)(connect(mapStateToProps)(WelcomeScreen));

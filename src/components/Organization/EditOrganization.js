@@ -51,7 +51,6 @@ class EditOrganization extends Component {
       id: this.props.reduxState.organization.id,
     };
     this.props.dispatch({ type: "EDIT_ORGANIZATION", payload: actionObject });
-    //alert("Change has been made");
     this.setState({
       organizationName: this.props.reduxState.organization.organizationName,
       primaryNumber: this.props.reduxState.organization.primaryNumber,
