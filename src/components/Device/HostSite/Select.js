@@ -99,7 +99,6 @@ class HostSelect extends Component {
     this.setState({
       selectedSite: event.target.value,
     });
-    console.log(event.target.value)
   }
 
   componentDidUpdate(previousProps){

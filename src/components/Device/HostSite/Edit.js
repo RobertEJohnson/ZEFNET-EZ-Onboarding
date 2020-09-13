@@ -30,11 +30,10 @@ class EditSite extends Component {
     error: false,
   };
 
-  componentWillReceiveProps(nextProps) {
+  componentDidUpdate(previousProps) {
     // this will run every time the props change - 
     //and possibly in addition to this, so we need to check for prop changes
-    if (this.props.selected_id !== nextProps.selected_id) {
-        console.log('new selected id: ', this.props.selected_id)
+    if (this.props.selected_id !== previousProps.selected_id) {
         for (let i = 0; i <this.props.state.site.length; i++)
         {  
           if (this.props.state.site[i].id === this.props.selected_id ){
@@ -58,19 +57,20 @@ class EditSite extends Component {
         [event.target.name]: event.target.value });
   };
 
-  addSite = () => {
-      //post new site to site table
-      const postObject = {
+  editSite = () => {
+      //update existing site in site table
+      const editObject = {
           first_name: this.state.first_name,
           last_name: this.state.last_name,
           email: this.state.email,
           phone: this.state.phone,
           address: this.state.address,
+          id:this.props.selected_id,
           organization_id: this.props.state.organization.id,
       }
-      //console.log('posting new site:', postObject)
-      if (postObject.organization_id && postObject.first_name && postObject.address && postObject.email)
-        {this.props.dispatch({ type: "POST_SITE", payload: postObject });
+      console.log('updatingsite:',editObject)
+      if (editObject.id && editObject.first_name && editObject.address && editObject.email)
+        {this.props.dispatch({ type: "EDIT_SITE", payload: editObject });
         this.props.handleClose()
         } else {
             //reveal error message

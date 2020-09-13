@@ -52,5 +52,32 @@ router.post('/', rejectUnauthenticated, (req, res) => {
    })
 });
 
+/**
+ * EDIT existing site
+ */
+router.put('/', rejectUnauthenticated, (req, res) => {
+  const queryString = `UPDATE "site"
+  SET "address" = $1,
+    "first_name" = $2,
+    "second_name" = $3,
+    "email" = $4,
+    "phone" = $5, 
+    WHERE "id" = $6;`;
+  const editValues = [
+      req.body.address,
+      req.body.first_name,
+      req.body.last_name,
+      req.body.email,
+      req.body.phone,
+      req.body.id
+  ]
+  pool.query(queryString, editValues)
+  .then(()=>{res.sendStatus(200)})
+  .catch((error)=>{
+   res.sendStatus(500)
+   console.log( 'error on POST /api/site/', error);
+ })
+});
+
 module.exports = router;
 
