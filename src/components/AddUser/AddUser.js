@@ -19,7 +19,6 @@ import {
   DialogContent,
   DialogActions,
   DialogContentText,
-  Tooltip,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import UserTableRow from "./UserTableRow";
@@ -65,6 +64,10 @@ const styles = (theme) => ({
   ReviewTable__head__cell:{
     border: '1px solid black',
     padding: '8px',
+  },
+  tip:{
+    fontSize: 'smaller',
+    color:'#757575'
   }
 });
 
@@ -78,7 +81,7 @@ class AddUser extends Component {
     toggle: false,
     tableRows: this.props.reduxState.zefUser,
     open: false,
-    edit: false
+    edit: 0
   };
 
   componentDidUpdate(previousProps) {
@@ -115,6 +118,7 @@ class AddUser extends Component {
       console.log(actionObject);
       this.props.dispatch({ type: "ADD_USER", payload: actionObject });
       this.setState({
+        ...this.state,
         first_name: "",
         last_name: "",
         email: "",
@@ -134,11 +138,15 @@ class AddUser extends Component {
   };
 
   handleEditMode = () =>{
-    this.setState({...this.state, edit: true})
+    let x = this.state.edit;
+    x++
+    this.setState({...this.state, edit:x})
   }
   
   handleViewMode = () =>{
-    this.setState({...this.state, edit: false})
+    let x = this.state.edit;
+    x--
+    this.setState({...this.state, edit:x})
   }
 
 
@@ -273,11 +281,12 @@ class AddUser extends Component {
                 <br/>
               <div className={classes.ButtonContainer}>
                 {this.state.edit?
-                <Tooltip title ='please save or discard changes to user row'>
+                 <DynamicButton key = 'home' type='home' text='Home' linkURL='/organizationHome'/>
+                 :
+                <>
                   <DynamicButton key = 'disabled home'  type='home' text='Home' isDisabled = {true}/>
-                </Tooltip>
-                :
-                  <DynamicButton key = 'home' type='home' text='Home' linkURL='/organizationHome'/>
+                  <i className = {classes.tip}>Please save or discard changes before leaving page</i>
+                </>
                 }
                   <DynamicButton type='add' text='Add User' handleClick={this.handleAddUser}/>
               </div>
