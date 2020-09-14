@@ -261,6 +261,12 @@ class Submit extends Component {
                             (
                             <TableRow key = {index} >
                                  <TableCell component="th" scope="row">
+                                     <Button 
+                                        variant = 'outlined'
+                                        onClick={()=>{this.handleEditFor({index})}}
+                                        component = {Link} to ="/deviceReview">
+                                            Edit <EditIcon/>
+                                        </Button>
                                     <Button variant = 'outlined' 
                                     onClick={()=>{this.handleClickOpen(device.name, device.id)}}>
                                             Delete<DeleteIcon/>

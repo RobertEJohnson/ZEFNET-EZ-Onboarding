@@ -267,8 +267,7 @@ class DeviceReview extends Component {
                         </div>
                     </div> 
                 </Grid>
-
-                <Grid item align='center' justify='center' className={classes.ReviewPage__buttonContainer}>
+                <Grid item  className={classes.ReviewPage__buttonContainer}>
                     <div style={{position: 'absolute', float: 'left'}}>
                         <DynamicButton type='previous' text='Previous' linkURL='/deviceName'/>
                     </div>
