@@ -1,26 +1,3 @@
-<<<<<<< HEAD
-import React, { Component } from 'react';
-import {connect} from 'react-redux'
-import {Grid, Paper, Button, withStyles, Accordion, TableHead, TableRow} from '@material-ui/core';
-import {AccordionSummary, 
-        AccordionDetails, 
-        Table, 
-        TableCell,
-        TableBody, 
-        Switch, 
-        AccordionActions,
-        Dialog,
-        DialogContent,
-        DialogContentText,
-        DialogActions,
-    } from '@material-ui/core';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import DynamicButton from '../Buttons/DynamicButton'
-=======
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
@@ -51,7 +28,6 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import DynamicButton from "../Buttons/DynamicButton";
->>>>>>> master
 
 
 const styles = (theme) => ({

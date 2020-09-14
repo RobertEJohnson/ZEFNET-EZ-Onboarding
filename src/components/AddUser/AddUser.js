@@ -23,6 +23,7 @@ import {
 import PropTypes from "prop-types";
 import UserTableRow from "./UserTableRow";
 import DynamicButton from "../Buttons/DynamicButton";
+import MuiPhoneNumber from "material-ui-phone-number";
 
 const styles = (theme) => ({
   paper: {
@@ -79,10 +80,10 @@ class AddUser extends Component {
     email: "",
     phone: "",
     editor: "",
-    toggle: false,
     tableRows: this.props.reduxState.zefUser,
     open: false,
-    edit: 0
+    edit: 0,
+    invalidEmail:false
   };
 
   componentDidUpdate(previousProps) {
@@ -101,7 +102,6 @@ class AddUser extends Component {
   };
 
   checkEmail = (e) => {
-    console.log("YAY");
     const value = e.target.value;
     if (value.includes("@") && value.includes(".")) {
       this.setState({
@@ -111,7 +111,6 @@ class AddUser extends Component {
       this.setState({
         invalidEmail: true,
       });
-      console.log("Yup");
     }
   };
 
@@ -121,7 +120,8 @@ class AddUser extends Component {
       this.state.last_name &&
       this.state.email &&
       this.state.phone &&
-      this.state.editor !== ""
+      this.state.editor !== ""&&
+      !this.state.invalidEmail
     ) {
       const actionObject = {
         first_name: this.state.first_name,
@@ -326,11 +326,22 @@ class AddUser extends Component {
               </Grid>
               <br />
               <div className={classes.ButtonContainer}>
+                {this.state.edit?
+                <>
+                  <DynamicButton
+                    type="home"
+                    text="Home"
+                    isDisabled = {true}
+                    />
+                   <i className = {classes.tip}>please save or discard user changes</i>
+                </>
+                :
                 <DynamicButton
                   type="home"
                   text="Home"
                   linkURL="/organizationHome"
                 />
+                }
                 <DynamicButton
                   type="add"
                   text="Add User"
