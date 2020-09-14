@@ -95,6 +95,21 @@ class AddUser extends Component {
     });
   };
 
+  checkEmail = (e) => {
+    console.log("YAY");
+    const value = e.target.value;
+    if (value.includes("@") && value.includes(".")) {
+      this.setState({
+        invalidEmail: false,
+      });
+    } else {
+      this.setState({
+        invalidEmail: true,
+      });
+      console.log("Yup");
+    }
+  };
+
   handleAddUser = () => {
     if (
       this.state.first_name &&
@@ -257,6 +272,8 @@ class AddUser extends Component {
                 <TextField
                   required
                   color="primary"
+                  error={this.state.invalidEmail}
+                  onBlur={this.checkEmail}
                   className={classes.MiniTextFields}
                   label="Email:"
                   variant="filled"

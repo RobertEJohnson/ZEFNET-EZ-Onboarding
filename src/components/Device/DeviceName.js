@@ -193,7 +193,7 @@ class DeviceName extends Component {
             </div>
 
             <div>
-              <p style={{margin:"5px 0px 0px 0px"}}>Installation Date:</p>
+              <p style={{ margin: "5px 0px 0px 0px" }}>Installation Date:</p>
               <TextField
                 required
                 type="Date"
