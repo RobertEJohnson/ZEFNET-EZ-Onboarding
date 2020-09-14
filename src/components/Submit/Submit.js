@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import {Grid, Paper, Button, withStyles, Divider, Accordion, TableHead, TableRow} from '@material-ui/core';
+import {Grid, Paper, Button, withStyles, Accordion, TableHead, TableRow} from '@material-ui/core';
 import {AccordionSummary, 
         AccordionDetails, 
         Table, 
@@ -20,6 +20,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import DynamicButton from '../Buttons/DynamicButton'
 
 const styles = theme => ({ 
   root: {
@@ -54,12 +55,32 @@ const styles = theme => ({
   reviewTable:{
       overflowX: 'auto',
       whiteSpace:'nowrap',
-  }
+  }, 
+  ReviewTable__head:{
+    backgroundColor: '#C0C0C0'
+  },
+  ReviewTable__head__cell:{
+    border: '1px solid black',
+    padding: '8px',
+  },
+  MainSubTitle:{
+    marginBottom: '2rem',
+    fontSize: '20px'
+  },
+  SubTitle:{
+    marginBottom: '1rem',
+    fontSize: '15px'
+  },
+  DeviceSubTitle:{
+    fontSize: '15px',
+    marginBottom: '1rem'
+  },
+
 })
 
 class Submit extends Component {
     state = {
-        tableMode: false,
+        tableMode: true,
         open: false,
         deletedName: '',
         deletedID: '',
@@ -175,29 +196,22 @@ class Submit extends Component {
                 </Dialog>
           <div className = {classes.root} style={{maxWidth: '1000px'}}>
             <Paper className = {classes.paper}>
-                <Grid item align='center'>
+                <Grid item align='center' style={{marginBottom: '2rem'}}> 
                     <h1>All Devices and ZefNet Users Added?</h1>
-                    <h3>Let's review all your data before you submit.</h3>
-                    <Divider/>
+                    <p className={classes.MainSubTitle}>Let's review all your data before you submit.</p>
                     <h2>Here are your chosen users and corresponding information</h2>
-                    <h4>Please double-check all information and each user's privileges</h4>
-                    <Grid container direction = 'row-reverse'>
-                        <Button component = {Link} to ="/addUser">
-                            Edit <EditIcon/>
-                        </Button>
-                    </Grid>
-                    
+                    <p className={classes.SubTitle}>Please double-check all information and each user's privileges</p>
                     <Table className={classes.table}>
-                        <TableHead>
+                        <TableHead className={classes.ReviewTable__head}>
                         <TableRow>
-                            <TableCell>First Name</TableCell>
-                            <TableCell align="right">Last Name</TableCell>
-                            <TableCell align="right">Email Address</TableCell>
-                            <TableCell align="right">Phone Number</TableCell>
-                            <TableCell align="right">Privileges</TableCell>
+                            <TableCell className={classes.ReviewTable__head__cell}>First Name</TableCell>
+                            <TableCell align="right" className={classes.ReviewTable__head__cell}>Last Name</TableCell>
+                            <TableCell align="right" className={classes.ReviewTable__head__cell}>Email Address</TableCell>
+                            <TableCell align="right" className={classes.ReviewTable__head__cell}>Phone Number</TableCell>
+                            <TableCell align="right" className={classes.ReviewTable__head__cell}>Privileges</TableCell>
                         </TableRow>
                         </TableHead>
-                        <TableBody style={{border: '1px solid #e0e0e0'}}> 
+                        <TableBody style={{border: '1px solid #C0C0C0'}}> 
                         {this.props.state.zefUser.map((user, index)=>(
                             <TableRow key = {index}>
                                 <TableCell component="th" scope="row">
@@ -211,15 +225,13 @@ class Submit extends Component {
                         ))}
                         </TableBody>
                     </Table>
-                </Grid>
-                <br/>
-          
+                    <DynamicButton type='edit' text='Edit Users' linkURL="/addUser"/>
+                </Grid>          
             <Grid item align = 'center' xs = {12}>
-                <Divider/>           
                 <h2>Here are your devices, with breaker and location information</h2>
-                <h2>Use switch to view device table or expandable pages</h2>
-                <br/>
-                <Grid component="label" container alignItems="center" spacing={1} direction = 'row' justify = 'center'>
+                <p className={classes.DeviceSubTitle}>Use switch to view device table or expandable pages</p>
+
+                <Grid component="label" container alignItems="center" spacing={1} direction = 'row' justify = 'center' style={{border: '1px solid black', maxWidth: '320px'}}>
                     <Grid item>Expandable Form View</Grid>
                     <Grid item>
                         <Switch
@@ -231,29 +243,28 @@ class Submit extends Component {
                     </Grid>
                     <Grid item>Table View</Grid>
                 </Grid>
-                <br/>
             </Grid>
             {/* Map out each device as an accordion, or a table */}
             {this.state.tableMode
             ?
                 <div className={classes.reviewTable}>
                     <Table>
-                        <TableHead style={{border: '1px solid #e0e0e0'}}>
+                        <TableHead className={classes.ReviewTable__head}>
                             <TableRow>
-                                <TableCell></TableCell>
-                                <TableCell>Device Name</TableCell>
-                                <TableCell align="right">Device Type</TableCell>
-                                <TableCell align="right">Serial Number</TableCell>
-                                <TableCell align="right">Second Serial</TableCell>
-                                <TableCell align="right">Installation Date</TableCell>
-                                <TableCell align="right">Hosting Site Address</TableCell>
-                                <TableCell align="right">Contact First Name</TableCell>
-                                <TableCell align="right">Contact Last Name</TableCell>
-                                <TableCell align="right">Contact Phone</TableCell>
-                                <TableCell align="right">Contact Email</TableCell>
-                                <TableCell align="right">Breaker Name</TableCell>
-                                <TableCell align="right">Breaker Limit</TableCell>
-                                <TableCell align="right">Breaker Description</TableCell>
+                                <TableCell align="center" className={classes.ReviewTable__head__cell}></TableCell>
+                                <TableCell align="center" className={classes.ReviewTable__head__cell}>Device Name</TableCell>
+                                <TableCell align="center" className={classes.ReviewTable__head__cell}>Device Type</TableCell>
+                                <TableCell align="center" className={classes.ReviewTable__head__cell}>Serial Number</TableCell>
+                                <TableCell align="center" className={classes.ReviewTable__head__cell}>Second Serial</TableCell>
+                                <TableCell align="center" className={classes.ReviewTable__head__cell}>Installation Date</TableCell>
+                                <TableCell align="center" className={classes.ReviewTable__head__cell}>Hosting Site Address</TableCell>
+                                <TableCell align="center" className={classes.ReviewTable__head__cell}>Contact First Name</TableCell>
+                                <TableCell align="center" className={classes.ReviewTable__head__cell}>Contact Last Name</TableCell>
+                                <TableCell align="center" className={classes.ReviewTable__head__cell}>Contact Phone</TableCell>
+                                <TableCell align="center" className={classes.ReviewTable__head__cell}>Contact Email</TableCell>
+                                <TableCell align="center" className={classes.ReviewTable__head__cell}>Breaker Name</TableCell>
+                                <TableCell align="center" className={classes.ReviewTable__head__cell}>Breaker Limit</TableCell>
+                                <TableCell align="center" className={classes.ReviewTable__head__cell}>Breaker Description</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody style={{border: '1px solid #e0e0e0'}}> 
@@ -261,6 +272,12 @@ class Submit extends Component {
                             (
                             <TableRow key = {index} >
                                  <TableCell component="th" scope="row">
+                                     <Button 
+                                        variant = 'outlined'
+                                        onClick={()=>{this.handleEditFor({index})}}
+                                        component = {Link} to ="/deviceReview">
+                                            Edit <EditIcon/>
+                                        </Button>
                                     <Button variant = 'outlined' 
                                     onClick={()=>{this.handleClickOpen(device.name, device.id)}}>
                                             Delete<DeleteIcon/>
@@ -288,8 +305,8 @@ class Submit extends Component {
             < Grid item xs = {12}>
                 {this.props.state.allDevice.map((device, index) => 
                 (
-                    <Accordion key = {index}>
-                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Accordion key = {index} hover>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />} style={{backgroundColor: '#C0C0C0', margin: '0'}}>
                     <h2>{device.name}</h2>
                     </AccordionSummary>
                     <AccordionActions>
@@ -301,8 +318,7 @@ class Submit extends Component {
                     <AccordionDetails>
                         <Grid container direction='row' justify='center' alignContent='center' alignItems='center' >
                                 <Grid item align='center' xs={12}>
-                                    
-                                    <Divider/>
+
                                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
                                         <div className = {classes.left}/>
                                         <h2>Hosting Location</h2> 
@@ -311,7 +327,7 @@ class Submit extends Component {
                                         >
                                             Edit <EditIcon/>
                                         </Button>
-                                </Grid>
+                                    </Grid>
                                 </Grid>
 
                                 <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
@@ -322,8 +338,6 @@ class Submit extends Component {
                                 </Grid>
 
                                 <Grid item align='center' xs={12}>
-                                    <br/>
-                                    <Divider/>
                                 <h2>Local Contact for Location</h2>
                                 </Grid>
 
@@ -467,24 +481,17 @@ class Submit extends Component {
                     </Grid>
                     }
                     <Grid container direction = 'row' justify = 'center' alignContent = 'center' style={{marginTop: '35px'}}>
-                            <Button variant ='contained'
-                            component = {Link} to ="/organizationHome">
-                                <ChevronLeftIcon/> Home
-                            </Button>
-                            <div className = {classes.grow}>{'\u00A0'}</div>
-                            <Button variant = 'contained' color = 'primary'
-                            size = 'large'
-                            component = {Link} to ="/completed"
-                            onClick = {this.handleSubmit}
-                            >
-                                <SaveIcon/> Submit Onboarding Package for Review
-                            </Button>
-                        
-                        </Grid> 
-                    
-            </Paper>
-          </div>  
-          </Grid>
+                        <DynamicButton type='home' text='Home' linkURL='/organizationHome'/>
+                        <div className = {classes.grow}>{'\u00A0'}</div>
+                        {this.props.state.allDevice.length >0?
+                            <DynamicButton key="enabled-submit-button" type='submit' text='Submit Onboarding Package for Review' linkURL='/completed' handleClick={this.handleSubmit}/>
+                        :
+                            <DynamicButton key="disabled-submit-button" type='submit' text='Please Add A Device Before Submitting' isDisabled={true}/>    
+                        }
+                    </Grid> 
+                </Paper>
+            </div>  
+        </Grid>
       );
     }
   }

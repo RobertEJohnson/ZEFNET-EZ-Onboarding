@@ -61,20 +61,20 @@ class WelcomeScreen extends Component {
               <div className={classes.informationContainer}>
                   Congratulations on installing your new ZEF charging devices! 
                   <br/>
-                  To be fully entered into our system we will be collecting the following:
+                  To enter your new devices and users into our systems, we will need:
                   <div style={{marginLeft: '30px'}}>
                     <ul className={classes.requirementsUL}>
                       <li>
-                        <HomeWorkTwoTone className={classes.SvgIcon}/> Organization information
+                        <HomeWorkTwoTone className={classes.SvgIcon}/> Your organization information
                       </li>
                       <li>
-                        <EvStationTwoTone className={classes.SvgIcon}/> Device information
+                        <EvStationTwoTone className={classes.SvgIcon}/> Some details about each device, including serial
                       </li>
                       <li>
-                        <RoomTwoTone className={classes.SvgIcon}/> Installation location(s)
+                        <RoomTwoTone className={classes.SvgIcon}/> Installation location(s) and the breakers hosted there
                       </li>
                       <li>
-                        <AccountCircleTwoTone className={classes.SvgIcon}/> Device adminstrator information
+                        <AccountCircleTwoTone className={classes.SvgIcon}/> Contact info for admin employees
                       </li>
                     </ul>
                   </div> 
