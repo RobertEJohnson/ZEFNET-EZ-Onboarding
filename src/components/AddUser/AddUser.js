@@ -20,7 +20,6 @@ import {
   DialogActions,
   DialogContentText,
 } from "@material-ui/core";
-import MuiPhoneNumber from "material-ui-phone-number";
 import PropTypes from "prop-types";
 import UserTableRow from "./UserTableRow";
 import DynamicButton from "../Buttons/DynamicButton";
@@ -254,8 +253,8 @@ class AddUser extends Component {
                         className={classes.MiniTextFields}
                         value={this.state.editor || ""}
                       >
-                        <MenuItem value={False}>View</MenuItem>
-                        <MenuItem value={True}>Edit</MenuItem>
+                        <MenuItem value={false}>View</MenuItem>
+                        <MenuItem value={true}>Edit</MenuItem>
                       </Select>
                     </FormControl>
                 </Grid>

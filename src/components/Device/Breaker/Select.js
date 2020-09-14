@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Grid, IconButton, Select, Paper, InputLabel, FormControl, MenuItem} from '@material-ui/core';
+import {Grid,  Select, Paper, InputLabel, FormControl, MenuItem} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import AddBreaker from './Add';
 import DynamicButton from '../../Buttons/DynamicButton';
-import EditIcon from '@material-ui/icons/Edit';
 import EditBreaker from './Edit';
 
 
