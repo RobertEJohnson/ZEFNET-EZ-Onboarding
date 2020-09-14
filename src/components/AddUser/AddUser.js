@@ -19,6 +19,7 @@ import {
   DialogContent,
   DialogActions,
   DialogContentText,
+  Tooltip,
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import UserTableRow from "./UserTableRow";
@@ -77,6 +78,7 @@ class AddUser extends Component {
     toggle: false,
     tableRows: this.props.reduxState.zefUser,
     open: false,
+    edit: false
   };
 
   componentDidUpdate(previousProps) {
@@ -131,6 +133,15 @@ class AddUser extends Component {
     });
   };
 
+  handleEditMode = () =>{
+    this.setState({...this.state, edit: true})
+  }
+  
+  handleViewMode = () =>{
+    this.setState({...this.state, edit: false})
+  }
+
+
   handleOpen = () => {
     this.setState({ ...this.state, open: true });
   };
@@ -177,7 +188,7 @@ class AddUser extends Component {
             <p className={classes.SubTitle}>
               These employees will have access to information on the ZEFNET Portal
             </p>
-              <Table className={classes.ReviewTable} inputProps={{className: classes.TableRow}}>
+              <Table className={classes.ReviewTable} inputprops={{className: classes.TableRow}}>
                 <TableHead className={classes.ReviewTable__head}>
                   <TableRow>
                     <TableCell className={classes.ReviewTable__head__cell}/>
@@ -191,7 +202,8 @@ class AddUser extends Component {
                 <TableBody>
                   {this.props.reduxState.zefUser.map( (user, index) => 
                       <UserTableRow key={user.id} first_name={user.first_name} last_name={user.last_name} email={user.email}
-                        phone={user.phone} editor={user.editor} user_id={user.id}/>
+                        phone={user.phone} editor={user.editor} user_id={user.id} editMode = {this.handleEditMode} 
+                        viewMode = {this.handleViewMode}/>
                   )}
                 </TableBody>
               </Table>
@@ -260,7 +272,13 @@ class AddUser extends Component {
                 </Grid>
                 <br/>
               <div className={classes.ButtonContainer}>
-                  <DynamicButton  type='home' text='Home' linkURL='/organizationHome'/>
+                {this.state.edit?
+                <Tooltip title ='please save or discard changes to user row'>
+                  <DynamicButton key = 'disabled home'  type='home' text='Home' isDisabled = {true}/>
+                </Tooltip>
+                :
+                  <DynamicButton key = 'home' type='home' text='Home' linkURL='/organizationHome'/>
+                }
                   <DynamicButton type='add' text='Add User' handleClick={this.handleAddUser}/>
               </div>
             </form>
