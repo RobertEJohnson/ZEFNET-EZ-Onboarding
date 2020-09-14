@@ -34,9 +34,10 @@ const styles = (theme) => ({
     maxWidth: "1000px",
     textAlign: "center",
   },
-  reviewTable: {
-    overflowX: "auto",
-    whiteSpace: "nowrap",
+  ReviewTable:{
+      overflowX: 'auto',
+      whiteSpace:'nowrap',
+      border: '1px solid black'
   },
   textFields: {
     maxWidth: "175px",
@@ -46,26 +47,25 @@ const styles = (theme) => ({
     maxWidth: "175px",
     margin: "5px",
   },
-  Title: {
-    border: "solid #e3e3e3 2px",
-    maxWidth: "515px",
-    height: "125px",
-    display: "flex",
-    borderRadius: "5px",
-  },
-  TableRow: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: "#f5f5f5",
-    },
-  },
   ButtonContainer: {
     display: "flex",
-    width: "515px",
+    width: "540px",
     justifyContent: "space-between",
     align: "center",
     marginTop: "20px",
-    marginLeft: "30px",
+    marginLeft: "5px",
   },
+  SubTitle: {
+    fontSize: '18px',
+    marginBottom: '1rem'
+  },
+  ReviewTable__head:{
+    backgroundColor: '#C0C0C0'
+  },
+  ReviewTable__head__cell:{
+    border: '1px solid black',
+    padding: '8px',
+  }
 });
 
 class AddUser extends Component {
@@ -160,136 +160,109 @@ class AddUser extends Component {
           onClose={this.handleClose}
           aria-labelledby="missing-fields"
           aria-describedby="enter-all-user-info-before-add"
-        >
-          <DialogContent>
-            <DialogContentText id="enter-all-user-info-before-add">
-              Oops! Please ensure all required information is entered.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose}>OK</Button>
-          </DialogActions>
-        </Dialog>
-        <Grid item xs={8} align="center">
+          >
+            <DialogContent>
+                <DialogContentText id="enter-all-user-info-before-add">
+                    Oops!  Please ensure all required information is entered.
+                </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick = {this.handleClose}>
+                  OK
+              </Button>
+            </DialogActions>
+          </Dialog>
+        <Grid item xs={8} style={{minWidth: '1000px'}} align="center">
           <Paper className={classes.paper} elevation={3}>
             <h1>Administrative Users</h1>
-            <h3>
+            <p className={classes.SubTitle}>
               These employees will have access to information on the ZEFNET Portal
-            </h3>
-            <Table
-              className={classes.reviewTable}
-              inputProps={{ className: classes.TableRow }}
-            >
-              <TableHead>
-                <TableRow>
-                  <TableCell></TableCell>
-                  <TableCell>First Name</TableCell>
-                  <TableCell>Last Name</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell>Phone</TableCell>
-                  <TableCell>Privileges</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody style={{ border: "1px solid #e0e0e0" }}>
-                {this.props.reduxState.zefUser.map((user) => (
-                  <UserTableRow
-                    key={user.id}
-                    first_name={user.first_name}
-                    last_name={user.last_name}
-                    email={user.email}
-                    phone={user.phone}
-                    editor={user.editor}
-                    user_id={user.id}
-                  />
-                ))}
-              </TableBody>
-            </Table>
-            <br />
-            <h2>Add a New User</h2>
-
-            <form
-              style={{
-                background: "transparent",
-                display: "flex",
-                flexDirection: "row",
-                flexWrap: "wrap",
-                width: "inherit",
-                padding: "0px",
-                height: "fit-content",
-              }}
-            >
-              <Grid
-                container
-                dircetion="row"
-                justify="center"
-                alignItems="center"
-                spacing={1}
-              >
-                <TextField
-                  required
-                  color="primary"
-                  className={classes.MiniTextFields}
-                  label="First Name:"
-                  variant="filled"
-                  value={this.state.first_name}
-                  onChange={this.handleInputChangeFor("first_name")}
-                />
-                <TextField
-                  required
-                  color="primary"
-                  className={classes.MiniTextFields}
-                  label="Last Name:"
-                  variant="filled"
-                  value={this.state.last_name}
-                  onChange={this.handleInputChangeFor("last_name")}
-                />
-                <TextField
-                  required
-                  color="primary"
-                  className={classes.MiniTextFields}
-                  label="Email:"
-                  variant="filled"
-                  value={this.state.email}
-                  onChange={this.handleInputChangeFor("email")}
-                />
-                <MuiPhoneNumber
-                  required
-                  defaultCountry={"us"}
-                  variant="filled"
-                  disableAreaCodes="true"
-                  type="tel"
-                  color="primary"
-                  className={classes.MiniTextFields}
-                  label="Phone:"
-                  value={this.state.phone || ""}
-                  onChange={this.handlePhoneNumberChange}
-                />
-                <FormControl variant="filled" style={{ width: "140px" }}>
-                  <InputLabel>Privileges:</InputLabel>
-                  <Select
-                    required
-                    onChange={this.handleInputChangeFor("editor")}
-                    className={classes.MiniTextFields}
-                    value={this.state.editor || ""}
-                  >
-                    <MenuItem value="False">View</MenuItem>
-                    <MenuItem value="True">Edit</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <br />
+            </p>
+              <Table className={classes.ReviewTable} inputProps={{className: classes.TableRow}}>
+                <TableHead className={classes.ReviewTable__head}>
+                  <TableRow>
+                    <TableCell className={classes.ReviewTable__head__cell}/>
+                    <TableCell className={classes.ReviewTable__head__cell}>First Name</TableCell>
+                    <TableCell className={classes.ReviewTable__head__cell}>Last Name</TableCell>
+                    <TableCell className={classes.ReviewTable__head__cell}>Email</TableCell>
+                    <TableCell className={classes.ReviewTable__head__cell}>Phone</TableCell>
+                    <TableCell className={classes.ReviewTable__head__cell}>Privileges</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody style={{border: '1px solid black'}}>
+                  {this.props.reduxState.zefUser.map( (user, index) => 
+                      <UserTableRow key={user.id} first_name={user.first_name} last_name={user.last_name} email={user.email}
+                        phone={user.phone} editor={user.editor} user_id={user.id}/>
+                  )}
+                </TableBody>
+              </Table>
+              <br/>
+              <h2>Add a New User</h2>
+                
+                <form
+                  style={{
+                    background: "transparent",
+                    display: "flex",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                    width: "inherit",
+                    padding: "0px",
+                    height: "fit-content",
+                  }}
+                >
+                  <Grid container dircetion = 'row' justify =  'center' alignItems = 'center' spacing ={1}>
+                    <TextField
+                      required
+                      color="primary"
+                      className = {classes.MiniTextFields}
+                      label="First Name:"
+                      variant="filled"
+                      value={this.state.first_name}
+                      onChange={this.handleInputChangeFor("first_name")}
+                    />
+                    <TextField
+                      required
+                      color="primary"
+                      className = {classes.MiniTextFields}
+                      label="Last Name:"
+                      variant="filled"
+                      value={this.state.last_name}
+                      onChange={this.handleInputChangeFor("last_name")}
+                    />
+                    <TextField
+                      required
+                      color="primary"
+                      className = {classes.MiniTextFields}
+                      label="Email:"
+                      variant="filled"
+                      value={this.state.email}
+                      onChange={this.handleInputChangeFor("email")}
+                    />
+                    <TextField
+                      color="primary"
+                      className = {classes.MiniTextFields}
+                      label="Phone:"
+                      variant="filled"
+                      value={this.state.phone || ""}
+                      onChange={this.handleInputChangeFor("phone")}
+                    />
+                    <FormControl variant="filled" style={{width:'140px'}}>
+                      <InputLabel>Privileges:</InputLabel>
+                      <Select
+                        required
+                        onChange={this.handleInputChangeFor("editor")}
+                        className={classes.MiniTextFields}
+                        value={this.state.editor || ""}
+                      >
+                        <MenuItem value="False">View</MenuItem>
+                        <MenuItem value="True">Edit</MenuItem>
+                      </Select>
+                    </FormControl>
+                </Grid>
+                <br/>
               <div className={classes.ButtonContainer}>
-                <DynamicButton
-                  type="home"
-                  text="Home"
-                  linkURL="/organizationHome"
-                />
-
-                <DynamicButton
-                  type="add"
-                  text="Add User"
-                  handleClick={this.handleAddUser}
-                />
+                  <DynamicButton  type='home' text='Home' linkURL='/organizationHome'/>
+                  <DynamicButton type='add' text='Add User' handleClick={this.handleAddUser}/>
               </div>
             </form>
           </Paper>
