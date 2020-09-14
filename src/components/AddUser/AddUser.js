@@ -37,7 +37,7 @@ const styles = (theme) => ({
   ReviewTable:{
       overflowX: 'auto',
       whiteSpace:'nowrap',
-      border: '1px solid black'
+      border: '1px solid #C0c0c0'
   },
   textFields: {
     maxWidth: "175px",
@@ -189,7 +189,7 @@ class AddUser extends Component {
                     <TableCell className={classes.ReviewTable__head__cell}>Privileges</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody style={{border: '1px solid black'}}>
+                <TableBody>
                   {this.props.reduxState.zefUser.map( (user, index) => 
                       <UserTableRow key={user.id} first_name={user.first_name} last_name={user.last_name} email={user.email}
                         phone={user.phone} editor={user.editor} user_id={user.id}/>

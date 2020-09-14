@@ -173,10 +173,13 @@ class BreakerSelect extends Component {
                         )}
                         </Select>
                     </FormControl>
-                    {this.state.selectedBreaker&&
-                        <IconButton color = 'primary' onClick = {this.editBreaker}>
-                            <EditIcon/>
-                        </IconButton>}
+                    {
+                        this.state.selectedBreaker?
+                            <div>
+                                <DynamicButton type='edit' text='Edit Site' handleClick={this.editBreaker}/>
+                            </div>
+                        :<></>
+                    }
                     <br/>
                     <br/>
                     <h2 className={classes.hrWordDivder}><span className={classes.hrWord}>Or</span></h2>
