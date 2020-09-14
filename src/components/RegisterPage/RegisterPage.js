@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import {
   Grid,
   TextField,
-  Paper,
   Dialog,
   DialogContent,
   DialogActions,
@@ -155,7 +154,7 @@ class RegisterPage extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid item align="center" className={classes.RegisterPage}>
+      <Grid item className={classes.RegisterPage}>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}

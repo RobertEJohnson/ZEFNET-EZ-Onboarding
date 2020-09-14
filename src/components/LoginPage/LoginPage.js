@@ -121,7 +121,7 @@ class LoginPage extends Component {
                   InputLabelProps={{style:{color: 'white'}}}
                   onKeyDown={this.handleKeyDown}
                 />
-              <Grid item align='center' justify='center' className={classes.LoginPage__buttonContainer}>
+              <Grid item className={classes.LoginPage__buttonContainer}>
                 <DynamicButton type='glow' text='Sign in' handleClick={this.login}/>
                 <DynamicButton type='dark' text='New User?' 
                   handleClick={()=>this.props.dispatch({ type: "SET_TO_REGISTER_MODE" })}

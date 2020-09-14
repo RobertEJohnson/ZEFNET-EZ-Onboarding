@@ -176,7 +176,7 @@ class AddUser extends Component {
           <Paper className={classes.paper} elevation={3}>
             <h1>Administrative Users</h1>
             <p className={classes.SubTitle}>
-              These are who have access to information on the ZEFNET Portal
+              These employees will have access to information on the ZEFNET Portal
             </p>
               <Table className={classes.ReviewTable} inputProps={{className: classes.TableRow}}>
                 <TableHead className={classes.ReviewTable__head}>

@@ -50,7 +50,9 @@ const theme = createMuiTheme({
 class App extends Component {
   componentDidMount() {
     this.props.dispatch({ type: "FETCH_USER" });
+    
   }
+
 
   render() {
     return (
@@ -67,7 +69,6 @@ class App extends Component {
               <Switch>
                 {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
                 <Redirect exact from="/" to="/home" />
-
                 <ProtectedRoute exact path="/home" component={WelcomeScreen} />
 
                 <ProtectedRoute

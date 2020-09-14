@@ -12,7 +12,6 @@ import {AccordionSummary,
         DialogContent,
         DialogContentText,
         DialogActions,
-        Tooltip
     } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -60,7 +59,7 @@ const styles = theme => ({
 
 class Submit extends Component {
     state = {
-        tableMode: false,
+        tableMode: true,
         open: false,
         deletedName: '',
         deletedID: '',
@@ -312,7 +311,7 @@ class Submit extends Component {
                                         >
                                             Edit <EditIcon/>
                                         </Button>
-                                </Grid>
+                                    </Grid>
                                 </Grid>
 
                                 <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
@@ -468,24 +467,30 @@ class Submit extends Component {
                     </Grid>
                     }
                     <Grid container direction = 'row' justify = 'center' alignContent = 'center' style={{marginTop: '35px'}}>
-                            <Button variant ='contained'
+                        <Button variant ='contained'
                             component = {Link} to ="/organizationHome">
-                                <ChevronLeftIcon/> Home
-                            </Button>
-                            <div className = {classes.grow}>{'\u00A0'}</div>
+                            <ChevronLeftIcon/> Home
+                        </Button>
+                        <div className = {classes.grow}>{'\u00A0'}</div>
+                        {this.props.state.allDevice.length >0?
                             <Button variant = 'contained' color = 'primary'
-                            size = 'large'
-                            component = {Link} to ="/completed"
-                            onClick = {this.handleSubmit}
+                                size = 'large'
+                                component = {Link} to ="/completed"
+                                onClick = {this.handleSubmit}
                             >
                                 <SaveIcon/> Submit Onboarding Package for Review
                             </Button>
-                        
-                        </Grid> 
-                    
-            </Paper>
-          </div>  
-          </Grid>
+                        :
+                            <Button variant = 'contained' disabled
+                                size = 'large'
+                            >
+                                <SaveIcon/> Please Add a Device before Submitting
+                            </Button>
+                        }
+                    </Grid> 
+                </Paper>
+            </div>  
+        </Grid>
       );
     }
   }
