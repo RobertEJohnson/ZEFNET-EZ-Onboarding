@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Grid, withStyles} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import DynamicButton from '../Buttons/DynamicButton';
-import {HomeWorkTwoTone, EvStationTwoTone, RoomTwoTone, MapTwoTone, AccountCircleTwoTone} from '@material-ui/icons'
+import {HomeWorkTwoTone, EvStationTwoTone, RoomTwoTone, AccountCircleTwoTone} from '@material-ui/icons'
 import { connect } from "react-redux";
 
 const styles = theme => ({

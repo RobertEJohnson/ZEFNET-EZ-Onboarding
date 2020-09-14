@@ -12,7 +12,6 @@ import {AccordionSummary,
         DialogContent,
         DialogContentText,
         DialogActions,
-        Tooltip
     } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
