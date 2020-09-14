@@ -173,7 +173,7 @@ class EditBreaker extends Component {
             </Button>
             <Button color="primary"
                 onClick = {this.editBreaker}>
-             Save Changes
+                Save Changes
             </Button>
           </DialogActions>
         </Dialog>

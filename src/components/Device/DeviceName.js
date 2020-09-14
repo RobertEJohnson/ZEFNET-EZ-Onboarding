@@ -119,7 +119,7 @@ class DeviceName extends Component {
         payload: this.state.installationDate,
       });
 
-      this.props.history.push("/deviceReview"); //change this
+      this.props.history.push("/deviceReview");
     } else {
       this.setState({ ...this.state, open: true });
     }
@@ -196,7 +196,6 @@ class DeviceName extends Component {
               <p style={{margin:"5px 0px 0px 0px"}}>Installation Date:</p>
               <TextField
                 required
-                defaultValue={"Installation Date"}
                 type="Date"
                 style={{ margin: "10px auto 0px auto" }}
                 className={classes.textField}

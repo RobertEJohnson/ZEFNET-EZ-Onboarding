@@ -267,12 +267,11 @@ class DeviceReview extends Component {
                         </div>
                     </div> 
                 </Grid>
-
-                <Grid item align='center' justify='center' className={classes.ReviewPage__buttonContainer}>
+                <Grid item align='center' className={classes.ReviewPage__buttonContainer}>
                     <div style={{position: 'absolute', float: 'left'}}>
                         <DynamicButton type='previous' text='Previous' linkURL='/deviceName'/>
                     </div>
-                    <DynamicButton type='confirm' text='Add This Device' handleClick={this.saveDevice}/>  
+                        <DynamicButton type='confirm' text='Add This Device' handleClick={this.saveDevice}/>  
                 </Grid>
             </Paper> 
           </Grid>

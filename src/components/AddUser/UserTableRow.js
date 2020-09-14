@@ -30,13 +30,14 @@ const styles = (theme) => ({
         overflow: 'scroll',
         minWidth: '100px',
         fontSize: '16px',
+        padding: '2px 6px'
     },
     EditCell:{
         maxWidth: '200px',
         overflow: 'scroll',
         minWidth: '100px',
         padding: '0px'
-    }
+    },
 });
 
 class UserTableRow extends Component{
@@ -131,8 +132,8 @@ class UserTableRow extends Component{
                     </Button>
                     </DialogActions>
                 </Dialog>
-                    <TableRow hover className={classes.TableRow}>
-                        <TableCell>
+                    <TableRow hover className={classes.TableRow} inputProps={classes.TableRow}>
+                        <TableCell className={classes.ViewCell}>
                             {
                                 this.state.edit_mode ?
                                 <>
@@ -174,7 +175,6 @@ class UserTableRow extends Component{
                             <>
                                 <TableCell className={classes.ViewCell}>
                                     <TextField className={classes.EditCell}
-                                        autoFocus
                                         variant = 'filled'
                                         value={this.state.first_name}
                                         name='first_name'
