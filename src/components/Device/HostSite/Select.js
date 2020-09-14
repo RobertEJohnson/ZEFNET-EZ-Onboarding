@@ -160,25 +160,29 @@ class HostSelect extends Component {
                     Please choose from existing below or press the 'Add Site' button.
                     </p>   
                 </div>
-                <FormControl variant="filled" className={classes.formControl}>
-                    <InputLabel>Choose From Existing Sites</InputLabel>
-                    <Select
-                    id = 'siteSelect'
-                    value={this.state.selectedSite}
-                    onChange={this.handleChange}
-                    >
-                    <MenuItem value="">
-                        <em>None of these</em>
-                    </MenuItem>
-                    {this.props.state.site.map((site, index)=>
-                    (<MenuItem value={site.id||''} key = {index}>{site.address}</MenuItem>)
-                    )}
-                    </Select>
-                </FormControl>
-               {this.state.selectedSite&&
-                <IconButton color = 'primary' onClick = {this.editSite}>
-                  <EditIcon/>
-                </IconButton>}          
+                    <FormControl variant="filled" className={classes.formControl}>
+                      <InputLabel>Choose From Existing Sites</InputLabel>
+                      <Select
+                      id = 'siteSelect'
+                      value={this.state.selectedSite}
+                      onChange={this.handleChange}
+                      >
+                      <MenuItem value="">
+                          <em>None of these</em>
+                      </MenuItem>
+                      {this.props.state.site.map((site, index)=>
+                      (<MenuItem value={site.id||''} key = {index}>{site.address}</MenuItem>)
+                      )}
+                      </Select>
+                    </FormControl>
+                  {
+                    this.state.selectedSite ?
+                      <div>
+                        <DynamicButton type='edit' text='Edit Site' handleClick={this.editSite}/>
+                      </div>
+                    : <></>
+                  }  
+                        
                 <br/>
                 <br/>
                 <h2 className={classes.hrWordDivder}><span className={classes.hrWord}>Or</span></h2>    
