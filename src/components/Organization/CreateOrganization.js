@@ -163,7 +163,11 @@ componentDidUpdate(previousProps){
               InputLabelProps={{style:{color: 'white'}}}
             />
             <br/>
-            <DynamicButton type='glow' text='Create Organization' handleClick={this.handleAddOrg}/>
+            {this.state.email &&this.state.organizationAddress && this.state.organizationName?
+              <DynamicButton key = 'activeCreate' type='glow' text='Create Organization' handleClick={this.handleAddOrg}/>
+              :
+              <DynamicButton key = 'inactiveCreate' type='glow' text='Create Organization' isDisabled = {true}/>
+              }
         </Grid>
     );
   }
