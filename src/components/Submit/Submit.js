@@ -29,6 +29,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import DynamicButton from "../Buttons/DynamicButton";
 
+
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
@@ -279,7 +280,6 @@ class Submit extends Component {
               <p className={classes.DeviceSubTitle}>
                 Use switch to view device table or expandable pages
               </p>
-
               <Grid
                 component="label"
                 container
@@ -458,6 +458,7 @@ class Submit extends Component {
                       style={{ backgroundColor: "#C0C0C0", margin: "0" }}
                     >
                       <h2>{device.name}</h2>
+
                     </AccordionSummary>
                     <AccordionActions>
                       <Button
@@ -498,7 +499,6 @@ class Submit extends Component {
                             </Button>
                           </Grid>
                         </Grid>
-
                         <Grid
                           item
                           align="center"
@@ -513,11 +513,9 @@ class Submit extends Component {
                             {device.address}
                           </p>
                         </Grid>
-
                         <Grid item align="center" xs={12}>
                           <h2>Local Contact for Location</h2>
                         </Grid>
-
                         <Grid
                           item
                           align="center"
@@ -722,7 +720,6 @@ class Submit extends Component {
                             </div>
                           )}
                         </Grid>
-
                         <Grid item align="center" xs={12}>
                           <Grid
                             container
@@ -813,6 +810,7 @@ class Submit extends Component {
         </div>
       </Grid>
     );
+
   }
 }
 

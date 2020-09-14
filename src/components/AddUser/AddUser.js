@@ -34,6 +34,7 @@ const styles = (theme) => ({
     maxWidth: "1000px",
     textAlign: "center",
   },
+
   ReviewTable: {
     overflowX: "auto",
     whiteSpace: "nowrap",
@@ -59,13 +60,13 @@ const styles = (theme) => ({
     fontSize: "18px",
     marginBottom: "1rem",
   },
-  ReviewTable__head: {
-    backgroundColor: "#C0C0C0",
+  ReviewTable__head:{
+    backgroundColor: '#C0C0C0'
   },
-  ReviewTable__head__cell: {
-    border: "1px solid black",
-    padding: "8px",
-  },
+  ReviewTable__head__cell:{
+    border: '1px solid black',
+    padding: '8px',
+  }
 });
 
 class AddUser extends Component {

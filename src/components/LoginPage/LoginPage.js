@@ -83,7 +83,6 @@ class LoginPage extends Component {
   };
 
   checkEmail = (e) => {
-    console.log("YAY");
     const value = e.target.value;
     if (value.includes("@") && value.includes(".")) {
       this.setState({
@@ -93,7 +92,6 @@ class LoginPage extends Component {
       this.setState({
         invalidEmail: true,
       });
-      console.log("Yup");
     }
   };
 
@@ -105,6 +103,7 @@ class LoginPage extends Component {
           {this.props.errors.loginMessage && (
             <h2 role="alert">{this.props.errors.loginMessage}</h2>
           )}
+
           <h2 className={classes.LoginPage__title}>
             Welcome to ZEFNET EZ Onboarding!{" "}
           </h2>
