@@ -34,10 +34,11 @@ const styles = (theme) => ({
     maxWidth: "1000px",
     textAlign: "center",
   },
-  ReviewTable:{
-      overflowX: 'auto',
-      whiteSpace:'nowrap',
-      border: '1px solid #C0c0c0'
+
+  ReviewTable: {
+    overflowX: "auto",
+    whiteSpace: "nowrap",
+    border: "1px solid #C0c0c0",
   },
   textFields: {
     maxWidth: "175px",
@@ -56,8 +57,8 @@ const styles = (theme) => ({
     marginLeft: "5px",
   },
   SubTitle: {
-    fontSize: '18px',
-    marginBottom: '1rem'
+    fontSize: "18px",
+    marginBottom: "1rem",
   },
   ReviewTable__head:{
     backgroundColor: '#C0C0C0'
@@ -93,6 +94,21 @@ class AddUser extends Component {
     this.setState({
       [propertyName]: event.target.value,
     });
+  };
+
+  checkEmail = (e) => {
+    console.log("YAY");
+    const value = e.target.value;
+    if (value.includes("@") && value.includes(".")) {
+      this.setState({
+        invalidEmail: false,
+      });
+    } else {
+      this.setState({
+        invalidEmail: true,
+      });
+      console.log("Yup");
+    }
   };
 
   handleAddUser = () => {
@@ -160,109 +176,146 @@ class AddUser extends Component {
           onClose={this.handleClose}
           aria-labelledby="missing-fields"
           aria-describedby="enter-all-user-info-before-add"
-          >
-            <DialogContent>
-                <DialogContentText id="enter-all-user-info-before-add">
-                    Oops!  Please ensure all required information is entered.
-                </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick = {this.handleClose}>
-                  OK
-              </Button>
-            </DialogActions>
-          </Dialog>
-        <Grid item xs={8} style={{minWidth: '1000px'}} align="center">
+        >
+          <DialogContent>
+            <DialogContentText id="enter-all-user-info-before-add">
+              Oops! Please ensure all required information is entered.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose}>OK</Button>
+          </DialogActions>
+        </Dialog>
+        <Grid item xs={8} style={{ minWidth: "1000px" }} align="center">
           <Paper className={classes.paper} elevation={3}>
             <h1>Administrative Users</h1>
             <p className={classes.SubTitle}>
-              These employees will have access to information on the ZEFNET Portal
+              These employees will have access to information on the ZEFNET
+              Portal
             </p>
-              <Table className={classes.ReviewTable} inputProps={{className: classes.TableRow}}>
-                <TableHead className={classes.ReviewTable__head}>
-                  <TableRow>
-                    <TableCell className={classes.ReviewTable__head__cell}/>
-                    <TableCell className={classes.ReviewTable__head__cell}>First Name</TableCell>
-                    <TableCell className={classes.ReviewTable__head__cell}>Last Name</TableCell>
-                    <TableCell className={classes.ReviewTable__head__cell}>Email</TableCell>
-                    <TableCell className={classes.ReviewTable__head__cell}>Phone</TableCell>
-                    <TableCell className={classes.ReviewTable__head__cell}>Privileges</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {this.props.reduxState.zefUser.map( (user, index) => 
-                      <UserTableRow key={user.id} first_name={user.first_name} last_name={user.last_name} email={user.email}
-                        phone={user.phone} editor={user.editor} user_id={user.id}/>
-                  )}
-                </TableBody>
-              </Table>
-              <br/>
-              <h2>Add a New User</h2>
-                
-                <form
-                  style={{
-                    background: "transparent",
-                    display: "flex",
-                    flexDirection: "row",
-                    flexWrap: "wrap",
-                    width: "inherit",
-                    padding: "0px",
-                    height: "fit-content",
-                  }}
-                >
-                  <Grid container dircetion = 'row' justify =  'center' alignItems = 'center' spacing ={1}>
-                    <TextField
-                      required
-                      color="primary"
-                      className = {classes.MiniTextFields}
-                      label="First Name:"
-                      variant="filled"
-                      value={this.state.first_name}
-                      onChange={this.handleInputChangeFor("first_name")}
-                    />
-                    <TextField
-                      required
-                      color="primary"
-                      className = {classes.MiniTextFields}
-                      label="Last Name:"
-                      variant="filled"
-                      value={this.state.last_name}
-                      onChange={this.handleInputChangeFor("last_name")}
-                    />
-                    <TextField
-                      required
-                      color="primary"
-                      className = {classes.MiniTextFields}
-                      label="Email:"
-                      variant="filled"
-                      value={this.state.email}
-                      onChange={this.handleInputChangeFor("email")}
-                    />
-                    <TextField
-                      color="primary"
-                      className = {classes.MiniTextFields}
-                      label="Phone:"
-                      variant="filled"
-                      value={this.state.phone || ""}
-                      onChange={this.handleInputChangeFor("phone")}
-                    />
-                    <FormControl variant="filled" style={{width:'140px'}}>
-                      <InputLabel>Privileges:</InputLabel>
-                      <Select
-                        required
-                        onChange={this.handleInputChangeFor("editor")}
-                        className={classes.MiniTextFields}
-                        value={this.state.editor || ""}
-                      >
-                        <MenuItem value="False">View</MenuItem>
-                        <MenuItem value="True">Edit</MenuItem>
-                      </Select>
-                    </FormControl>
-                </Grid>
-                <br/>
+            <Table
+              className={classes.ReviewTable}
+              inputProps={{ className: classes.TableRow }}
+            >
+              <TableHead className={classes.ReviewTable__head}>
+                <TableRow>
+                  <TableCell className={classes.ReviewTable__head__cell} />
+                  <TableCell className={classes.ReviewTable__head__cell}>
+                    First Name
+                  </TableCell>
+                  <TableCell className={classes.ReviewTable__head__cell}>
+                    Last Name
+                  </TableCell>
+                  <TableCell className={classes.ReviewTable__head__cell}>
+                    Email
+                  </TableCell>
+                  <TableCell className={classes.ReviewTable__head__cell}>
+                    Phone
+                  </TableCell>
+                  <TableCell className={classes.ReviewTable__head__cell}>
+                    Privileges
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {this.props.reduxState.zefUser.map((user, index) => (
+                  <UserTableRow
+                    key={user.id}
+                    first_name={user.first_name}
+                    last_name={user.last_name}
+                    email={user.email}
+                    phone={user.phone}
+                    editor={user.editor}
+                    user_id={user.id}
+                  />
+                ))}
+              </TableBody>
+            </Table>
+            <br />
+            <h2>Add a New User</h2>
+
+            <form
+              style={{
+                background: "transparent",
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                width: "inherit",
+                padding: "0px",
+                height: "fit-content",
+              }}
+            >
+              <Grid
+                container
+                dircetion="row"
+                justify="center"
+                alignItems="center"
+                spacing={1}
+              >
+                <TextField
+                  required
+                  color="primary"
+                  className={classes.MiniTextFields}
+                  label="First Name:"
+                  variant="filled"
+                  value={this.state.first_name}
+                  onChange={this.handleInputChangeFor("first_name")}
+                />
+                <TextField
+                  required
+                  color="primary"
+                  className={classes.MiniTextFields}
+                  label="Last Name:"
+                  variant="filled"
+                  value={this.state.last_name}
+                  onChange={this.handleInputChangeFor("last_name")}
+                />
+                <TextField
+                  required
+                  color="primary"
+                  error={this.state.invalidEmail}
+                  onBlur={this.checkEmail}
+                  className={classes.MiniTextFields}
+                  label="Email:"
+                  variant="filled"
+                  value={this.state.email}
+                  onChange={this.handleInputChangeFor("email")}
+                />
+                <MuiPhoneNumber
+                  color="primary"
+                  defaultCountry={"us"}
+                  disableAreaCodes="true"
+                  className={classes.MiniTextFields}
+                  label="Phone:"
+                  variant="filled"
+                  value={this.state.phone || ""}
+                  onChange={this.handlePhoneNumberChange}
+                />
+                <FormControl variant="filled" style={{ width: "140px" }}>
+                  <InputLabel>Privileges:</InputLabel>
+                  <Select
+                    required
+                    onChange={this.handleInputChangeFor("editor")}
+                    className={classes.MiniTextFields}
+                    value={this.state.editor || ""}
+                  >
+                    <MenuItem value="False">View</MenuItem>
+                    <MenuItem value="True">Edit</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <br />
               <div className={classes.ButtonContainer}>
-                  <DynamicButton  type='home' text='Home' linkURL='/organizationHome'/>
-                  <DynamicButton type='add' text='Add User' handleClick={this.handleAddUser}/>
+                <DynamicButton
+                  type="home"
+                  text="Home"
+                  linkURL="/organizationHome"
+                />
+                <DynamicButton
+                  type="add"
+                  text="Add User"
+                  handleClick={this.handleAddUser}
+                />
               </div>
             </form>
           </Paper>
