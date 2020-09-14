@@ -106,6 +106,9 @@ class AddBreaker extends Component {
               value = {this.state.name}
               placeholder = "South East Utility Room: Panel 2B: Breaker 22/24"
               onChange = {this.handleChange}
+              inputProps={{
+                maxLength: 50
+              }}
             />
             <TextField
               required

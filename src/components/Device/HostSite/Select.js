@@ -25,7 +25,7 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 320,
+    width: '350px',
   },
   selectEmpty: {
     marginTop: theme.spacing(2),

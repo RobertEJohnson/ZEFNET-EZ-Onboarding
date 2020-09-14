@@ -26,7 +26,8 @@ const styles = theme => ({
     },
     formControl: {
         margin: theme.spacing(1),
-        minWidth: 220,
+        width: '350px',
+
     },
     selectEmpty: {
         marginTop: theme.spacing(1),
@@ -139,7 +140,7 @@ class BreakerSelect extends Component {
     render(){
         const {classes} = this.props;
         return(
-            <Grid item style={{maxWidth: '800px'}} align='center' justify = 'center'>
+            <Grid item style={{maxWidth: '800px'}} align='center'>
             <AddBreaker handleClose = {this.handleClose} open = {this.state.open}/>
             <EditBreaker handleClose = {this.handleClose} open = {this.state.edit} breaker={this.state.fullBreakerInfo}/>
                 <Paper className={classes.paper} elevation={3}>

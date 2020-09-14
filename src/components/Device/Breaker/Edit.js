@@ -130,6 +130,9 @@ class EditBreaker extends Component {
               label="Breaker Name"
               name = 'name'
               value = {this.state.name}
+              inputProps={{
+                maxLength: 50
+              }}
               placeholder = "South East Utility Room: Panel 2B: Breaker 22/24"
               onChange = {this.handleChange}
             />
