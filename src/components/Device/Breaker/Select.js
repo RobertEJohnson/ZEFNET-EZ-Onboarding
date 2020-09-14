@@ -91,10 +91,8 @@ class BreakerSelect extends Component {
 
       editBreaker = () => {
         let allBreaker = this.props.state.breaker.siteBreakerReducer
-          //console.log('in Edit Breaker with breakers:', allBreaker)
           for (let i = 0; i < allBreaker.length; i++ ){
             if (allBreaker[i].id === this.state.selectedBreaker){
-              //console.log('match found!', allBreaker[i])
               this.setState({
                 ...this.state,
                 edit: true,
@@ -142,7 +140,7 @@ class BreakerSelect extends Component {
     render(){
         const {classes} = this.props;
         return(
-            <Grid item style={{maxWidth: '800px'}} align='center'>
+            <Grid item style={{maxWidth: '800px'}} align='center' justify = 'center'>
             <AddBreaker handleClose = {this.handleClose} open = {this.state.open}/>
             <EditBreaker handleClose = {this.handleClose} open = {this.state.edit} breaker={this.state.fullBreakerInfo}/>
                 <Paper className={classes.paper} elevation={3}>
@@ -176,7 +174,7 @@ class BreakerSelect extends Component {
                     {
                         this.state.selectedBreaker?
                             <div>
-                                <DynamicButton type='edit' text='Edit Site' handleClick={this.editBreaker}/>
+                                <DynamicButton type='edit' text='Edit Breaker' handleClick={this.editBreaker}/>
                             </div>
                         :<></>
                     }

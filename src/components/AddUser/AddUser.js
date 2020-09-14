@@ -254,8 +254,8 @@ class AddUser extends Component {
                         className={classes.MiniTextFields}
                         value={this.state.editor || ""}
                       >
-                        <MenuItem value="False">View</MenuItem>
-                        <MenuItem value="True">Edit</MenuItem>
+                        <MenuItem value={False}>View</MenuItem>
+                        <MenuItem value={True}>Edit</MenuItem>
                       </Select>
                     </FormControl>
                 </Grid>

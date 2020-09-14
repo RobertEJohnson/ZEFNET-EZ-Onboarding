@@ -39,7 +39,7 @@ class AddSite extends Component {
       //post new site to site table
       const postObject = {
           first_name: this.state.first_name,
-          last_name: this.state.last_name,
+          second_name: this.state.last_name,
           email: this.state.email,
           phone: this.state.phone,
           address: this.state.address,
