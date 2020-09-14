@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Grid,  Select, Paper, InputLabel, FormControl, MenuItem} from '@material-ui/core';
+import {Grid, Select, Paper, InputLabel, FormControl, MenuItem} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
 import AddBreaker from './Add';
