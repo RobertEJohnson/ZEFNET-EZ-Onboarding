@@ -107,7 +107,8 @@ class UserTableRow extends Component{
                     email: this.state.email,
                     phone: this.state.phone,
                     editor: this.state.editor,
-                    id: this.props.user_id
+                    id: this.props.user_id,
+                    organization_id: this.props.state.organization.id,
                     };
                this.props.dispatch({ type: "UPDATE_ZEFUSER", payload: actionObject});  
             }

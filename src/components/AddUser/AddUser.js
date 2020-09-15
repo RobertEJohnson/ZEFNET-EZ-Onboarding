@@ -80,20 +80,10 @@ class AddUser extends Component {
     email: "",
     phone: "",
     editor: "",
-    tableRows: this.props.reduxState.zefUser,
     open: false,
     edit: 0,
     invalidEmail:false
   };
-
-  componentDidUpdate(previousProps) {
-    if (previousProps.reduxState.zefUser !== this.props.reduxState.zefUser) {
-      this.setState({
-        ...this.state,
-        tableRows: this.props.reduxState.zefUser,
-      });
-    }
-  }
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
