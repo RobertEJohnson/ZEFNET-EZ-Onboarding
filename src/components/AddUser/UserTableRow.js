@@ -81,10 +81,16 @@ class UserTableRow extends Component{
             editor: this.props.editor,
             organization_id: this.props.state.organization.id,
             open: false})
+         this.props.viewMode();
       }
 
 
       handleEdit = () => {
+           //set edit mode state in parent component as well
+        if(this.state.edit_mode){
+            this.props.viewMode();
+        }else{ this.props.editMode();
+        }
         const changesMade= 
             this.state.first_name !== this.props.first_name ||
             this.state.last_name !== this.props.last_name ||

@@ -56,7 +56,7 @@ class EditSite extends Component {
       //update existing site in site table
       const editObject = {
           first_name: this.state.first_name,
-          last_name: this.state.last_name,
+          second_name: this.state.last_name,
           email: this.state.email,
           phone: this.state.phone,
           address: this.state.address,

@@ -3,7 +3,7 @@ import {Button, withStyles} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {ChevronLeft, ChevronRight, Home as HomeIcon, EditTwoTone as EditIcon, EvStationTwoTone, SaveTwoTone, AddBoxTwoTone, CheckBoxTwoTone} from '@material-ui/icons';
+import {ChevronLeft, ChevronRight, SaveAltTwoTone, Home as HomeIcon, EditTwoTone as EditIcon, EvStationTwoTone, SaveTwoTone, AddBoxTwoTone, CheckBoxTwoTone} from '@material-ui/icons';
 
 /*
     DynamicButton API
@@ -194,6 +194,9 @@ class DynamicButton extends Component{
             case 'home-glow':
                 startIcon = <HomeIcon/>;
                 break;
+            case 'submit':
+                startIcon = <SaveAltTwoTone/>;
+                break;
             default:
                 break;
         }
@@ -221,6 +224,7 @@ class DynamicButton extends Component{
             {[classes['Button--primary']]: (this.props.type === 'next')},
             {[classes['Button--primary']]: (this.props.type === 'review')},
             {[classes['Button--primary']]: (this.props.type === 'save')},
+            {[classes['Button--primary']]: (this.props.type === 'submit')},
             {[classes['Button--outlined']]: (this.props.type === 'logOut')},
             {[classes['Button--homeIcon']]: (this.props.type === 'home')},
             {[classes['Button--homeIconGlow']]: (this.props.type === 'home-glow')},

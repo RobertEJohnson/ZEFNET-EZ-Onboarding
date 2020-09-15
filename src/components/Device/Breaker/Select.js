@@ -26,7 +26,8 @@ const styles = theme => ({
     },
     formControl: {
         margin: theme.spacing(1),
-        minWidth: 220,
+        width: '350px',
+
     },
     selectEmpty: {
         marginTop: theme.spacing(1),
@@ -90,10 +91,8 @@ class BreakerSelect extends Component {
 
       editBreaker = () => {
         let allBreaker = this.props.state.breaker.siteBreakerReducer
-          //console.log('in Edit Breaker with breakers:', allBreaker)
           for (let i = 0; i < allBreaker.length; i++ ){
             if (allBreaker[i].id === this.state.selectedBreaker){
-              //console.log('match found!', allBreaker[i])
               this.setState({
                 ...this.state,
                 edit: true,
@@ -175,7 +174,7 @@ class BreakerSelect extends Component {
                     {
                         this.state.selectedBreaker?
                             <div>
-                                <DynamicButton type='edit' text='Edit Site' handleClick={this.editBreaker}/>
+                                <DynamicButton type='edit' text='Edit Breaker' handleClick={this.editBreaker}/>
                             </div>
                         :<></>
                     }

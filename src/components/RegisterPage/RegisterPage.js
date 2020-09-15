@@ -259,7 +259,7 @@ class RegisterPage extends Component {
             onChange={this.handlePhoneNumberChange}
             InputProps={{ classes: { root: classes.TextField } }}
             inputProps={{ className: classes.TextField }}
-            InputLabelProps={{ style: { color: "white" } }}
+            InputLabelProps={{ style: { color: "white", marginLeft: '50px'} }}
           />
         </div>
         <br />
