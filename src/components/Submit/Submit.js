@@ -94,9 +94,12 @@ const styles = (theme) => ({
   },
   Titles: {
     fontWeight: 800,
+    wordWrap: 'break-word'
   },
   Information: {
     fontWeight: 300,
+    display: 'inline-block',
+    wordBreak: 'break-word'
   },
   InformationMarginBottom: {
     fontWeight: 300,
@@ -254,6 +257,7 @@ class Submit extends Component {
               <p className={classes.SubTitle}>
                 Please double-check all information and each user's privileges
               </p>
+              <div className={classes.reviewTable}>
               <Table className={classes.table}>
                 <TableHead className={classes.ReviewTable__head}>
                   <TableRow>
@@ -302,6 +306,7 @@ class Submit extends Component {
                   ))}
                 </TableBody>
               </Table>
+              </div>
               <DynamicButton type="edit" text="Edit Users" linkURL="/addUser"/>
             </Grid>
             <Grid item align="center" xs={12}>
@@ -486,7 +491,7 @@ class Submit extends Component {
                   <Accordion key={index} hover>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
-                      style={{ backgroundColor: "#C0C0C0", margin: "0" }}
+                      style={{ backgroundColor: "#C0C0C0", margin: "0",wordBreak: 'break-word' }}
                     >
                       <h2>{device.name}</h2>
 

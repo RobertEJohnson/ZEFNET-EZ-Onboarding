@@ -146,7 +146,7 @@ class CreateOrganization extends Component {
           value={this.state.organizationName || ""}
           onChange={this.handleInputChangeFor("organizationName")}
           InputProps={{ classes: { root: classes.TextField } }}
-          inputProps={{ className: classes.TextField }}
+          inputProps={{ maxLength: 100, className: classes.TextField }}
           InputLabelProps={{ style: { color: "white" } }}
         />
         <br />
@@ -160,7 +160,7 @@ class CreateOrganization extends Component {
           value={this.state.email || ""}
           onChange={this.handleInputChangeFor("email")}
           InputProps={{ classes: { root: classes.TextField } }}
-          inputProps={{ className: classes.TextField }}
+          inputProps={{ maxLength: 100, className: classes.TextField }}
           InputLabelProps={{ style: { color: "white" } }}
         />
         <br />
@@ -172,7 +172,7 @@ class CreateOrganization extends Component {
           value={this.state.organizationAddress || ""}
           onChange={this.handleInputChangeFor("organizationAddress")}
           InputProps={{ classes: { root: classes.TextField } }}
-          inputProps={{ className: classes.TextField }}
+          inputProps={{ maxLength: 500, className: classes.TextField }}
           InputLabelProps={{ style: { color: "white" } }}
         />
         <br />
@@ -187,7 +187,7 @@ class CreateOrganization extends Component {
           value={this.state.primaryNumber || ""}
           onChange={this.handlePhoneNumberChange}
           InputProps={{ classes: { root: classes.TextField } }}
-          inputProps={{ className: classes.TextField }}
+          inputProps={{ maxLength: 30, className: classes.TextField }}
           InputLabelProps={{ style: { color: "white" } }}
         />
         <br />

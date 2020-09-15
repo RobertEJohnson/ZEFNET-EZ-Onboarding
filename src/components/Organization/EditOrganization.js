@@ -115,7 +115,7 @@ class EditOrganization extends Component {
           value={this.state.organizationName}
           onChange={this.handleInputChangeFor("organizationName")}
           InputProps={{ classes: { root: classes.TextField } }}
-          inputProps={{ className: classes.TextField }}
+          inputProps={{ maxLength: 100, className: classes.TextField }}
           InputLabelProps={{ style: { color: "white" } }}
         />
         <br />
@@ -129,7 +129,7 @@ class EditOrganization extends Component {
           className={classes.SmallBottomBuffer}
           onChange={this.handleInputChangeFor("email")}
           InputProps={{ classes: { root: classes.TextField } }}
-          inputProps={{ className: classes.TextField }}
+          inputProps={{ maxLength: 100, className: classes.TextField }}
           InputLabelProps={{ style: { color: "white" } }}
         />
         <br />
@@ -144,7 +144,7 @@ class EditOrganization extends Component {
           className={classes.SmallBottomBuffer}
           onChange={this.handlePhoneNumberChange}
           InputProps={{ classes: { root: classes.TextField } }}
-          inputProps={{ className: classes.TextField }}
+          inputProps={{ maxLength: 30, className: classes.TextField }}
           InputLabelProps={{ style: { color: "white", marginLeft: '50px'} }}
         />
         <br />
@@ -156,7 +156,7 @@ class EditOrganization extends Component {
           className={classes.LargeBottomBuffer}
           onChange={this.handleInputChangeFor("organizationAddress")}
           InputProps={{ classes: { root: classes.TextField } }}
-          inputProps={{ className: classes.TextField }}
+          inputProps={{ maxLength: 500, className: classes.TextField }}
           InputLabelProps={{ style: { color: "white" } }}
         />
         <br />

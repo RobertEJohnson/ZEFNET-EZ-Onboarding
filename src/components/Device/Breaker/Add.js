@@ -139,6 +139,7 @@ class AddBreaker extends Component {
               multiline
               value={this.state.description}
               onChange = {this.handleChange}
+              inputProps={{maxLength: 300}}
             />   
             <DialogContentText style={{marginTop: '5px'}}>
               You can complete this process multiple times for your selected site.

@@ -185,6 +185,7 @@ class UserTableRow extends Component{
                                         value={this.state.first_name}
                                         name='first_name'
                                         onChange={this.handleChange}
+                                        inputProps={{maxLength: 50}}
                                         required/>
                                 </TableCell>
                                 <TableCell className={classes.ViewCell}>
@@ -193,6 +194,7 @@ class UserTableRow extends Component{
                                         value={this.state.last_name}
                                         name='last_name'
                                         onChange={this.handleChange}
+                                        inputProps={{maxLength: 100}}
                                         required/>
                                 </TableCell>
                                 <TableCell className={classes.ViewCell}>
@@ -201,6 +203,7 @@ class UserTableRow extends Component{
                                         value={this.state.email}
                                         name='email'
                                         onChange={this.handleChange}
+                                        inputProps={{maxLength: 100}}
                                         required/>
                                 </TableCell>
                                 <TableCell className={classes.ViewCell}>
@@ -209,6 +212,7 @@ class UserTableRow extends Component{
                                         value={this.state.phone}
                                         name='phone'
                                         onChange={this.handleChange}
+                                        inputProps={{maxLength: 30}}
                                         required/>
                                 </TableCell>
                                 <TableCell className={classes.ViewCell}>

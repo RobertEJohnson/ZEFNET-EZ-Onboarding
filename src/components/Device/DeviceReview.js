@@ -22,6 +22,8 @@ const styles = theme => ({
   },
   Information: {
     fontWeight: 300,
+    display: 'inline-block',
+    wordBreak: 'break-word'
   },
   InformationMarginBottom: {
     fontWeight: 300,

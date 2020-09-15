@@ -279,6 +279,7 @@ class AddUser extends Component {
                   label="First Name:"
                   variant="filled"
                   value={this.state.first_name}
+                  inputProps={{maxLength: 50}}
                   onChange={this.handleInputChangeFor("first_name")}
                 />
                 <TextField
@@ -288,6 +289,7 @@ class AddUser extends Component {
                   label="Last Name:"
                   variant="filled"
                   value={this.state.last_name}
+                  inputProps={{maxLength: 100}}
                   onChange={this.handleInputChangeFor("last_name")}
                 />
                 <TextField
@@ -299,6 +301,7 @@ class AddUser extends Component {
                   label="Email:"
                   variant="filled"
                   value={this.state.email}
+                  inputProps={{maxLength: 100}}
                   onChange={this.handleInputChangeFor("email")}
                 />
                 <MuiPhoneNumber
@@ -310,6 +313,7 @@ class AddUser extends Component {
                   variant="filled"
                   value={this.state.phone || ""}
                   onChange={this.handlePhoneNumberChange}
+                  inputProps={{maxLength: 30}}
                 />
                 <FormControl variant="filled" style={{ width: "140px" }}>
                   <InputLabel>Privileges:</InputLabel>
