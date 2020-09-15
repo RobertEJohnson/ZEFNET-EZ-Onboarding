@@ -150,6 +150,7 @@ class BreakerSelect extends Component {
                             Please choose from existing below or press the 'Add Breaker' button.
                         </p>   
                     </div>
+                    <Grid container direction = 'row' alignItems = 'center' justify = 'center'>
                     <FormControl variant="filled" className={classes.formControl}>
                         <InputLabel>Choose From Existing</InputLabel>
                         <Select
@@ -174,10 +175,11 @@ class BreakerSelect extends Component {
                     {
                         this.state.selectedBreaker?
                             <div>
-                                <DynamicButton type='edit' text='Edit Breaker' handleClick={this.editBreaker}/>
+                                <DynamicButton type='edit' text='Edit' handleClick={this.editBreaker}/>
                             </div>
-                        :<></>
+                        :<DynamicButton type='edit' text='Edit' isDisabled = {true}/>
                     }
+                    </Grid>
                     <br/>
                     <br/>
                     <h2 className={classes.hrWordDivder}><span className={classes.hrWord}>Or</span></h2>

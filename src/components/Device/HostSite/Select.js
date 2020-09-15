@@ -156,9 +156,10 @@ class HostSelect extends Component {
                 <h1>Select Your Host Site</h1>
                 <div style={{marginBottom: '20px'}}> 
                 <p style={{margin: 'auto 40px'}}>
-                    Please choose from existing below or press the 'Add Site' button.
+                    Please choose from existing below or click the 'Add Site' button.
                     </p>   
                 </div>
+                <Grid container direction = 'row' justify = 'center' alignItems = 'center'>
                     <FormControl variant="filled" className={classes.formControl}>
                       <InputLabel>Choose From Existing Sites</InputLabel>
                       <Select
@@ -177,11 +178,11 @@ class HostSelect extends Component {
                   {
                     this.state.selectedSite ?
                       <div>
-                        <DynamicButton type='edit' text='Edit Site' handleClick={this.editSite}/>
+                        <DynamicButton type='edit' text='Edit' handleClick={this.editSite}/>
                       </div>
-                    : <></>
+                    :<DynamicButton type='edit' text='Edit' isDisabled = {true}/>
                   }  
-                        
+                 </Grid>       
                 <br/>
                 <br/>
                 <h2 className={classes.hrWordDivder}><span className={classes.hrWord}>Or</span></h2>    
