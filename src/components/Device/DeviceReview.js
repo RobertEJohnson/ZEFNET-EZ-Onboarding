@@ -271,7 +271,11 @@ class DeviceReview extends Component {
                     <div style={{position: 'absolute', float: 'left'}}>
                         <DynamicButton type='previous' text='Previous' linkURL='/deviceName'/>
                     </div>
-                        <DynamicButton type='confirm' text='Add This Device' handleClick={this.saveDevice}/>  
+                       {this.props.state.device.id?
+                       <DynamicButton key = 'savebutton' type='confirm' text='Save Device Changes' handleClick={this.saveDevice}/> 
+                       :
+                       <DynamicButton key = 'addbutton' type='confirm' text='Add This Device' handleClick={this.saveDevice}/> 
+                        }
                 </Grid>
             </Paper> 
           </Grid>
