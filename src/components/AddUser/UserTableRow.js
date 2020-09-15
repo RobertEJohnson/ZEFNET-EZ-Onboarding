@@ -222,8 +222,8 @@ class UserTableRow extends Component{
                                         name='editor'
                                         onChange={this.handleChange}
                                        >
-                                           <MenuItem value = 'true'>Edit</MenuItem>
-                                           <MenuItem value = 'false'>View</MenuItem>
+                                           <MenuItem value = {true}>Edit</MenuItem>
+                                           <MenuItem value = {false}>View</MenuItem>
                                        </Select>
                                 </TableCell>
                             </>
