@@ -42,7 +42,16 @@ const styles = theme => ({
     justifyContent:'space-between',
     maxWidth: '180px',
     marginTop: '1.5rem'
-  }
+  },
+  informationContainer: {
+    padding: "2.5rem",
+    maxWidth: "530px",
+    backgroundColor: "#1c2447",
+    border: "1px solid white",
+    textAlign: "center",
+    fontSize: "15px",
+    borderRadius: '5px'
+  },
 })
 
 
@@ -57,9 +66,10 @@ componentDidMount(){
     const {classes} = this.props;
     return (
           <Grid item align='center' className={classes.ViewOrgPage}>
-            <h1 className={classes.ViewOrgPage__title}>{this.props.reduxState.organization.name}</h1>
-            <p className={classes.ViewOrgPage__subTitle}>Organization Information</p>
-              <div className={classes.ViewOrgPage__flexContainer}>
+            <div className = {classes.informationContainer}>
+              <h1 className={classes.ViewOrgPage__title}>{this.props.reduxState.organization.name}</h1>
+              <p className={classes.ViewOrgPage__subTitle}>Organization Information</p>
+                <div className={classes.ViewOrgPage__flexContainer}>
                   <div className={classes.LargeRightBuffer}>
                     <p className={classes.ViewOrgPage__flexContainer__titles}>
                       Email:
@@ -79,7 +89,7 @@ componentDidMount(){
                 <DynamicButton type='edit-glow' text='Edit' linkURL='/editOrganization'/>
                 <DynamicButton type='home-glow' text='Home' linkURL='/organizationHome'/>
               </div>
-            
+              </div> 
         </Grid>
     );
   }

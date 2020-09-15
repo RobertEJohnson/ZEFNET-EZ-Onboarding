@@ -193,7 +193,6 @@ class DeviceName extends Component {
             </div>
 
             <div>
-              <p style={{ margin: "5px 0px 0px 0px" }}>Installation Date:</p>
               <TextField
                 required
                 type="Date"
@@ -203,6 +202,10 @@ class DeviceName extends Component {
                 variant="filled"
                 value={this.state.installationDate || ""}
                 onChange={this.handleInputChangeFor("installationDate")}
+                label = 'Installation Date'
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </div>
             <div className={classes.buttonDiv}>

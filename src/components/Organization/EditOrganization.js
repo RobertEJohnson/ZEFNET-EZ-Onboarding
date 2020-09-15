@@ -86,7 +86,6 @@ class EditOrganization extends Component {
   };
 
   checkEmail = (e) => {
-    console.log("YAY");
     const value = e.target.value;
     if (value.includes("@") && value.includes(".")) {
       this.setState({
@@ -96,7 +95,6 @@ class EditOrganization extends Component {
       this.setState({
         invalidEmail: true,
       });
-      console.log("Yup");
     }
   };
 
@@ -147,7 +145,7 @@ class EditOrganization extends Component {
           onChange={this.handlePhoneNumberChange}
           InputProps={{ classes: { root: classes.TextField } }}
           inputProps={{ className: classes.TextField }}
-          InputLabelProps={{ style: { color: "white" } }}
+          InputLabelProps={{ style: { color: "white", marginLeft: '50px'} }}
         />
         <br />
         <TextField

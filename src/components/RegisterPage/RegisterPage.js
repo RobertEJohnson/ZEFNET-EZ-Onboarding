@@ -96,7 +96,8 @@ class RegisterPage extends Component {
       this.state.email &&
       this.state.password &&
       this.state.first_name &&
-      this.state.last_name
+      this.state.last_name &&
+      !this.state.invalidEmail
     ) {
       if (this.state.password === this.state.confirm_password) {
         const lowerEmail = this.state.email.toLowerCase();
@@ -133,7 +134,6 @@ class RegisterPage extends Component {
   };
 
   checkEmail = (e) => {
-    console.log("YAY");
     const value = e.target.value;
     if (value.includes("@") && value.includes(".")) {
       this.setState({
@@ -143,7 +143,6 @@ class RegisterPage extends Component {
       this.setState({
         invalidEmail: true,
       });
-      console.log("Yup");
     }
   };
 
