@@ -229,12 +229,6 @@ class DeviceReview extends Component {
                 <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
                     <div className={classes.FlexContainerColumn}>
                         <div className={classes.CenterText}>
-                            <p className={classes.Titles}>
-                                Device Type:
-                            </p>
-                            <p  className={classes.InformationMarginBottom}>
-                                {this.props.state.device.type.name}
-                            </p>
                             {this.props.state.device.serial2 ?
                                 <>
                                     <p className={classes.Titles}>Serial Number One:</p>
