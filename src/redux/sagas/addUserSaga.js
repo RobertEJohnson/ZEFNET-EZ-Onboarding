@@ -38,6 +38,7 @@ function* fetchZefUser(action) {
         console.log( "====> in updateZefUser Saga", action.payload)
       const response = yield axios.put(`/api/add-user/${action.payload.id}`, action.payload);
       console.log('back from update /api/add-user with:', response)
+      yield put ({ type: 'FETCH_ZEFUSER', payload: action.payload.organization_id})
     } catch (error) {
       console.log("Trouble updating users", error);
     }
