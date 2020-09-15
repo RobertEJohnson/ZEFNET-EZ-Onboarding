@@ -212,7 +212,7 @@ class Submit extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-        <div className={classes.root} style={{ maxWidth: "1000px" }}>
+        <div className={classes.root} style={{ minWidth: "1000px", maxWidth: '1000px' }}>
           <Paper className={classes.paper}>
             <Grid item align="center" style={{ marginBottom: "2rem" }}>
               <h1>All Devices and ZefNet Users Added?</h1>
