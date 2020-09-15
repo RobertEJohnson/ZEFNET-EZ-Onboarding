@@ -121,7 +121,7 @@ class LoginPage extends Component {
             value={this.state.email}
             onChange={this.handleInputChangeFor("email")}
             InputProps={{ classes: { root: classes.TextField } }}
-            inputProps={{ className: classes.TextField }}
+            inputProps={{ maxLength: 100, className: classes.TextField }}
             InputLabelProps={{ style: { color: "white" } }}
           />
           <br />
@@ -135,7 +135,7 @@ class LoginPage extends Component {
             value={this.state.password}
             onChange={this.handleInputChangeFor("password")}
             InputProps={{ classes: { root: classes.TextField } }}
-            inputProps={{ className: classes.TextField }}
+            inputProps={{ maxLength: 1000, className: classes.TextField }}
             InputLabelProps={{ style: { color: "white" } }}
             onKeyDown={this.handleKeyDown}
           />

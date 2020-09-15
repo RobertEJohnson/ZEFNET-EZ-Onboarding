@@ -83,6 +83,40 @@ const styles = (theme) => ({
     fontSize: "15px",
     marginBottom: "1rem",
   },
+
+  Left:{
+    width: '75px'
+  },
+  ButtonContainer:{
+    marginTop: '1rem',
+    position: 'relative',
+    minWidth: '95%'
+  },
+  Titles: {
+    fontWeight: 800,
+    wordWrap: 'break-word'
+  },
+  Information: {
+    fontWeight: 300,
+    display: 'inline-block',
+    wordBreak: 'break-word'
+  },
+  InformationMarginBottom: {
+    fontWeight: 300,
+    marginBottom: '5px'
+  },
+  FlexContainerColumn: {
+    display: 'flex',
+    flexDirection: 'column', 
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'left',
+    width: '350px',
+    padding: '1rem 1.5rem 1rem 0',
+  },
+  CenterText: {
+      textAlign: 'center'
+  }
 });
 
 class Submit extends Component {
@@ -212,7 +246,7 @@ class Submit extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-        <div className={classes.root} style={{ maxWidth: "1000px" }}>
+        <div className={classes.root} style={{ minWidth: "1000px", maxWidth: '1000px' }}>
           <Paper className={classes.paper}>
             <Grid item align="center" style={{ marginBottom: "2rem" }}>
               <h1>All Devices and ZefNet Users Added?</h1>
@@ -223,6 +257,7 @@ class Submit extends Component {
               <p className={classes.SubTitle}>
                 Please double-check all information and each user's privileges
               </p>
+              <div className={classes.reviewTable}>
               <Table className={classes.table}>
                 <TableHead className={classes.ReviewTable__head}>
                   <TableRow>
@@ -271,7 +306,8 @@ class Submit extends Component {
                   ))}
                 </TableBody>
               </Table>
-              <DynamicButton type="edit" text="Edit Users" linkURL="/addUser" />
+              </div>
+              <DynamicButton type="edit" text="Edit Users" linkURL="/addUser"/>
             </Grid>
             <Grid item align="center" xs={12}>
               <h2>
@@ -439,7 +475,7 @@ class Submit extends Component {
                         </TableCell>
                         <TableCell align="right">
                           {device.limit}
-                          {"\u00A0"} Amps
+                          {"\u00A0"}Amps
                         </TableCell>
                         <TableCell align="right">
                           {device.description}
@@ -455,7 +491,7 @@ class Submit extends Component {
                   <Accordion key={index} hover>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
-                      style={{ backgroundColor: "#C0C0C0", margin: "0" }}
+                      style={{ backgroundColor: "#C0C0C0", margin: "0",wordBreak: 'break-word' }}
                     >
                       <h2>{device.name}</h2>
 
@@ -479,298 +515,171 @@ class Submit extends Component {
                         alignContent="center"
                         alignItems="center"
                       >
-                        <Grid item align="center" xs={12}>
-                          <Grid
-                            container
-                            direction="row"
-                            alignItems="center"
-                            justify="space-between"
-                          >
-                            <div className={classes.left} />
-                            <h2>Hosting Location</h2>
-                            <Button
-                              onClick={() => {
-                                this.handleEditFor({ index });
-                              }}
-                              component={Link}
-                              to="/hostSelect"
-                            >
-                              Edit <EditIcon />
-                            </Button>
-                          </Grid>
+                      <Grid item align='center' xs={12}>
+                        <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
+                            <div className = {classes.Left}/>                  
+                            <h2>Hosting Location</h2> 
+                            <DynamicButton type='edit' text="Edit" linkURL='/hostSelect' handleClick={()=>this.handleEditFor({index})}/>
                         </Grid>
-                        <Grid
-                          item
-                          align="center"
-                          xs={12}
-                          style={{ backgroundColor: "lightgrey" }}
-                        >
-                          <h3 style={{ display: "inline-block" }}>
-                            Address:{"\u00A0"}
-                            {"\u00A0"}
-                          </h3>
-                          <p style={{ display: "inline-block" }}>
-                            {device.address}
-                          </p>
-                        </Grid>
-                        <Grid item align="center" xs={12}>
-                          <h2>Local Contact for Location</h2>
-                        </Grid>
-                        <Grid
-                          item
-                          align="center"
-                          xs={12}
-                          style={{ backgroundColor: "lightgrey" }}
-                        >
-                          <div>
-                            <h3
-                              className={classes.reviewItem}
-                              style={{ marginTop: "10px" }}
-                            >
-                              First Name:{"\u00A0"}
-                              {"\u00A0"}
-                            </h3>
-                            <p className={classes.reviewItem}>
-                              {device.first_name}
-                            </p>
-                          </div>
-                          <div>
-                            <h3 className={classes.reviewItem}>
-                              Second Name:{"\u00A0"}
-                              {"\u00A0"}
-                            </h3>
-                            <p className={classes.reviewItem}>
-                              {device.second_name}
-                            </p>
-                          </div>
-                          <div>
-                            <h3 className={classes.reviewItem}>
-                              Phone Number:{"\u00A0"}
-                              {"\u00A0"}
-                            </h3>
-                            <p className={classes.reviewItem}>{device.phone}</p>
-                          </div>
-                          <div>
-                            <h3
-                              className={classes.reviewItem}
-                              style={{ marginBottom: "10px" }}
-                            >
-                              Email:{"\u00A0"}
-                              {"\u00A0"}
-                            </h3>
-                            <p className={classes.reviewItem}>{device.email}</p>
-                          </div>
-                        </Grid>
+                    </Grid>
 
-                        <Grid item align="center" xs={12}>
-                          <Grid
-                            container
-                            direction="row"
-                            alignItems="center"
-                            justify="space-between"
-                          >
-                            <div className={classes.left} />
-                            <h2>Breaker Information</h2>
-                            <Button
-                              onClick={() => {
-                                this.handleEditFor({ index });
-                              }}
-                              component={Link}
-                              to="/breakerSelect"
-                            >
-                              Edit <EditIcon />
-                            </Button>
-                          </Grid>
-                        </Grid>
-
-                        <Grid
-                          item
-                          align="center"
-                          xs={12}
-                          style={{ backgroundColor: "lightgrey" }}
-                        >
-                          <div>
-                            <h3
-                              className={classes.reviewItem}
-                              style={{ marginTop: "10px" }}
-                            >
-                              Breaker Name:{"\u00A0"}
-                              {"\u00A0"}
-                            </h3>
-                            <p className={classes.reviewItem}>
-                              {device.breaker_name}
-                            </p>
-                          </div>
-                          <div>
-                            <h3 className={classes.reviewItem}>
-                              Breaker Limit:{"\u00A0"}
-                              {"\u00A0"}
-                            </h3>
-                            <p className={classes.reviewItem}>
-                              {device.limit}
-                              {"\u00A0"}Amps
-                            </p>
-                          </div>
-                          <div>
-                            <h3
-                              className={classes.reviewItem}
-                              style={{ marginBottom: "10px" }}
-                            >
-                              Breaker Description:{"\u00A0"}
-                              {"\u00A0"}
-                            </h3>
-                            <p className={classes.reviewItem}>
-                              {device.description}
-                            </p>
-                          </div>
-                        </Grid>
-
-                        <Grid item align="center" xs={12}>
-                          <Grid
-                            container
-                            direction="row"
-                            alignItems="center"
-                            justify="space-between"
-                          >
-                            <div className={classes.left} />
-                            <h2>Device Type</h2>
-                            <Button
-                              onClick={() => {
-                                this.handleEditFor({ index });
-                              }}
-                              component={Link}
-                              to="/deviceType"
-                            >
-                              Edit <EditIcon />
-                            </Button>
-                          </Grid>
-                        </Grid>
-
-                        <Grid
-                          item
-                          align="center"
-                          xs={12}
-                          style={{ backgroundColor: "lightgrey" }}
-                        >
-                          <div>
-                            <h3
-                              className={classes.reviewItem}
-                              style={{ marginTop: "10px" }}
-                            >
-                              Device Type:{"\u00A0"}
-                              {"\u00A0"}
-                            </h3>
-                            <p className={classes.reviewItem}>
-                              {device.type_name}
-                            </p>
-                          </div>
-                        </Grid>
-
-                        <Grid item align="center" xs={12}>
-                          <Grid
-                            container
-                            direction="row"
-                            alignItems="center"
-                            justify="space-between"
-                          >
-                            <div className={classes.left} />
-                            <h2>Device Information</h2>
-                            <Button
-                              onClick={() => {
-                                this.handleEditFor({ index });
-                              }}
-                              component={Link}
-                              to="/deviceSerial"
-                            >
-                              Edit <EditIcon />
-                            </Button>
-                          </Grid>
-                        </Grid>
-
-                        <Grid
-                          item
-                          align="center"
-                          xs={12}
-                          style={{ backgroundColor: "lightgrey" }}
-                        >
-                          <div>
-                            <h3
-                              className={classes.reviewItem}
-                              style={{ margin: "10px 0px" }}
-                            >
-                              Serial Number:{"\u00A0"}
-                              {"\u00A0"}
-                            </h3>
-                            <p className={classes.reviewItem}>
-                              {device.serial_number}
-                            </p>
-                          </div>
-                          {device.serial_number2 && (
-                            <div>
-                              <h3
-                                className={classes.reviewItem}
-                                style={{ margin: "10px 0px" }}
-                              >
-                                Second Serial Number:{"\u00A0"}
-                                {"\u00A0"}
-                              </h3>
-                              <p className={classes.reviewItem}>
-                                {device.serial_number2}
-                              </p>
+                    <Grid item xs={12} align='center' style={{backgroundColor: 'lightgrey'}}>
+                        <div className={classes.FlexContainerColumn}>
+                            <div className={classes.CenterText}>
+                                <p className={classes.Titles}>
+                                    Address:
+                                </p>
+                                <p className={classes.Information}>
+                                    {device.address}
+                                </p>
                             </div>
-                          )}
-                        </Grid>
-                        <Grid item align="center" xs={12}>
-                          <Grid
-                            container
-                            direction="row"
-                            alignItems="center"
-                            justify="space-between"
-                          >
-                            <div className={classes.left} />
-                            <h2>Additional Information</h2>
-                            <Button
-                              onClick={() => {
-                                this.handleEditFor({ index });
-                              }}
-                              component={Link}
-                              to="/deviceName"
-                            >
-                              Edit <EditIcon />
-                            </Button>
-                          </Grid>
-                        </Grid>
+                        </div>                    
+                    </Grid>
 
-                        <Grid
-                          item
-                          align="center"
-                          xs={12}
-                          style={{ backgroundColor: "lightgrey" }}
-                        >
-                          <div>
-                            <h3
-                              className={classes.reviewItem}
-                              style={{ marginTop: "10px" }}
-                            >
-                              Charger Name:{"\u00A0"}
-                              {"\u00A0"}
-                            </h3>
-                            <p className={classes.reviewItem}>{device.name}</p>
-                          </div>
-                          <div>
-                            <h3
-                              className={classes.reviewItem}
-                              style={{ marginBottom: "10px" }}
-                            >
-                              Installation Date:{"\u00A0"}
-                              {"\u00A0"}
-                            </h3>
-                            <p className={classes.reviewItem}>
-                              {device.install_date.substring(0, 10)}
+                    <Grid item align="center" xs={12}>
+                        <h2>Local Contact for Location</h2>
+                    </Grid>
+                        
+                    <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
+                    <div className={classes.FlexContainerColumn}>
+                        <div className={classes.CenterText}>
+                            <p className={classes.Titles}>
+                                First Name:
                             </p>
-                          </div>
-                        </Grid>
-                      </Grid>
+                            <p className={classes.InformationMarginBottom}>
+                                {device.first_name}
+                            </p>
+                            <p className={classes.Titles}>
+                                Second Name:
+                            </p>
+                            <p className={classes.InformationMarginBottom}>
+                                {device.second_name}
+                            </p>
+                            <p className={classes.Titles}>
+                                Phone Number:
+                            </p>
+                            <p className={classes.InformationMarginBottom}>
+                                {device.phone}
+                            </p>
+                            <p className={classes.Titles}>
+                                Email Address:
+                            </p>
+                            <p className={classes.Information}>
+                                {device.email}
+                            </p>
+                        </div>
+                    </div> 
+                </Grid>
+                <Grid item align='center' xs={12}>
+                    <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
+                        <div className = {classes.Left}/> 
+                        <h2>Breaker Information</h2> 
+                        <DynamicButton type='edit' text="Edit" linkURL='/breakerSelect' handleClick={()=>this.handleEditFor({index})}/>
+                    </Grid>
+                </Grid>
+
+                <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
+                
+                <div className={classes.FlexContainerColumn}>
+                    <div className={classes.CenterText}>
+                        <p className={classes.Titles}>
+                            Breaker Name:
+                        </p>
+                        <p className={classes.InformationMarginBottom}>
+                            {device.breaker_name}
+                        </p>
+                        <p className={classes.Titles}>
+                            Breaker Limit:
+                        </p>
+                        <p  className={classes.InformationMarginBottom}>
+                            {device.limit} AMPS
+                        </p>
+                        <p className={classes.Titles}>
+                            Breaker Description:
+                        </p>
+                        <p className={classes.Information}>
+                            {device.description}
+                        </p>
+                    </div>
+                </div> 
+                </Grid>
+
+                <Grid item align='center' xs={12}>
+                    <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
+                        <div className = {classes.Left}/> 
+                        <h2>Device Type</h2> 
+                        <DynamicButton type='edit' text="Edit" linkURL='/deviceType' handleClick={()=>this.handleEditFor({index})}/>
+                    </Grid>
+                </Grid>
+
+                <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
+                    <div className={classes.FlexContainerColumn}>
+                        <div className={classes.CenterText}>
+                            <p className={classes.Titles}>
+                                Device Type:
+                            </p>
+                            <p className={classes.Information}>
+                                {device.type_name[0]}
+                            </p>
+                        </div>
+                    </div> 
+                </Grid>
+
+                <Grid item align='center' xs={12}>
+                    <Grid container direction='row' alignItems='center' justify='space-between'>
+                        <div className = {classes.Left}/> 
+                        <h2>Device Information</h2> 
+                        <DynamicButton type='edit' text="Edit" linkURL='/deviceSerial' handleClick={()=>this.handleEditFor({index})}/>
+                    </Grid>
+                </Grid>
+
+                <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
+                    <div className={classes.FlexContainerColumn}>
+                        <div className={classes.CenterText}>
+                            {device.serial2 ?
+                                <>
+                                    <p className={classes.Titles}>Serial Number One:</p>
+                                    <p className={classes.InformationMarginBottom}>{device.serial_number}</p>
+                                    <p className={classes.Titles}>Serial Number Two:</p>
+                                    <p className={classes.Information}>{device.serial_number2}</p>
+                                </>
+                                :
+                                <>
+                                    <p className={classes.Titles}>Serial Number:</p>
+                                    <p className={classes.Information}>{device.serial_number}</p>
+                                </>
+                            }
+                        </div>
+                    </div> 
+                </Grid>
+
+                <Grid item align='center' xs={12}>
+                    <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
+                        <div className = {classes.Left}/> 
+                        <h2>Additional Information</h2> 
+                        <DynamicButton type='edit' text="Edit" linkURL='/deviceName' handleClick={()=>this.handleEditFor({index})}/>
+                    </Grid>
+                </Grid>
+
+                <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
+                    <div className={classes.FlexContainerColumn}>
+                        <div className={classes.CenterText}>
+                            <p className={classes.Titles}>
+                                Charger Name:
+                            </p>
+                            <p className={classes.InformationMarginBottom}>
+                                {device.name}
+                            </p>
+                            <p className={classes.Titles}>
+                                Installation Date:
+                            </p>
+                            <p className={classes.Information}>
+                                {device.install_date.substring(0,10)}
+                            </p>
+                        </div>
+                    </div> 
+                </Grid>
+                </Grid>
                     </AccordionDetails>
                   </Accordion>
                 ))}

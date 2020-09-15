@@ -165,6 +165,7 @@ class EditBreaker extends Component {
               multiline
               value={this.state.description}
               onChange = {this.handleChange}
+              inputProps={{maxLength: 300}}
             />   
             <DialogContentText style={{marginTop: '5px'}}>
               Updated breaker information will appear with all associated devices

@@ -186,7 +186,7 @@ class RegisterPage extends Component {
           value={this.state.first_name}
           onChange={this.handleInputChangeFor("first_name")}
           InputProps={{ classes: { root: classes.ShortTextField } }}
-          inputProps={{ className: classes.ShortTextField }}
+          inputProps={{ maxLength: 50, className: classes.ShortTextField }}
           InputLabelProps={{ style: { color: "white" } }}
         />
         <TextField
@@ -198,7 +198,7 @@ class RegisterPage extends Component {
           value={this.state.last_name}
           onChange={this.handleInputChangeFor("last_name")}
           InputProps={{ classes: { root: classes.ShortTextField } }}
-          inputProps={{ className: classes.ShortTextField }}
+          inputProps={{ maxLength: 100, className: classes.ShortTextField }}
           InputLabelProps={{ style: { color: "white" } }}
         />
         <br />
@@ -213,7 +213,7 @@ class RegisterPage extends Component {
           value={this.state.email}
           onChange={this.handleInputChangeFor("email")}
           InputProps={{ classes: { root: classes.TextField } }}
-          inputProps={{ className: classes.TextField }}
+          inputProps={{ maxLength: 100, className: classes.TextField }}
           InputLabelProps={{ style: { color: "white" } }}
         />
         <br />
@@ -227,7 +227,7 @@ class RegisterPage extends Component {
           value={this.state.password}
           onChange={this.handleInputChangeFor("password")}
           InputProps={{ classes: { root: classes.TextField } }}
-          inputProps={{ className: classes.TextField }}
+          inputProps={{ maxLength: 1000, className: classes.TextField }}
           InputLabelProps={{ style: { color: "white" } }}
         />
         <br />
@@ -241,7 +241,7 @@ class RegisterPage extends Component {
           value={this.state.confirm_password}
           onChange={this.handleInputChangeFor("confirm_password")}
           InputProps={{ classes: { root: classes.TextField } }}
-          inputProps={{ className: classes.TextField }}
+          inputProps={{ maxLength: 1000, className: classes.TextField }}
           InputLabelProps={{ style: { color: "white" } }}
         />
         <br />
@@ -257,7 +257,7 @@ class RegisterPage extends Component {
             value={this.state.phone}
             onChange={this.handlePhoneNumberChange}
             InputProps={{ classes: { root: classes.TextField } }}
-            inputProps={{ className: classes.TextField }}
+            inputProps={{ maxLength: 30, className: classes.TextField }}
             InputLabelProps={{ style: { color: "white", marginLeft: '50px'} }}
           />
         </div>

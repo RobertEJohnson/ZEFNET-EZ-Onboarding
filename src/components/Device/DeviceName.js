@@ -189,6 +189,7 @@ class DeviceName extends Component {
                 variant="filled"
                 value={this.state.chargerName || ""}
                 onChange={this.handleInputChangeFor("chargerName")}
+                inputProps={{maxLength: 100}}
               />
             </div>
 
