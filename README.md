@@ -99,7 +99,7 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 1. In the deploy section, select manual deploy
 
 ## License
-MIT
+MIT Copyright (c) 2020 Amir Mussa, Ace Fox, Robert Johnson
 
 Note, include this only if you have a license file. GitHub will generate one for you if you want!
 
