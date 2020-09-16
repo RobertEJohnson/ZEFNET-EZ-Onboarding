@@ -125,7 +125,7 @@ class CreateOrganization extends Component {
     const value = e.target.value;
     if (value.includes("@") && value.includes(".")) {
       this.setState({
-        ...this.statem,
+        ...this.state,
         invalidEmail: false,
       });
     } else {
