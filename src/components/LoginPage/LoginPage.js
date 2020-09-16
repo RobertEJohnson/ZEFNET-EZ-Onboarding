@@ -56,7 +56,7 @@ class LoginPage extends Component {
   login = (event) => {
     event.preventDefault();
 
-    if (this.state.email && this.state.password) {
+    if (this.state.email && this.state.password &&!this.state.invalidEmail) {
       this.props.dispatch({
         type: "LOGIN",
         payload: {
@@ -81,6 +81,7 @@ class LoginPage extends Component {
       this.login(event);
     }
   };
+
 
   checkEmail = (e) => {
     const value = e.target.value;
