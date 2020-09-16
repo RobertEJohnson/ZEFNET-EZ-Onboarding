@@ -56,7 +56,7 @@ class LoginPage extends Component {
   login = (event) => {
     event.preventDefault();
 
-    if (this.state.email && this.state.password) {
+    if (this.state.email && this.state.password &&!this.state.invalidEmail) {
       this.props.dispatch({
         type: "LOGIN",
         payload: {
@@ -70,6 +70,7 @@ class LoginPage extends Component {
     }
   }; // end login
 
+  //input handler for all input fields
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
@@ -82,6 +83,7 @@ class LoginPage extends Component {
     }
   };
 
+//validates email input
   checkEmail = (e) => {
     const value = e.target.value;
     if (value.includes("@") && value.includes(".")) {

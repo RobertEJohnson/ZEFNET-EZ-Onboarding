@@ -93,6 +93,7 @@ class AddUser extends Component {
     invalidEmail:false
   };
 
+
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
@@ -150,12 +151,14 @@ class AddUser extends Component {
     });
   };
 
+  //fires if a row enters edit mode (edit is clicked)
   handleEditMode = () =>{
     let x = this.state.edit;
     x++
     this.setState({...this.state, edit:x})
   }
   
+  //fires if a row exits edit mode (save or x is clicked)
   handleViewMode = () =>{
     let x = this.state.edit;
     x--
@@ -347,11 +350,12 @@ class AddUser extends Component {
   }
 }
 
-// Instead of taking everything from state, we just want the user info.
+// maps redux state to this.props.reduxState
 const mapStateToProps = (reduxState) => ({
   reduxState,
 });
 
+//adds classes to props
 AddUser.propTypes = {
   classes: PropTypes.object.isRequired,
 };

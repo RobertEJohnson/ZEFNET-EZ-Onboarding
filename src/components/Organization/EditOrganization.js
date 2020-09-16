@@ -43,6 +43,7 @@ const styles = (theme) => ({
   },
 });
 
+//this component is routed at /editOrganization
 class EditOrganization extends Component {
   state = {
     organizationName: this.props.reduxState.organization.name,
@@ -52,12 +53,14 @@ class EditOrganization extends Component {
     invalidEmail: false,
   };
 
+  //input change handler for all input fields
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
     });
   };
 
+  //run the edit organization saga when save changes is clicked and reset state
   handleEditOrg = () => {
     const actionObject = {
       organizationName: this.state.organizationName,
@@ -82,6 +85,7 @@ class EditOrganization extends Component {
     });
   };
 
+//check that email is valid
   checkEmail = (e) => {
     const value = e.target.value;
     if (value.includes("@") && value.includes(".")) {
@@ -157,25 +161,33 @@ class EditOrganization extends Component {
           InputLabelProps={{ style: { color: "white" } }}
         />
         <br />
+        {/* conditional render enabled button if all required fields filled, and valid email */}
+        {this.state.email &&this.state.organizationAddress && this.state.organizationName && !this.state.invalidEmail?
+              
         <DynamicButton
+          key = 'activeSave'
           type="glow"
           text="Save Changes"
           linkURL="/viewOrganization"
           handleClick={this.handleEditOrg}
         />
+        :
+        <DynamicButton key = 'inactiveSave' type='glow' text='Save Changes' isDisabled = {true}/>
+        }
       </Grid>
     );
   }
 }
 
-// Instead of taking everything from state, we just want the user info.
+// map full reduxState to props
 const mapStateToProps = (reduxState) => ({
   reduxState,
 });
 
+//include classes on props
 EditOrganization.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-// this allows us to use <App /> in index.js
+// connect this component to the app 
 export default withStyles(styles)(connect(mapStateToProps)(EditOrganization));

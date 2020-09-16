@@ -58,6 +58,16 @@ const styles = theme => ({
 })
 
 class CreateOrganization extends Component {
+
+  state = {
+    organizationName: "",
+    primaryNumber: "",
+    email: "",
+    organizationAddress: "",
+    invalidEmail: false,
+  };
+
+
   componentDidMount() {
     //push user to organizationHome instead if the've already added org info
     if (this.props.reduxState.organization.id) {
@@ -65,6 +75,7 @@ class CreateOrganization extends Component {
     }
   }
 
+  //push user to organizationHome if the component updates after the screen is mounted
   componentDidUpdate(previousProps) {
     if (
       previousProps.reduxState.organization.id !==
@@ -76,19 +87,14 @@ class CreateOrganization extends Component {
     }
   }
 
-  state = {
-    organizationName: "",
-    primaryNumber: "",
-    email: "",
-    organizationAddress: "",
-  };
-
+  //input handler for all input fields
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       [propertyName]: event.target.value,
     });
   };
 
+  //when 'create organization' is clicked, run post saga, and navigate to /organization home
   handleAddOrg = () => {
     const actionObject = {
       organizationName: this.state.organizationName,
@@ -114,14 +120,17 @@ class CreateOrganization extends Component {
     });
   };
 
+//validate email field
   checkEmail = (e) => {
     const value = e.target.value;
     if (value.includes("@") && value.includes(".")) {
       this.setState({
+        ...this.statem,
         invalidEmail: false,
       });
     } else {
       this.setState({
+        ...this.state,
         invalidEmail: true,
       });
     }
@@ -186,10 +195,11 @@ class CreateOrganization extends Component {
           onChange={this.handlePhoneNumberChange}
           InputProps={{ classes: { root: classes.TextField } }}
           inputProps={{ maxLength: 30, className: classes.TextField }}
-          InputLabelProps={{ style: { color: "white" } }}
+          InputLabelProps={{ style: { color: "white", marginLeft: '50px' } }}
         />
         <br />
-        {this.state.email &&this.state.organizationAddress && this.state.organizationName?
+        {/* conditional render enabled button if all required fields filled, and valid email */}
+        {this.state.email &&this.state.organizationAddress && this.state.organizationName && !this.state.invalidEmail?
               <DynamicButton key = 'activeCreate' type='glow' text='Create Organization' handleClick={this.handleAddOrg}/>
               :
               <DynamicButton key = 'inactiveCreate' type='glow' text='Create Organization' isDisabled = {true}/>

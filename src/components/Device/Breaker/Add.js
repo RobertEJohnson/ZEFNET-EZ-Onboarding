@@ -20,6 +20,7 @@ class AddBreaker extends Component {
     alert2: false,
   };
 
+  //input change handler
   handleChange = (event) => {
     this.setState({ 
         ...this.state,
@@ -40,8 +41,9 @@ class AddBreaker extends Component {
     })
   }
 
-  addSite = () => {
-      //post new site to site table
+  
+  addBreaker = () => {
+      //post new breaker if a site id is associated with this breaker
       if (this.props.state.device.site.id){
         const postObject = {
             name: this.state.name,
@@ -51,6 +53,14 @@ class AddBreaker extends Component {
         }
         if (postObject.site_id && postObject.name && postObject.limit)
             {this.props.dispatch({ type: "POST_BREAKER", payload: postObject });
+            //reset state
+            this.setState({
+              name: '',
+              description: '',
+              limit: '',
+              alert1: false,
+              alert2: false,
+            })
             this.props.handleClose()
             } else {
               this.setState({...this.state, alert1: true});
@@ -69,6 +79,7 @@ class AddBreaker extends Component {
           title='Add a New Breaker'
           open={this.props.open} 
           onClose={this.props.handleClose}>
+          {/* Alert 1 visible if not all fields filled when add is clicked */}
           {this.state.alert1&&
             <Grid container direction = 'row' justify='center' alignContent='center'>
               <h2 className = {classes.error}>
@@ -76,6 +87,7 @@ class AddBreaker extends Component {
                 <Button onClick = {this.handleClose1}>OK</Button>
               </h2>
             </Grid>}
+            {/* alert 2 visible if no site id exists to associate with this breaker (usually happens when user refreshes on breaker page) */}
             {this.state.alert2&&
             <Grid container direction = 'row' justify='center' alignContent='center'>
               <h2 className = {classes.error}>
@@ -144,7 +156,7 @@ class AddBreaker extends Component {
                 Close
             </Button>
             <Button color="primary"
-                onClick = {this.addSite}>
+                onClick = {this.addBreaker}>
              Add Breaker
             </Button>
           </DialogActions>

@@ -18,7 +18,7 @@ function* getOrganization(action) {
 
 function* submitOrganization (action) {
   try{
-    const response = yield axios.put('/api/organization/submit/' + action.payload);
+    yield axios.put('/api/organization/submit/' + action.payload);
   } catch (error) {
     console.log('Error with organization get:', error);
   }
