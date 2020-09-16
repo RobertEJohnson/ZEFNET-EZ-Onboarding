@@ -70,6 +70,15 @@ const styles = (theme) => ({
   tip:{
     fontSize: 'smaller',
     color:'#757575'
+  },
+  Form:{
+    background: "transparent",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    width: "inherit",
+    padding: "0px",
+    height: "fit-content",
   }
 });
 
@@ -243,17 +252,7 @@ class AddUser extends Component {
             <br />
             <h2>Add a New User</h2>
 
-            <form
-              style={{
-                background: "transparent",
-                display: "flex",
-                flexDirection: "row",
-                flexWrap: "wrap",
-                width: "inherit",
-                padding: "0px",
-                height: "fit-content",
-              }}
-            >
+            <form className={classes.Form}>
               <Grid
                 container
                 dircetion="row"
