@@ -17,9 +17,8 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
       res.send(result.rows);
     })
     .catch((error) => {
-      res.sendStatus(500);
       console.log("Error in get Organization", error);
-
+      res.sendStatus(500);
     });
 });
 
@@ -128,8 +127,8 @@ router.put("/submit/:id", rejectUnauthenticated, (req, res) => {
       res.sendStatus(201);
     })
     .catch((error) => {
-      res.sendStatus(500);
       console.log("error on POST /api/device/", error);
+      res.sendStatus(500);
     });
 });
 

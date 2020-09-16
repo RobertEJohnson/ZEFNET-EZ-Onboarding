@@ -19,14 +19,9 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         res.send(result.rows)
     })  
     .catch((error)=>{
-    res.sendStatus(500)
     console.log(error);
-
+    res.sendStatus(500)
     })
-    .catch((error) => {
-      res.sendStatus(500);
-      console.log(error);
-    });
 });
 
 /**
@@ -47,8 +42,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     pool.query(queryString, postValues)
     .then((response)=>{res.send(response.rows)})
     .catch((error)=>{
-     res.sendStatus(500)
      console.log( 'error on POST /api/site/', error);
+     res.sendStatus(500)
    })
 });
 
@@ -74,8 +69,8 @@ router.put('/', rejectUnauthenticated, (req, res) => {
   pool.query(queryString, editValues)
   .then(()=>{res.sendStatus(200)})
   .catch((error)=>{
-   res.sendStatus(500)
    console.log( 'error on PUT /api/site/', error);
+   res.sendStatus(500)
  })
 });
 

@@ -6,15 +6,10 @@ import { withStyles, } from '@material-ui/core/styles';
 import { Dialog, DialogActions, DialogContent, DialogContentText, Grid }from '@material-ui/core/';
 
 const styles = theme => ({ 
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 220,
-    },
     error:{
       backgroundColor: '#ef9a9a',
     }
 })
-  
 
 class AddBreaker extends Component {
   state = {
@@ -88,7 +83,7 @@ class AddBreaker extends Component {
           {this.state.alert1&&
             <Grid container direction = 'row' justify='center' alignContent='center'>
               <h2 className = {classes.error}>
-              Unable to add breaker. Please pick a name and limit for your breaker.
+                  Unable to add breaker. Please pick a name and limit for your breaker.
                 <Button onClick = {this.handleClose1}>OK</Button>
               </h2>
             </Grid>}
@@ -96,7 +91,7 @@ class AddBreaker extends Component {
             {this.state.alert2&&
             <Grid container direction = 'row' justify='center' alignContent='center'>
               <h2 className = {classes.error}>
-              Oops! no site is currently selected. Please exit this field and select a site from the previous page!
+                  Oops! no site is currently selected. Please exit this field and select a site from the previous page!
                 <Button onClick = {this.handleClose2}>OK</Button>
               </h2>
             </Grid>}

@@ -23,9 +23,6 @@ const styles = (theme) => ({
     padding: theme.spacing(2),
     borderRadius: "5px",
   },
-  reviewButton: {
-    width: "162px",
-  },
   borderedBox: {
     border: "solid #e3e3e3 3px",
     maxWidth: "515px",

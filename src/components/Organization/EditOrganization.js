@@ -21,9 +21,6 @@ const styles = (theme) => ({
   LargeBottomBuffer: {
     marginBottom: "1.5rem",
   },
-  TopBuffer: {
-    marginTop: "1rem",
-  },
   TextField: {
     width: "400px",
     "--text-color": "#fff",

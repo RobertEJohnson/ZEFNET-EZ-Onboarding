@@ -5,9 +5,7 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
-
 import { connect } from "react-redux";
-
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import WelcomeScreen from "../WelcomeScreen/WelcomeScreen";
 import CreateOrganization from "../Organization/CreateOrganization";
@@ -28,18 +26,12 @@ import {
 } from "@material-ui/core";
 import DeviceReview from "../Device/DeviceReview";
 import AddUser from "../AddUser/AddUser";
-import { indigo, yellow, green } from "@material-ui/core/colors";
 import "./App.css";
 import Submit from "../Submit/Submit";
 import Completed from "../Submit/Completed";
 import 'typeface-inter';
 
 const theme = createMuiTheme({
-  palette: {
-    primary: indigo,
-    secondary: yellow,
-    success: green,
-  },
   typography: {
     fontFamily: 
       '"Inter", sans-serif',

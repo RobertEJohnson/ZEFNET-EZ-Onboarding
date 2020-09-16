@@ -48,8 +48,8 @@ ORDER BY "device"."id" ASC;`;
         res.send(result.rows);
       })
       .catch((error) => {
-        res.sendStatus(500);
         console.log("Error in GET device Router", error);
+        res.sendStatus(500);
       });
   });
 
@@ -71,8 +71,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     pool.query(queryString, postValues)
     .then(()=>{res.sendStatus(201)})
     .catch((error)=>{
-     res.sendStatus(500)
      console.log( 'error on POST /api/device/', error);
+     res.sendStatus(500)
    })
 });
 
@@ -100,8 +100,8 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   pool.query(queryString, postValues)
   .then(()=>{res.sendStatus(201)})
   .catch((error)=>{
-   res.sendStatus(500)
    console.log( 'error on POST /api/device/', error);
+   res.sendStatus(500)
  })
 });
 
@@ -118,8 +118,8 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   pool.query(queryString, queryValue)
   .then(()=>{res.sendStatus(200)})
   .catch((error)=>{
-   res.sendStatus(500)
    console.log( 'error on POST /api/device/', error);
+   res.sendStatus(500)
  })
 });
 

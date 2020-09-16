@@ -29,11 +29,10 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     ]
     pool.query(queryString, postValues)
     .then((response)=>{res.send(response.rows)
-        //console.log(response)
     })
     .catch((error)=>{
-     res.sendStatus(500)
      console.log( 'error on POST /api/breaker/', error);
+     res.sendStatus(500)
    })
 });
 
@@ -55,8 +54,8 @@ router.put('/', rejectUnauthenticated, (req, res) => {
     pool.query(queryString, editValues)
     .then(()=>{res.sendStatus(200)})
     .catch((error)=>{
-     res.sendStatus(500)
-     console.log( 'error on PUT /api/breaker/', error);
+        console.log( 'error on PUT /api/breaker/', error);
+        res.sendStatus(500)
    })
   });
 

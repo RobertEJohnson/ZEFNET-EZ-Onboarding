@@ -45,13 +45,6 @@ const styles = theme => ({
     textAlign:'center',
     fontSize: '18px'
   },
-  FlexContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    marginTop: '1rem'
-  },
   HomeNavBar: {
     backgroundColor: 'rgba(35, 40, 48, 0.699)',
     minHeight: '57px',
