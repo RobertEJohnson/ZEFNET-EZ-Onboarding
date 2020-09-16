@@ -6,7 +6,7 @@ const {
 } = require("../modules/authentication-middleware");
 
 /**
- * GET organization
+ * GET organization to get all info about organization by id
  */
 router.get("/:id", rejectUnauthenticated, (req, res) => {
   const queryString = `SELECT * FROM "organization" WHERE "id" = $1;`;
@@ -24,7 +24,9 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * POST route
+ * POST route posts a new organization with a name, email, phone, and address
+ * also updates user to associate organization with primary user
+ * also posts primary user to zefnet user table
  */
 router.post("/", rejectUnauthenticated, async (req, res) => {
 
@@ -73,7 +75,7 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
 });
 
 /**
- * PUT route
+ * PUT route updates an organization's name, email, phone, and/or address.
  */
 router.put("/", rejectUnauthenticated, async (req, res) => {
 

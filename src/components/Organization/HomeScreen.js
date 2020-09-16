@@ -74,7 +74,7 @@ const styles = theme => ({
   }
 })
 
-
+//this component can be viewed at /organizationHome
 class HomeScreen extends Component {
   //send user to /submit/completed component view if they have already submitted their onboarding app
   componentDidMount(){
@@ -88,7 +88,7 @@ class HomeScreen extends Component {
     return (
       <>
       {/* Organization and Logout buttons */}
-      
+
         <Grid container alignItems='center' className={classes.HomeNavBar}>
           <Grid item xs={12} className={classes.HomeNavBar__container}>
             <DynamicButton type='organization' text={this.props.state.organization.name} linkURL='/viewOrganization'/>

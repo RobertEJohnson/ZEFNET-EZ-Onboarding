@@ -3,9 +3,11 @@ import {Grid} from '@material-ui/core';
 import {connect} from 'react-redux';
 import DynamicButton from '../Buttons/DynamicButton'
 
+
 class Completed extends Component {
 
   // this component will be the landing place for any returning user with a completed onboarding application
+  //it can be viwed at /completed
   render() {
     let centerText = {textAlign: 'center', color: 'white', fontFamily: 'inter, Open Sans, sans-serif', marginBottom: '.5rem'}
     return (
