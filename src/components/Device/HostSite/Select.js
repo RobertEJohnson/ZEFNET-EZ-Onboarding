@@ -131,15 +131,12 @@ class HostSelect extends Component {
     //moce it to there and dispatch breakers!
     if (this.state.selectedSite !== this.props.state.device.site.id ){
       let allSite = this.props.state.site
-      //console.log('in assignSite with sites:', allSite)
       let mySite = []
       for (let i = 0; i < allSite.length; i++ ){
         if (allSite[i].id === this.state.selectedSite){
-          //console.log('match found!', allSite[i])
           mySite.push(allSite[i]);
         }
       }
-    //console.log('assigning site:', mySite)
     this.props.dispatch({type: 'SET_DEVICE_SITE', payload: mySite[0]})
     this.props.dispatch({type: 'FETCH_SITE_BREAKERS', payload: this.state.selectedSite})
     }

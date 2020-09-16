@@ -45,7 +45,6 @@ class AddSite extends Component {
           address: this.state.address,
           organization_id: this.props.state.organization.id,
       }
-      //console.log('posting new site:', postObject)
       if (postObject.organization_id && postObject.first_name && postObject.address && postObject.email)
         {this.props.dispatch({ type: "POST_SITE", payload: postObject });
         this.props.handleClose()

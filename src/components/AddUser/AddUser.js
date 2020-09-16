@@ -121,7 +121,6 @@ class AddUser extends Component {
         editor: this.state.editor,
         organization_id: this.props.reduxState.organization.id,
       };
-      console.log(actionObject);
       this.props.dispatch({ type: "ADD_USER", payload: actionObject });
       this.setState({
         ...this.state,

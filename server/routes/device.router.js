@@ -42,7 +42,6 @@ GROUP BY "device"."id",
 	"site"."phone"
 ORDER BY "device"."id" ASC;`;
     const queryValue = [req.params.id];
-    //console.log('in/api/organization', req.params.id)
     pool
       .query(queryString, queryValue)
       .then((result) => {
@@ -50,7 +49,7 @@ ORDER BY "device"."id" ASC;`;
       })
       .catch((error) => {
         res.sendStatus(500);
-        console.log(error);
+        console.log("Error in GET device Router", error);
       });
   });
 

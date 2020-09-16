@@ -57,11 +57,6 @@ const styles = theme => ({
 
 class ViewOrganization extends Component {
 
-componentDidMount(){
-    this.props.dispatch({type: 'FETCH_ORGANIZATION', payload: this.props.reduxState.user.id})
-}
-  
-
   render() {
     const {classes} = this.props;
     return (

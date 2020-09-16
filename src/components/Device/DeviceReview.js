@@ -59,7 +59,6 @@ class DeviceReview extends Component {
             org_id:this.props.state.organization.id,
             id: this.props.state.device.id,     
         };
-        console.log('saving device:', postObject)
         // call saga that posts the new device if required fields filled
         if(postObject.name && postObject.installation_date
             && postObject.serial_number && postObject.type_id 

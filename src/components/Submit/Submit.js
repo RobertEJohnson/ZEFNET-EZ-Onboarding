@@ -129,12 +129,9 @@ class Submit extends Component {
 
   handleChange = (name) => (event) => {
     this.setState({ [name]: event.target.checked });
-    //console.log(this.state);
   };
 
   handleEditFor = (data) => {
-    //console.log('in handleEditFor', index)
-    //console.log('selected device:', this.props.state.allDevice[index.index]);
     //supply newdevice reducer with info for this device
     const device = this.props.state.allDevice[data.index];
     this.props.dispatch({ type: "SET_NAME", payload: device.name });
@@ -150,7 +147,6 @@ class Submit extends Component {
       email: device.email,
       organization_id: this.props.state.organization.id,
     };
-    console.log("device site:", site);
     this.props.dispatch({ type: "SET_DEVICE_SITE", payload: site });
     this.props.dispatch({ type: "FETCH_SITE_BREAKERS", payload: site.id });
     const breaker = {
@@ -160,7 +156,6 @@ class Submit extends Component {
       name: device.breaker_name,
       site_id: device.site_id,
     };
-    console.log("device breaker:", breaker);
     this.props.dispatch({ type: "SET_BREAKER", payload: breaker });
     this.props.dispatch({
       type: "SET_SERIAL",
