@@ -5,9 +5,7 @@ import {
   Redirect,
   Switch,
 } from "react-router-dom";
-
 import { connect } from "react-redux";
-
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import WelcomeScreen from "../WelcomeScreen/WelcomeScreen";
 import CreateOrganization from "../Organization/CreateOrganization";
