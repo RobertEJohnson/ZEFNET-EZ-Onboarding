@@ -34,7 +34,6 @@ const styles = (theme) => ({
     maxWidth: "1000px",
     textAlign: "center",
   },
-
   ReviewTable: {
     overflowX: "auto",
     whiteSpace: "nowrap",
