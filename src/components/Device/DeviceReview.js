@@ -5,45 +5,42 @@ import PropTypes from 'prop-types';
 import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
-  paper:{
+  Paper:{
     padding: theme.spacing(2),
     borderRadius: '5px',
   },
-  left:{
+  Left:{
     width: '75px'
   },
-  grow:{
-    flexGrow: 1,
-    minWidth: '100px'
-  },
-  reviewItem: {
-    display: 'inline-block',
-    padding: '0px',
-    margin: '0px'
-  },
-  ReviewPage__buttonContainer:{
+  ButtonContainer:{
     marginTop: '1rem',
     position: 'relative',
     minWidth: '95%'
   },
-  ReviewPage__flexContainer__titles: {
+  Titles: {
     fontWeight: 800,
   },
-  ReviewPage__flexContainer__information: {
+  Information: {
     fontWeight: 300,
+    display: 'inline-block',
+    wordBreak: 'break-word'
   },
-  ReviewPage__flexContainer: {
+  InformationMarginBottom: {
+    fontWeight: 300,
+    marginBottom: '5px'
+  },
+  FlexContainerColumn: {
     display: 'flex',
-    flexDirection: 'row', 
+    flexDirection: 'column', 
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'left',
-    width: '350px'
+    width: '350px',
+    padding: '1rem 1.5rem 1rem 0',
   },
-  ReviewBuffer: {
-    margin: '1rem 1.5rem 1rem 0',
-
-  },
+  CenterText: {
+      textAlign: 'center'
+  }
 })
 
 class DeviceReview extends Component {
@@ -106,28 +103,26 @@ class DeviceReview extends Component {
                     </Button>
                     </DialogActions>
                 </Dialog>
-            <Paper className = {classes.paper}>
+            <Paper className = {classes.Paper}>
                 <Grid item align='center'>
-                    <h1>Let's make sure all this information is correct!</h1>
+                    <h1 style={{marginBottom: '20px'}}>Let's make sure all this information is correct!</h1>
                 </Grid>
 
                 <Grid item align='center' xs={12}>
                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                    <div className = {classes.left}/>                  
+                    <div className = {classes.Left}/>                  
                         <h2>Hosting Location</h2> 
                         <DynamicButton type='edit' text="Edit" linkURL='/hostSelect'/>
                     </Grid>
                 </Grid>
 
                 <Grid item xs={12} align='center' style={{backgroundColor: 'lightgrey'}}>
-                        <div className={classes.ReviewPage__flexContainer}>
-                            <div className={classes.ReviewBuffer}>
-                                <p className={classes.ReviewPage__flexContainer__titles}>
+                        <div className={classes.FlexContainerColumn}>
+                            <div className={classes.CenterText}>
+                                <p className={classes.Titles}>
                                     Address:
                                 </p>
-                            </div>
-                            <div>
-                                <p className={classes.ReviewPage__flexContainer__information}>
+                                <p className={classes.Information}>
                                     {this.props.state.device.site.address}
                                 </p>
                             </div>
@@ -139,21 +134,31 @@ class DeviceReview extends Component {
                 </Grid>
 
                 <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                    <div className={classes.ReviewPage__flexContainer}>
-                        <div className={classes.ReviewBuffer}>
-                            <p className={classes.ReviewPage__flexContainer__titles}>
+                    <div className={classes.FlexContainerColumn}>
+                        <div className={classes.CenterText}>
+                            <p className={classes.Titles}>
                                 First Name:
-                                <br/>Second Name:
-                                <br/>Phone Number:
-                                <br/>Email Address:
                             </p>
-                        </div>
-                        <div>
-                            <p className={classes.ReviewPage__flexContainer__information}>
+                            <p className={classes.InformationMarginBottom}>
                                 {this.props.state.device.site.first_name}
-                                <br/>{this.props.state.device.site.last_name}
-                                <br/>{this.props.state.device.site.phone}
-                                <br/>{this.props.state.device.site.email}
+                            </p>
+                            <p className={classes.Titles}>
+                                Second Name:
+                            </p>
+                            <p className={classes.InformationMarginBottom}>
+                                {this.props.state.device.site.second_name}
+                            </p>
+                            <p className={classes.Titles}>
+                                Phone Number:
+                            </p>
+                            <p className={classes.InformationMarginBottom}>
+                                {this.props.state.device.site.phone}
+                            </p>
+                            <p className={classes.Titles}>
+                                Email Address:
+                            </p>
+                            <p className={classes.Information}>
+                                {this.props.state.device.site.email}
                             </p>
                         </div>
                     </div> 
@@ -161,48 +166,53 @@ class DeviceReview extends Component {
                 
                 <Grid item align='center' xs={12}>
                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                        <div className = {classes.left}/> 
+                        <div className = {classes.Left}/> 
                         <h2>Breaker Information</h2> 
                         <DynamicButton type='edit' text="Edit" linkURL='/breakerSelect'/>
                     </Grid>
                 </Grid>
 
                 <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                    <div className={classes.ReviewPage__flexContainer}>
-                        <div className={classes.ReviewBuffer}>
-                            <p className={classes.ReviewPage__flexContainer__titles}>
-                                Breaker Name:
-                                <br/>Breaker Limit:
-                                <br/>Breaker Description:
-                            </p>
-                        </div>
-                        <div>
-                            <p className={classes.ReviewPage__flexContainer__information}>
-                                {this.props.state.device.breaker.name}
-                                <br/>{this.props.state.device.breaker.limit}
-                                <br/>{this.props.state.device.breaker.description}
-                            </p>
-                        </div>
-                    </div> 
+                
+                <div className={classes.FlexContainerColumn}>
+                    <div className={classes.CenterText}>
+                        <p className={classes.Titles}>
+                            Breaker Name:
+                        </p>
+                        <p className={classes.InformationMarginBottom}>
+                            {this.props.state.device.breaker.name}
+                        </p>
+                        <p className={classes.Titles}>
+                            Breaker Limit:
+                        </p>
+                        <p  className={classes.InformationMarginBottom}>
+                            {this.props.state.device.breaker.limit}
+                        </p>
+                        <p className={classes.Titles}>
+                            Breaker Description:
+                        </p>
+                        <p className={classes.Information}>
+                            {this.props.state.device.breaker.description}
+                        </p>
+                    </div>
+                </div> 
                 </Grid>
 
                 <Grid item align='center' xs={12}>
                     <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                        <div className = {classes.left}/> 
+                        <div className = {classes.Left}/> 
                         <h2>Device Type</h2> 
                         <DynamicButton type='edit' text="Edit" linkURL='/deviceType'/>
                     </Grid>
                 </Grid>
 
                 <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                    <div className={classes.ReviewPage__flexContainer}>
-                        <div className={classes.ReviewBuffer}>
-                            <p className={classes.ReviewPage__flexContainer__titles}>
+                    <div className={classes.FlexContainerColumn}>
+                        <div className={classes.CenterText}>
+                            <p className={classes.Titles}>
                                 Device Type:
                             </p>
-                        </div>
-                        <div>
-                            <p className={classes.ReviewPage__flexContainer__information}>
+                            <p className={classes.Information}>
                                 {this.props.state.device.type.name}
                             </p>
                         </div>
@@ -210,67 +220,69 @@ class DeviceReview extends Component {
                 </Grid>
 
                 <Grid item align='center' xs={12}>
-                    <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                        <div className = {classes.left}/> 
+                    <Grid container direction='row' alignItems='center' justify='space-between'>
+                        <div className = {classes.Left}/> 
                         <h2>Device Information</h2> 
                         <DynamicButton type='edit' text="Edit" linkURL='/deviceSerial'/>
                     </Grid>
                 </Grid>
 
                 <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                    
-                    <div className={classes.ReviewPage__flexContainer}>
-                        <div className={classes.ReviewBuffer}>
-                            <p className={classes.ReviewPage__flexContainer__titles}>
-                                {this.props.state.device.serial2 ?
-                                    <>Serial Number One:<br/>Serial Number Two:</>
-                                    :
-                                    <>Serial Number:</>
-                                }
-                            </p>
-                        </div>
-                        <div>
-                            <p className={classes.ReviewPage__flexContainer__information}>
-                                {this.props.state.device.serial.number}
-                                {this.props.state.device.serial2 ?
-                                    <><br/>{this.props.state.device.serial2}</>
-                                    :
-                                    <></>
-                                }
-                            </p>
+                    <div className={classes.FlexContainerColumn}>
+                        <div className={classes.CenterText}>
+                            {this.props.state.device.serial2 ?
+                                <>
+                                    <p className={classes.Titles}>Serial Number One:</p>
+                                    <p className={classes.InformationMarginBottom}>{this.props.state.device.serial.number}</p>
+                                    <p className={classes.Titles}>Serial Number Two:</p>
+                                    <p className={classes.Information}>{this.props.state.device.serial2}</p>
+                                </>
+                                :
+                                <>
+                                    <p className={classes.Titles}>Serial Number:</p>
+                                    <p className={classes.Information}>{this.props.state.device.serial.number}</p>
+                                </>
+                            }
                         </div>
                     </div> 
                 </Grid>
 
                 <Grid item align='center' xs={12}>
-                <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
-                        <div className = {classes.left}/> 
+                    <Grid container direction = 'row' alignItems = 'center' justify = 'space-between'>
+                        <div className = {classes.Left}/> 
                         <h2>Additional Information</h2> 
                         <DynamicButton type='edit' text="Edit" linkURL='/deviceName'/>
                     </Grid>
                 </Grid>
 
                 <Grid item align='center' xs={12} style={{backgroundColor: 'lightgrey'}}>
-                    <div className={classes.ReviewPage__flexContainer}>
-                        <div className={classes.ReviewBuffer}>
-                            <p className={classes.ReviewPage__flexContainer__titles}>
+                    <div className={classes.FlexContainerColumn}>
+                        <div className={classes.CenterText}>
+                            <p className={classes.Titles}>
                                 Charger Name:
-                                <br/>Installation Date:
                             </p>
-                        </div>
-                        <div>
-                            <p className={classes.ReviewPage__flexContainer__information}>
+                            <p className={classes.InformationMarginBottom}>
                                 {this.props.state.device.name}
-                                <br/>{this.props.state.device.date}
+                            </p>
+                            <p className={classes.Titles}>
+                                Installation Date:
+                            </p>
+                            <p className={classes.Information}>
+                                {this.props.state.device.date}
                             </p>
                         </div>
                     </div> 
                 </Grid>
-                <Grid item align='center' className={classes.ReviewPage__buttonContainer}>
-                    <div style={{position: 'absolute', float: 'left'}}>
+
+                <Grid item align='center' className={classes.ButtonContainer}>
+                    <div style={{position: 'absolute', float: 'Left'}}>
                         <DynamicButton type='previous' text='Previous' linkURL='/deviceName'/>
                     </div>
-                        <DynamicButton type='confirm' text='Add This Device' handleClick={this.saveDevice}/>  
+                       {this.props.state.device.id?
+                       <DynamicButton key = 'savebutton' type='confirm' text='Save Device Changes' handleClick={this.saveDevice}/> 
+                       :
+                       <DynamicButton key = 'addbutton' type='confirm' text='Add This Device' handleClick={this.saveDevice}/> 
+                        }
                 </Grid>
             </Paper> 
           </Grid>

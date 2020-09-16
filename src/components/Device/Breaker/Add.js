@@ -105,6 +105,9 @@ class AddBreaker extends Component {
               value = {this.state.name}
               placeholder = "South East Utility Room: Panel 2B: Breaker 22/24"
               onChange = {this.handleChange}
+              inputProps={{
+                maxLength: 50
+              }}
             />
             <TextField
               required
@@ -135,6 +138,7 @@ class AddBreaker extends Component {
               multiline
               value={this.state.description}
               onChange = {this.handleChange}
+              inputProps={{maxLength: 300}}
             />   
             <DialogContentText style={{marginTop: '5px'}}>
               You can complete this process multiple times for your selected site.

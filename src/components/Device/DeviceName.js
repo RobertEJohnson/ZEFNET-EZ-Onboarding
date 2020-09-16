@@ -186,23 +186,27 @@ class DeviceName extends Component {
                 className={classes.textField}
                 label="Charger Name:"
                 margin="normal"
-                variant="outlined"
+                variant="filled"
                 value={this.state.chargerName || ""}
                 onChange={this.handleInputChangeFor("chargerName")}
+                inputProps={{maxLength: 100}}
               />
             </div>
 
             <div>
-              <p style={{ margin: "5px 0px 0px 0px" }}>Installation Date:</p>
               <TextField
                 required
                 type="Date"
                 style={{ margin: "10px auto 0px auto" }}
                 className={classes.textField}
                 margin="normal"
-                variant="outlined"
+                variant="filled"
                 value={this.state.installationDate || ""}
                 onChange={this.handleInputChangeFor("installationDate")}
+                label = 'Installation Date'
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </div>
             <div className={classes.buttonDiv}>

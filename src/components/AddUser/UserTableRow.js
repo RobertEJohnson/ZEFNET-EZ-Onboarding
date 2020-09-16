@@ -81,10 +81,16 @@ class UserTableRow extends Component{
             editor: this.props.editor,
             organization_id: this.props.state.organization.id,
             open: false})
+         this.props.viewMode();
       }
 
 
       handleEdit = () => {
+           //set edit mode state in parent component as well
+        if(this.state.edit_mode){
+            this.props.viewMode();
+        }else{ this.props.editMode();
+        }
         const changesMade= 
             this.state.first_name !== this.props.first_name ||
             this.state.last_name !== this.props.last_name ||
@@ -100,7 +106,8 @@ class UserTableRow extends Component{
                     email: this.state.email,
                     phone: this.state.phone,
                     editor: this.state.editor,
-                    id: this.props.user_id
+                    id: this.props.user_id,
+                    organization_id: this.props.state.organization.id,
                     };
                this.props.dispatch({ type: "UPDATE_ZEFUSER", payload: actionObject});  
             }
@@ -178,6 +185,7 @@ class UserTableRow extends Component{
                                         value={this.state.first_name}
                                         name='first_name'
                                         onChange={this.handleChange}
+                                        inputProps={{maxLength: 50}}
                                         required/>
                                 </TableCell>
                                 <TableCell className={classes.ViewCell}>
@@ -186,6 +194,7 @@ class UserTableRow extends Component{
                                         value={this.state.last_name}
                                         name='last_name'
                                         onChange={this.handleChange}
+                                        inputProps={{maxLength: 100}}
                                         required/>
                                 </TableCell>
                                 <TableCell className={classes.ViewCell}>
@@ -194,6 +203,7 @@ class UserTableRow extends Component{
                                         value={this.state.email}
                                         name='email'
                                         onChange={this.handleChange}
+                                        inputProps={{maxLength: 100}}
                                         required/>
                                 </TableCell>
                                 <TableCell className={classes.ViewCell}>
@@ -202,6 +212,7 @@ class UserTableRow extends Component{
                                         value={this.state.phone}
                                         name='phone'
                                         onChange={this.handleChange}
+                                        inputProps={{maxLength: 30}}
                                         required/>
                                 </TableCell>
                                 <TableCell className={classes.ViewCell}>
@@ -211,8 +222,8 @@ class UserTableRow extends Component{
                                         name='editor'
                                         onChange={this.handleChange}
                                        >
-                                           <MenuItem value = 'true'>Edit</MenuItem>
-                                           <MenuItem value = 'false'>View</MenuItem>
+                                           <MenuItem value = {true}>Edit</MenuItem>
+                                           <MenuItem value = {false}>View</MenuItem>
                                        </Select>
                                 </TableCell>
                             </>

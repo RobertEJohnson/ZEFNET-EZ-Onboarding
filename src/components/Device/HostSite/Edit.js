@@ -56,7 +56,7 @@ class EditSite extends Component {
       //update existing site in site table
       const editObject = {
           first_name: this.state.first_name,
-          last_name: this.state.last_name,
+          second_name: this.state.last_name,
           email: this.state.email,
           phone: this.state.phone,
           address: this.state.address,
@@ -125,6 +125,7 @@ class EditSite extends Component {
               name='address'
               value={this.state.address}
               onChange={this.handleChange}
+              inputProps={{maxLength: 500}}
             />
             <p style={{textAlign: 'left', margin: '0px 0px 15px 10px'}}>
               *Address does <strong>NOT</strong>  have to be your organization's primary address.
@@ -145,6 +146,7 @@ class EditSite extends Component {
               name='first_name'
               value={this.state.first_name}
               onChange={this.handleChange}
+              inputProps={{maxLength: 50}}
             />
             <TextField
               className={classes.minorPadding}
@@ -155,6 +157,7 @@ class EditSite extends Component {
               name="last_name"
               value={this.state.last_name}
               onChange={this.handleChange}
+              inputProps={{maxLength: 100}}
             />
             <TextField
             className={classes.minorPadding}
@@ -166,6 +169,7 @@ class EditSite extends Component {
             name='phone'
             value={this.state.phone}
             onChange={this.handleChange}
+            inputProps={{maxLength: 30}}
           />
             <TextField  
               className={classes.minorPadding}
@@ -178,6 +182,7 @@ class EditSite extends Component {
               name='email'
               value={this.state.email}
               onChange={this.handleChange}
+              inputProps={{maxLength: 100}}
             />
             <DialogContentText style={{marginTop: '5px'}}>
               Updated site information will appear with all associated devices

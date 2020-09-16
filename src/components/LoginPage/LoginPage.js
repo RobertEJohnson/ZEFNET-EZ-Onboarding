@@ -103,6 +103,7 @@ class LoginPage extends Component {
           {this.props.errors.loginMessage && (
             <h2 role="alert">{this.props.errors.loginMessage}</h2>
           )}
+
           <h2 className={classes.LoginPage__title}>
             Welcome to ZEFNET EZ Onboarding!{" "}
           </h2>
@@ -120,7 +121,7 @@ class LoginPage extends Component {
             value={this.state.email}
             onChange={this.handleInputChangeFor("email")}
             InputProps={{ classes: { root: classes.TextField } }}
-            inputProps={{ className: classes.TextField }}
+            inputProps={{ maxLength: 100, className: classes.TextField }}
             InputLabelProps={{ style: { color: "white" } }}
           />
           <br />
@@ -134,7 +135,7 @@ class LoginPage extends Component {
             value={this.state.password}
             onChange={this.handleInputChangeFor("password")}
             InputProps={{ classes: { root: classes.TextField } }}
-            inputProps={{ className: classes.TextField }}
+            inputProps={{ maxLength: 1000, className: classes.TextField }}
             InputLabelProps={{ style: { color: "white" } }}
             onKeyDown={this.handleKeyDown}
           />

@@ -39,7 +39,7 @@ class AddSite extends Component {
       //post new site to site table
       const postObject = {
           first_name: this.state.first_name,
-          last_name: this.state.last_name,
+          second_name: this.state.last_name,
           email: this.state.email,
           phone: this.state.phone,
           address: this.state.address,
@@ -94,6 +94,7 @@ class AddSite extends Component {
               name='address'
               value={this.state.address}
               onChange={this.handleChange}
+              inputProps={{maxLength: 500}}
             />
             <p style={{textAlign: 'left', margin: '0px 0px 15px 10px'}}>
               *Address does <strong>NOT</strong>  have to be your organization's primary address.
@@ -114,6 +115,7 @@ class AddSite extends Component {
               name='first_name'
               value={this.state.first_name}
               onChange={this.handleChange}
+              inputProps={{maxLength: 50}}
             />
             <TextField
               className={classes.minorPadding}
@@ -124,6 +126,7 @@ class AddSite extends Component {
               name="last_name"
               value={this.state.last_name}
               onChange={this.handleChange}
+              inputProps={{maxLength: 100}}
             />
             <TextField
             className={classes.minorPadding}
@@ -135,6 +138,7 @@ class AddSite extends Component {
             name='phone'
             value={this.state.phone}
             onChange={this.handleChange}
+            inputProps={{maxLength: 30}}
           />
             <TextField  
               className={classes.minorPadding}
@@ -147,6 +151,7 @@ class AddSite extends Component {
               name='email'
               value={this.state.email}
               onChange={this.handleChange}
+              inputProps={{maxLength: 100}}
             />
             <DialogContentText style={{marginTop: '5px'}}>
               You may repeat this process if you have multiple sites.

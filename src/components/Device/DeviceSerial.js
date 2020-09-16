@@ -214,6 +214,7 @@ class DeviceSerial extends Component {
               onChange={this.handleInputChangeFor("serialNumber")}
               onCopy={this.handleCopynPaste}
               onPaste={this.handleCopynPaste}
+              inputProps={{maxLength: 100}}
             />
             <TextField
               required
@@ -226,6 +227,7 @@ class DeviceSerial extends Component {
               onChange={this.handleInputChangeFor("confirmSerialNumber")}
               onCopy={this.handleCopynPaste}
               onPaste={this.handleCopynPaste}
+              inputProps={{maxLength: 100}}
             />
             <br/>
             {/* conditionally render second serial number inputs if
@@ -246,6 +248,7 @@ class DeviceSerial extends Component {
                 onChange={this.handleInputChangeFor("serialNumber2")}
                 onCopy={this.handleCopynPaste}
                 onPaste={this.handleCopynPaste}
+                inputProps={{maxLength: 100}}
               />
               <TextField
                 required
@@ -258,6 +261,7 @@ class DeviceSerial extends Component {
                 onChange={this.handleInputChangeFor("confirmSerialNumber2")}
                 onCopy={this.handleCopynPaste}
                 onPaste={this.handleCopynPaste}
+                inputProps={{maxLength: 100}}
               />
               <br/>
             </>}

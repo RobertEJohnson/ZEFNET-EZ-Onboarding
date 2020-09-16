@@ -20,10 +20,10 @@ import {
   DialogActions,
   DialogContentText,
 } from "@material-ui/core";
-import MuiPhoneNumber from "material-ui-phone-number";
 import PropTypes from "prop-types";
 import UserTableRow from "./UserTableRow";
 import DynamicButton from "../Buttons/DynamicButton";
+import MuiPhoneNumber from "material-ui-phone-number";
 
 const styles = (theme) => ({
   paper: {
@@ -34,6 +34,7 @@ const styles = (theme) => ({
     maxWidth: "1000px",
     textAlign: "center",
   },
+
   ReviewTable: {
     overflowX: "auto",
     whiteSpace: "nowrap",
@@ -59,13 +60,17 @@ const styles = (theme) => ({
     fontSize: "18px",
     marginBottom: "1rem",
   },
-  ReviewTable__head: {
-    backgroundColor: "#C0C0C0",
+  ReviewTable__head:{
+    backgroundColor: '#C0C0C0'
   },
-  ReviewTable__head__cell: {
-    border: "1px solid black",
-    padding: "8px",
+  ReviewTable__head__cell:{
+    border: '1px solid black',
+    padding: '8px',
   },
+  tip:{
+    fontSize: 'smaller',
+    color:'#757575'
+  }
 });
 
 class AddUser extends Component {
@@ -75,19 +80,10 @@ class AddUser extends Component {
     email: "",
     phone: "",
     editor: "",
-    toggle: false,
-    tableRows: this.props.reduxState.zefUser,
     open: false,
+    edit: 0,
+    invalidEmail:false
   };
-
-  componentDidUpdate(previousProps) {
-    if (previousProps.reduxState.zefUser !== this.props.reduxState.zefUser) {
-      this.setState({
-        ...this.state,
-        tableRows: this.props.reduxState.zefUser,
-      });
-    }
-  }
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
@@ -114,7 +110,8 @@ class AddUser extends Component {
       this.state.last_name &&
       this.state.email &&
       this.state.phone &&
-      this.state.editor !== ""
+      this.state.editor !== ""&&
+      !this.state.invalidEmail
     ) {
       const actionObject = {
         first_name: this.state.first_name,
@@ -126,6 +123,7 @@ class AddUser extends Component {
       };
       this.props.dispatch({ type: "ADD_USER", payload: actionObject });
       this.setState({
+        ...this.state,
         first_name: "",
         last_name: "",
         email: "",
@@ -143,6 +141,19 @@ class AddUser extends Component {
       phone: value,
     });
   };
+
+  handleEditMode = () =>{
+    let x = this.state.edit;
+    x++
+    this.setState({...this.state, edit:x})
+  }
+  
+  handleViewMode = () =>{
+    let x = this.state.edit;
+    x--
+    this.setState({...this.state, edit:x})
+  }
+
 
   handleOpen = () => {
     this.setState({ ...this.state, open: true });
@@ -223,6 +234,8 @@ class AddUser extends Component {
                     phone={user.phone}
                     editor={user.editor}
                     user_id={user.id}
+                    editMode = {this.handleEditMode} 
+                    viewMode = {this.handleViewMode}
                   />
                 ))}
               </TableBody>
@@ -255,6 +268,7 @@ class AddUser extends Component {
                   label="First Name:"
                   variant="filled"
                   value={this.state.first_name}
+                  inputProps={{maxLength: 50}}
                   onChange={this.handleInputChangeFor("first_name")}
                 />
                 <TextField
@@ -264,6 +278,7 @@ class AddUser extends Component {
                   label="Last Name:"
                   variant="filled"
                   value={this.state.last_name}
+                  inputProps={{maxLength: 100}}
                   onChange={this.handleInputChangeFor("last_name")}
                 />
                 <TextField
@@ -275,6 +290,7 @@ class AddUser extends Component {
                   label="Email:"
                   variant="filled"
                   value={this.state.email}
+                  inputProps={{maxLength: 100}}
                   onChange={this.handleInputChangeFor("email")}
                 />
                 <MuiPhoneNumber
@@ -286,6 +302,7 @@ class AddUser extends Component {
                   variant="filled"
                   value={this.state.phone || ""}
                   onChange={this.handlePhoneNumberChange}
+                  inputProps={{maxLength: 30}}
                 />
                 <FormControl variant="filled" style={{ width: "140px" }}>
                   <InputLabel>Privileges:</InputLabel>
@@ -295,18 +312,29 @@ class AddUser extends Component {
                     className={classes.MiniTextFields}
                     value={this.state.editor || ""}
                   >
-                    <MenuItem value="False">View</MenuItem>
-                    <MenuItem value="True">Edit</MenuItem>
+                    <MenuItem value={false}>View</MenuItem>
+                    <MenuItem value={true}>Edit</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
               <br />
               <div className={classes.ButtonContainer}>
+                {this.state.edit?
+                <>
+                  <DynamicButton
+                    type="home"
+                    text="Home"
+                    isDisabled = {true}
+                    />
+                   <i className = {classes.tip}>please save or discard user changes</i>
+                </>
+                :
                 <DynamicButton
                   type="home"
                   text="Home"
                   linkURL="/organizationHome"
                 />
+                }
                 <DynamicButton
                   type="add"
                   text="Add User"
