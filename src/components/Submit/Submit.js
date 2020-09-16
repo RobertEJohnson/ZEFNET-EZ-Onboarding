@@ -684,7 +684,7 @@ class Submit extends Component {
                 linkURL="/organizationHome"
               />
               <div className={classes.grow}>{"\u00A0"}</div>
-              {this.props.state.allDevice.length > 0 ? (
+              {this.props.state.allDevice.length > 0 ? 
                 <DynamicButton
                   key="enabled-submit-button"
                   type="submit"
@@ -692,14 +692,14 @@ class Submit extends Component {
                   linkURL="/completed"
                   handleClick={this.handleSubmit}
                 />
-              ) : (
+               : 
                 <DynamicButton
                   key="disabled-submit-button"
                   type="submit"
                   text="Please Add A Device Before Submitting"
                   isDisabled={true}
                 />
-              )}
+              }
             </Grid>
           </Paper>
         </div>
