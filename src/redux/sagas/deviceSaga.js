@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function* addDevice(action) {
   try {
-    const response = yield axios.post("/api/device", action.payload);
+    yield axios.post("/api/device", action.payload);
     yield put({ type: 'GET_ALL_DEVICE', payload: action.payload.org_id });
   } catch (error) {
     console.log("Trouble adding device", error);

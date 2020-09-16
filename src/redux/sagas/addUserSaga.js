@@ -21,7 +21,7 @@ function* fetchZefUser(action) {
 
   function* deleteZefUser(action) {
     try {
-      const response = yield axios.delete(`/api/add-user/${action.payload.id}`);
+      yield axios.delete(`/api/add-user/${action.payload.id}`);
       yield put ({ type: 'FETCH_ZEFUSER', payload: action.payload.organization_id})
     } catch (error) {
       console.log("Trouble deleting users", error);
@@ -30,7 +30,7 @@ function* fetchZefUser(action) {
 
   function* updateZefUser(action) {
     try {
-      const response = yield axios.put(`/api/add-user/${action.payload.id}`, action.payload);
+      yield axios.put(`/api/add-user/${action.payload.id}`, action.payload);
       yield put ({ type: 'FETCH_ZEFUSER', payload: action.payload.organization_id})
     } catch (error) {
       console.log("Trouble updating users", error);
