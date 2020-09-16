@@ -6,10 +6,6 @@ import { withStyles, } from '@material-ui/core/styles';
 import { Dialog, DialogActions, DialogContent, DialogContentText}from '@material-ui/core/';
 
 const styles = theme => ({ 
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 220,
-    },
     minorPadding: {
       padding: '0px 10px'
     },
