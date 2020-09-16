@@ -58,6 +58,14 @@ class AddBreaker extends Component {
         }
         if (postObject.site_id && postObject.name && postObject.limit)
             {this.props.dispatch({ type: "POST_BREAKER", payload: postObject });
+            //reset state
+            this.setState({
+              name: '',
+              description: '',
+              limit: '',
+              alert1: false,
+              alert2: false,
+            })
             this.props.handleClose()
             } else {
               this.setState({...this.state, alert1: true});

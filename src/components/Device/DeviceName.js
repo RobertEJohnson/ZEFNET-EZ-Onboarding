@@ -64,6 +64,7 @@ const styles = (theme) => ({
   },
 });
 
+//component can be viewed at /deviceName
 class DeviceName extends Component {
   state = {
     chargerName: "",
@@ -215,22 +216,22 @@ class DeviceName extends Component {
                 text="Previous"
                 linkURL="/deviceSerial"
               />
-
-              {this.state.chargerName && this.state.installationDate ? (
+              {/* conditionally render active button if name and date fields filled */}
+              {this.state.chargerName && this.state.installationDate ? 
                 <DynamicButton
                   key={"name-enabled-next"}
                   type="review"
                   text="Review Device"
                   handleClick={this.handleNext}
                 />
-              ) : (
+              : 
                 <DynamicButton
                   key={"name-disabled-next"}
                   type="review"
                   text="Review Device"
                   isDisabled={true}
                 />
-              )}
+              }
             </div>
           </form>
         </Paper>
@@ -239,6 +240,7 @@ class DeviceName extends Component {
   }
 }
 
+//map readux state to this.props.reduxState
 const mapStateToProps = (reduxState) => ({
   reduxState,
 });
@@ -247,5 +249,4 @@ DeviceName.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-// this allows us to use <App /> in index.js
 export default withStyles(styles)(connect(mapStateToProps)(DeviceName));
