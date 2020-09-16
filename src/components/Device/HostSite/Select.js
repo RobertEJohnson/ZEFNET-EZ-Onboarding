@@ -8,17 +8,6 @@ import DynamicButton from '../../Buttons/DynamicButton';
 import EditSite from './Edit';
 
 const styles = theme => ({ 
-  root: {
-    flexGrow: 1,
-    alignItems: 'center',
-    justify: 'center',
-    color: theme.palette.text.secondary,
-    fontFamily: 'inter, Open Sans, sans-serif',
-    minHeight: '100vh',
-    minWidth: '100vw', 
-    background: 'white',
-    textAlign: 'center',
-  },
   paper:{
     padding: theme.spacing(2),
     borderRadius: '5px',
@@ -27,19 +16,8 @@ const styles = theme => ({
     margin: theme.spacing(1),
     width: '350px',
   },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
   grow:{
       flexGrow: 1
-  },
-  previousButton: {
-    paddingLeft: '8px',
-    marginLeft: '10px'
-  },
-  nextButton: {
-    paddingRight: '8px', 
-    marginRight: '5px'
   },
   hrWordDivder: {
     width: '90%',

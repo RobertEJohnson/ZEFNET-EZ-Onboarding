@@ -24,9 +24,11 @@ import {
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import {
+  Delete as DeleteIcon,
+  Edit as EditIcon,
+  ExpandMore as ExpandMoreIcon
+} from '@material-ui/icons';
 import DynamicButton from "../Buttons/DynamicButton";
 
 
@@ -40,22 +42,16 @@ const styles = (theme) => ({
     minHeight: "80vh",
     background: "white",
     textAlign: "center",
+    minWidth: "1000px",
+    maxWidth: '1000px'
   },
   paper: {
     padding: theme.spacing(2),
     borderRadius: "5px",
   },
-  left: {
-    width: "75px",
-  },
   grow: {
     flexGrow: 1,
     minWidth: "100px",
-  },
-  reviewItem: {
-    display: "inline-block",
-    padding: "0px",
-    margin: "0px",
   },
   table: {
     maxWidth: "1000px",
@@ -86,11 +82,6 @@ const styles = (theme) => ({
 
   Left:{
     width: '75px'
-  },
-  ButtonContainer:{
-    marginTop: '1rem',
-    position: 'relative',
-    minWidth: '95%'
   },
   Titles: {
     fontWeight: 800,
@@ -241,7 +232,7 @@ class Submit extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-        <div className={classes.root} style={{ minWidth: "1000px", maxWidth: '1000px' }}>
+        <div className={classes.root}>
           <Paper className={classes.paper}>
             <Grid item align="center" style={{ marginBottom: "2rem" }}>
               <h1>All Devices and ZefNet Users Added?</h1>

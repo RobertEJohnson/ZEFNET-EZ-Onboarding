@@ -8,17 +8,6 @@ import device from './Images/dualHeadStylized.jpg';
 import DynamicButton from '../Buttons/DynamicButton';
 
 const styles = theme => ({ 
-  root: {
-    flexGrow: 1,
-    alignItems: 'center',
-    justify: 'center',
-    color: theme.palette.text.secondary,
-    fontFamily: 'inter, Open Sans, sans-serif',
-    minHeight: '80vh', 
-    minWidth: '100vw', 
-    background: 'white',
-    textAlign: 'center',
-  },
   paper:{
     padding: theme.spacing(2),
     borderRadius: '5px',
@@ -33,19 +22,10 @@ const styles = theme => ({
     maxHeight: '350px',
     minWidth: '350px'
   },
-  greyscale: {
-    filter: 'grayscale(100%)'
-  },
   grow:{
     flexGrow: 1,
     minWidth: '100px'
   },
-  homeButton: {
-    paddingLeft: '8px',
-  },
-  nextButton: {
-    paddingRight: '8px', 
-  }
 })
 
 

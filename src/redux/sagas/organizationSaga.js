@@ -7,7 +7,6 @@ function* getOrganization(action) {
     //get organization from database/server
     const response = yield axios.get('/api/organization/' + action.payload);
     // store organizaiton in organization reducer
-    console.log('in organizationSaga', response);
     yield put({ type: 'SET_ORGANIZATION', payload: response.data[0] });
     yield put({type: 'FETCH_SITE', payload: response.data[0].id});
     yield put({ type: 'GET_ALL_DEVICE', payload: response.data[0].id});
@@ -20,7 +19,6 @@ function* getOrganization(action) {
 function* submitOrganization (action) {
   try{
     const response = yield axios.put('/api/organization/submit/' + action.payload);
-    console.log( 'in submitOrganization with:', response);
   } catch (error) {
     console.log('Error with organization get:', error);
   }
