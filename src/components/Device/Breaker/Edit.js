@@ -80,7 +80,6 @@ class EditBreaker extends Component {
             site_id: this.props.state.device.site.id,
             id: this.props.breaker.id,
         }
-        console.log('updatind breaker:', editObject)
         if (editObject.site_id && editObject.name && editObject.limit)
             {this.props.dispatch({ type: "EDIT_BREAKER", payload: editObject });
             this.props.handleClose()

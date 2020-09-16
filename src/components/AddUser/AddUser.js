@@ -96,7 +96,6 @@ class AddUser extends Component {
   };
 
   checkEmail = (e) => {
-    console.log("YAY");
     const value = e.target.value;
     if (value.includes("@") && value.includes(".")) {
       this.setState({
@@ -106,7 +105,6 @@ class AddUser extends Component {
       this.setState({
         invalidEmail: true,
       });
-      console.log("Yup");
     }
   };
 
@@ -126,7 +124,6 @@ class AddUser extends Component {
         editor: this.state.editor,
         organization_id: this.props.reduxState.organization.id,
       };
-      console.log(actionObject);
       this.props.dispatch({ type: "ADD_USER", payload: actionObject });
       this.setState({
         first_name: "",

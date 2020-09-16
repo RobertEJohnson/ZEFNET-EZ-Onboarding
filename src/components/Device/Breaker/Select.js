@@ -90,10 +90,8 @@ class BreakerSelect extends Component {
 
       editBreaker = () => {
         let allBreaker = this.props.state.breaker.siteBreakerReducer
-          //console.log('in Edit Breaker with breakers:', allBreaker)
           for (let i = 0; i < allBreaker.length; i++ ){
             if (allBreaker[i].id === this.state.selectedBreaker){
-              //console.log('match found!', allBreaker[i])
               this.setState({
                 ...this.state,
                 edit: true,

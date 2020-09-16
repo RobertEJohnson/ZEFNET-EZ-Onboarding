@@ -11,7 +11,6 @@ const {
 router.get("/:id", rejectUnauthenticated, (req, res) => {
   const queryString = `SELECT * FROM "organization" WHERE "id" = $1;`;
   const queryValue = [req.params.id];
-  //console.log('in/api/organization', req.params.id)
   pool
     .query(queryString, queryValue)
     .then((result) => {
@@ -19,7 +18,8 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
     })
     .catch((error) => {
       res.sendStatus(500);
-      console.log(error);
+      console.log("Error in get Organization", error);
+
     });
 });
 
@@ -27,7 +27,6 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
  * POST route
  */
 router.post("/", rejectUnauthenticated, async (req, res) => {
-  console.log(`req.body`, req.body);
 
   const connection = await pool.connect();
 
@@ -77,7 +76,6 @@ router.post("/", rejectUnauthenticated, async (req, res) => {
  * PUT route
  */
 router.put("/", rejectUnauthenticated, async (req, res) => {
-  console.log(`req.body`, req.body);
 
   const connection = await pool.connect();
 

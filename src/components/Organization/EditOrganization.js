@@ -86,7 +86,6 @@ class EditOrganization extends Component {
   };
 
   checkEmail = (e) => {
-    console.log("YAY");
     const value = e.target.value;
     if (value.includes("@") && value.includes(".")) {
       this.setState({
@@ -96,7 +95,6 @@ class EditOrganization extends Component {
       this.setState({
         invalidEmail: true,
       });
-      console.log("Yup");
     }
   };
 

@@ -94,7 +94,6 @@ class UserTableRow extends Component{
 
         this.setState({ edit_mode: !this.state.edit_mode }, ()=>{
             if(changesMade){
-                console.log('sending edit for id:', this.props.user_id)
                 const actionObject = {
                     first_name: this.state.first_name,
                     last_name: this.state.last_name,

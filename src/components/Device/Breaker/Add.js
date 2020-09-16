@@ -54,7 +54,6 @@ class AddBreaker extends Component {
             limit: this.state.limit,
             site_id: this.props.state.device.site.id,
         }
-        //console.log('posting new breaker:', postObject)
         if (postObject.site_id && postObject.name && postObject.limit)
             {this.props.dispatch({ type: "POST_BREAKER", payload: postObject });
             this.props.handleClose()
