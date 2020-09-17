@@ -59,6 +59,7 @@ Built With:
 
 ![HomeScreen](/images/homeScreen.jpeg)
 ![devicePrep](/images/devicePrep.png)
+![addUser](/images/addUser.gif)
 ![reviewPage](/images/reviewPage.png)
 ![Device Track](/images/AddDevice.gif)
 
