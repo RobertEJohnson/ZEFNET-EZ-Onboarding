@@ -59,8 +59,8 @@ Built With:
 
 ![HomeScreen](/images/homeScreen.jpeg)
 ![devicePrep](/images/devicePrep.png)
-![addUser](/images/addUser.gif)
 ![reviewPage](/images/reviewPage.png)
+![addUser](/images/addUser.gif)
 ![Device Track](/images/AddDevice.gif)
 
 ## Installation
