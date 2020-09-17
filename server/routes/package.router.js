@@ -5,7 +5,7 @@ const {
 } = require("../modules/authentication-middleware");
 
 const nodemailer = require('nodemailer');
-const creds = require('../../mailer');
+const creds = {USER:process.env.USER_EMAIL, PASS:process.env.PASS}
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
