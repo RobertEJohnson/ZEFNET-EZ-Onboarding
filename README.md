@@ -56,6 +56,7 @@ Built With:
 ![HomeScreen](/images/homeScreen.jpeg)
 ![devicePrep](/images/devicePrep.png)
 ![reviewPage](/images/reviewPage.png)
+![Device Track](/images/AddDevice.gif)
 
 ## Installation
 If your application has secret keys (for example -- Twilio), make sure you tell them how to set that up, both in getting the key and then what to call it in the .env file.
