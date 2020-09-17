@@ -14,12 +14,12 @@ To see the fully functional site, please visit: DEPLOYED VERSION OF APP
 ### Prerequisites
 Link to software that is required to install the app (e.g. node).
 
-[VSCode] (https://code.visualstudio.com/download)
-[Node.js](https://nodejs.org/en/)
-[PostrgeSQL](https://www.postgresql.org/)
-[Nodemon](https://nodemon.io/)
-[JavaScript]
-[React]
+- [VSCode] (https://code.visualstudio.com/download)
+- [Node.js](https://nodejs.org/en/)
+- [PostrgeSQL](https://www.postgresql.org/)
+- [Nodemon](https://nodemon.io/)
+- [JavaScript]
+- [React]
 
 ## Usage
 How does someone use this application? Tell a user story here.
@@ -49,7 +49,7 @@ Built With:
 - Express
 - HTML/CSS
 - Material UI
-- mailer.js
+- Nodemailer
 
 ## Installation
 If your application has secret keys (for example -- Twilio), make sure you tell them how to set that up, both in getting the key and then what to call it in the .env file.
@@ -62,15 +62,16 @@ Run `npm run client` in your terminal
 The npm run client command will open up a new browser tab for you!
 Otherwise it is running on `localhost:3000`
 
-### Mailer.js
-You will need to create a file called `mailer.js` and populate with the info below: 
+### .env
+You will need to create a `.env` file and populate with the info below: 
             
-                            module.exports = {
-                                USER: 'yourEmail exclude the `@` and everything after',
-                                PASS: 'password'
-                            }
+        USER_EMAIL=your_email
+        PASS=your_password
 
-This file is already in your `.gitignore`
+Please replace `your_email` with the email address you'd like to send the finished onboarding packet from.
+Please replace `your_password` with the password to that corresponding email address.
+
+This file is already in your `.gitignore` so your email and password will not be uploaded.
 This will only work with Gmail
 
 ## Lay of the Land

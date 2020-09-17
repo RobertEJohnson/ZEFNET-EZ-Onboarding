@@ -22,7 +22,6 @@ const styles = (theme) => ({
     marginRight: "14px",
   },
   ButtonContainer: {
-    marginTop: ".5rem",
     position: "relative",
     maxWidth: "450px",
   },
@@ -30,10 +29,12 @@ const styles = (theme) => ({
     color: "white",
     marginBottom: "100px",
     width: "450px",
+    textAlign: 'center'
   },
   Title: {
     fontSize: "30px",
     marginBottom: "1rem",
+    textAlign: 'center'
   },
   TextField: {
     width: "400px",
@@ -251,7 +252,6 @@ class RegisterPage extends Component {
             variant="filled"
             disableAreaCodes="true"
             label="Primary Phone (optional)"
-            className={classes.BottomBuffer}
             name="phone"
             type="tel"
             value={this.state.phone}
