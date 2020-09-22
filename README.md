@@ -3,13 +3,24 @@
 ## Description
 Duration: 1 Month Project
 
-ZEFNET EZ ONBOARDING (ZEO) was worked on over the course of a month, and can be split into two parts: one week was spent planning and designing the application, while the last three weeks were spent building and testing the app. 
+ZEFNET EZ Onboarding was worked on over the course of three and a half weeks, and can be split into few parts: one week was spent planning and designing the application, two weeks building the application, and a couple days planning public presentations, deployment, writing up deployment documentation, and other final touches.
 
-Our client Zef Energy approached us to fix their "new client onboarding process" with one main problem - the ticket-based onboarding system for new customers. Their former system was very complex, and customers didn't always submit all the necessary information required for signup. This led to Zef Energy needing to have multiple interaction with clients that cost hundreds of dollars per client when signing up, creating a frustration experience for both the client and Zef. 
+Our client ZEF Energy [ZEF Energy Website](zefenergy.com), is an industry leading electric vehicle charging device developer (and distributor) based in the United States. They approached us to design and develop a fix their existing onboarding system for their customers. Onboarding applicants for the existing system would spent on average four days sending emails back and forth to ZEF Energy to onboard a newly purchased charging unit to ZEFNET (a support system, with many amazing features like data statistics, device metrics, and trouble-shooting help).Their former onboarding system was complex, and customers often did not submit all the necessary information required for the onboarding process. This resulted in ZEF Energy needing to have multiple interactions with clients, which had to be juggled between employees due to ZEF Energy's small company size, and created a frustrating experience for both the client and ZEF Energy. On average ZEF Energy lost an estimated 250$-500$ per applicant due to personnel costs and the resulting loss of work in other areas of the company.
 
-Our application ZEO fixed the above problems by creating a step by step experience for the client to follow and submit all the necessary information needed which we then collected and sent as an email to ZEF. Reducing the need for multiple interactions and creating a better experience for both parties.
+Our application ZEFNET EZ Onboarding fixed the above problems by creating a step by step experience for the client to follow and submit all the necessary information needed which we then collected and sent to ZEF Energy in their requested format. Reducing the need for multiple interactions to edge cases or past submitted applications. Creating a better experience for both parties, and saving ZEF Energy cost as well as freeing staff to do what they do best, create top of the line high-end electic vehicle chargers. ZEFNET EZ Onboarding was then passed of to ZEF Energy and their developer team with all deployement information, a live deployement, and a fresh copy of the codebase.
 
-To see the fully functional site, please visit: [Deployed] (link to deployed app here)
+## Deployed Site
+
+To see a version of the fully functional site, please visit: [Deployed] (https://still-garden-11265.herokuapp.com/#/home) 
+
+PLEASE NOTE: this is hosted on Heroku's free hosting plan, as such it will take around a minute to spin up the server if it hasn't been accessed recently. If you submit finalized onboarding data with this deployed version it will be sent to my personal email address and NOT to ZEF Energy for them actually onboard into their system, so no worries, however please use mock data for information you input. An emailed JSON object of all relevant data was the requested format for ZEF Energy, as such their engineers could easily adapt it to integrate with their existing system which we did not have access to.
+
+By submitting data with this site users consent to:
+Assuming full responsibilty for any information they enter and send to Heroku's database and/or my email address. I will not assume any responsibility for any information, information leaks or malicious break-ins of any kind. 
+
+Otherwise, have fun trying it out! :) 
+
+If you'd like to contact me feel free to reachout at (robertejohnson10@gmail.com) 
 
 ### Prerequisites
 
@@ -114,6 +125,8 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 MIT Copyright (c) 2020 Amir Mussa, Ace Fox, Robert Johnson
 
 ## Acknowledgement
-THank you to Zef Energy for giving us the opportunity to employ or new skills and create this application.
-Thanks to Prime Digital Academy who equipped and helped me to make this application a reality. 
-Special shout out to Amir, Ace, and Rob for the hardwork put into the project.
+Thank you to Zef Energy for giving us the opportunity to employ or new skills and create this application for you. You're all doing amazing work for the world and are charming and fantastic people
+.
+Thanks to Prime Digital Academy for all you do, and connecting us with ZEF Energy.
+
+Special shout out to Amir and Ace my teammates. You both are fantastic developers and have made for such a wonderful team to be a part of. Thank you for your hardwork and dedication to help this project come to fruition with me. Rock on.
