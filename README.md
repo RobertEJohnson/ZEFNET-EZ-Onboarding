@@ -5,9 +5,9 @@ Duration: 1 Month Project
 
 ZEFNET EZ Onboarding was worked on over the course of three and a half weeks, and can be split into few parts: one week was spent planning and designing the application, two weeks building the application, and a couple days planning public presentations, deployment, writing up deployment documentation, and other final touches.
 
-Our client ZEF Energy, (zefenergy.com), is an industry leading electric vehicle charging device developer and distributor based in the United States. They approached us to design and develop a fix their existing onboarding system for their customers. Onboarding applicants for the existing system would spent on average four days sending emails back and forth to ZEF Energy to onboard a newly purchased charging unit to ZEFNET (a support system, with many amazing features like data statistics, device metrics, and trouble-shooting help).Their former onboarding system was complex, and customers often did not submit all the necessary information required for the onboarding process. This resulted in ZEF Energy needing to have multiple interactions with clients, which had to be juggled between employees due to ZEF Energy's small company size, and created a frustrating experience for both the client and ZEF Energy. On average ZEF Energy lost an estimated 250$-500$ per applicant due to personnel costs and the resulting loss of work in other areas of the company.
+Our client ZEF Energy, (zefenergy.com), is an industry leading electric vehicle charging device developer and distributor based in the United States. They approached us to design and develop a fix to their existing onboarding system for their customers. Onboarding applicants for the existing system would spent on average four days sending emails back and forth to ZEF Energy to onboard a newly purchased charging unit to ZEFNET (a support system, with many amazing features like data statistics, device metrics, and trouble-shooting help).Their former onboarding system was complex, and customers often did not submit all the necessary information required for the onboarding process. This resulted in ZEF Energy needing to have multiple interactions with clients, which had to be juggled between employees due to ZEF Energy's small company size, and created a frustrating experience for both the client and ZEF Energy. On average ZEF Energy lost an estimated 250$-500$ per applicant due to personnel costs and the resulting loss of work in other areas of the company.
 
-Our application ZEFNET EZ Onboarding fixed the above problems by creating a step by step experience for the client to follow and submit all the necessary information needed which we then collected and sent to ZEF Energy in their requested format. Reducing the need for multiple interactions to edge cases or past submitted applications. Creating a better experience for both parties, and saving ZEF Energy cost as well as freeing staff to do what they do best, create top of the line high-end electic vehicle chargers. ZEFNET EZ Onboarding was then passed of to ZEF Energy and their developer team with all deployement information, a live deployement, and a fresh copy of the codebase.
+Our application ZEFNET EZ Onboarding fixed the above problems by creating a step by step experience for the client to follow and submit all the necessary information needed which we then collected and sent to ZEF Energy in their requested format. Reducing the need for multiple interactions to edge cases or past submitted applications. Creating a better experience for both parties, and saving ZEF Energy cost as well as freeing staff to do what they do best, create top of the line high-end electric vehicle chargers. ZEFNET EZ Onboarding was then passed off to ZEF Energy and their developer team with all deployment information, a live deployment, and a fresh copy of the codebase.
 
 ## Deployed Site
 
@@ -33,10 +33,10 @@ If you'd like to contact me feel free to reachout at (robertejohnson10@gmail.com
 
 ## Usage
 
-- A new Zef customer will register an account wiht an email address, password, address, and optional phone number
-- Then they will be guided to create an Organization with siilar information
+- A new Zef customer will register an account with an email address, password, address, and optional phone number
+- Then they will be guided to create an Organization with similar information
 - They will then be guided to a home screen where they can choose to either "Add a device" or "Add a User"
-- Organization Information can also be viewed or edited by clicking ont he organization name in the top left corner
+- Organization Information can also be viewed or edited by clicking on the organization name in the top left corner
 
 - On the "Add a Device" path they will be shown a screen that will prep them with all the info needed to add a device
 - The client will then input the gathered info on the next four screens
@@ -50,10 +50,10 @@ If you'd like to contact me feel free to reachout at (robertejohnson10@gmail.com
 - This process can be repeated as many times as needed for the organization
 - Users can be edited or deleted on this table as well
 
-- Once finished adding atleast one device the "Review and Submit" path will open up and they can view all "device" and "user" information.
+- Once finished adding at least one device the "Review and Submit" path will open up and they can view all "device" and "user" information.
 - Once reviewed, click submit if all information is correct
 - An email will be sent to ZEF with the information stored in a JSON object
-- The user will see a page that says your information as been successfully sent. 
+- The user will see a page that says your information has been successfully sent. 
 
 Built With:
 - JavaScript
@@ -125,8 +125,8 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 MIT Copyright (c) 2020 Amir Mussa, Ace Fox, Robert Johnson
 
 ## Acknowledgement
-Thank you to Zef Energy for giving us the opportunity to employ or new skills and create this application for you. You're all doing amazing work for the world and are charming and fantastic people
+Thank you to Zef Energy for giving us the opportunity to employ our new skills and create this application for you. You're all doing amazing work for the world and are charming and fantastic people
 .
-Thanks to Prime Digital Academy for all you do, and connecting us with ZEF Energy.
+Thanks to Prime Digital Academy for all you do, and for connecting us with ZEF Energy.
 
 Special shout out to Amir and Ace my teammates. You both are fantastic developers and have made for such a wonderful team to be a part of. Thank you for your hardwork and dedication to help this project come to fruition with me. Rock on.
